@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "LKImagePickerController.h"
 
 @interface ViewController ()
 
@@ -24,6 +25,11 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)openPicker:(id)sender {
+    LKImagePickerController* controller = [[LKImagePickerController alloc] init];
+    [self presentViewController:controller animated:YES completion:nil];
 }
 
 @end
