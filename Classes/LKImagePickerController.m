@@ -7,6 +7,7 @@
 //
 
 #import "LKImagePickerController.h"
+#import "LKImagePickerControllerGroupTableViewController.h"
 
 @interface LKImagePickerController ()
 
@@ -18,7 +19,8 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        LKImagePickerControllerGroupTableViewController* viewController = [[LKImagePickerControllerGroupTableViewController alloc] init];
+        [self pushViewController:viewController animated:NO];
     }
     return self;
 }

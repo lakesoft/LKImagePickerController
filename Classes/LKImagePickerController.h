@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LKImagePickerController : UIViewController
+@interface LKImagePickerController : UINavigationController
 
 @end
