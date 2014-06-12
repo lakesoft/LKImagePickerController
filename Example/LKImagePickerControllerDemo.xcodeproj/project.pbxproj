@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		2C6DF23D620C49BFA6297186 /* libPods-LKImagePickerControllerDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 40EE24068165439CA7807C50 /* libPods-LKImagePickerControllerDemo.a */; };
 		BC1CB2DE19491EC800CBD8CE /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC1CB2DD19491EC800CBD8CE /* CoreFoundation.framework */; };
-		BC1CB2E419491EC800CBD8CE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BC1CB2E219491EC800CBD8CE /* InfoPlist.strings */; };
-		BC1CB2EC19491F3500CBD8CE /* LKImagePickerController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC1CB2EB19491F3500CBD8CE /* LKImagePickerController.xib */; };
 		BC2A376C19397F9600C672B7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC2A376B19397F9600C672B7 /* Foundation.framework */; };
 		BC2A376E19397F9600C672B7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC2A376D19397F9600C672B7 /* CoreGraphics.framework */; };
 		BC2A377019397F9600C672B7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC2A376F19397F9600C672B7 /* UIKit.framework */; };
@@ -43,10 +41,6 @@
 		75C1B7E6770B4B4B8578E510 /* Pods-LKImagePickerControllerDemo.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LKImagePickerControllerDemo.xcconfig"; path = "Pods/Pods-LKImagePickerControllerDemo.xcconfig"; sourceTree = "<group>"; };
 		BC1CB2DC19491EC800CBD8CE /* LKImagePickerController-Resources.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LKImagePickerController-Resources.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC1CB2DD19491EC800CBD8CE /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
-		BC1CB2E119491EC800CBD8CE /* LKImagePickerController-Resources-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LKImagePickerController-Resources-Info.plist"; sourceTree = "<group>"; };
-		BC1CB2E319491EC800CBD8CE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		BC1CB2E519491EC800CBD8CE /* LKImagePickerController-Resources-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LKImagePickerController-Resources-Prefix.pch"; sourceTree = "<group>"; };
-		BC1CB2EB19491F3500CBD8CE /* LKImagePickerController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LKImagePickerController.xib; sourceTree = "<group>"; };
 		BC2A376819397F9600C672B7 /* LKImagePickerControllerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LKImagePickerControllerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC2A376B19397F9600C672B7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		BC2A376D19397F9600C672B7 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -102,31 +96,11 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		BC1CB2DF19491EC800CBD8CE /* LKImagePickerController-Resources */ = {
-			isa = PBXGroup;
-			children = (
-				BC1CB2EB19491F3500CBD8CE /* LKImagePickerController.xib */,
-				BC1CB2E019491EC800CBD8CE /* Supporting Files */,
-			);
-			path = "LKImagePickerController-Resources";
-			sourceTree = "<group>";
-		};
-		BC1CB2E019491EC800CBD8CE /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				BC1CB2E119491EC800CBD8CE /* LKImagePickerController-Resources-Info.plist */,
-				BC1CB2E219491EC800CBD8CE /* InfoPlist.strings */,
-				BC1CB2E519491EC800CBD8CE /* LKImagePickerController-Resources-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		BC2A375F19397F9600C672B7 = {
 			isa = PBXGroup;
 			children = (
 				BC2A377119397F9600C672B7 /* LKImagePickerControllerDemo */,
 				BC2A379319397F9600C672B7 /* LKImagePickerControllerDemoTests */,
-				BC1CB2DF19491EC800CBD8CE /* LKImagePickerController-Resources */,
 				BC2A376A19397F9600C672B7 /* Frameworks */,
 				BC2A376919397F9600C672B7 /* Products */,
 				75C1B7E6770B4B4B8578E510 /* Pods-LKImagePickerControllerDemo.xcconfig */,
@@ -296,8 +270,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BC1CB2EC19491F3500CBD8CE /* LKImagePickerController.xib in Resources */,
-				BC1CB2E419491EC800CBD8CE /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -392,14 +364,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		BC1CB2E219491EC800CBD8CE /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				BC1CB2E319491EC800CBD8CE /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
 		BC2A377419397F9600C672B7 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -439,6 +403,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = ../Resources;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LKImagePickerController-Resources/LKImagePickerController-Resources-Prefix.pch";
@@ -450,7 +415,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
+				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = bundle;
 			};
 			name = Debug;
@@ -459,6 +424,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = ../Resources;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -467,7 +433,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
+				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = bundle;
 			};
 			name = Release;

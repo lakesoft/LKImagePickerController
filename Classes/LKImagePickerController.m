@@ -16,12 +16,7 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    NSString* nibName = [NSStringFromClass(self.class) stringByAppendingPathExtension:@"xib"];
-    NSString *path = [[NSBundle mainBundle] pathForResource:nibName ofType:nil];
-    NSBundle *bundle = [NSBundle bundleWithPath:path];
-    
-    self = [super initWithNibName:nibName bundle:bundle];
-//    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
     }
