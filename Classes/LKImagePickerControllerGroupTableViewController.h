@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LKAssetsLibrary.h"
 
 @interface LKImagePickerControllerGroupTableViewController : UITableViewController
+
+@property (strong, nonatomic) LKAssetsLibrary* assetsLibrary;
 
 @end

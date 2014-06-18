@@ -588,6 +588,7 @@
 				BC1CB2E719491EC800CBD8CE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BC2A376319397F9600C672B7 /* Build configuration list for PBXProject "LKImagePickerControllerDemo" */ = {
 			isa = XCConfigurationList;

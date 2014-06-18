@@ -7,20 +7,66 @@
 //
 
 #import "LKImagePickerController.h"
+#import "LKAssetsLibrary.h"
+
 #import "LKImagePickerControllerGroupTableViewController.h"
+#import "LKImagePickerControllerStandardSelectViewController.h"
 
 @interface LKImagePickerController ()
-
+@property (strong, nonatomic) LKAssetsLibrary* assetsLibrary;
 @end
 
 @implementation LKImagePickerController
+
+#pragma mark - Privates
+- (void)_assetsLibraryDidSetup:(NSNotification*)notification
+{
+    switch (self.entryPoint) {
+        case LKImagePickerControllerEntryPointWithGroups:
+        {
+            LKImagePickerControllerGroupTableViewController* viewController = LKImagePickerControllerGroupTableViewController.new;
+            viewController.assetsLibrary = self.assetsLibrary;
+            [self pushViewController:viewController animated:NO];
+        }
+            break;
+            
+        case LKImagePickerControllerEntryPointWithSavedPhotos:
+        default:
+        {
+            LKImagePickerControllerStandardSelectViewController* viewController = LKImagePickerControllerStandardSelectViewController.new;
+            viewController.assetsGroup = self.assetsLibrary.assetsGroups[0];
+            [self pushViewController:viewController animated:NO];
+        }
+            break;
+    }
+
+}
+
+- (void)_assetsLibraryDidInsertGroup:(NSNotification*)notification
+{
+//    NSArray* groups = notification.userInfo[LKAssetsLibraryGroupsKey];
+//    NSLog(@"%s|inserted: %@", __PRETTY_FUNCTION__, groups);
+}
+
+- (void)_assetsLibraryDidUpdateGroup:(NSNotification*)notification
+{
+//    NSArray* groups = notification.userInfo[LKAssetsLibraryGroupsKey];
+//    NSLog(@"%s|updated: %@", __PRETTY_FUNCTION__, groups);
+}
+
+- (void)_assetsLibraryDidDeleteGroup:(NSNotification*)notification
+{
+//    NSArray* groups = notification.userInfo[LKAssetsLibraryGroupsKey];
+//    NSLog(@"%s|deleted: %@", __PRETTY_FUNCTION__, groups);
+}
+
+
+#pragma mark - Basics
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        LKImagePickerControllerGroupTableViewController* viewController = [[LKImagePickerControllerGroupTableViewController alloc] init];
-        [self pushViewController:viewController animated:NO];
     }
     return self;
 }
@@ -28,6 +74,41 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // Notifications
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(_assetsLibraryDidSetup:)
+                                                 name:LKAssetsLibraryDidSetupNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(_assetsLibraryDidInsertGroup:)
+                                                 name:LKAssetsLibraryDidInsertGroupsNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(_assetsLibraryDidUpdateGroup:)
+                                                 name:LKAssetsLibraryDidUpdateGroupsNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(_assetsLibraryDidDeleteGroup:)
+                                                 name:LKAssetsLibraryDidDeleteGroupsNotification
+                                               object:nil];
+
+    
+    switch (self.entryPoint) {
+        case LKImagePickerControllerEntryPointWithGroups:
+            self.assetsLibrary = [LKAssetsLibrary assetsLibrary];
+            break;
+            
+        case LKImagePickerControllerEntryPointWithSavedPhotos:
+        default:
+            self.assetsLibrary = [LKAssetsLibrary assetsLibraryWithAssetsGroupType:ALAssetsGroupSavedPhotos
+                                                                      assetsFilter:nil];
+            break;
+    }
+    [self.assetsLibrary reload];
 }
 
 - (void)didReceiveMemoryWarning

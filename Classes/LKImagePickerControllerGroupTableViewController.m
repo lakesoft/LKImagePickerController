@@ -8,71 +8,19 @@
 
 #import "LKImagePickerControllerGroupTableViewController.h"
 #import "LKAssetsLibrary.h"
+#import "LKImagePickerControllerStandardSelectViewController.h"
 
-@interface LKImagePickerControllerGroupTableViewController ()
-@property (strong, nonatomic) LKAssetsLibrary* assetsLibrary;
-@end
 
 @implementation LKImagePickerControllerGroupTableViewController
-
-#pragma mark - Privates
-- (void)_assetsLibraryDidSetup:(NSNotification*)notification
-{
-    [self.tableView reloadData];
-}
-
-- (void)_assetsLibraryDidInsertGroup:(NSNotification*)notification
-{
-    NSArray* groups = notification.userInfo[LKAssetsLibraryGroupsKey];
-    NSLog(@"%s|inserted: %@", __PRETTY_FUNCTION__, groups);
-    [self.tableView reloadData];
-}
-
-- (void)_assetsLibraryDidUpdateGroup:(NSNotification*)notification
-{
-    NSArray* groups = notification.userInfo[LKAssetsLibraryGroupsKey];
-    NSLog(@"%s|updated: %@", __PRETTY_FUNCTION__, groups);
-    [self.tableView reloadData];
-}
-
-- (void)_assetsLibraryDidDeleteGroup:(NSNotification*)notification
-{
-    NSArray* groups = notification.userInfo[LKAssetsLibraryGroupsKey];
-    NSLog(@"%s|deleted: %@", __PRETTY_FUNCTION__, groups);
-    [self.tableView reloadData];
-}
 
 
 #pragma mark - Basics
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     [self.tableView registerClass:UITableViewCell.class forCellReuseIdentifier:@"GroupCell"];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(_assetsLibraryDidSetup:)
-                                                 name:LKAssetsLibraryDidSetupNotification
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(_assetsLibraryDidInsertGroup:)
-                                                 name:LKAssetsLibraryDidInsertGroupsNotification
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(_assetsLibraryDidUpdateGroup:)
-                                                 name:LKAssetsLibraryDidUpdateGroupsNotification
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(_assetsLibraryDidDeleteGroup:)
-                                                 name:LKAssetsLibraryDidDeleteGroupsNotification
-                                               object:nil];
-    
-    
-    self.assetsLibrary = [LKAssetsLibrary assetsLibrary];
-    [self.assetsLibrary reload];
 }
 
 - (void)didReceiveMemoryWarning
@@ -80,7 +28,7 @@
     [super didReceiveMemoryWarning];
 }
 
-#pragma mark - Table view data source
+#pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -90,6 +38,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GroupCell" forIndexPath:indexPath];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
     LKAssetsGroup* assetsGroup = self.assetsLibrary.assetsGroups[indexPath.row];
     
@@ -97,5 +46,15 @@
     cell.textLabel.text = assetsGroup.description;
     return cell;
 }
+
+#pragma mark - UITableViewDelegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    LKImagePickerControllerStandardSelectViewController* viewController = LKImagePickerControllerStandardSelectViewController.new;
+    viewController.assetsGroup = self.assetsLibrary.assetsGroups[indexPath.row];
+    [self.navigationController pushViewController:viewController animated:YES];
+}
+
+
 
 @end
