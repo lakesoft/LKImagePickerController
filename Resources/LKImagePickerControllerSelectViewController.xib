@@ -4,9 +4,9 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LKImagePickerControllerStandardSelectViewController">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LKImagePickerControllerSelectViewController">
             <connections>
-                <outlet property="collectionView" destination="NNQ-uS-s1c" id="HrA-wB-F4k"/>
+                <outlet property="collectionView" destination="NNQ-uS-s1c" id="ljI-CB-5EX"/>
                 <outlet property="view" destination="NNQ-uS-s1c" id="Vf6-w0-Ygf"/>
             </connections>
         </placeholder>
@@ -25,8 +25,8 @@
             </collectionViewFlowLayout>
             <cells/>
             <connections>
-                <outlet property="dataSource" destination="-1" id="1i2-cP-MsM"/>
-                <outlet property="delegate" destination="-1" id="2sc-od-72d"/>
+                <outlet property="dataSource" destination="-1" id="0s2-d7-bKd"/>
+                <outlet property="delegate" destination="-1" id="3AA-Ge-7Po"/>
             </connections>
         </collectionView>
     </objects>

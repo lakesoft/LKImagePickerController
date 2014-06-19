@@ -18,6 +18,7 @@ typedef NS_ENUM(NSInteger, LKImagePickerControllerEntryPoint) {
 @interface LKImagePickerController : UINavigationController
 
 @property (nonatomic, assign) LKImagePickerControllerEntryPoint entryPoint;
-@property (nonatomic, strong) UIColor* tintColor;
+@property (nonatomic, strong) UIColor* checkmarkForegroundColor;
+@property (nonatomic, strong) UIColor* checkmarkBackgroundColor;
 
 @end

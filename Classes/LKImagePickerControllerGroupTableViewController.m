@@ -8,7 +8,7 @@
 
 #import "LKImagePickerControllerGroupTableViewController.h"
 #import "LKAssetsLibrary.h"
-#import "LKImagePickerControllerStandardSelectViewController.h"
+#import "LKImagePickerControllerSelectViewController.h"
 
 
 @implementation LKImagePickerControllerGroupTableViewController
@@ -50,7 +50,7 @@
 #pragma mark - UITableViewDelegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    LKImagePickerControllerStandardSelectViewController* viewController = LKImagePickerControllerStandardSelectViewController.new;
+    LKImagePickerControllerSelectViewController* viewController = LKImagePickerControllerSelectViewController.new;
     viewController.assetsGroup = self.assetsLibrary.assetsGroups[indexPath.row];
     [self.navigationController pushViewController:viewController animated:YES];
 }

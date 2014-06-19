@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="LKImagePickerControllerSelectHeaderView" id="WCX-SI-Dcw" customClass="LKImagePickerControllerSelectHeaderView">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GGp-PL-zXq">
+                    <rect key="frame" x="10" y="19" width="212" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="no5-Lh-Cmm">
+                    <rect key="frame" x="270" y="17" width="40" height="25"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="40" id="qM9-Al-3RI"/>
+                    </constraints>
+                    <state key="normal" title="10">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="tappedHeader:" destination="-2" eventType="touchUpInside" id="NmN-WC-fVn"/>
+                    </connections>
+                </button>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="GGp-PL-zXq" secondAttribute="bottom" constant="10" id="6Jn-1o-bPs"/>
+                <constraint firstAttribute="trailing" secondItem="no5-Lh-Cmm" secondAttribute="trailing" constant="10" id="MW3-34-Xxv"/>
+                <constraint firstItem="no5-Lh-Cmm" firstAttribute="leading" secondItem="GGp-PL-zXq" secondAttribute="trailing" constant="48" id="Ouf-5w-zfe"/>
+                <constraint firstAttribute="bottom" secondItem="no5-Lh-Cmm" secondAttribute="bottom" constant="8" id="aLx-VV-nPH"/>
+                <constraint firstItem="no5-Lh-Cmm" firstAttribute="top" secondItem="WCX-SI-Dcw" secondAttribute="top" constant="17" id="iPz-cU-frg"/>
+                <constraint firstItem="GGp-PL-zXq" firstAttribute="leading" secondItem="WCX-SI-Dcw" secondAttribute="leading" constant="10" id="uoj-VL-tnk"/>
+                <constraint firstItem="GGp-PL-zXq" firstAttribute="top" secondItem="WCX-SI-Dcw" secondAttribute="top" constant="19" id="x9S-L0-Xf5"/>
+            </constraints>
+            <connections>
+                <outlet property="checkButton" destination="no5-Lh-Cmm" id="tnI-dz-pRw"/>
+                <outlet property="titleLabel" destination="GGp-PL-zXq" id="g8M-B6-kaD"/>
+            </connections>
+        </collectionReusableView>
+    </objects>
+</document>

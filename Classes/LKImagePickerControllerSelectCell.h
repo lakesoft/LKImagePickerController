@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "LKAssetsLibrary.h"
-@interface LKImagePickerControllerStandardSelectCell : UICollectionViewCell
+@interface LKImagePickerControllerSelectCell : UICollectionViewCell
 
 @property (nonatomic, weak) LKAsset* asset;
+@property (nonatomic, assign) BOOL touchedOnCheckmark;
 
 @end

@@ -10,4 +10,6 @@
 
 @interface LKImagePickerControllerCheckmarkView : UIView
 
+@property (nonatomic, assign) BOOL disabled;
+
 @end

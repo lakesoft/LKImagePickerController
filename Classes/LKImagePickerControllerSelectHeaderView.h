@@ -1,5 +1,5 @@
 //
-//  LKImagePickerControllerStandardSelectHeaderView.h
+//  LKImagePickerControllerSelectHeaderView.h
 //  LKImagePickerControllerDemo
 //
 //  Created by Hiroshi Hashiguchi on 2014/06/16.
@@ -9,9 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "LKAssetsLibrary.h"
 
-@interface LKImagePickerControllerStandardSelectHeaderView : UICollectionReusableView
+@interface LKImagePickerControllerSelectHeaderView : UICollectionReusableView
 
 @property (nonatomic, weak) LKAssetsCollectionEntry* collectionEntry;
 @property (nonatomic, assign) NSInteger section;
+
+@property (nonatomic, assign) BOOL allSelected;
 
 @end

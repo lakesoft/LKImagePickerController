@@ -8,9 +8,9 @@
 
 #import "LKImagePickerController.h"
 #import "LKAssetsLibrary.h"
-
+#import "LKImagePickerControllerAppearance.h"
 #import "LKImagePickerControllerGroupTableViewController.h"
-#import "LKImagePickerControllerStandardSelectViewController.h"
+#import "LKImagePickerControllerSelectViewController.h"
 
 @interface LKImagePickerController ()
 @property (strong, nonatomic) LKAssetsLibrary* assetsLibrary;
@@ -33,7 +33,7 @@
         case LKImagePickerControllerEntryPointWithSavedPhotos:
         default:
         {
-            LKImagePickerControllerStandardSelectViewController* viewController = LKImagePickerControllerStandardSelectViewController.new;
+            LKImagePickerControllerSelectViewController* viewController = LKImagePickerControllerSelectViewController.new;
             viewController.assetsGroup = self.assetsLibrary.assetsGroups[0];
             [self pushViewController:viewController animated:NO];
         }
@@ -116,15 +116,15 @@
     [super didReceiveMemoryWarning];
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+- (void)setCheckmarkForegroundColor:(UIColor *)checkmarkForegroundColor
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    LKImagePickerControllerAppearance.sharedAppearance.checkmarkForegroundColor = checkmarkForegroundColor;
 }
-*/
+- (void)setCheckmarkBackgroundColor:(UIColor *)checkmarkBackgroundColor
+{
+    LKImagePickerControllerAppearance.sharedAppearance.checkmarkBackgroundColor = checkmarkBackgroundColor;
+}
+
 
 @end
