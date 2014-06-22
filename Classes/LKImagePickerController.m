@@ -21,25 +21,10 @@
 #pragma mark - Privates
 - (void)_assetsLibraryDidSetup:(NSNotification*)notification
 {
-    switch (self.entryPoint) {
-        case LKImagePickerControllerEntryPointWithGroups:
-        {
-            LKImagePickerControllerGroupTableViewController* viewController = LKImagePickerControllerGroupTableViewController.new;
-            viewController.assetsLibrary = self.assetsLibrary;
-            [self pushViewController:viewController animated:NO];
-        }
-            break;
-            
-        case LKImagePickerControllerEntryPointWithSavedPhotos:
-        default:
-        {
-            LKImagePickerControllerSelectViewController* viewController = LKImagePickerControllerSelectViewController.new;
-            viewController.assetsGroup = self.assetsLibrary.assetsGroups[0];
-            [self pushViewController:viewController animated:NO];
-        }
-            break;
-    }
-
+    LKImagePickerControllerSelectViewController* viewController = LKImagePickerControllerSelectViewController.new;
+    viewController.assetsLibrary = self.assetsLibrary;
+    viewController.assetsGroup = self.assetsLibrary.assetsGroups[0];
+    [self pushViewController:viewController animated:NO];
 }
 
 - (void)_assetsLibraryDidInsertGroup:(NSNotification*)notification
@@ -97,17 +82,7 @@
                                                object:nil];
 
     
-    switch (self.entryPoint) {
-        case LKImagePickerControllerEntryPointWithGroups:
-            self.assetsLibrary = [LKAssetsLibrary assetsLibrary];
-            break;
-            
-        case LKImagePickerControllerEntryPointWithSavedPhotos:
-        default:
-            self.assetsLibrary = [LKAssetsLibrary assetsLibraryWithAssetsGroupType:ALAssetsGroupSavedPhotos
-                                                                      assetsFilter:nil];
-            break;
-    }
+    self.assetsLibrary = [LKAssetsLibrary assetsLibrary];
     [self.assetsLibrary reload];
 }
 

@@ -28,6 +28,11 @@
     }
 }
 
+- (void)_didAllDeselect:(NSNotification*)notification
+{
+    self.allSelected = NO;
+}
+
 - (void)awakeFromNib
 {
     self.allSelected = NO;
@@ -40,13 +45,17 @@
                                            selector:@selector(_didChangeSelection:)
                                                name:LKImagePickerControllerSelectViewControllerDidDeselectCellNotification
                                              object:nil];
+    [NSNotificationCenter.defaultCenter addObserver:self
+                                           selector:@selector(_didAllDeselect:)
+                                               name:LKImagePickerControllerSelectViewControllerDidAllDeselectCellNotification
+                                             object:nil];
 }
 
 - (void)setCollectionEntry:(LKAssetsCollectionEntry *)collectionEntry
 {
     _collectionEntry = collectionEntry;
     NSDateFormatter* formatter = NSDateFormatter.new;
-    formatter.dateStyle = NSDateFormatterShortStyle;
+    formatter.dateStyle = NSDateFormatterLongStyle;
     self.titleLabel.text = [formatter stringFromDate:collectionEntry.date];
     
     [self.checkButton setTitle:[NSString stringWithFormat:@"%lu", collectionEntry.assets.count]
@@ -68,7 +77,7 @@
     self.checkButton.backgroundColor = buttonBackgroundColor;
     CALayer* layer = self.checkButton.layer;
     layer.borderColor = buttonForegroundColor.CGColor;
-    layer.borderWidth = 0.5;
+    layer.borderWidth = 1.0;
 }
 
 

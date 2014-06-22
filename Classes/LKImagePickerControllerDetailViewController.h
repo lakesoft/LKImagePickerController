@@ -8,11 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "LKAssetsLibrary.h"
+#import "LKImagePickerControllerSelectViewController.h"
 
 @interface LKImagePickerControllerDetailViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property (nonatomic, weak) LKAssetsCollection* assetsCollection;
 @property (nonatomic, weak) NSIndexPath* indexPath;
-
-
+@property (nonatomic, weak) NSMutableOrderedSet* selectedAssets;
+@property (nonatomic, weak) NSArray* indexPathsForSelectedItems;    // strong?
+@property (nonatomic, weak) LKImagePickerControllerSelectViewController* selectViewController;
 @end

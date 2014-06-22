@@ -11,11 +11,16 @@
 
 @implementation LKImagePickerControllerCheckmarkView
 
+- (void)_setup
+{
+    self.backgroundColor = UIColor.clearColor;
+}
+
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        self.backgroundColor = UIColor.clearColor;
+        [self _setup];
     }
     return self;
 }
@@ -23,7 +28,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = UIColor.clearColor;
+        [self _setup];
     }
     return self;
 }
@@ -40,7 +45,7 @@
     [strokeColor setStroke];
     [fillColor setFill];
 
-    CGFloat lineWidth = self.disabled ? 0.5 : 1.5;
+    CGFloat lineWidth = self.disabled ? 1.0 : 1.5;
 
     UIBezierPath* circlePath = [UIBezierPath bezierPathWithOvalInRect:CGRectInset(self.bounds, 3.0, 3.0)];
     if (self.disabled) {

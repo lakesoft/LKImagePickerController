@@ -24,7 +24,6 @@
 {
     LKImagePickerController* controller = [[LKImagePickerController alloc] init];
 //    controller.checkmarkBackgroundColor = [UIColor colorWithRed:0.078 green:0.67 blue:0.23 alpha:1.000];
-    controller.entryPoint = LKImagePickerControllerEntryPointWithSavedPhotos;
     [self presentViewController:controller animated:NO completion:nil];
 }
 

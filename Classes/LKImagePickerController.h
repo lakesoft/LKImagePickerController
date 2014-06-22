@@ -8,16 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-typedef NS_ENUM(NSInteger, LKImagePickerControllerEntryPoint) {
-    LKImagePickerControllerEntryPointWithGroups = 0,
-    LKImagePickerControllerEntryPointWithSavedPhotos = 1
-};
-
-
-
 @interface LKImagePickerController : UINavigationController
 
-@property (nonatomic, assign) LKImagePickerControllerEntryPoint entryPoint;
 @property (nonatomic, strong) UIColor* checkmarkForegroundColor;
 @property (nonatomic, strong) UIColor* checkmarkBackgroundColor;
 

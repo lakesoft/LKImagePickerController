@@ -12,11 +12,19 @@
 #import "LKImagePickerControllerSelectHeaderView.h"
 #import "LKImagePickerControllerAppearance.h"
 #import "LKImagePickerControllerDetailViewController.h"
+#import "LKImagePickerControllerGroupTableViewController.h"
 
 NSString * const LKImagePickerControllerSelectViewControllerDidSelectCellNotification = @"LKImagePickerControllerSelectViewControllerDidSelectCellNotification";
 NSString * const LKImagePickerControllerSelectViewControllerDidDeselectCellNotification = @"LKImagePickerControllerSelectViewControllerDidDeselectCellNotification";
+NSString * const LKImagePickerControllerSelectViewControllerDidAllDeselectCellNotification = @"LKImagePickerControllerSelectViewControllerDidAllDeselectCellNotification";
 NSString * const LKImagePickerControllerSelectViewControllerKeyIndexPath = @"LKImagePickerControllerSelectViewControllerKeyIndexPath";
 NSString * const LKImagePickerControllerSelectViewControllerKeyAllSelected = @"LKImagePickerControllerSelectViewControllerAllSelected";
+
+NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
+    LKImagePickerControllerSelectViewSheetResetSelections,
+    LKImagePickerControllerSelectViewSheetLoseSelections,
+};
+
 
 @interface LKImagePickerControllerSelectViewController () <UIActionSheetDelegate>
 
@@ -34,7 +42,7 @@ NSString * const LKImagePickerControllerSelectViewControllerKeyAllSelected = @"L
 @property (nonatomic, weak) UIBarButtonItem* doneItem;
 
 #pragma mark - Models
-@property (nonatomic, strong) NSMutableArray* selectedAssets;
+@property (nonatomic, strong) NSMutableOrderedSet* selectedAssets;
 
 @end
 
@@ -86,19 +94,32 @@ NSString * const LKImagePickerControllerSelectViewControllerKeyAllSelected = @"L
                                                     userInfo:userInfo];
 }
 
+
+#pragma mark - Privates (Selections)
 - (BOOL)_allSelectedInSection:(NSInteger)section
 {
     BOOL allSelected = YES;
     NSInteger numberOfItems = [self.collectionView numberOfItemsInSection:section];
     for (NSInteger item=0; item < numberOfItems; item++) {
         NSIndexPath* indexPath = [NSIndexPath indexPathForItem:item inSection:section];
-        UICollectionViewCell* cell = [self.collectionView cellForItemAtIndexPath:indexPath];
-        if (cell && !cell.isSelected) {
+        LKAsset* asset = [self.assetsCollection assetForIndexPath:indexPath];
+        if (![self.selectedAssets containsObject:asset]) {
             allSelected = NO;
             break;
         }
     }
     return allSelected;
+}
+
+- (void)_resetSelections
+{
+    for (NSIndexPath* indexPath in self.collectionView.indexPathsForSelectedItems) {
+        [self.collectionView deselectItemAtIndexPath:indexPath animated:YES];
+    }
+    [self.selectedAssets removeAllObjects];
+    [self _updateControls];
+    [NSNotificationCenter.defaultCenter postNotificationName:LKImagePickerControllerSelectViewControllerDidAllDeselectCellNotification
+                                                      object:self];
 }
 
 
@@ -110,6 +131,7 @@ NSString * const LKImagePickerControllerSelectViewControllerKeyAllSelected = @"L
                                               cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
                                          destructiveButtonTitle:NSLocalizedString(@"OK", nil)
                                               otherButtonTitles:nil];
+    sheet.tag = LKImagePickerControllerSelectViewSheetResetSelections;
     [sheet showFromToolbar:self.navigationController.toolbar];
 }
 - (void)_selectedGrouping:(UISegmentedControl*)sender
@@ -153,14 +175,73 @@ NSString * const LKImagePickerControllerSelectViewControllerKeyAllSelected = @"L
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (void)_tappedOrganize:(id)sender
+{
+    if (self.collectionView.indexPathsForSelectedItems.count > 0) {
+        UIActionSheet* sheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"消えてしまいます", nil)
+                                                           delegate:self
+                                                  cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
+                                             destructiveButtonTitle:NSLocalizedString(@"OK", nil)
+                                                  otherButtonTitles:nil];
+        sheet.tag = LKImagePickerControllerSelectViewSheetLoseSelections;
+        [sheet showFromToolbar:self.navigationController.toolbar];
+    } else {
+        [self _openGroupView];
+    }
+}
+
+
 #pragma mark - Privates (Presentations)
 - (void)_updateControls
 {
     [self.selectionButton setTitle:[NSString stringWithFormat:@"%lu", self.selectedAssets.count]
                           forState:UIControlStateNormal];
-    self.selectionButton.hidden = self.selectedAssets.count == 0;
+    if (self.selectedAssets.count > 0) {
+        self.selectionButton.enabled = YES;
+        self.selectionButton.backgroundColor = LKImagePickerControllerAppearance.sharedAppearance.checkmarkBackgroundColor;
+    } else {
+        self.selectionButton.enabled = NO;
+        self.selectionButton.backgroundColor = UIColor.clearColor;
+    }
     self.doneItem.enabled = self.selectedAssets.count > 0;
 }
+
+#pragma mark - Privates (Navigations)
+- (void)_openGroupView
+{
+    LKImagePickerControllerGroupTableViewController* viewController = LKImagePickerControllerGroupTableViewController.new;
+    viewController.assetsLibrary = self.assetsLibrary;
+    viewController.assetsGroup = self.assetsGroup;
+    viewController.selectViewController = self;
+    [self.navigationController pushViewController:viewController animated:YES];
+}
+
+- (void)_openDetailViewAtIndexPath:(NSIndexPath*)indexPath
+{
+    LKImagePickerControllerDetailViewController* viewController = LKImagePickerControllerDetailViewController.new;
+    viewController.assetsCollection = self.assetsCollection;
+    viewController.indexPath = indexPath;
+    viewController.selectedAssets = self.selectedAssets;
+    viewController.indexPathsForSelectedItems = self.collectionView.indexPathsForSelectedItems;
+    viewController.selectViewController = self;
+    [self.navigationController pushViewController:viewController animated:YES];
+}
+
+#pragma mark - Privtates (Gestures)
+-(void)_handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer
+{
+    if (gestureRecognizer.state != UIGestureRecognizerStateEnded) {
+        return;
+    }
+    CGPoint p = [gestureRecognizer locationInView:self.collectionView];
+    
+    NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:p];
+    if (indexPath){
+//        UICollectionViewCell* cell = [self.collectionView cellForItemAtIndexPath:indexPath];
+        [self _openDetailViewAtIndexPath:indexPath];
+    }
+}
+
 
 #pragma mark - Basics
 
@@ -168,7 +249,7 @@ NSString * const LKImagePickerControllerSelectViewControllerKeyAllSelected = @"L
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        self.selectedAssets = @[].mutableCopy;
+        self.selectedAssets = [NSMutableOrderedSet orderedSet];
     }
     return self;
 }
@@ -178,9 +259,8 @@ NSString * const LKImagePickerControllerSelectViewControllerKeyAllSelected = @"L
     [super viewDidLoad];
     
     // Navigation
-    if (self.navigationItem.leftBarButtonItem == nil) {
-        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(_tappedCancel:)];
-    }
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(_tappedCancel:)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize target:self action:@selector(_tappedOrganize:)];
     
     // Toolbar
     self.navigationController.toolbarHidden = NO;
@@ -188,9 +268,12 @@ NSString * const LKImagePickerControllerSelectViewControllerKeyAllSelected = @"L
     UIBarButtonItem* doneItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(_tappedDone:)];
     
     UIButton* selectionButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 43.7, 27)];
-    selectionButton.tintColor = UIColor.whiteColor;
-    selectionButton.backgroundColor = LKImagePickerControllerAppearance.sharedAppearance.checkmarkBackgroundColor;
     [selectionButton addTarget:self action:@selector(_tappedClear:) forControlEvents:UIControlEventTouchUpInside];
+    [selectionButton setTitleColor:UIColor.lightGrayColor
+                          forState:UIControlStateDisabled];
+    [selectionButton setTitleColor:UIColor.whiteColor
+                          forState:UIControlStateNormal];
+
     UIBarButtonItem* buttonItem = [[UIBarButtonItem alloc] initWithCustomView:selectionButton];
 
     [self setToolbarItems:@[spaceItem, buttonItem, spaceItem, doneItem] animated:NO];
@@ -213,6 +296,13 @@ NSString * const LKImagePickerControllerSelectViewControllerKeyAllSelected = @"L
                                              selector:@selector(_assetsGroupDidReload:)
                                                  name:LKAssetsGroupDidReloadNotification
                                                object:nil];
+    // Gestures
+    UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc]
+                                          initWithTarget:self action:@selector(_handleLongPress:)];
+    lpgr.minimumPressDuration = 0.3;
+    [self.collectionView addGestureRecognizer:lpgr];
+
+    // Update controls
     [self.assetsGroup reloadAssets];
     [self _updateControls];
 }
@@ -221,6 +311,11 @@ NSString * const LKImagePickerControllerSelectViewControllerKeyAllSelected = @"L
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    self.navigationController.toolbar.hidden = NO;
 }
 
 
@@ -250,6 +345,7 @@ NSString * const LKImagePickerControllerSelectViewControllerKeyAllSelected = @"L
     
     if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
         LKImagePickerControllerSelectHeaderView *view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:NSStringFromClass(LKImagePickerControllerSelectHeaderView.class) forIndexPath:indexPath];
+        view.allSelected = [self _allSelectedInSection:indexPath.section];
         view.collectionEntry = self.assetsCollection.entries[indexPath.section];
         view.section = indexPath.section;
         reusableView = view;
@@ -259,29 +355,32 @@ NSString * const LKImagePickerControllerSelectViewControllerKeyAllSelected = @"L
 
 
 #pragma mark - UICollectionViewDelegate
-- (BOOL)_collectionView:(UICollectionView*)collectionView shouldSelectDeSelectItemAtIndexPath:(NSIndexPath*)indexPath
-{
-    LKImagePickerControllerSelectCell* cell = (LKImagePickerControllerSelectCell*)[collectionView cellForItemAtIndexPath:indexPath];
-    
-    if (cell.touchedOnCheckmark) {
-        return YES;
-    } else {
-        LKImagePickerControllerDetailViewController* viewController = LKImagePickerControllerDetailViewController.new;
-        viewController.assetsCollection = self.assetsCollection;
-        viewController.indexPath = indexPath;
-        [self.navigationController pushViewController:viewController animated:YES];
-        return NO;
-    }
-}
-
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    return [self _collectionView:collectionView shouldSelectDeSelectItemAtIndexPath:indexPath];
-}
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldDeselectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    return [self _collectionView:collectionView shouldSelectDeSelectItemAtIndexPath:indexPath];
-}
+//- (BOOL)_collectionView:(UICollectionView*)collectionView shouldSelectDeSelectItemAtIndexPath:(NSIndexPath*)indexPath
+//{
+//    LKImagePickerControllerSelectCell* cell = (LKImagePickerControllerSelectCell*)[collectionView cellForItemAtIndexPath:indexPath];
+//    
+//    if (cell.touchedOnCheckmark) {
+//        return YES;
+//    } else {
+//        LKImagePickerControllerDetailViewController* viewController = LKImagePickerControllerDetailViewController.new;
+//        viewController.assetsCollection = self.assetsCollection;
+//        viewController.indexPath = indexPath;
+//        viewController.selectedAssets = self.selectedAssets;
+//        viewController.indexPathsForSelectedItems = self.collectionView.indexPathsForSelectedItems;
+//        viewController.selectViewController = self;
+//        [self.navigationController pushViewController:viewController animated:YES];
+//        return NO;
+//    }
+//}
+//
+//- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    return [self _collectionView:collectionView shouldSelectDeSelectItemAtIndexPath:indexPath];
+//}
+//- (BOOL)collectionView:(UICollectionView *)collectionView shouldDeselectItemAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    return [self _collectionView:collectionView shouldSelectDeSelectItemAtIndexPath:indexPath];
+//}
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -305,12 +404,42 @@ NSString * const LKImagePickerControllerSelectViewControllerKeyAllSelected = @"L
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex != actionSheet.cancelButtonIndex) {
-        for (NSIndexPath* indexPath in self.collectionView.indexPathsForSelectedItems) {
-            [self.collectionView deselectItemAtIndexPath:indexPath animated:YES];
+        if (actionSheet.tag  == LKImagePickerControllerSelectViewSheetResetSelections) {
+            [self _resetSelections];
+        } else if (actionSheet.tag == LKImagePickerControllerSelectViewSheetLoseSelections) {
+            [self _openGroupView];
         }
-        [self.selectedAssets removeAllObjects];
-        [self _updateControls];
     }
 }
+
+
+#pragma mark - Callback
+- (void)setIndexPathsForSelectedItems:(NSArray*)indexPathsForSelectedItems
+{
+    NSArray* oldSelectedItems = self.collectionView.indexPathsForSelectedItems;
+    for (NSIndexPath* indexPath in indexPathsForSelectedItems) {
+        if (![oldSelectedItems containsObject:indexPath]) {
+            [self.collectionView selectItemAtIndexPath:indexPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
+            [self _postNotificationName:LKImagePickerControllerSelectViewControllerDidSelectCellNotification
+                              indexPath:indexPath];
+        }
+    }
+    for (NSIndexPath* indexPath in oldSelectedItems) {
+        if (![indexPathsForSelectedItems containsObject:indexPath]) {
+            [self.collectionView deselectItemAtIndexPath:indexPath animated:NO];
+            [self _postNotificationName:LKImagePickerControllerSelectViewControllerDidDeselectCellNotification
+                              indexPath:indexPath];
+        }
+    }
+    [self _updateControls];
+}
+
+- (void)didSelectAssetsGroup:(LKAssetsGroup*)assetsGroup
+{
+    [self _resetSelections];
+    self.assetsGroup = assetsGroup;
+    [self.assetsGroup reloadAssets];
+}
+
 
 @end
