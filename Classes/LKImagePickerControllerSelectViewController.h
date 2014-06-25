@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LKImagePickerControllerAssetsManager.h"
 
 extern NSString * const LKImagePickerControllerSelectViewControllerDidSelectCellNotification;
 extern NSString * const LKImagePickerControllerSelectViewControllerDidDeselectCellNotification;
@@ -15,11 +16,9 @@ extern NSString * const LKImagePickerControllerSelectViewControllerKeyIndexPath;
 extern NSString * const LKImagePickerControllerSelectViewControllerKeyAllSelected;
 
 
-@class LKAssetsLibrary, LKAssetsGroup;
 @interface LKImagePickerControllerSelectViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate>
 
-@property (nonatomic, weak) LKAssetsLibrary* assetsLibrary;
-@property (nonatomic, weak) LKAssetsGroup* assetsGroup;
+@property (nonatomic, weak) LKImagePickerControllerAssetsManager* assetsManager;
 
 - (void)setIndexPathsForSelectedItems:(NSArray*)indexPathsForSelectedItems;    // for callback (strong?
 - (void)didSelectAssetsGroup:(LKAssetsGroup*)assetsGroup;

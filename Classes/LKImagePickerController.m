@@ -7,43 +7,18 @@
 //
 
 #import "LKImagePickerController.h"
-#import "LKAssetsLibrary.h"
+#import "LKImagePickerControllerAssetsManager.h"
 #import "LKImagePickerControllerAppearance.h"
 #import "LKImagePickerControllerGroupTableViewController.h"
 #import "LKImagePickerControllerSelectViewController.h"
 
 @interface LKImagePickerController ()
-@property (strong, nonatomic) LKAssetsLibrary* assetsLibrary;
+@property (strong, nonatomic) LKImagePickerControllerAssetsManager* assetsManager;
 @end
 
 @implementation LKImagePickerController
 
 #pragma mark - Privates
-- (void)_assetsLibraryDidSetup:(NSNotification*)notification
-{
-    LKImagePickerControllerSelectViewController* viewController = LKImagePickerControllerSelectViewController.new;
-    viewController.assetsLibrary = self.assetsLibrary;
-    viewController.assetsGroup = self.assetsLibrary.assetsGroups[0];
-    [self pushViewController:viewController animated:NO];
-}
-
-- (void)_assetsLibraryDidInsertGroup:(NSNotification*)notification
-{
-//    NSArray* groups = notification.userInfo[LKAssetsLibraryGroupsKey];
-//    NSLog(@"%s|inserted: %@", __PRETTY_FUNCTION__, groups);
-}
-
-- (void)_assetsLibraryDidUpdateGroup:(NSNotification*)notification
-{
-//    NSArray* groups = notification.userInfo[LKAssetsLibraryGroupsKey];
-//    NSLog(@"%s|updated: %@", __PRETTY_FUNCTION__, groups);
-}
-
-- (void)_assetsLibraryDidDeleteGroup:(NSNotification*)notification
-{
-//    NSArray* groups = notification.userInfo[LKAssetsLibraryGroupsKey];
-//    NSLog(@"%s|deleted: %@", __PRETTY_FUNCTION__, groups);
-}
 
 
 #pragma mark - Basics
@@ -60,30 +35,12 @@
 {
     [super viewDidLoad];
     
-    // Notifications
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(_assetsLibraryDidSetup:)
-                                                 name:LKAssetsLibraryDidSetupNotification
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(_assetsLibraryDidInsertGroup:)
-                                                 name:LKAssetsLibraryDidInsertGroupsNotification
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(_assetsLibraryDidUpdateGroup:)
-                                                 name:LKAssetsLibraryDidUpdateGroupsNotification
-                                               object:nil];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(_assetsLibraryDidDeleteGroup:)
-                                                 name:LKAssetsLibraryDidDeleteGroupsNotification
-                                               object:nil];
-
-    
-    self.assetsLibrary = [LKAssetsLibrary assetsLibrary];
-    [self.assetsLibrary reload];
+    self.assetsManager = LKImagePickerControllerAssetsManager.assetsManager;
+    [self.assetsManager reloadAssetsWithCompletion:^{
+        LKImagePickerControllerSelectViewController* viewController = LKImagePickerControllerSelectViewController.new;
+        viewController.assetsManager = self.assetsManager;
+        [self pushViewController:viewController animated:NO];
+    }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -92,13 +49,9 @@
 }
 
 
-- (void)setCheckmarkForegroundColor:(UIColor *)checkmarkForegroundColor
+- (void)setTintColor:(UIColor *)tintColor
 {
-    LKImagePickerControllerAppearance.sharedAppearance.checkmarkForegroundColor = checkmarkForegroundColor;
-}
-- (void)setCheckmarkBackgroundColor:(UIColor *)checkmarkBackgroundColor
-{
-    LKImagePickerControllerAppearance.sharedAppearance.checkmarkBackgroundColor = checkmarkBackgroundColor;
+    LKImagePickerControllerAppearance.sharedAppearance.tintColor = tintColor;
 }
 
 

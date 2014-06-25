@@ -14,11 +14,12 @@
 {
     self = [super init];
     if (self) {
-        self.checkmarkForegroundColor = UIColor.whiteColor;
-        self.checkmarkBackgroundColor = [UIColor colorWithRed:0.078 green:0.43 blue:0.87 alpha:1.000];
+        self.foregroundColor = UIColor.whiteColor;
+        self.backgroundColor = [UIColor colorWithRed:0.078 green:0.43 blue:0.87 alpha:1.000];
     }
     return self;
 }
+
 + (instancetype)sharedAppearance
 {
     static LKImagePickerControllerAppearance* _sharedApperance = nil;
@@ -27,6 +28,12 @@
         _sharedApperance = self.new;
     });
     return _sharedApperance;
+}
+
+- (void)setTintColor:(UIColor *)tintColor
+{
+    _tintColor = tintColor;
+    self.backgroundColor = tintColor;
 }
 
 @end

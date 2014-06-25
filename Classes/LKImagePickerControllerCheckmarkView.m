@@ -35,8 +35,8 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    UIColor* strokeColor = LKImagePickerControllerAppearance.sharedAppearance.checkmarkForegroundColor;
-    UIColor* fillColor = LKImagePickerControllerAppearance.sharedAppearance.checkmarkBackgroundColor;
+    UIColor* strokeColor = LKImagePickerControllerAppearance.sharedAppearance.foregroundColor;
+    UIColor* fillColor = LKImagePickerControllerAppearance.sharedAppearance.backgroundColor;
     if (self.disabled) {
         UIColor* tmp = strokeColor;
         strokeColor = fillColor;

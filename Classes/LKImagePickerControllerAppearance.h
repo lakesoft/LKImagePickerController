@@ -10,8 +10,9 @@
 
 @interface LKImagePickerControllerAppearance : NSObject
 
-@property (strong, nonatomic) UIColor* checkmarkForegroundColor;
-@property (strong, nonatomic) UIColor* checkmarkBackgroundColor;
+@property (strong, nonatomic) UIColor* foregroundColor;
+@property (strong, nonatomic) UIColor* backgroundColor;
+@property (strong, nonatomic) UIColor* tintColor;
 
 + (instancetype)sharedAppearance;
 

@@ -65,7 +65,7 @@
 - (void)setAllSelected:(BOOL)allSelected
 {
     _allSelected = allSelected;
-    UIColor* buttonForegroundColor = LKImagePickerControllerAppearance.sharedAppearance.checkmarkBackgroundColor;
+    UIColor* buttonForegroundColor = LKImagePickerControllerAppearance.sharedAppearance.backgroundColor;
     UIColor* buttonBackgroundColor = UIColor.whiteColor;
     
     if (allSelected) {

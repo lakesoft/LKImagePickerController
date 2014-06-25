@@ -7,13 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "LKAssetsLibrary.h"
+#import "LKImagePickerControllerAssetsManager.h"
 
 @class LKImagePickerControllerSelectViewController;
 @interface LKImagePickerControllerGroupTableViewController : UITableViewController
 
-@property (weak, nonatomic) LKAssetsLibrary* assetsLibrary;
-@property (weak, nonatomic) LKAssetsGroup* assetsGroup;
+@property (weak, nonatomic) LKImagePickerControllerAssetsManager* assetsManager;
 
 @property (weak, nonatomic) LKImagePickerControllerSelectViewController* selectViewController;
 

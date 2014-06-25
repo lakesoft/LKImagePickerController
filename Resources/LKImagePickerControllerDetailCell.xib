@@ -7,32 +7,45 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="LKImagePickerControllerDetailCell" id="xLA-mz-Kom" customClass="LKImagePickerControllerDetailCell">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <rect key="frame" x="0.0" y="0.0" width="1200" height="1200"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                <rect key="frame" x="0.0" y="0.0" width="1200" height="1200"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nTw-er-9BC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kDX-Wc-Pie">
+                        <rect key="frame" x="0.0" y="0.0" width="1200" height="1200"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </scrollView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nTw-er-9BC">
+                        <rect key="frame" x="0.0" y="0.0" width="1200" height="1200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PLR-sb-VCC" customClass="LKImagePickerControllerCheckmarkView">
-                        <rect key="frame" x="138" y="261" width="45" height="45"/>
+                        <rect key="frame" x="578" y="578" width="45" height="45"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="45" id="LqG-jL-XxQ"/>
-                            <constraint firstAttribute="height" constant="45" id="YTn-P5-aF6"/>
+                            <constraint firstAttribute="height" constant="45" id="4Sn-mD-a5A"/>
+                            <constraint firstAttribute="width" constant="45" id="tFQ-mA-pJS"/>
                         </constraints>
                     </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <constraints>
-                <constraint firstAttribute="centerY" secondItem="PLR-sb-VCC" secondAttribute="centerY" id="eE8-nN-Yro"/>
-                <constraint firstAttribute="centerX" secondItem="PLR-sb-VCC" secondAttribute="centerX" id="kWy-lE-2wz"/>
+                <constraint firstItem="nTw-er-9BC" firstAttribute="leading" secondItem="xLA-mz-Kom" secondAttribute="leading" id="0RY-kK-mGe"/>
+                <constraint firstAttribute="bottom" secondItem="kDX-Wc-Pie" secondAttribute="bottom" id="GcY-ai-raQ"/>
+                <constraint firstItem="nTw-er-9BC" firstAttribute="top" secondItem="xLA-mz-Kom" secondAttribute="top" id="MGt-Qw-eID"/>
+                <constraint firstAttribute="bottom" secondItem="nTw-er-9BC" secondAttribute="bottom" id="NJc-Ju-PMa"/>
+                <constraint firstAttribute="trailing" secondItem="kDX-Wc-Pie" secondAttribute="trailing" id="Uhp-1F-s6h"/>
+                <constraint firstAttribute="trailing" secondItem="nTw-er-9BC" secondAttribute="trailing" id="XP3-vQ-Lj8"/>
+                <constraint firstAttribute="centerX" secondItem="PLR-sb-VCC" secondAttribute="centerX" id="lq2-uY-rj3"/>
+                <constraint firstItem="kDX-Wc-Pie" firstAttribute="top" secondItem="xLA-mz-Kom" secondAttribute="top" id="lzC-9N-mpW"/>
+                <constraint firstAttribute="centerY" secondItem="PLR-sb-VCC" secondAttribute="centerY" id="tik-Rl-rvc"/>
+                <constraint firstItem="kDX-Wc-Pie" firstAttribute="leading" secondItem="xLA-mz-Kom" secondAttribute="leading" id="uC1-70-GOY"/>
             </constraints>
+            <size key="customSize" width="1200" height="1200"/>
             <connections>
                 <outlet property="checkmarkView" destination="PLR-sb-VCC" id="jMv-AF-f6v"/>
                 <outlet property="imageView" destination="nTw-er-9BC" id="I92-33-pPa"/>

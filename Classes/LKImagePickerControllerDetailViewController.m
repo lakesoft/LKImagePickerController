@@ -9,10 +9,16 @@
 #import "LKImagePickerControllerDetailViewController.h"
 #import "LKImagePickerControllerDetailCell.h"
 #import "LKImagePickerControllerSelectCell.h"
+#import "LKImagePickerControllerSelectionButton.h"
+
+#define LKImagePickerControlDetailThumbnailSize (CGSizeMake(50.0,50.0))
 
 @interface LKImagePickerControllerDetailViewController ()
-@property (unsafe_unretained, nonatomic) IBOutlet UICollectionView *collectionView;
-@property (unsafe_unretained, nonatomic) IBOutlet UICollectionView *thumbnailCollectionView;
+@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (weak, nonatomic) IBOutlet UICollectionView *thumbnailCollectionView;
+@property (assign, nonatomic) CGPoint contentOffset;
+@property (assign, nonatomic) BOOL scrollDirectionLeft;
+//@property (assign, nonatomic) CGPoint thumbnailContentOffset;
 
 @end
 
@@ -22,6 +28,15 @@
 - (void)_updateControls
 {
     NSLog(@"updated");
+}
+- (void)_tappedClear:(id)sender
+{
+    NSLog(@"clear");
+}
+
+- (void)_assetsGroupDidReload:(NSNotification*)notification
+{
+    NSLog(@"%s", __PRETTY_FUNCTION__);
 }
 
 #pragma mark - Basics
@@ -34,9 +49,23 @@
     return self;
 }
 
+- (void)dealloc
+{
+    [NSNotificationCenter.defaultCenter removeObserver:self];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.title = NSLocalizedString(@"Photos", nil);
+    
+    
+    // Notifications
+    [NSNotificationCenter.defaultCenter addObserver:self
+                                           selector:@selector(_assetsGroupDidReload:)
+                                               name:LKImagePickerControllerSelectViewControllerDidAssetsUpdateNotification
+                                             object:nil];
+
     NSString* cellIdentifier = NSStringFromClass(LKImagePickerControllerDetailCell.class);
     
     [self.collectionView registerNib:[UINib nibWithNibName:cellIdentifier bundle:nil]
@@ -62,6 +91,10 @@
         [self.collectionView selectItemAtIndexPath:indexPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
         [self.thumbnailCollectionView selectItemAtIndexPath:indexPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
     }
+    
+//    LKImagePickerControllerSelectionButton* selectionButton =
+//    [LKImagePickerControllerSelectionButton selectionButtonTarget:self action:@selector(_tappedClear:)];
+//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:selectionButton];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -83,9 +116,84 @@
 }
 
 #pragma mark - UIScrollViewDelegate
+- (NSInteger)_indexForIndexPath:(NSIndexPath*)indexPath
+{
+    NSInteger index = 0;
+    for (NSInteger section=0; section < indexPath.section; section++) {
+        LKAssetsCollectionEntry* entry = self.assetsCollection.entries[section];
+        index += entry.assets.count;
+    }
+    index += indexPath.item;
+    
+    return index;
+}
+
+- (NSIndexPath*)_indexPathFromIndex:(NSInteger)index
+{
+    NSInteger section = 0;
+    NSInteger item = 0;
+    NSInteger count = index;
+    while (count) {
+        NSInteger numberOfEntries = self.assetsCollection.entries.count;
+        if (numberOfEntries <= section) {
+            return nil;
+        }
+        LKAssetsCollectionEntry* entry = self.assetsCollection.entries[section];
+        NSInteger numberOfAssets = entry.assets.count;
+        if (count < numberOfAssets) {
+            item = count;
+            break;
+        }
+        count -= numberOfAssets;
+        section++;
+    }
+    return [NSIndexPath indexPathForItem:item inSection:section];
+}
+
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (collectionView == self.collectionView) {
+        CGSize size = self.collectionView.frame.size;
+        return size;
+    } else {
+        return LKImagePickerControlDetailThumbnailSize;
+    }
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
+{
+    [self.collectionView performBatchUpdates:nil completion:nil];
+}
+
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
-    NSLog(@"%@", NSStringFromCGPoint(scrollView.contentOffset));
+    if (scrollView != self.collectionView) {
+        return;
+    }
+    CGFloat dx = self.contentOffset.x - self.collectionView.contentOffset.x;
+    self.scrollDirectionLeft = dx > 0;
+    CGSize size = self.collectionView.frame.size;
+    CGSize cellSize = LKImagePickerControlDetailThumbnailSize;
+    
+    self.contentOffset = self.collectionView.contentOffset;
+    CGFloat dr = dx / self.collectionView.frame.size.width;
+    CGPoint thumbnailContentOffset = self.thumbnailCollectionView.contentOffset;
+    thumbnailContentOffset.x = thumbnailContentOffset.x - cellSize.width*dr;
+    self.thumbnailCollectionView.contentOffset = thumbnailContentOffset;
+
+    if (fmod(self.collectionView.contentOffset.x, size.width) == 0) {
+        CGPoint p = self.contentOffset;
+        p.x += size.width / 2.0;
+        p.y += size.height / 2.0;
+        NSIndexPath* indexPath = [self.collectionView indexPathForItemAtPoint:p];
+        if (indexPath) {
+            self.indexPath = indexPath;
+            [self.thumbnailCollectionView scrollToItemAtIndexPath:self.indexPath
+                                                 atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally
+                                                         animated:YES];
+        }
+    }
 }
 
 

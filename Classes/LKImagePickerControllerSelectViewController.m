@@ -6,13 +6,13 @@
 //  Created by Hiroshi Hashiguchi on 2014/06/15.
 //  Copyright (c) 2014年 lakesoft. All rights reserved.
 //
-#import "LKAssetsLibrary.h"
 #import "LKImagePickerControllerSelectViewController.h"
 #import "LKImagePickerControllerSelectCell.h"
 #import "LKImagePickerControllerSelectHeaderView.h"
 #import "LKImagePickerControllerAppearance.h"
 #import "LKImagePickerControllerDetailViewController.h"
 #import "LKImagePickerControllerGroupTableViewController.h"
+#import "LKImagePickerControllerSelectionButton.h"
 
 NSString * const LKImagePickerControllerSelectViewControllerDidSelectCellNotification = @"LKImagePickerControllerSelectViewControllerDidSelectCellNotification";
 NSString * const LKImagePickerControllerSelectViewControllerDidDeselectCellNotification = @"LKImagePickerControllerSelectViewControllerDidDeselectCellNotification";
@@ -38,7 +38,7 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
 @property (nonatomic, assign) LKAssetsCollectionGenericGroupingType groupingType;
 
 #pragma mark - Controls
-@property (nonatomic, weak) UIButton* selectionButton;
+@property (nonatomic, weak) LKImagePickerControllerSelectionButton* selectionButton;
 @property (nonatomic, weak) UIBarButtonItem* doneItem;
 
 #pragma mark - Models
@@ -79,7 +79,7 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     
     LKAssetsCollectionGenericGrouping* grouping = [LKAssetsCollectionGenericGrouping groupingWithType:self.groupingType];
     
-    self.assetsCollection = [LKAssetsCollection assetsCollectionWithGroup:self.assetsGroup grouping:grouping];
+    self.assetsCollection = [LKAssetsCollection assetsCollectionWithGroup:self.assetsManager.assetsGroup grouping:grouping];
     self.assetsCollection.filter = self.filter;
     self.assetsCollection.sorter = self.sorter;
 }
@@ -194,15 +194,7 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
 #pragma mark - Privates (Presentations)
 - (void)_updateControls
 {
-    [self.selectionButton setTitle:[NSString stringWithFormat:@"%lu", self.selectedAssets.count]
-                          forState:UIControlStateNormal];
-    if (self.selectedAssets.count > 0) {
-        self.selectionButton.enabled = YES;
-        self.selectionButton.backgroundColor = LKImagePickerControllerAppearance.sharedAppearance.checkmarkBackgroundColor;
-    } else {
-        self.selectionButton.enabled = NO;
-        self.selectionButton.backgroundColor = UIColor.clearColor;
-    }
+    self.selectionButton.numberOfSelections = self.selectedAssets.count;
     self.doneItem.enabled = self.selectedAssets.count > 0;
 }
 
@@ -210,8 +202,7 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
 - (void)_openGroupView
 {
     LKImagePickerControllerGroupTableViewController* viewController = LKImagePickerControllerGroupTableViewController.new;
-    viewController.assetsLibrary = self.assetsLibrary;
-    viewController.assetsGroup = self.assetsGroup;
+    viewController.assetsManager = self.assetsManager;
     viewController.selectViewController = self;
     [self.navigationController pushViewController:viewController animated:YES];
 }
@@ -230,7 +221,7 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
 #pragma mark - Privtates (Gestures)
 -(void)_handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer
 {
-    if (gestureRecognizer.state != UIGestureRecognizerStateEnded) {
+    if (gestureRecognizer.state != UIGestureRecognizerStateBegan) {
         return;
     }
     CGPoint p = [gestureRecognizer locationInView:self.collectionView];
@@ -254,32 +245,47 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     return self;
 }
 
+- (void)dealloc
+{
+    [NSNotificationCenter.defaultCenter removeObserver:self];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    // Navigation
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(_tappedCancel:)];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize target:self action:@selector(_tappedOrganize:)];
+    // Notifications
+    [NSNotificationCenter.defaultCenter addObserver:self
+                                           selector:@selector(_assetsGroupDidReload:)
+                                               name:LKImagePickerControllerSelectViewControllerDidAssetsUpdateNotification
+                                             object:nil];
+    // Bar buttons
+    UIBarButtonItem* cancelItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(_tappedCancel:)];
     
-    // Toolbar
-    self.navigationController.toolbarHidden = NO;
-    UIBarButtonItem *spaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-    UIBarButtonItem* doneItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(_tappedDone:)];
-    
-    UIButton* selectionButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 43.7, 27)];
-    [selectionButton addTarget:self action:@selector(_tappedClear:) forControlEvents:UIControlEventTouchUpInside];
-    [selectionButton setTitleColor:UIColor.lightGrayColor
-                          forState:UIControlStateDisabled];
-    [selectionButton setTitleColor:UIColor.whiteColor
-                          forState:UIControlStateNormal];
+    UIBarButtonItem* organizeItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize target:self action:@selector(_tappedOrganize:)];
 
+    UIBarButtonItem* filterItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks target:self action:@selector(_tappedOrganize:)];
+
+    UIBarButtonItem *spaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+
+    UIBarButtonItem* doneItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(_tappedDone:)];
+
+    LKImagePickerControllerSelectionButton* selectionButton =
+    [LKImagePickerControllerSelectionButton selectionButtonTarget:self action:@selector(_tappedClear:)];
     UIBarButtonItem* buttonItem = [[UIBarButtonItem alloc] initWithCustomView:selectionButton];
 
-    [self setToolbarItems:@[spaceItem, buttonItem, spaceItem, doneItem] animated:NO];
+    // Navigation bar
+    self.navigationItem.leftBarButtonItem = cancelItem;
+    self.navigationItem.rightBarButtonItem = organizeItem;
 
+    // Toolbar
+    self.navigationController.toolbarHidden = NO;
+                  [self setToolbarItems:@[filterItem, spaceItem, buttonItem, spaceItem, doneItem] animated:NO];
+    
+    // Retain bar buttons
     self.doneItem = doneItem;
     self.selectionButton = selectionButton;
+
     
     // Collection view
     self.collectionView.allowsMultipleSelection = YES;
@@ -292,18 +298,14 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
           forSupplementaryViewOfKind:UICollectionElementKindSectionHeader
                  withReuseIdentifier:headerIdentifier];
 
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(_assetsGroupDidReload:)
-                                                 name:LKAssetsGroupDidReloadNotification
-                                               object:nil];
     // Gestures
     UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc]
                                           initWithTarget:self action:@selector(_handleLongPress:)];
-    lpgr.minimumPressDuration = 0.3;
+    lpgr.minimumPressDuration = 0.25;
     [self.collectionView addGestureRecognizer:lpgr];
 
     // Update controls
-    [self.assetsGroup reloadAssets];
+    [self.assetsManager reloadAssetsGroup];
     [self _updateControls];
 }
 
@@ -437,8 +439,7 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
 - (void)didSelectAssetsGroup:(LKAssetsGroup*)assetsGroup
 {
     [self _resetSelections];
-    self.assetsGroup = assetsGroup;
-    [self.assetsGroup reloadAssets];
+    [self.assetsManager setAndReloadAssetsGroup:assetsGroup];
 }
 
 

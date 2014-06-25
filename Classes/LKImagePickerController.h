@@ -10,7 +10,6 @@
 
 @interface LKImagePickerController : UINavigationController
 
-@property (nonatomic, strong) UIColor* checkmarkForegroundColor;
-@property (nonatomic, strong) UIColor* checkmarkBackgroundColor;
+@property (nonatomic, strong) UIColor* tintColor;
 
 @end
