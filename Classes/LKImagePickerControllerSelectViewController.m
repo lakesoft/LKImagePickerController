@@ -13,6 +13,8 @@
 #import "LKImagePickerControllerDetailViewController.h"
 #import "LKImagePickerControllerGroupTableViewController.h"
 #import "LKImagePickerControllerSelectionButton.h"
+#import "LKImagePickerControllerFilterSelectionViewController.h"
+#import "LKImagePickerControllerFilter.h"
 
 NSString * const LKImagePickerControllerSelectViewControllerDidSelectCellNotification = @"LKImagePickerControllerSelectViewControllerDidSelectCellNotification";
 NSString * const LKImagePickerControllerSelectViewControllerDidDeselectCellNotification = @"LKImagePickerControllerSelectViewControllerDidDeselectCellNotification";
@@ -40,6 +42,7 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
 #pragma mark - Controls
 @property (nonatomic, weak) LKImagePickerControllerSelectionButton* selectionButton;
 @property (nonatomic, weak) UIBarButtonItem* doneItem;
+@property (nonatomic, weak) UIBarButtonItem* filterItem;
 
 #pragma mark - Models
 @property (nonatomic, strong) NSMutableOrderedSet* selectedAssets;
@@ -189,19 +192,30 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
         [self _openGroupView];
     }
 }
-
+- (void)_tappedFilter:(id)sender
+{
+    [self _openFilterView];
+}
 
 #pragma mark - Privates (Presentations)
 - (void)_updateControls
 {
     self.selectionButton.numberOfSelections = self.selectedAssets.count;
     self.doneItem.enabled = self.selectedAssets.count > 0;
+    self.filterItem.title = self.assetsManager.filter.description;
 }
 
 #pragma mark - Privates (Navigations)
 - (void)_openGroupView
 {
     LKImagePickerControllerGroupTableViewController* viewController = LKImagePickerControllerGroupTableViewController.new;
+    viewController.assetsManager = self.assetsManager;
+    viewController.selectViewController = self;
+    [self.navigationController pushViewController:viewController animated:YES];
+}
+- (void)_openFilterView
+{
+    LKImagePickerControllerFilterSelectionViewController* viewController = LKImagePickerControllerFilterSelectionViewController.new;
     viewController.assetsManager = self.assetsManager;
     viewController.selectViewController = self;
     [self.navigationController pushViewController:viewController animated:YES];
@@ -264,7 +278,7 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     
     UIBarButtonItem* organizeItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize target:self action:@selector(_tappedOrganize:)];
 
-    UIBarButtonItem* filterItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks target:self action:@selector(_tappedOrganize:)];
+    UIBarButtonItem* filterItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:@selector(_tappedFilter:)];
 
     UIBarButtonItem *spaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
 
@@ -284,6 +298,7 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     
     // Retain bar buttons
     self.doneItem = doneItem;
+    self.filterItem = filterItem;
     self.selectionButton = selectionButton;
 
     

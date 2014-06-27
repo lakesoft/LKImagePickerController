@@ -7,12 +7,14 @@
 //
 
 #import "LKImagePickerControllerAssetsManager.h"
+#import "LKImagePickerControllerFilter.h"
 
 NSString * const LKImagePickerControllerSelectViewControllerDidAssetsUpdateNotification = @"LKImagePickerControllerSelectViewControllerDidAssetsUpdateNotification";
 
 @interface LKImagePickerControllerAssetsManager()
 @property (strong, nonatomic) LKAssetsLibrary* assetsLibrary;
 @property (strong, nonatomic) LKAssetsGroup* assetsGroup;
+@property (strong, nonatomic) LKImagePickerControllerFilter* filter;
 
 @property (nonatomic, copy) LKImagePickerControllerAssetsManagerReloadAssetsCompletion reloadAssetsCompletion;
 @end
@@ -82,6 +84,8 @@ NSString * const LKImagePickerControllerSelectViewControllerDidAssetsUpdateNotif
                                                  selector:@selector(_assetsLibraryDidDeleteGroup:)
                                                      name:LKAssetsLibraryDidDeleteGroupsNotification
                                                    object:nil];
+        
+        self.filter = LKImagePickerControllerFilter.new;
     }
     return self;
 }
@@ -113,6 +117,12 @@ NSString * const LKImagePickerControllerSelectViewControllerDidAssetsUpdateNotif
 {
     self.assetsGroup = assetsGroup;
     [self.assetsGroup reloadAssets];
+}
+
+#pragma mark - API (Properties)
+- (NSString*)filterDescription
+{
+    return @"すべて";
 }
 
 @end

@@ -12,10 +12,12 @@ extern NSString * const LKImagePickerControllerSelectViewControllerDidAssetsUpda
 
 typedef void(^LKImagePickerControllerAssetsManagerReloadAssetsCompletion)();
 
+@class LKImagePickerControllerFilter;
 @interface LKImagePickerControllerAssetsManager : NSObject
 
 @property (strong, nonatomic, readonly) LKAssetsLibrary* assetsLibrary;
 @property (strong, nonatomic, readonly) LKAssetsGroup* assetsGroup;
+@property (strong, nonatomic, readonly) LKImagePickerControllerFilter* filter;
 
 + (instancetype)assetsManager;
 

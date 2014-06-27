@@ -44,7 +44,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        self.automaticallyAdjustsScrollViewInsets = NO;
     }
     return self;
 }
@@ -58,7 +58,6 @@
 {
     [super viewDidLoad];
     self.title = NSLocalizedString(@"Photos", nil);
-    
     
     // Notifications
     [NSNotificationCenter.defaultCenter addObserver:self
@@ -77,8 +76,8 @@
     self.collectionView.allowsMultipleSelection = YES;
     self.thumbnailCollectionView.allowsMultipleSelection = YES;
 
-    [self.collectionView reloadData];
-    [self.thumbnailCollectionView reloadData];
+//    [self.collectionView reloadData];
+//    [self.thumbnailCollectionView reloadData];
     
     [self.collectionView scrollToItemAtIndexPath:self.indexPath
                                 atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally
@@ -95,6 +94,8 @@
 //    LKImagePickerControllerSelectionButton* selectionButton =
 //    [LKImagePickerControllerSelectionButton selectionButtonTarget:self action:@selector(_tappedClear:)];
 //    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:selectionButton];
+    
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
