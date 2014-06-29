@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -13,42 +13,43 @@
                 <rect key="frame" x="0.0" y="0.0" width="1200" height="1200"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kDX-Wc-Pie">
+                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" maximumZoomScale="2" id="kiX-3W-hLz">
                         <rect key="frame" x="0.0" y="0.0" width="1200" height="1200"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="nTw-er-9BC">
+                                <rect key="frame" x="0.0" y="0.0" width="1200" height="1200"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                        </subviews>
+                        <connections>
+                            <outlet property="delegate" destination="xLA-mz-Kom" id="5qb-Sh-eBh"/>
+                        </connections>
                     </scrollView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nTw-er-9BC">
-                        <rect key="frame" x="0.0" y="0.0" width="1200" height="1200"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    </imageView>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PLR-sb-VCC" customClass="LKImagePickerControllerCheckmarkView">
-                        <rect key="frame" x="578" y="578" width="45" height="45"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <view contentMode="scaleToFill" id="PLR-sb-VCC" customClass="LKImagePickerControllerCheckmarkView">
+                        <rect key="frame" x="578" y="577" width="45" height="45"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="45" id="4Sn-mD-a5A"/>
-                            <constraint firstAttribute="width" constant="45" id="tFQ-mA-pJS"/>
-                        </constraints>
                     </view>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="T35-8j-QUE">
+                        <rect key="frame" x="570" y="735" width="60" height="40"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                        <state key="normal">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="playVideo:" destination="xLA-mz-Kom" eventType="touchUpInside" id="3xd-V8-3sO"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
-            <constraints>
-                <constraint firstItem="nTw-er-9BC" firstAttribute="leading" secondItem="xLA-mz-Kom" secondAttribute="leading" id="0RY-kK-mGe"/>
-                <constraint firstAttribute="bottom" secondItem="kDX-Wc-Pie" secondAttribute="bottom" id="GcY-ai-raQ"/>
-                <constraint firstItem="nTw-er-9BC" firstAttribute="top" secondItem="xLA-mz-Kom" secondAttribute="top" id="MGt-Qw-eID"/>
-                <constraint firstAttribute="bottom" secondItem="nTw-er-9BC" secondAttribute="bottom" id="NJc-Ju-PMa"/>
-                <constraint firstAttribute="trailing" secondItem="kDX-Wc-Pie" secondAttribute="trailing" id="Uhp-1F-s6h"/>
-                <constraint firstAttribute="trailing" secondItem="nTw-er-9BC" secondAttribute="trailing" id="XP3-vQ-Lj8"/>
-                <constraint firstAttribute="centerX" secondItem="PLR-sb-VCC" secondAttribute="centerX" id="lq2-uY-rj3"/>
-                <constraint firstItem="kDX-Wc-Pie" firstAttribute="top" secondItem="xLA-mz-Kom" secondAttribute="top" id="lzC-9N-mpW"/>
-                <constraint firstAttribute="centerY" secondItem="PLR-sb-VCC" secondAttribute="centerY" id="tik-Rl-rvc"/>
-                <constraint firstItem="kDX-Wc-Pie" firstAttribute="leading" secondItem="xLA-mz-Kom" secondAttribute="leading" id="uC1-70-GOY"/>
-            </constraints>
             <size key="customSize" width="1200" height="1200"/>
             <connections>
                 <outlet property="checkmarkView" destination="PLR-sb-VCC" id="jMv-AF-f6v"/>
                 <outlet property="imageView" destination="nTw-er-9BC" id="I92-33-pPa"/>
+                <outlet property="playMovieButton" destination="T35-8j-QUE" id="No9-hW-qvL"/>
+                <outlet property="scrollView" destination="kiX-3W-hLz" id="NyD-7R-3Dc"/>
             </connections>
         </collectionViewCell>
     </objects>

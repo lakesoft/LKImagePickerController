@@ -40,6 +40,11 @@
 }
 
 #pragma mark - Privtates (Gestures)
+- (void)_handleTap:(UITapGestureRecognizer*)tgr
+{
+    NSLog(@"%s", __PRETTY_FUNCTION__);
+}
+
 -(void)_handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer
 {
     if (gestureRecognizer.state != UIGestureRecognizerStateBegan) {
@@ -110,6 +115,10 @@
     }
     
     // Gestures
+    UILongPressGestureRecognizer *tgr = [[UILongPressGestureRecognizer alloc]
+                                         initWithTarget:self action:@selector(_handleTap:)];
+    [self.collectionView addGestureRecognizer:tgr];
+    
     UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc]
                                           initWithTarget:self action:@selector(_handleLongPress:)];
     lpgr.minimumPressDuration = 0.2;
@@ -276,5 +285,13 @@
     [self _updateControls];
 }
 
+
+- (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (collectionView == self.collectionView) {
+        LKImagePickerControllerDetailCell* detailCell = (LKImagePickerControllerDetailCell*)cell;
+        [detailCell didEndDisplay];
+    }
+}
 
 @end

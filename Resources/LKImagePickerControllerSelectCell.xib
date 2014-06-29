@@ -39,7 +39,7 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o7F-ba-pPx" customClass="LKImagePickerControllerCheckmarkView">
-                        <rect key="frame" x="45" y="45" width="30" height="30"/>
+                        <rect key="frame" x="47" y="47" width="30" height="30"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -52,14 +52,14 @@
             </view>
             <constraints>
                 <constraint firstItem="Nxm-zR-Pdp" firstAttribute="leading" secondItem="F8R-td-26z" secondAttribute="leading" constant="1" id="0s3-ED-PJL"/>
-                <constraint firstAttribute="bottom" secondItem="o7F-ba-pPx" secondAttribute="bottom" constant="5" id="3zO-wb-LdH"/>
+                <constraint firstAttribute="bottom" secondItem="o7F-ba-pPx" secondAttribute="bottom" constant="3" id="3zO-wb-LdH"/>
                 <constraint firstItem="qMo-gO-f9W" firstAttribute="leading" secondItem="F8R-td-26z" secondAttribute="leading" constant="1" id="ED1-0C-6hl"/>
                 <constraint firstAttribute="bottom" secondItem="Nxm-zR-Pdp" secondAttribute="bottom" constant="1" id="JwI-tB-b8f"/>
                 <constraint firstItem="qMo-gO-f9W" firstAttribute="top" secondItem="F8R-td-26z" secondAttribute="top" constant="1" id="MTA-4K-FU4"/>
                 <constraint firstAttribute="bottom" secondItem="qMo-gO-f9W" secondAttribute="bottom" constant="1" id="W6V-RL-TRv"/>
                 <constraint firstAttribute="trailing" secondItem="qMo-gO-f9W" secondAttribute="trailing" constant="1" id="eNN-UM-riq"/>
                 <constraint firstAttribute="trailing" secondItem="Nxm-zR-Pdp" secondAttribute="trailing" constant="1" id="lu4-cF-WwJ"/>
-                <constraint firstAttribute="trailing" secondItem="o7F-ba-pPx" secondAttribute="trailing" constant="5" id="o8e-1b-Kp8"/>
+                <constraint firstAttribute="trailing" secondItem="o7F-ba-pPx" secondAttribute="trailing" constant="3" id="o8e-1b-Kp8"/>
             </constraints>
             <connections>
                 <outlet property="checkmarkView" destination="o7F-ba-pPx" id="FoH-xp-1Bv"/>

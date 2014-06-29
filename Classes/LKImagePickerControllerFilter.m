@@ -9,17 +9,57 @@
 #import "LKAssetsLibrary.h"
 
 @interface LKImagePickerControllerFilter()
+@property (nonatomic, assign) NSUInteger availableTypes;
+@property (nonatomic, strong) NSArray* filterTypes;
+
 @end
 
 @implementation LKImagePickerControllerFilter
+
++ (NSArray*)allFilterTypes
+{
+    NSArray* array = @[@(LKImagePickerControllerFilterTypeAll),
+                       @(LKImagePickerControllerFilterTypeJPEG),
+                       @(LKImagePickerControllerFilterTypePNG),
+                       @(LKImagePickerControllerFilterTypeScreenShot),
+                       @(LKImagePickerControllerFilterTypeVideo),
+                       ];
+    return array;
+}
+
+
+- (void)_setupFilterTypes
+{
+    NSMutableArray* array = @[].mutableCopy;
+    for (NSNumber* number in LKImagePickerControllerFilter.allFilterTypes) {
+        if (number.unsignedIntegerValue & _availableTypes) {
+            [array addObject:number];
+        }
+    }
+    self.filterTypes = array;
+}
 
 - (instancetype)init
 {
     self = [super init];
     if (self) {
+        self.availableTypes = LKImagePickerControllerFilterTypeAll;
+        [self _setupFilterTypes];
     }
     return self;
 }
+
+
+- (instancetype)initWithAvailableTypes:(NSUInteger)availableTypes
+{
+    self = [super init];
+    if (self) {
+        self.availableTypes = availableTypes;
+        [self _setupFilterTypes];
+    }
+    return self;
+}
+
 
 - (NSString*)descriptionFotType:(LKImagePickerControllerFilterType)type
 {
@@ -49,14 +89,10 @@
     return NSLocalizedString(key, nil);
 }
 
-- (NSInteger)numberOfTypes
-{
-    return LKImagePickerControllerFilterTypeMax;
-}
-
 - (LKImagePickerControllerFilterType)typeAtIndex:(NSInteger)index
 {
-    return index;
+    NSNumber* number = self.filterTypes[index];
+    return number.unsignedIntegerValue;
 }
 
 - (NSString*)description

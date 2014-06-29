@@ -12,6 +12,7 @@
 @interface LKImagePickerControllerDetailCell : UICollectionViewCell
 
 @property (nonatomic, weak) LKAsset* asset;
-//@property (nonatomic, assign) BOOL touchedOnCheckmark;
+
+- (void)didEndDisplay;
 
 @end

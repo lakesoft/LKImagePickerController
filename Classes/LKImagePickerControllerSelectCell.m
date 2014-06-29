@@ -25,7 +25,7 @@
     NSInteger min, sec;
     double duration = self.asset.duration;
     min = (NSInteger)(duration / 60);
-    sec = ((NSInteger)duration) % 60;
+    sec = round(fmod(duration, 60.0));
     return [NSString stringWithFormat:@"%zd:%02zd", min, sec];
 }
 
@@ -35,11 +35,11 @@
     self.photoImageView.image = self.asset.thumbnail;
     self.videoView.hidden = asset.type != LKAssetTypeVideo;
     self.videoLabel.text = self._durationString;
+    self.videoLabel.hidden = self.bounds.size.width < 80.0;
 }
 
 - (void)awakeFromNib
 {
-//    self.checkmarkView.disabled = YES;
     self.checkmarkView.hidden = YES;
 }
 
@@ -48,24 +48,20 @@
     [super setSelected:selected];
 
     self.checkmarkView.hidden = !selected;
-//    self.checkmarkView.disabled = !selected;
-//    [self.checkmarkView setNeedsDisplay];
-    self.alpha = selected ? 0.8 : 1.0;
     self.touchedOnCheckmark = NO;
 }
 
-//#define LKImagePickerControllerSelectCellHitThreshold   0.6
-#define LKImagePickerControllerSelectCellHitThreshold   0.7
-
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    [super touchesBegan:touches withEvent:event];
-    
-    CGPoint p = [touches.anyObject locationInView:self];
-    CGSize size = self.frame.size;
-//    if (1.0 - size.width*LKImagePickerControllerSelectCellHitThreshold < p.x &&  size.height*LKImagePickerControllerSelectCellHitThreshold < p.y) {
-    if (p.x < size.width*LKImagePickerControllerSelectCellHitThreshold) {
-        self.touchedOnCheckmark = YES;
-    }
-}
+//#define LKImagePickerControllerSelectCellHitThreshold   0.7
+//
+//- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+//{
+//    [super touchesBegan:touches withEvent:event];
+//    
+//    CGPoint p = [touches.anyObject locationInView:self];
+//    CGSize size = self.frame.size;
+////    if (1.0 - size.width*LKImagePickerControllerSelectCellHitThreshold < p.x &&  size.height*LKImagePickerControllerSelectCellHitThreshold < p.y) {
+//    if (p.x < size.width*LKImagePickerControllerSelectCellHitThreshold) {
+//        self.touchedOnCheckmark = YES;
+//    }
+//}
 @end

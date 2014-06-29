@@ -54,18 +54,6 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
 {
     [self _setupAssetsCollection];
     [self _reloadAndSetupSelections];
-    NSInteger lastSection = self.assetsCollection.entries.count-1;
-    if (lastSection >= 0) {
-        LKAssetsCollectionEntry* lastEntry = self.assetsCollection.entries[lastSection];
-        NSInteger lastItem = lastEntry.assets.count - 1;
-        if (lastItem >=0 ) {
-            NSIndexPath* lastIndexPath = [NSIndexPath indexPathForItem:lastItem
-                                                             inSection:lastSection];
-            [self.collectionView scrollToItemAtIndexPath:lastIndexPath
-                                        atScrollPosition:UICollectionViewScrollPositionBottom
-                                                animated:NO];
-        }
-    }
     self.title = self.assetsCollection.group.name;
 }
 
@@ -131,6 +119,20 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
             [self.collectionView selectItemAtIndexPath:indexPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
         }
     }
+    
+    NSInteger lastSection = self.assetsCollection.entries.count-1;
+    if (lastSection >= 0) {
+        LKAssetsCollectionEntry* lastEntry = self.assetsCollection.entries[lastSection];
+        NSInteger lastItem = lastEntry.assets.count - 1;
+        if (lastItem >=0 ) {
+            NSIndexPath* lastIndexPath = [NSIndexPath indexPathForItem:lastItem
+                                                             inSection:lastSection];
+            [self.collectionView scrollToItemAtIndexPath:lastIndexPath
+                                        atScrollPosition:UICollectionViewScrollPositionBottom
+                                                animated:NO];
+        }
+    }
+
 }
 
 #pragma mark - Privates (Toolbar Actions)
@@ -187,18 +189,17 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
 
 - (void)_tappedOrganize:(id)sender
 {
-    [self _openGroupView];
-//    if (self.collectionView.indexPathsForSelectedItems.count > 0) {
-//        UIActionSheet* sheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"消えてしまいます", nil)
-//                                                           delegate:self
-//                                                  cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
-//                                             destructiveButtonTitle:NSLocalizedString(@"OK", nil)
-//                                                  otherButtonTitles:nil];
-//        sheet.tag = LKImagePickerControllerSelectViewSheetLoseSelections;
-//        [sheet showFromToolbar:self.navigationController.toolbar];
-//    } else {
-//        [self _openGroupView];
-//    }
+    if (self.collectionView.indexPathsForSelectedItems.count > 0) {
+        UIActionSheet* sheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"消えてしまいます", nil)
+                                                           delegate:self
+                                                  cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
+                                             destructiveButtonTitle:NSLocalizedString(@"OK", nil)
+                                                  otherButtonTitles:nil];
+        sheet.tag = LKImagePickerControllerSelectViewSheetLoseSelections;
+        [sheet showFromToolbar:self.navigationController.toolbar];
+    } else {
+        [self _openGroupView];
+    }
 }
 - (void)_tappedFilter:(id)sender
 {
@@ -472,7 +473,7 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
 
 - (void)didSelectAssetsGroup:(LKAssetsGroup*)assetsGroup
 {
-//    [self _resetSelections];
+    [self _resetSelections];
     [self.assetsManager setAndReloadAssetsGroup:assetsGroup];
 }
 
