@@ -15,6 +15,7 @@
 #import "LKImagePickerControllerSelectionButton.h"
 #import "LKImagePickerControllerFilterSelectionViewController.h"
 #import "LKImagePickerControllerFilter.h"
+#import "LKImagePickerControllerBundleManager.h"
 
 NSString * const LKImagePickerControllerSelectViewControllerDidSelectCellNotification = @"LKImagePickerControllerSelectViewControllerDidSelectCellNotification";
 NSString * const LKImagePickerControllerSelectViewControllerDidDeselectCellNotification = @"LKImagePickerControllerSelectViewControllerDidDeselectCellNotification";
@@ -261,7 +262,7 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super initWithNibName:nibNameOrNil bundle:LKImagePickerControllerBundleManager.bundle];
     if (self) {
         self.selectedAssets = [NSMutableOrderedSet orderedSet];
     }
@@ -314,11 +315,11 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     // Collection view
     self.collectionView.allowsMultipleSelection = YES;
     NSString* cellIdentifier = NSStringFromClass(LKImagePickerControllerSelectCell.class);
-    [self.collectionView registerNib:[UINib nibWithNibName:cellIdentifier bundle:nil]
+    [self.collectionView registerNib:[UINib nibWithNibName:cellIdentifier bundle:LKImagePickerControllerBundleManager.bundle]
           forCellWithReuseIdentifier:cellIdentifier];
     
     NSString* headerIdentifier = NSStringFromClass(LKImagePickerControllerSelectHeaderView.class);
-    [self.collectionView registerNib:[UINib nibWithNibName:headerIdentifier bundle:nil]
+    [self.collectionView registerNib:[UINib nibWithNibName:headerIdentifier bundle:LKImagePickerControllerBundleManager.bundle]
           forSupplementaryViewOfKind:UICollectionElementKindSectionHeader
                  withReuseIdentifier:headerIdentifier];
 

@@ -10,6 +10,7 @@
 #import "LKImagePickerControllerDetailCell.h"
 #import "LKImagePickerControllerSelectCell.h"
 #import "LKImagePickerControllerSelectionButton.h"
+#import "LKImagePickerControllerBundleManager.h"
 
 #define LKImagePickerControlDetailThumbnailSize (CGSizeMake(50.0,50.0))
 
@@ -65,7 +66,7 @@
 #pragma mark - Basics
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super initWithNibName:nibNameOrNil bundle:LKImagePickerControllerBundleManager.bundle];
     if (self) {
         self.automaticallyAdjustsScrollViewInsets = NO;
     }
@@ -90,10 +91,10 @@
 
     NSString* cellIdentifier = NSStringFromClass(LKImagePickerControllerDetailCell.class);
     
-    [self.collectionView registerNib:[UINib nibWithNibName:cellIdentifier bundle:nil]
+    [self.collectionView registerNib:[UINib nibWithNibName:cellIdentifier bundle:LKImagePickerControllerBundleManager.bundle]
           forCellWithReuseIdentifier:cellIdentifier];
     NSString* cellIdentifier2 = NSStringFromClass(LKImagePickerControllerSelectCell.class);
-    [self.thumbnailCollectionView registerNib:[UINib nibWithNibName:cellIdentifier2 bundle:nil]
+    [self.thumbnailCollectionView registerNib:[UINib nibWithNibName:cellIdentifier2 bundle:LKImagePickerControllerBundleManager.bundle]
                    forCellWithReuseIdentifier:cellIdentifier2];
     
     self.collectionView.allowsMultipleSelection = YES;

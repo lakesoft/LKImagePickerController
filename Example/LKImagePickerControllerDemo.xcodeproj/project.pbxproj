@@ -8,7 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		2C6DF23D620C49BFA6297186 /* libPods-LKImagePickerControllerDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 40EE24068165439CA7807C50 /* libPods-LKImagePickerControllerDemo.a */; };
-		BC1CB2DE19491EC800CBD8CE /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC1CB2DD19491EC800CBD8CE /* CoreFoundation.framework */; };
+		BC074A131960D3A900144C47 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC074A121960D3A900144C47 /* Cocoa.framework */; };
+		BC074A1D1960D3A900144C47 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BC074A1B1960D3A900144C47 /* InfoPlist.strings */; };
+		BC074A291960D3F400144C47 /* LKImagePickerControllerDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC074A221960D3F400144C47 /* LKImagePickerControllerDetailCell.xib */; };
+		BC074A2A1960D3F400144C47 /* LKImagePickerControllerDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC074A231960D3F400144C47 /* LKImagePickerControllerDetailViewController.xib */; };
+		BC074A2B1960D3F400144C47 /* LKImagePickerControllerFilterSelectionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC074A241960D3F400144C47 /* LKImagePickerControllerFilterSelectionViewController.xib */; };
+		BC074A2C1960D3F400144C47 /* LKImagePickerControllerGroupTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC074A251960D3F400144C47 /* LKImagePickerControllerGroupTableViewController.xib */; };
+		BC074A2D1960D3F400144C47 /* LKImagePickerControllerSelectCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC074A261960D3F400144C47 /* LKImagePickerControllerSelectCell.xib */; };
+		BC074A2E1960D3F400144C47 /* LKImagePickerControllerSelectHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC074A271960D3F400144C47 /* LKImagePickerControllerSelectHeaderView.xib */; };
+		BC074A2F1960D3F400144C47 /* LKImagePickerControllerSelectViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC074A281960D3F400144C47 /* LKImagePickerControllerSelectViewController.xib */; };
+		BC074A361960DBBE00144C47 /* LKImagePickerController_Icon_Video.png in Resources */ = {isa = PBXBuildFile; fileRef = BC074A351960DBBE00144C47 /* LKImagePickerController_Icon_Video.png */; };
 		BC2A376C19397F9600C672B7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC2A376B19397F9600C672B7 /* Foundation.framework */; };
 		BC2A376E19397F9600C672B7 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC2A376D19397F9600C672B7 /* CoreGraphics.framework */; };
 		BC2A377019397F9600C672B7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC2A376F19397F9600C672B7 /* UIKit.framework */; };
@@ -27,6 +36,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		BC074A331960DB4600144C47 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BC2A376019397F9600C672B7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BC074A101960D3A800144C47;
+			remoteInfo = "LKImagePickerController-Resources";
+		};
 		BC2A379119397F9600C672B7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BC2A376019397F9600C672B7 /* Project object */;
@@ -39,7 +55,22 @@
 /* Begin PBXFileReference section */
 		40EE24068165439CA7807C50 /* libPods-LKImagePickerControllerDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LKImagePickerControllerDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		75C1B7E6770B4B4B8578E510 /* Pods-LKImagePickerControllerDemo.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LKImagePickerControllerDemo.xcconfig"; path = "Pods/Pods-LKImagePickerControllerDemo.xcconfig"; sourceTree = "<group>"; };
-		BC1CB2DC19491EC800CBD8CE /* LKImagePickerController-Resources.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LKImagePickerController-Resources.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BC074A111960D3A800144C47 /* LKImagePickerController-Resources.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LKImagePickerController-Resources.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BC074A121960D3A900144C47 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
+		BC074A151960D3A900144C47 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		BC074A161960D3A900144C47 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		BC074A171960D3A900144C47 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		BC074A1A1960D3A900144C47 /* LKImagePickerController-Resources-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LKImagePickerController-Resources-Info.plist"; sourceTree = "<group>"; };
+		BC074A1C1960D3A900144C47 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		BC074A1E1960D3A900144C47 /* LKImagePickerController-Resources-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LKImagePickerController-Resources-Prefix.pch"; sourceTree = "<group>"; };
+		BC074A221960D3F400144C47 /* LKImagePickerControllerDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LKImagePickerControllerDetailCell.xib; sourceTree = "<group>"; };
+		BC074A231960D3F400144C47 /* LKImagePickerControllerDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LKImagePickerControllerDetailViewController.xib; sourceTree = "<group>"; };
+		BC074A241960D3F400144C47 /* LKImagePickerControllerFilterSelectionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LKImagePickerControllerFilterSelectionViewController.xib; sourceTree = "<group>"; };
+		BC074A251960D3F400144C47 /* LKImagePickerControllerGroupTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LKImagePickerControllerGroupTableViewController.xib; sourceTree = "<group>"; };
+		BC074A261960D3F400144C47 /* LKImagePickerControllerSelectCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LKImagePickerControllerSelectCell.xib; sourceTree = "<group>"; };
+		BC074A271960D3F400144C47 /* LKImagePickerControllerSelectHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LKImagePickerControllerSelectHeaderView.xib; sourceTree = "<group>"; };
+		BC074A281960D3F400144C47 /* LKImagePickerControllerSelectViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LKImagePickerControllerSelectViewController.xib; sourceTree = "<group>"; };
+		BC074A351960DBBE00144C47 /* LKImagePickerController_Icon_Video.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LKImagePickerController_Icon_Video.png; sourceTree = "<group>"; };
 		BC1CB2DD19491EC800CBD8CE /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		BC2A376819397F9600C672B7 /* LKImagePickerControllerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LKImagePickerControllerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC2A376B19397F9600C672B7 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -64,11 +95,11 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		BC1CB2D919491EC800CBD8CE /* Frameworks */ = {
+		BC074A0E1960D3A800144C47 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BC1CB2DE19491EC800CBD8CE /* CoreFoundation.framework in Frameworks */,
+				BC074A131960D3A900144C47 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -96,11 +127,48 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BC074A141960D3A900144C47 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BC074A151960D3A900144C47 /* Foundation.framework */,
+				BC074A161960D3A900144C47 /* CoreData.framework */,
+				BC074A171960D3A900144C47 /* AppKit.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		BC074A181960D3A900144C47 /* LKImagePickerController-Resources */ = {
+			isa = PBXGroup;
+			children = (
+				BC074A221960D3F400144C47 /* LKImagePickerControllerDetailCell.xib */,
+				BC074A231960D3F400144C47 /* LKImagePickerControllerDetailViewController.xib */,
+				BC074A241960D3F400144C47 /* LKImagePickerControllerFilterSelectionViewController.xib */,
+				BC074A251960D3F400144C47 /* LKImagePickerControllerGroupTableViewController.xib */,
+				BC074A261960D3F400144C47 /* LKImagePickerControllerSelectCell.xib */,
+				BC074A271960D3F400144C47 /* LKImagePickerControllerSelectHeaderView.xib */,
+				BC074A281960D3F400144C47 /* LKImagePickerControllerSelectViewController.xib */,
+				BC074A351960DBBE00144C47 /* LKImagePickerController_Icon_Video.png */,
+				BC074A191960D3A900144C47 /* Supporting Files */,
+			);
+			path = "LKImagePickerController-Resources";
+			sourceTree = "<group>";
+		};
+		BC074A191960D3A900144C47 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BC074A1A1960D3A900144C47 /* LKImagePickerController-Resources-Info.plist */,
+				BC074A1B1960D3A900144C47 /* InfoPlist.strings */,
+				BC074A1E1960D3A900144C47 /* LKImagePickerController-Resources-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		BC2A375F19397F9600C672B7 = {
 			isa = PBXGroup;
 			children = (
 				BC2A377119397F9600C672B7 /* LKImagePickerControllerDemo */,
 				BC2A379319397F9600C672B7 /* LKImagePickerControllerDemoTests */,
+				BC074A181960D3A900144C47 /* LKImagePickerController-Resources */,
 				BC2A376A19397F9600C672B7 /* Frameworks */,
 				BC2A376919397F9600C672B7 /* Products */,
 				75C1B7E6770B4B4B8578E510 /* Pods-LKImagePickerControllerDemo.xcconfig */,
@@ -112,7 +180,7 @@
 			children = (
 				BC2A376819397F9600C672B7 /* LKImagePickerControllerDemo.app */,
 				BC2A378C19397F9600C672B7 /* LKImagePickerControllerDemoTests.xctest */,
-				BC1CB2DC19491EC800CBD8CE /* LKImagePickerController-Resources.bundle */,
+				BC074A111960D3A800144C47 /* LKImagePickerController-Resources.bundle */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -126,6 +194,8 @@
 				BC2A378D19397F9600C672B7 /* XCTest.framework */,
 				40EE24068165439CA7807C50 /* libPods-LKImagePickerControllerDemo.a */,
 				BC1CB2DD19491EC800CBD8CE /* CoreFoundation.framework */,
+				BC074A121960D3A900144C47 /* Cocoa.framework */,
+				BC074A141960D3A900144C47 /* Other Frameworks */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -177,13 +247,13 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		BC1CB2DB19491EC800CBD8CE /* LKImagePickerController-Resources */ = {
+		BC074A101960D3A800144C47 /* LKImagePickerController-Resources */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BC1CB2E819491EC800CBD8CE /* Build configuration list for PBXNativeTarget "LKImagePickerController-Resources" */;
+			buildConfigurationList = BC074A1F1960D3A900144C47 /* Build configuration list for PBXNativeTarget "LKImagePickerController-Resources" */;
 			buildPhases = (
-				BC1CB2D819491EC800CBD8CE /* Sources */,
-				BC1CB2D919491EC800CBD8CE /* Frameworks */,
-				BC1CB2DA19491EC800CBD8CE /* Resources */,
+				BC074A0D1960D3A800144C47 /* Sources */,
+				BC074A0E1960D3A800144C47 /* Frameworks */,
+				BC074A0F1960D3A800144C47 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -191,7 +261,7 @@
 			);
 			name = "LKImagePickerController-Resources";
 			productName = "LKImagePickerController-Resources";
-			productReference = BC1CB2DC19491EC800CBD8CE /* LKImagePickerController-Resources.bundle */;
+			productReference = BC074A111960D3A800144C47 /* LKImagePickerController-Resources.bundle */;
 			productType = "com.apple.product-type.bundle";
 		};
 		BC2A376719397F9600C672B7 /* LKImagePickerControllerDemo */ = {
@@ -207,6 +277,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				BC074A341960DB4600144C47 /* PBXTargetDependency */,
 			);
 			name = LKImagePickerControllerDemo;
 			productName = LKImagePickerControllerDemo;
@@ -260,16 +331,25 @@
 			targets = (
 				BC2A376719397F9600C672B7 /* LKImagePickerControllerDemo */,
 				BC2A378B19397F9600C672B7 /* LKImagePickerControllerDemoTests */,
-				BC1CB2DB19491EC800CBD8CE /* LKImagePickerController-Resources */,
+				BC074A101960D3A800144C47 /* LKImagePickerController-Resources */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		BC1CB2DA19491EC800CBD8CE /* Resources */ = {
+		BC074A0F1960D3A800144C47 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC074A2B1960D3F400144C47 /* LKImagePickerControllerFilterSelectionViewController.xib in Resources */,
+				BC074A2C1960D3F400144C47 /* LKImagePickerControllerGroupTableViewController.xib in Resources */,
+				BC074A1D1960D3A900144C47 /* InfoPlist.strings in Resources */,
+				BC074A2F1960D3F400144C47 /* LKImagePickerControllerSelectViewController.xib in Resources */,
+				BC074A291960D3F400144C47 /* LKImagePickerControllerDetailCell.xib in Resources */,
+				BC074A2D1960D3F400144C47 /* LKImagePickerControllerSelectCell.xib in Resources */,
+				BC074A361960DBBE00144C47 /* LKImagePickerController_Icon_Video.png in Resources */,
+				BC074A2A1960D3F400144C47 /* LKImagePickerControllerDetailViewController.xib in Resources */,
+				BC074A2E1960D3F400144C47 /* LKImagePickerControllerSelectHeaderView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,7 +408,7 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		BC1CB2D819491EC800CBD8CE /* Sources */ = {
+		BC074A0D1960D3A800144C47 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -356,6 +436,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		BC074A341960DB4600144C47 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BC074A101960D3A800144C47 /* LKImagePickerController-Resources */;
+			targetProxy = BC074A331960DB4600144C47 /* PBXContainerItemProxy */;
+		};
 		BC2A379219397F9600C672B7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = BC2A376719397F9600C672B7 /* LKImagePickerControllerDemo */;
@@ -364,6 +449,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		BC074A1B1960D3A900144C47 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BC074A1C1960D3A900144C47 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		BC2A377419397F9600C672B7 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -399,11 +492,15 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		BC1CB2E619491EC800CBD8CE /* Debug */ = {
+		BC074A201960D3A900144C47 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = ../Resources;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LKImagePickerController-Resources/LKImagePickerController-Resources-Prefix.pch";
@@ -420,12 +517,16 @@
 			};
 			name = Debug;
 		};
-		BC1CB2E719491EC800CBD8CE /* Release */ = {
+		BC074A211960D3A900144C47 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = ../Resources;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LKImagePickerController-Resources/LKImagePickerController-Resources-Prefix.pch";
@@ -581,14 +682,13 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		BC1CB2E819491EC800CBD8CE /* Build configuration list for PBXNativeTarget "LKImagePickerController-Resources" */ = {
+		BC074A1F1960D3A900144C47 /* Build configuration list for PBXNativeTarget "LKImagePickerController-Resources" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				BC1CB2E619491EC800CBD8CE /* Debug */,
-				BC1CB2E719491EC800CBD8CE /* Release */,
+				BC074A201960D3A900144C47 /* Debug */,
+				BC074A211960D3A900144C47 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
 		BC2A376319397F9600C672B7 /* Build configuration list for PBXProject "LKImagePickerControllerDemo" */ = {
 			isa = XCConfigurationList;

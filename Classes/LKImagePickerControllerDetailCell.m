@@ -43,13 +43,9 @@
 #pragma mark - MPMoviePlayerController Notifications
 - (void)_moviePlayerPlaybackDidFinish:(NSNotification*)notification
 {
-    [UIView animateWithDuration:0.4
-                     animations:^{
-                         self.moviePlayerController.view.alpha = 0.0;
-                     } completion:^(BOOL finished) {
-                         [self.moviePlayerController.view removeFromSuperview];
-                         self.moviePlayerController = nil;
-                     }];
+    self.moviePlayerController.view.alpha = 0.0;
+    [self.moviePlayerController.view removeFromSuperview];
+    self.moviePlayerController = nil;
 }
 
 #pragma mark - Basics
