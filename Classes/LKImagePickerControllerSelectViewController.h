@@ -20,7 +20,8 @@ extern NSString * const LKImagePickerControllerSelectViewControllerKeyAllSelecte
 
 @property (nonatomic, weak) LKImagePickerControllerAssetsManager* assetsManager;
 
-- (void)setIndexPathsForSelectedItems:(NSArray*)indexPathsForSelectedItems;    // for callback (strong?
 - (void)didSelectAssetsGroup:(LKAssetsGroup*)assetsGroup;
+- (void)setIndexPathsForSelectedItems:(NSArray*)indexPathsForSelectedItems;    // for callback
+- (void)didChangeFilterType;    // for callback
 
 @end

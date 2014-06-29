@@ -41,7 +41,7 @@
 
 - (void)setNumberOfSelections:(NSInteger)numberOfSelections
 {
-    [self setTitle:[NSString stringWithFormat:@"%lu", numberOfSelections]
+    [self setTitle:[NSString stringWithFormat:@"%zd", numberOfSelections]
                 forState:UIControlStateNormal];
     if (numberOfSelections > 0) {
         self.enabled = YES;

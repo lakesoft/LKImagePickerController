@@ -46,7 +46,7 @@
     
     cell.imageView.image = assetsGroup.posterImage;
     cell.textLabel.text = assetsGroup.name;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%lu", assetsGroup.assets.count];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%zd", assetsGroup.assets.count];
     
     if ([self.assetsManager.assetsGroup isEqual:assetsGroup]) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;

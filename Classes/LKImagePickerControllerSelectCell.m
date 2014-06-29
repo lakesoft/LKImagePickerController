@@ -14,15 +14,27 @@
 @interface LKImagePickerControllerSelectCell()
 @property (weak, nonatomic) IBOutlet UIImageView *photoImageView;
 @property (weak, nonatomic) IBOutlet LKImagePickerControllerCheckmarkView* checkmarkView;
+@property (unsafe_unretained, nonatomic) IBOutlet UIView *videoView;
+@property (unsafe_unretained, nonatomic) IBOutlet UILabel *videoLabel;
 @end
 
 @implementation LKImagePickerControllerSelectCell
 
+- (NSString*)_durationString
+{
+    NSInteger min, sec;
+    double duration = self.asset.duration;
+    min = (NSInteger)(duration / 60);
+    sec = ((NSInteger)duration) % 60;
+    return [NSString stringWithFormat:@"%zd:%02zd", min, sec];
+}
 
 - (void)setAsset:(LKAsset *)asset
 {
     _asset = asset;
     self.photoImageView.image = self.asset.thumbnail;
+    self.videoView.hidden = asset.type != LKAssetTypeVideo;
+    self.videoLabel.text = self._durationString;
 }
 
 - (void)awakeFromNib

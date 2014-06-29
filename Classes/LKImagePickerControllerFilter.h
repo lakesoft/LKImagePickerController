@@ -13,15 +13,22 @@ typedef NS_ENUM(NSInteger, LKImagePickerControllerFilterType) {
     LKImagePickerControllerFilterTypeJPEG,
     LKImagePickerControllerFilterTypePNG,
     LKImagePickerControllerFilterTypeScreenShot,
-    LKImagePickerControllerFilterTypeMovie,
+    LKImagePickerControllerFilterTypeVideo,
     LKImagePickerControllerFilterTypeMax
 };
+
+
+@class LKAssetsCollectionGenericFilter;
 
 @interface LKImagePickerControllerFilter : NSObject
 
 @property (nonatomic, assign) LKImagePickerControllerFilterType type;
-@property (nonatomic, strong, readonly) NSArray* allTypes;
+
+- (NSInteger)numberOfTypes;
+- (LKImagePickerControllerFilterType)typeAtIndex:(NSInteger)index;
 
 - (NSString*)descriptionFotType:(LKImagePickerControllerFilterType)type;
+
+- (LKAssetsCollectionGenericFilter*)assetsFilter;
 
 @end

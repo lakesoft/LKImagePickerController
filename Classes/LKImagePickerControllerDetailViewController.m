@@ -18,7 +18,7 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *thumbnailCollectionView;
 @property (assign, nonatomic) CGPoint contentOffset;
 @property (assign, nonatomic) BOOL scrollDirectionLeft;
-//@property (assign, nonatomic) CGPoint thumbnailContentOffset;
+@property (assign, nonatomic) BOOL scrollingByThumbnailView;
 
 @end
 
@@ -38,6 +38,24 @@
 {
     NSLog(@"%s", __PRETTY_FUNCTION__);
 }
+
+#pragma mark - Privtates (Gestures)
+-(void)_handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer
+{
+    if (gestureRecognizer.state != UIGestureRecognizerStateBegan) {
+        return;
+    }
+    CGPoint p = [gestureRecognizer locationInView:self.thumbnailCollectionView];
+    
+    NSIndexPath *indexPath = [self.thumbnailCollectionView indexPathForItemAtPoint:p];
+    if (indexPath){
+        [self.collectionView scrollToItemAtIndexPath:indexPath
+                                    atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally
+                                            animated:YES];
+        self.scrollingByThumbnailView = YES;
+    }
+}
+
 
 #pragma mark - Basics
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -91,11 +109,11 @@
         [self.thumbnailCollectionView selectItemAtIndexPath:indexPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
     }
     
-//    LKImagePickerControllerSelectionButton* selectionButton =
-//    [LKImagePickerControllerSelectionButton selectionButtonTarget:self action:@selector(_tappedClear:)];
-//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:selectionButton];
-    
-    
+    // Gestures
+    UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc]
+                                          initWithTarget:self action:@selector(_handleLongPress:)];
+    lpgr.minimumPressDuration = 0.2;
+    [self.thumbnailCollectionView addGestureRecognizer:lpgr];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -172,27 +190,35 @@
     if (scrollView != self.collectionView) {
         return;
     }
+
     CGFloat dx = self.contentOffset.x - self.collectionView.contentOffset.x;
     self.scrollDirectionLeft = dx > 0;
     CGSize size = self.collectionView.frame.size;
     CGSize cellSize = LKImagePickerControlDetailThumbnailSize;
     
     self.contentOffset = self.collectionView.contentOffset;
-    CGFloat dr = dx / self.collectionView.frame.size.width;
-    CGPoint thumbnailContentOffset = self.thumbnailCollectionView.contentOffset;
-    thumbnailContentOffset.x = thumbnailContentOffset.x - cellSize.width*dr;
-    self.thumbnailCollectionView.contentOffset = thumbnailContentOffset;
+    
+    if (!self.scrollingByThumbnailView) {
+        CGFloat dr = dx / self.collectionView.frame.size.width;
+        CGPoint thumbnailContentOffset = self.thumbnailCollectionView.contentOffset;
+        thumbnailContentOffset.x = thumbnailContentOffset.x - cellSize.width*dr;
+        self.thumbnailCollectionView.contentOffset = thumbnailContentOffset;
+    }
 
     if (fmod(self.collectionView.contentOffset.x, size.width) == 0) {
-        CGPoint p = self.contentOffset;
-        p.x += size.width / 2.0;
-        p.y += size.height / 2.0;
-        NSIndexPath* indexPath = [self.collectionView indexPathForItemAtPoint:p];
-        if (indexPath) {
-            self.indexPath = indexPath;
-            [self.thumbnailCollectionView scrollToItemAtIndexPath:self.indexPath
-                                                 atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally
-                                                         animated:YES];
+        if (self.scrollingByThumbnailView) {
+            self.scrollingByThumbnailView = NO;
+        } else {
+            CGPoint p = self.contentOffset;
+            p.x += size.width / 2.0;
+            p.y += size.height / 2.0;
+            NSIndexPath* indexPath = [self.collectionView indexPathForItemAtPoint:p];
+            if (indexPath) {
+                self.indexPath = indexPath;
+                [self.thumbnailCollectionView scrollToItemAtIndexPath:self.indexPath
+                                                     atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally
+                                                             animated:YES];
+            }
         }
     }
 }

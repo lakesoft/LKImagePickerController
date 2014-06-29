@@ -35,8 +35,6 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
 
 #pragma mark - LKAasetsLibrary
 @property (nonatomic, strong) LKAssetsCollection* assetsCollection;
-@property (nonatomic, strong) LKAssetsCollectionGenericFilter* filter;
-@property (nonatomic, strong) LKAssetsCollectionGenericSorter* sorter;
 @property (nonatomic, assign) LKAssetsCollectionGenericGroupingType groupingType;
 
 #pragma mark - Controls
@@ -55,7 +53,7 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
 - (void)_assetsGroupDidReload:(NSNotification*)notification
 {
     [self _setupAssetsCollection];
-    [self.collectionView reloadData];
+    [self _reloadAndSetupSelections];
     NSInteger lastSection = self.assetsCollection.entries.count-1;
     if (lastSection >= 0) {
         LKAssetsCollectionEntry* lastEntry = self.assetsCollection.entries[lastSection];
@@ -69,9 +67,6 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
         }
     }
     self.title = self.assetsCollection.group.name;
-
-//    [NSNotificationCenter.defaultCenter postNotificationName:FilterViewControllerDidChangeAssetsCollectionNotification
-//                                                      object:self.assetsCollection];
 }
 
 - (void)_setupAssetsCollection
@@ -83,8 +78,7 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     LKAssetsCollectionGenericGrouping* grouping = [LKAssetsCollectionGenericGrouping groupingWithType:self.groupingType];
     
     self.assetsCollection = [LKAssetsCollection assetsCollectionWithGroup:self.assetsManager.assetsGroup grouping:grouping];
-    self.assetsCollection.filter = self.filter;
-    self.assetsCollection.sorter = self.sorter;
+    self.assetsCollection.filter = [self.assetsManager.filter assetsFilter];
 }
 
 - (void)_postNotificationName:(NSString*)notificationName indexPath:(NSIndexPath*)indexPath
@@ -101,8 +95,11 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
 #pragma mark - Privates (Selections)
 - (BOOL)_allSelectedInSection:(NSInteger)section
 {
-    BOOL allSelected = YES;
     NSInteger numberOfItems = [self.collectionView numberOfItemsInSection:section];
+    if (numberOfItems == 0) {
+        return NO;
+    }
+    BOOL allSelected = YES;
     for (NSInteger item=0; item < numberOfItems; item++) {
         NSIndexPath* indexPath = [NSIndexPath indexPathForItem:item inSection:section];
         LKAsset* asset = [self.assetsCollection assetForIndexPath:indexPath];
@@ -125,6 +122,16 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
                                                       object:self];
 }
 
+- (void)_reloadAndSetupSelections
+{
+    [self.collectionView reloadData];
+    for (LKAsset* asset in self.selectedAssets) {
+        NSIndexPath* indexPath = [self.assetsCollection indexPathForAsset:asset];
+        if (indexPath) {
+            [self.collectionView selectItemAtIndexPath:indexPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
+        }
+    }
+}
 
 #pragma mark - Privates (Toolbar Actions)
 - (void)_tappedClear:(id)sender
@@ -180,17 +187,18 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
 
 - (void)_tappedOrganize:(id)sender
 {
-    if (self.collectionView.indexPathsForSelectedItems.count > 0) {
-        UIActionSheet* sheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"消えてしまいます", nil)
-                                                           delegate:self
-                                                  cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
-                                             destructiveButtonTitle:NSLocalizedString(@"OK", nil)
-                                                  otherButtonTitles:nil];
-        sheet.tag = LKImagePickerControllerSelectViewSheetLoseSelections;
-        [sheet showFromToolbar:self.navigationController.toolbar];
-    } else {
-        [self _openGroupView];
-    }
+    [self _openGroupView];
+//    if (self.collectionView.indexPathsForSelectedItems.count > 0) {
+//        UIActionSheet* sheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"消えてしまいます", nil)
+//                                                           delegate:self
+//                                                  cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
+//                                             destructiveButtonTitle:NSLocalizedString(@"OK", nil)
+//                                                  otherButtonTitles:nil];
+//        sheet.tag = LKImagePickerControllerSelectViewSheetLoseSelections;
+//        [sheet showFromToolbar:self.navigationController.toolbar];
+//    } else {
+//        [self _openGroupView];
+//    }
 }
 - (void)_tappedFilter:(id)sender
 {
@@ -316,7 +324,7 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     // Gestures
     UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc]
                                           initWithTarget:self action:@selector(_handleLongPress:)];
-    lpgr.minimumPressDuration = 0.25;
+    lpgr.minimumPressDuration = 0.2;
     [self.collectionView addGestureRecognizer:lpgr];
 
     // Update controls
@@ -362,14 +370,25 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     
     if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
         LKImagePickerControllerSelectHeaderView *view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:NSStringFromClass(LKImagePickerControllerSelectHeaderView.class) forIndexPath:indexPath];
-        view.allSelected = [self _allSelectedInSection:indexPath.section];
         view.collectionEntry = self.assetsCollection.entries[indexPath.section];
+        view.allSelected = [self _allSelectedInSection:indexPath.section];
         view.section = indexPath.section;
         reusableView = view;
     }
     return reusableView;
 }
 
+
+#pragma mark - UICollectionViewLayout
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
+{
+    LKAssetsCollectionEntry* collectionEntry = self.assetsCollection.entries[section];
+    if (collectionEntry.assets.count > 0) {
+        return ((UICollectionViewFlowLayout*)collectionViewLayout).headerReferenceSize;
+    } else {
+        return CGSizeZero;
+    }
+}
 
 #pragma mark - UICollectionViewDelegate
 //- (BOOL)_collectionView:(UICollectionView*)collectionView shouldSelectDeSelectItemAtIndexPath:(NSIndexPath*)indexPath
@@ -453,9 +472,16 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
 
 - (void)didSelectAssetsGroup:(LKAssetsGroup*)assetsGroup
 {
-    [self _resetSelections];
+//    [self _resetSelections];
     [self.assetsManager setAndReloadAssetsGroup:assetsGroup];
 }
 
+
+- (void)didChangeFilterType
+{
+    [self _updateControls];
+    self.assetsCollection.filter = [self.assetsManager.filter assetsFilter];
+    [self _reloadAndSetupSelections];
+}
 
 @end

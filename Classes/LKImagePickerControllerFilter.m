@@ -6,6 +6,7 @@
 //
 
 #import "LKImagePickerControllerFilter.h"
+#import "LKAssetsLibrary.h"
 
 @interface LKImagePickerControllerFilter()
 @end
@@ -36,7 +37,7 @@
             key = @"スクリーンショット";
             break;
 
-        case LKImagePickerControllerFilterTypeMovie:
+        case LKImagePickerControllerFilterTypeVideo:
             key = @"動画";
             break;
 
@@ -48,18 +49,48 @@
     return NSLocalizedString(key, nil);
 }
 
-- (NSArray*)allTypes
+- (NSInteger)numberOfTypes
 {
-    NSMutableArray* array = @[].mutableCopy;
-    for (int i=0; i < LKImagePickerControllerFilterTypeMax; i++) {
-        [array addObject:@(i)];
-    }
-    return array;
+    return LKImagePickerControllerFilterTypeMax;
+}
+
+- (LKImagePickerControllerFilterType)typeAtIndex:(NSInteger)index
+{
+    return index;
 }
 
 - (NSString*)description
 {
     return [self descriptionFotType:self.type];
 }
+
+- (LKAssetsCollectionGenericFilter*)assetsFilter
+{
+    LKAssetsCollectionGenericFilter* assetsFilter = nil;
+    switch (self.type) {
+        case LKImagePickerControllerFilterTypeJPEG:
+            assetsFilter =[LKAssetsCollectionGenericFilter filterWithType:LKAssetsCollectionGenericFilterTypeJPEG];
+            break;
+            
+        case LKImagePickerControllerFilterTypePNG:
+            assetsFilter =[LKAssetsCollectionGenericFilter filterWithType:LKAssetsCollectionGenericFilterTypePNG];
+            break;
+            
+        case LKImagePickerControllerFilterTypeScreenShot:
+            assetsFilter =[LKAssetsCollectionGenericFilter filterWithType:LKAssetsCollectionGenericFilterTypeScreenShot];
+            break;
+            
+        case LKImagePickerControllerFilterTypeVideo:
+            assetsFilter =[LKAssetsCollectionGenericFilter filterWithType:LKAssetsCollectionGenericFilterTypeVideo];
+            break;
+            
+        case LKImagePickerControllerFilterTypeAll:
+        default:
+            assetsFilter =[LKAssetsCollectionGenericFilter filterWithType:LKAssetsCollectionGenericFilterTypeAll];
+            break;
+    }
+    return assetsFilter;
+}
+
 
 @end
