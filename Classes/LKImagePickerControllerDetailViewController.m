@@ -81,7 +81,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = NSLocalizedString(@"Photos", nil);
+    self.title = [LKImagePickerControllerBundleManager localizedStringForKey:@"Photos"];
     
     // Notifications
     [NSNotificationCenter.defaultCenter addObserver:self

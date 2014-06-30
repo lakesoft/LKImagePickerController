@@ -24,8 +24,17 @@ NSString * const LKImagePickerControllerSelectViewControllerDidAssetsUpdateNotif
 #pragma mark - Privates
 - (void)_assetsLibraryDidSetup:(NSNotification*)notification
 {
-    self.assetsGroup = self.assetsLibrary.assetsGroups[0];
-
+    for (LKAssetsGroup* assetsGroup in self.assetsLibrary.assetsGroups) {
+        if (assetsGroup.type == ALAssetsGroupSavedPhotos) {
+            self.assetsGroup = assetsGroup;
+            break;
+        }
+    }
+    // safty guard
+    if (self.assetsGroup == nil) {
+        self.assetsGroup = self.assetsLibrary.assetsGroups.firstObject;
+    }
+    
     if (self.reloadAssetsCompletion) {
         self.reloadAssetsCompletion();
         self.reloadAssetsCompletion = nil;

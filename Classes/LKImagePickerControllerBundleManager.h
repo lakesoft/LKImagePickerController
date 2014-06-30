@@ -12,4 +12,6 @@
 
 + (NSBundle*)bundle;
 
++ (NSString*)localizedStringForKey:(NSString*)key;
+
 @end

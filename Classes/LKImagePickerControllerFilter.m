@@ -7,6 +7,7 @@
 
 #import "LKImagePickerControllerFilter.h"
 #import "LKAssetsLibrary.h"
+#import "LKImagePickerControllerBundleManager.h"
 
 @interface LKImagePickerControllerFilter()
 @property (nonatomic, assign) NSUInteger availableTypes;
@@ -66,27 +67,27 @@
     NSString* key;
     switch (type) {
         case LKImagePickerControllerFilterTypeJPEG:
-            key = @"JPEG";
+            key = @"Filter.JPEG";
             break;
             
         case LKImagePickerControllerFilterTypePNG:
-            key = @"PNG";
+            key = @"Filter.PNG";
             break;
             
         case LKImagePickerControllerFilterTypeScreenShot:
-            key = @"スクリーンショット";
+            key = @"Filter.ScreenShot";
             break;
 
         case LKImagePickerControllerFilterTypeVideo:
-            key = @"動画";
+            key = @"Filter.Video";
             break;
 
         case LKImagePickerControllerFilterTypeAll:
         default:
-            key = @"すべて";
+            key = @"Filter.All";
             break;
     }
-    return NSLocalizedString(key, nil);
+    return [LKImagePickerControllerBundleManager localizedStringForKey:key];
 }
 
 - (LKImagePickerControllerFilterType)typeAtIndex:(NSInteger)index

@@ -9,6 +9,7 @@
 #import "LKImagePickerControllerGroupTableViewController.h"
 #import "LKAssetsLibrary.h"
 #import "LKImagePickerControllerSelectViewController.h"
+#import "LKImagePickerControllerBundleManager.h"
 
 @implementation LKImagePickerControllerGroupTableViewController
 
@@ -18,7 +19,7 @@
 {
     [super viewDidLoad];
 
-    self.title = NSLocalizedString(@"Groups", nil);
+    self.title = [LKImagePickerControllerBundleManager localizedStringForKey:@"Assets.Groups"];
     [self.tableView registerClass:UITableViewCell.class forCellReuseIdentifier:@"GroupCell"];
 }
 

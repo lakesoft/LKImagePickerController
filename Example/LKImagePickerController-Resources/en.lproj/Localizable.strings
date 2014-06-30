@@ -1,0 +1,21 @@
+/* 
+  Localizable.strings
+  LKImagePickerControllerDemo
+
+  Created by Hiroshi Hashiguchi on 2014/06/30.
+  Copyright (c) 2014年 lakesoft. All rights reserved.
+*/
+"Common.OK" = "OK";
+"Common.Cancel" = "Cancel";
+
+"Assets.Groups" = "Groups";
+
+
+"Filter.All" = "All";
+"Filter.JPEG" = "JPEG";
+"Filter.PNG" = "PNG";
+"Filter.ScreenShot" = "ScreenShot";
+"Filter.Video" = "Video";
+
+"Selection.DeselectAll" = "Deselect All";
+"Selection.ChangeGroup" = "Deselects all. Are you ok?";

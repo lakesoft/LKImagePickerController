@@ -12,9 +12,19 @@
 
 + (NSBundle*)bundle
 {
-    NSString* path = [[NSBundle mainBundle] pathForResource:@"LKImagePickerController-Resources" ofType:@"bundle"];
-    NSBundle* bundle = [NSBundle bundleWithPath:path];
-    return bundle;
+    static NSBundle* _bundle = nil;
+
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        NSString* path = [[NSBundle mainBundle] pathForResource:@"LKImagePickerController-Resources" ofType:@"bundle"];
+        _bundle = [NSBundle bundleWithPath:path];
+    });
+    return _bundle;
+}
+
++ (NSString*)localizedStringForKey:(NSString*)key
+{
+    return NSLocalizedStringFromTableInBundle(key, nil, self.bundle, nil);
 }
 
 @end

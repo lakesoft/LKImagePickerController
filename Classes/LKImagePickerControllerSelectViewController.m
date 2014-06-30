@@ -139,11 +139,10 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
 #pragma mark - Privates (Toolbar Actions)
 - (void)_tappedClear:(id)sender
 {
-    UIActionSheet* sheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"Clear", nil)
+    UIActionSheet* sheet = [[UIActionSheet alloc] initWithTitle:[LKImagePickerControllerBundleManager localizedStringForKey:@"Selection.DeselectAll"]
                                                        delegate:self
-                                              cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
-                                         destructiveButtonTitle:NSLocalizedString(@"OK", nil)
-                                              otherButtonTitles:nil];
+                                              cancelButtonTitle:[LKImagePickerControllerBundleManager localizedStringForKey:@"Common.Cancel"]
+                                         destructiveButtonTitle:[LKImagePickerControllerBundleManager localizedStringForKey:@"Common.OK"]                                              otherButtonTitles:nil];
     sheet.tag = LKImagePickerControllerSelectViewSheetResetSelections;
     [sheet showFromToolbar:self.navigationController.toolbar];
 }
@@ -191,10 +190,10 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
 - (void)_tappedOrganize:(id)sender
 {
     if (self.collectionView.indexPathsForSelectedItems.count > 0) {
-        UIActionSheet* sheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"消えてしまいます", nil)
+        UIActionSheet* sheet = [[UIActionSheet alloc] initWithTitle:[LKImagePickerControllerBundleManager localizedStringForKey:@"Selection.ChangeGroup"]
                                                            delegate:self
-                                                  cancelButtonTitle:NSLocalizedString(@"Cancel", nil)
-                                             destructiveButtonTitle:NSLocalizedString(@"OK", nil)
+                                                  cancelButtonTitle:[LKImagePickerControllerBundleManager localizedStringForKey:@"Common.Cancel"]
+                                             destructiveButtonTitle:[LKImagePickerControllerBundleManager localizedStringForKey:@"Common.OK"]
                                                   otherButtonTitles:nil];
         sheet.tag = LKImagePickerControllerSelectViewSheetLoseSelections;
         [sheet showFromToolbar:self.navigationController.toolbar];

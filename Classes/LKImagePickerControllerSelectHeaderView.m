@@ -93,5 +93,9 @@
     self.checkButton.backgroundColor = buttonBackgroundColor;
 }
 
+- (void)dealloc
+{
+    [NSNotificationCenter.defaultCenter removeObserver:self];
+}
 
 @end
