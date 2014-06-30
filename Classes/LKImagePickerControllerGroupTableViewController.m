@@ -10,6 +10,7 @@
 #import "LKAssetsLibrary.h"
 #import "LKImagePickerControllerSelectViewController.h"
 #import "LKImagePickerControllerBundleManager.h"
+#import "LKImagePickerControllerGroupTableViewCell.h"
 
 @implementation LKImagePickerControllerGroupTableViewController
 
@@ -20,7 +21,9 @@
     [super viewDidLoad];
 
     self.title = [LKImagePickerControllerBundleManager localizedStringForKey:@"Assets.Groups"];
-    [self.tableView registerClass:UITableViewCell.class forCellReuseIdentifier:@"GroupCell"];
+    UINib* nib = [UINib nibWithNibName:@"LKImagePickerControllerGroupTableViewCell" bundle:LKImagePickerControllerBundleManager.bundle];
+    [self.tableView registerNib:nib
+         forCellReuseIdentifier:@"LKImagePickerControllerGroupTableViewCell"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -42,14 +45,14 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"GroupCell" forIndexPath:indexPath];
-    LKAssetsGroup* assetsGroup = self.assetsManager.assetsLibrary.assetsGroups[indexPath.row];
+    LKImagePickerControllerGroupTableViewCell* cell = (LKImagePickerControllerGroupTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"LKImagePickerControllerGroupTableViewCell" forIndexPath:indexPath];
+    cell.assetsGroup = self.assetsManager.assetsLibrary.assetsGroups[indexPath.row];
     
-    cell.imageView.image = assetsGroup.posterImage;
-    cell.textLabel.text = assetsGroup.name;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%zd", assetsGroup.assets.count];
+//    cell.imageView.image = assetsGroup.posterImage;
+//    cell.textLabel.text = assetsGroup.name;
+//    cell.detailTextLabel.text = [NSString stringWithFormat:@"%zd", assetsGroup.assets.count];
     
-    if ([self.assetsManager.assetsGroup isEqual:assetsGroup]) {
+    if ([self.assetsManager.assetsGroup isEqual:cell.assetsGroup]) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     } else {
         cell.accessoryType = UITableViewCellAccessoryNone;

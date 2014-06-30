@@ -10,7 +10,9 @@
 
 @interface LKImagePickerControllerSelectionButton : UIButton
 
+@property (nonatomic, assign) BOOL active;
+@property (nonatomic, assign) NSInteger numberOfSelections;
+
 + (instancetype)selectionButtonTarget:(id)target action:(SEL)action;
-- (void)setNumberOfSelections:(NSInteger)numberOfSelections;
 
 @end

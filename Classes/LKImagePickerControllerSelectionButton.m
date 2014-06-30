@@ -16,8 +16,11 @@
     self = [super initWithFrame:frame];
     if (self) {
         [self setTitleColor:UIColor.lightGrayColor forState:UIControlStateDisabled];
-        [self setTitleColor:UIColor.whiteColor forState:UIControlStateNormal];
         [self setNumberOfSelections:0];
+        
+        CALayer* layer = self.layer;
+        layer.borderColor = LKImagePickerControllerAppearance.sharedAppearance.backgroundColor.CGColor;
+        layer.borderWidth = 0.0;
     }
     return self;
 }
@@ -39,17 +42,38 @@
 }
 */
 
-- (void)setNumberOfSelections:(NSInteger)numberOfSelections
+- (void)_updateUI
 {
-    [self setTitle:[NSString stringWithFormat:@"%zd", numberOfSelections]
-                forState:UIControlStateNormal];
-    if (numberOfSelections > 0) {
+    [self setTitle:[NSString stringWithFormat:@"%zd", self.numberOfSelections]
+          forState:UIControlStateNormal];
+    if (self.numberOfSelections > 0) {
         self.enabled = YES;
-        self.backgroundColor = LKImagePickerControllerAppearance.sharedAppearance.backgroundColor;
+        if (self.active) {
+            [self setTitleColor:LKImagePickerControllerAppearance.sharedAppearance.foregroundColor forState:UIControlStateNormal];
+            self.backgroundColor = LKImagePickerControllerAppearance.sharedAppearance.backgroundColor;
+            self.layer.borderWidth = 0.0;
+        } else {
+            [self setTitleColor:LKImagePickerControllerAppearance.sharedAppearance.backgroundColor forState:UIControlStateNormal];
+            self.backgroundColor = UIColor.clearColor;
+            self.layer.borderWidth = 1.0;
+        }
     } else {
         self.enabled = NO;
         self.backgroundColor = UIColor.clearColor;
+        self.layer.borderWidth = 0.0;
     }
+}
+
+- (void)setNumberOfSelections:(NSInteger)numberOfSelections
+{
+    _numberOfSelections = numberOfSelections;
+    [self _updateUI];
+}
+
+- (void)setActive:(BOOL)active
+{
+    _active = active;
+    [self _updateUI];
 }
 
 

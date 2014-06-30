@@ -16,6 +16,7 @@
     if (self) {
         self.foregroundColor = UIColor.whiteColor;
         self.backgroundColor = [UIColor colorWithRed:0.078 green:0.43 blue:0.87 alpha:1.000];
+        _tintColor = _backgroundColor;
     }
     return self;
 }
