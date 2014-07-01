@@ -64,7 +64,14 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
 }
 
 #pragma mark - Privates (LKAssetsLibrary)
+- (void)setDisplayingAssetsCollection:(LKAssetsCollection *)displayingAssetsCollection
+{
+    _displayingAssetsCollection = displayingAssetsCollection;
+    displayingAssetsCollection.filter = [self.assetsManager.filter assetsFilter];
+}
+
 - (void)_assetsGroupDidReload:(NSNotification*)notification
+
 {
     self.assetsCollection = [self _assetsCollectionWithAssetsGroup:self.assetsManager.assetsGroup orAssets:nil];
     self.displayingAssetsCollection = self.assetsCollection;
@@ -88,7 +95,6 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     } else {
         assetsCollection = [LKAssetsCollection assetsCollectionWithAssets:orAssets grouping:grouping];
     }
-    assetsCollection.filter = [self.assetsManager.filter assetsFilter];
     return assetsCollection;
 }
 
@@ -174,13 +180,44 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     self.displayingSelectedOnly = !self.displayingSelectedOnly;
     [self _updateControls];
 
+    NSInteger numberOfSections = self.displayingAssetsCollection.entries.count;
+    if (numberOfSections > 0) {
+        NSIndexSet* sections = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, numberOfSections)];
+        self.displayingAssetsCollection = nil;
+        [self.collectionView deleteSections:sections];
+    }
+
     if (self.displayingSelectedOnly) {
         NSArray* assets = [self _sortedArrayByDateWithOrderedSet:self.selectedAssets];
         self.displayingAssetsCollection = [self _assetsCollectionWithAssetsGroup:nil orAssets:assets];
     } else {
         self.displayingAssetsCollection = self.assetsCollection;
     }
-    [self _reloadAndSetupSelections];
+//    [self _reloadAndSetupSelections];
+//    numberOfSections = self.displayingAssetsCollection.entries.count;
+//    if (numberOfSections > 0) {
+//        NSIndexSet* sections = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, numberOfSections)];
+//        [self.collectionView insertSections:sections];
+//    }
+    numberOfSections = self.displayingAssetsCollection.entries.count;
+    if (numberOfSections > 0) {
+        NSMutableArray* indexPaths = @[].mutableCopy;
+        NSIndexSet* sections = [NSIndexSet indexSetWithIndexesInRange:NSMakeRange(0, numberOfSections)];
+        for (int section=0; section < numberOfSections; section++) {
+            LKAssetsCollectionEntry* entry = self.displayingAssetsCollection.entries[section];
+            for (int item=0; item < entry.assets.count; item++) {
+                NSIndexPath* indexPath = [NSIndexPath indexPathForItem:item inSection:section];
+                [indexPaths addObject:indexPath];
+            }
+        }
+        [self.collectionView performBatchUpdates:^{
+            [self.collectionView insertSections:sections];
+            [self.collectionView insertItemsAtIndexPaths:indexPaths];
+        } completion:^(BOOL finished) {
+            NSLog(@"compeltion");
+        }];
+    }
+
 
 }
 

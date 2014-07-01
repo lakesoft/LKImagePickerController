@@ -49,7 +49,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    self.assetsManager.filter.type = indexPath.row;
+    self.assetsManager.filter.type = [self.assetsManager.filter typeAtIndex:indexPath.row];
     [self.selectViewController didChangeFilterType];
     [self.navigationController popViewControllerAnimated:YES];
 }
