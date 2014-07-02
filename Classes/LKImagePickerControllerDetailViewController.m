@@ -81,7 +81,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = [LKImagePickerControllerBundleManager localizedStringForKey:@"Photos"];
+    
+    if (self.assetsCollection.assetsGroup.name) {
+        self.title = self.assetsCollection.assetsGroup.name;
+    } else {
+        self.title = [LKImagePickerControllerBundleManager localizedStringForKey:@"SelectionScreen.Title"];
+    }
     
     // Notifications
     [NSNotificationCenter.defaultCenter addObserver:self
@@ -124,11 +129,6 @@
                                           initWithTarget:self action:@selector(_handleLongPress:)];
     lpgr.minimumPressDuration = 0.2;
     [self.thumbnailCollectionView addGestureRecognizer:lpgr];
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    self.navigationController.toolbar.hidden = YES;
 }
 
 -(void) viewWillDisappear:(BOOL)animated {

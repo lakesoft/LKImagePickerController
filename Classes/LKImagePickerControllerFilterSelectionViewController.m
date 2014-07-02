@@ -9,6 +9,8 @@
 #import "LKImagePickerControllerFilterSelectionViewController.h"
 #import "LKImagePickerControllerFilter.h"
 #import "LKImagePickerControllerSelectViewController.h"
+#import "LKImagePickerControllerBundleManager.h"
+
 @interface LKImagePickerControllerFilterSelectionViewController ()
 
 @end
@@ -19,6 +21,7 @@
 {
     [super viewDidLoad];
     
+    self.title = [LKImagePickerControllerBundleManager localizedStringForKey:@"FilterScreen.Title"];
     [self.tableView registerClass:UITableViewCell.class forCellReuseIdentifier:@"FilterCell"];
 }
 

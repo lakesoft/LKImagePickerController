@@ -17,6 +17,7 @@
 #import "LKImagePickerControllerFilter.h"
 #import "LKImagePickerControllerBundleManager.h"
 #import "LKImagePickerControlelrCheckmarkButton.h"
+#import "LKImagePickerControllerCloseButton.h"
 
 NSString * const LKImagePickerControllerSelectViewControllerDidSelectCellNotification = @"LKImagePickerControllerSelectViewControllerDidSelectCellNotification";
 NSString * const LKImagePickerControllerSelectViewControllerDidDeselectCellNotification = @"LKImagePickerControllerSelectViewControllerDidDeselectCellNotification";
@@ -46,7 +47,8 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
 @property (nonatomic, weak) UIBarButtonItem* doneItem;
 @property (nonatomic, weak) UIBarButtonItem* cancelItem;
 @property (nonatomic, weak) UIBarButtonItem* filterItem;
-@property (nonatomic, weak) UIBarButtonItem* groupItem;
+@property (nonatomic, strong) UIBarButtonItem* groupItem;
+@property (nonatomic, strong) UIBarButtonItem* checkItem;
 
 #pragma mark - Models
 @property (nonatomic, strong) NSMutableOrderedSet* selectedAssets;  // <LKAssets>
@@ -81,7 +83,7 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     self.displayingAssetsCollection = self.assetsCollection;
     self.displayingSelectedOnly = NO;
     [self _reloadAndSetupSelections];
-    self.title = self.assetsCollection.group.name;
+    self.title = self.assetsCollection.assetsGroup.name;
     [self _updateControls];
 }
 
@@ -230,14 +232,12 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     [self.collectionView.layer addAnimation:animation forKey:@"CATransitionReloadAnimation"];
     
     if (self.displayingSelectedOnly) {
-        self.selectionButton.maskMessage = [LKImagePickerControllerBundleManager localizedStringForKey:@"Common.Back"];
         self.title = [LKImagePickerControllerBundleManager localizedStringForKey:@"SelectionScreen.Title"];
-        self.groupItem.enabled = NO;
+        self.navigationItem.rightBarButtonItem = self.checkItem;
         self.checkButton.hidden = NO;
     } else {
-        self.selectionButton.maskMessage = nil;
         self.title = self.assetsManager.assetsGroup.name;
-        self.groupItem.enabled = YES;
+        self.navigationItem.rightBarButtonItem = self.groupItem;
         self.checkButton.hidden = YES;
     }
     
@@ -382,7 +382,10 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
                                                name:LKImagePickerControllerSelectViewControllerDidAssetsUpdateNotification
                                              object:nil];
     // Bar buttons
-    UIBarButtonItem* cancelItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(_tappedCancel:)];
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:[LKImagePickerControllerBundleManager localizedStringForKey:@"Common.Back"] style:UIBarButtonItemStylePlain target:nil action:nil];
+
+    LKImagePickerControllerCloseButton* closeButton = [LKImagePickerControllerCloseButton closeButtonWithTarget:self action:@selector(_tappedCancel:)];
+    UIBarButtonItem* cancelItem = [[UIBarButtonItem alloc] initWithCustomView:closeButton];
     
     UIBarButtonItem* groupItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize target:self action:@selector(_tappedOrganize:)];
 
@@ -409,7 +412,7 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
 
     // Toolbar
     self.navigationController.toolbarHidden = NO;
-                  [self setToolbarItems:@[cancelItem, flexibleSpaceItem, buttonItem, flexibleSpaceItem, checkItem, doneItem] animated:NO];
+                  [self setToolbarItems:@[cancelItem, flexibleSpaceItem, buttonItem, flexibleSpaceItem, doneItem] animated:NO];
     
     // Retain bar buttons
     self.doneItem = doneItem;
@@ -418,6 +421,7 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     self.groupItem = groupItem;
     self.checkButton = checkButton;
     self.cancelItem = cancelItem;
+    self.checkItem = checkItem;
     
     // Collection view
     self.collectionView.allowsMultipleSelection = YES;
@@ -451,6 +455,12 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
 {
     self.navigationController.toolbar.hidden = NO;
 }
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    self.navigationController.toolbar.hidden = YES;
+}
+
 
 
 #pragma mark - UICollectionViewDataSource

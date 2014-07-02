@@ -16,12 +16,12 @@
 
 + (instancetype)checkmarkButtonWithTarget:(id)target action:(SEL)action
 {
-    CGRect frame = CGRectMake(0, 0, 50, 40);
+    CGRect frame = CGRectMake(0, 0, 30, 30);
     LKImagePickerControlelrCheckmarkButton* button = LKImagePickerControlelrCheckmarkButton.new;
     button.frame = frame;
     [button addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
     LKImagePickerControllerCheckmarkView* view = [LKImagePickerControllerCheckmarkView checkmarkViewWithTarget:target action:action];
-    view.frame = CGRectInset(frame, 10, 5);
+    view.frame = CGRectInset(frame, 0, 0);
     [button addSubview:view];
     
     button.checkmarkView = view;

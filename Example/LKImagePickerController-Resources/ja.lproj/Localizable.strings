@@ -11,6 +11,7 @@
 
 "Assets.Groups" = "グループ";
 
+"FilterScreen.Title" = "種類";
 "SelectionScreen.Title" = "選択されている写真";
 
 "Filter.All" = "すべて";

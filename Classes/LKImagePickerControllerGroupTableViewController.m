@@ -31,11 +31,6 @@
     [super didReceiveMemoryWarning];
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    self.navigationController.toolbar.hidden = YES;
-}
-
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
