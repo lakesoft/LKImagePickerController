@@ -7,9 +7,11 @@
 */
 "Common.OK" = "OK";
 "Common.Cancel" = "キャンセル";
+"Common.Back" = "戻る";
 
 "Assets.Groups" = "グループ";
 
+"SelectionScreen.Title" = "選択されている写真";
 
 "Filter.All" = "すべて";
 "Filter.JPEG" = "JPEG";

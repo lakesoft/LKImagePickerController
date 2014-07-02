@@ -44,18 +44,23 @@
 
 - (void)_updateUI
 {
-    [self setTitle:[NSString stringWithFormat:@"%zd", self.numberOfSelections]
-          forState:UIControlStateNormal];
-    if (self.numberOfSelections > 0) {
+    if (self.maskMessage) {
+        [self setTitle:self.maskMessage
+              forState:UIControlStateNormal];
+    } else {
+        [self setTitle:[NSString stringWithFormat:@"%zd", self.numberOfSelections]
+              forState:UIControlStateNormal];
+    }
+    if (self.numberOfSelections > 0 || self.maskMessage) {
         self.enabled = YES;
         if (self.active) {
+            [self setTitleColor:LKImagePickerControllerAppearance.sharedAppearance.backgroundColor forState:UIControlStateNormal];
+            self.backgroundColor = UIColor.clearColor;
+            self.layer.borderWidth = self.maskMessage ? 0.0 : 1.0;
+        } else {
             [self setTitleColor:LKImagePickerControllerAppearance.sharedAppearance.foregroundColor forState:UIControlStateNormal];
             self.backgroundColor = LKImagePickerControllerAppearance.sharedAppearance.backgroundColor;
             self.layer.borderWidth = 0.0;
-        } else {
-            [self setTitleColor:LKImagePickerControllerAppearance.sharedAppearance.backgroundColor forState:UIControlStateNormal];
-            self.backgroundColor = UIColor.clearColor;
-            self.layer.borderWidth = 1.0;
         }
     } else {
         self.enabled = NO;
@@ -76,5 +81,11 @@
     [self _updateUI];
 }
 
+
+- (void)setMaskMessage:(NSString*)maskMessage
+{
+    _maskMessage = maskMessage;
+    [self _updateUI];
+}
 
 @end

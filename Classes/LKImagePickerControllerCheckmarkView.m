@@ -9,11 +9,16 @@
 #import "LKImagePickerControllerCheckmarkView.h"
 #import "LKImagePickerControllerAppearance.h"
 
+@interface LKImagePickerControllerCheckmarkView()
+@property (nonatomic, weak) id target;
+@property (nonatomic, assign) SEL action;
+@end
 @implementation LKImagePickerControllerCheckmarkView
 
 - (void)_setup
 {
     self.backgroundColor = UIColor.clearColor;
+    _active = YES;
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder
@@ -33,19 +38,31 @@
     return self;
 }
 
++ (LKImagePickerControllerCheckmarkView*)checkmarkViewWithTarget:(id)target action:(SEL)action
+{
+    LKImagePickerControllerCheckmarkView* view = LKImagePickerControllerCheckmarkView.new;
+    view.target = target;
+    view.action = action;
+    return view;
+}
+
 - (void)drawRect:(CGRect)rect
 {
     UIColor* strokeColor = LKImagePickerControllerAppearance.sharedAppearance.foregroundColor;
     UIColor* fillColor = LKImagePickerControllerAppearance.sharedAppearance.backgroundColor;
+    CGFloat lineWidth = 1.5;
     if (self.disabled) {
         UIColor* tmp = strokeColor;
         strokeColor = fillColor;
         fillColor = tmp;
+        lineWidth = 1.0;
+    } else if (!self.active) {
+        strokeColor = fillColor;
+        fillColor = UIColor.clearColor;
+        lineWidth = 1.0;
     }
     [strokeColor setStroke];
     [fillColor setFill];
-
-    CGFloat lineWidth = self.disabled ? 1.0 : 1.5;
 
     UIBezierPath* circlePath = [UIBezierPath bezierPathWithOvalInRect:CGRectInset(self.bounds, 3.0, 3.0)];
     if (self.disabled) {
@@ -72,6 +89,23 @@
 {
     _disabled = disabled;
     self.alpha = disabled ? 0.75 : 1.0;
+}
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    if (self.target && self.action) {
+// @see http://captainshadow.hatenablog.com/entry/20121114/1352834276
+//        [self.target performSelector:_action withObject:self];
+        [self.target performSelector:self.action withObject:self afterDelay:0];
+    } else {
+        [super touchesEnded:touches withEvent:event];
+    }
+}
+
+- (void)setActive:(BOOL)active
+{
+    _active = active;
+    [self setNeedsDisplay];
 }
 
 @end

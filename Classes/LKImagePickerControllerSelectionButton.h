@@ -12,6 +12,7 @@
 
 @property (nonatomic, assign) BOOL active;
 @property (nonatomic, assign) NSInteger numberOfSelections;
+@property (nonatomic, strong) NSString* maskMessage;
 
 + (instancetype)selectionButtonTarget:(id)target action:(SEL)action;
 

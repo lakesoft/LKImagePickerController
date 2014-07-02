@@ -11,5 +11,8 @@
 @interface LKImagePickerControllerCheckmarkView : UIView
 
 @property (nonatomic, assign) BOOL disabled;
+@property (nonatomic, assign) BOOL active;
+
++ (LKImagePickerControllerCheckmarkView*)checkmarkViewWithTarget:(id)target action:(SEL)action;
 
 @end
