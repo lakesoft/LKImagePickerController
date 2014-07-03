@@ -18,6 +18,7 @@
 #import "LKImagePickerControllerBundleManager.h"
 #import "LKImagePickerControlelrCheckmarkButton.h"
 #import "LKImagePickerControllerCloseButton.h"
+#import "LKImagePickerControllerEmptyView.h"
 
 NSString * const LKImagePickerControllerSelectViewControllerDidSelectCellNotification = @"LKImagePickerControllerSelectViewControllerDidSelectCellNotification";
 NSString * const LKImagePickerControllerSelectViewControllerDidDeselectCellNotification = @"LKImagePickerControllerSelectViewControllerDidDeselectCellNotification";
@@ -44,11 +45,12 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
 #pragma mark - Controls
 @property (nonatomic, weak) LKImagePickerControllerSelectionButton* selectionButton;
 @property (nonatomic, weak) LKImagePickerControlelrCheckmarkButton* checkButton;
-@property (nonatomic, weak) UIBarButtonItem* doneItem;
-@property (nonatomic, weak) UIBarButtonItem* cancelItem;
-@property (nonatomic, weak) UIBarButtonItem* filterItem;
+@property (nonatomic, strong) UIBarButtonItem* doneItem;
+@property (nonatomic, strong) UIBarButtonItem* cancelItem;
+@property (nonatomic, strong) UIBarButtonItem* filterItem;
 @property (nonatomic, strong) UIBarButtonItem* groupItem;
 @property (nonatomic, strong) UIBarButtonItem* checkItem;
+@property (nonatomic, weak) LKImagePickerControllerEmptyView* emptyView;
 
 #pragma mark - Models
 @property (nonatomic, strong) NSMutableOrderedSet* selectedAssets;  // <LKAssets>
@@ -228,7 +230,7 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     [animation setSubtype:self.displayingSelectedOnly ? kCATransitionFromTop: kCATransitionFromBottom];
     [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut]];
     [animation setFillMode:kCAFillModeBoth];
-    [animation setDuration:0.75];
+    [animation setDuration:0.5];
     [self.collectionView.layer addAnimation:animation forKey:@"CATransitionReloadAnimation"];
     
     if (self.displayingSelectedOnly) {
@@ -237,7 +239,7 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
         self.checkButton.hidden = NO;
     } else {
         self.title = self.assetsManager.assetsGroup.name;
-        self.navigationItem.rightBarButtonItem = self.groupItem;
+        self.navigationItem.rightBarButtonItem = self.filterItem;
         self.checkButton.hidden = YES;
     }
     
@@ -308,9 +310,12 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
 {
     self.selectionButton.numberOfSelections = self.selectedAssets.count;
     self.selectionButton.active = self.displayingSelectedOnly;
-    self.doneItem.enabled = self.selectedAssets.count > 0;
+    self.doneItem.enabled = 
     self.filterItem.title = self.assetsManager.filter.description;
     self.checkButton.active = self.selectedAssets.count > 0 && self._allSelected;
+    
+    BOOL emptyCollection = (self.displayingAssetsCollection.numberOfAssets == 0);
+    self.emptyView.alpha = emptyCollection ? 1.0 : 0.0;
 }
 
 #pragma mark - Privates (Navigations)
@@ -407,8 +412,8 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     dummyButton.hidden = YES;
     
     // Navigation bar
-    self.navigationItem.leftBarButtonItem = filterItem;
-    self.navigationItem.rightBarButtonItem = groupItem;
+    self.navigationItem.leftBarButtonItem = groupItem;
+    self.navigationItem.rightBarButtonItem = filterItem;
 
     // Toolbar
     self.navigationController.toolbarHidden = NO;
@@ -443,6 +448,13 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     // Update controls
     [self.assetsManager reloadAssetsGroup];
     [self _updateControls];
+    
+    
+    // Empty view
+    LKImagePickerControllerEmptyView* emptyView = [LKImagePickerControllerEmptyView emptyView];
+    emptyView.alpha = 0.0;
+    [self.view addSubview:emptyView];
+    self.emptyView = emptyView;
 }
 
 - (void)didReceiveMemoryWarning
@@ -598,9 +610,9 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
 
 - (void)didChangeFilterType
 {
-    [self _updateControls];
     self.displayingAssetsCollection.filter = [self.assetsManager.filter assetsFilter];
     [self _reloadAndSetupSelections];
+    [self _updateControls];
 }
 
 @end

@@ -24,8 +24,11 @@
     _assetsGroup = assetsGroup;
     self.posterImageView.image = assetsGroup.posterImage;
     self.groupTitle.text = assetsGroup.name;
+    NSNumberFormatter* nf = NSNumberFormatter.new;
+    nf.numberStyle = NSNumberFormatterDecimalStyle;
+    NSString* numberString = [nf stringFromNumber:@(assetsGroup.numberOfAssets)];
     self.numberLabel.text = [NSString stringWithFormat:[LKImagePickerControllerBundleManager localizedStringForKey:@"Common.NumerOfPics"],
-                             assetsGroup.numberOfAssets];
+                             numberString];
 }
 
 @end

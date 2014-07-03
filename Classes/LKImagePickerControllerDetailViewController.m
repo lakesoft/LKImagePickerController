@@ -28,11 +28,9 @@
 #pragma mark - Privates
 - (void)_updateControls
 {
-    NSLog(@"updated");
 }
 - (void)_tappedClear:(id)sender
 {
-    NSLog(@"clear");
 }
 
 - (void)_assetsGroupDidReload:(NSNotification*)notification
@@ -48,7 +46,7 @@
 
 -(void)_handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer
 {
-    if (gestureRecognizer.state != UIGestureRecognizerStateBegan) {
+    if (gestureRecognizer.state != UIGestureRecognizerStateEnded) {
         return;
     }
     CGPoint p = [gestureRecognizer locationInView:self.thumbnailCollectionView];
@@ -105,9 +103,6 @@
     self.collectionView.allowsMultipleSelection = YES;
     self.thumbnailCollectionView.allowsMultipleSelection = YES;
 
-//    [self.collectionView reloadData];
-//    [self.thumbnailCollectionView reloadData];
-    
     [self.collectionView scrollToItemAtIndexPath:self.indexPath
                                 atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally
                                         animated:NO];
