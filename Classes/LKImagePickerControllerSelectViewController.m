@@ -478,9 +478,12 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
 
 
 -(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-    NSArray* cells = [self.collectionView visibleCells];
-    if (cells.count) {
-        self.currentIndexPath = [self.collectionView indexPathForCell:cells[0]];
+    NSArray* indexPaths = [[self.collectionView indexPathsForVisibleItems] sortedArrayUsingComparator:^NSComparisonResult(NSIndexPath* i1, NSIndexPath* i2) {
+        return [i1 compare:i2];
+    }];
+    if (indexPaths.count) {
+        NSInteger index = indexPaths.count / 2;
+        self.currentIndexPath = indexPaths[index];
     } else {
         self.currentIndexPath = nil;
     }
@@ -495,12 +498,12 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     
     if (self.currentIndexPath) {
         [self.collectionView scrollToItemAtIndexPath:self.currentIndexPath
-                                    atScrollPosition:UICollectionViewScrollPositionTop
+                                    atScrollPosition:UICollectionViewScrollPositionCenteredVertically
                                             animated:NO];
         self.currentIndexPath = nil;
     }
     
-    [UIView animateWithDuration:0.75
+    [UIView animateWithDuration:0.5
                      animations:^{
                          self.collectionView.alpha = 1.0;
                      }];
