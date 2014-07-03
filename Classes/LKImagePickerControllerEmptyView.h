@@ -12,4 +12,6 @@
 
 + (instancetype)emptyView;
 
+@property (nonatomic, weak) NSString* text;
+
 @end

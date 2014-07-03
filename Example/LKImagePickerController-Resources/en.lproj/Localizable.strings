@@ -10,6 +10,7 @@
 "Common.Back" = "Back";
 "Common.NumerOfPics" = "%@ pics";
 "Common.NoPics" = "No pictures";
+"Common.NoSelections" = "No Selections";
 
 "Assets.Groups" = "Groups";
 

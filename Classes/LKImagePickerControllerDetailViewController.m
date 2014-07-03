@@ -20,7 +20,7 @@
 @property (assign, nonatomic) CGPoint contentOffset;
 @property (assign, nonatomic) BOOL scrollDirectionLeft;
 @property (assign, nonatomic) BOOL scrollingByThumbnailView;
-
+@property (strong, nonatomic) NSIndexPath* currentIndexPath;
 @end
 
 @implementation LKImagePickerControllerDetailViewController
@@ -139,6 +139,36 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    NSArray* cells = [self.collectionView visibleCells];
+    if (cells.count) {
+        self.currentIndexPath = [self.collectionView indexPathForCell:cells[0]];
+    } else {
+        self.currentIndexPath = nil;
+    }
+    [UIView animateWithDuration:0.2
+                     animations:^{
+                         self.collectionView.alpha = 0.0;
+                     }];
+    [self.collectionView.collectionViewLayout invalidateLayout];
+}
+-(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    [self.collectionView performBatchUpdates:nil completion:nil];
+
+    if (self.currentIndexPath) {
+        [self.collectionView scrollToItemAtIndexPath:self.currentIndexPath
+                                    atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally
+                                            animated:NO];
+        self.currentIndexPath = nil;
+    }
+    
+    [UIView animateWithDuration:0.75
+                     animations:^{
+                         self.collectionView.alpha = 1.0;
+                     }];
+
+}
+
 #pragma mark - UIScrollViewDelegate
 - (NSInteger)_indexForIndexPath:(NSIndexPath*)indexPath
 {
@@ -183,11 +213,6 @@
     } else {
         return LKImagePickerControlDetailThumbnailSize;
     }
-}
-
-- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation
-{
-    [self.collectionView performBatchUpdates:nil completion:nil];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView

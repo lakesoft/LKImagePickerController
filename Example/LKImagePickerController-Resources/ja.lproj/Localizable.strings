@@ -9,7 +9,8 @@
 "Common.Cancel" = "キャンセル";
 "Common.Back" = "戻る";
 "Common.NumerOfPics" = "%@ 枚";
-"Common.NoPics" = "画像がありません";
+"Common.NoPics" = "写真がありません";
+"Common.NoSelections" = "写真が選択されていません";
 
 "Assets.Groups" = "グループ";
 

@@ -21,7 +21,6 @@
     NSBundle* bundle = LKImagePickerControllerBundleManager.bundle;
     UINib* nib = [UINib nibWithNibName:NSStringFromClass(self.class) bundle:bundle];
     LKImagePickerControllerEmptyView* view = [nib instantiateWithOwner:nil options:nil][0];
-    view.titleLabel.text = [LKImagePickerControllerBundleManager localizedStringForKey:@"Common.NoPics"];
     return view;
 }
 
@@ -34,13 +33,12 @@
     return self;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
+- (void)setText:(NSString *)text
 {
-    // Drawing code
+    self.titleLabel.text = text;
 }
-*/
-
+- (NSString*)text
+{
+    return self.titleLabel.text;
+}
 @end

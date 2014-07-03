@@ -56,6 +56,7 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
 @property (nonatomic, strong) NSMutableOrderedSet* selectedAssets;  // <LKAssets>
 @property (nonatomic, assign) BOOL displayingSelectedOnly;
 @property (nonatomic, strong) LKAssetsCollection* displayingAssetsCollection;
+@property (nonatomic, strong) NSIndexPath* currentIndexPath;
 
 @end
 
@@ -316,6 +317,9 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     
     BOOL emptyCollection = (self.displayingAssetsCollection.numberOfAssets == 0);
     self.emptyView.alpha = emptyCollection ? 1.0 : 0.0;
+    
+    self.emptyView.text = [LKImagePickerControllerBundleManager localizedStringForKey:self.displayingSelectedOnly ? @"Common.NoSelections" : @"Common.NoPics"];
+
 }
 
 #pragma mark - Privates (Navigations)
@@ -444,14 +448,13 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
                                           initWithTarget:self action:@selector(_handleLongPress:)];
     lpgr.minimumPressDuration = 0.2;
     [self.collectionView addGestureRecognizer:lpgr];
-
+    
     // Update controls
     [self.assetsManager reloadAssetsGroup];
     [self _updateControls];
-    
-    
+
     // Empty view
-    LKImagePickerControllerEmptyView* emptyView = [LKImagePickerControllerEmptyView emptyView];
+    LKImagePickerControllerEmptyView* emptyView = LKImagePickerControllerEmptyView.emptyView;
     emptyView.alpha = 0.0;
     [self.view addSubview:emptyView];
     self.emptyView = emptyView;
@@ -474,7 +477,35 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
 }
 
 
-
+-(void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    NSArray* cells = [self.collectionView visibleCells];
+    if (cells.count) {
+        self.currentIndexPath = [self.collectionView indexPathForCell:cells[0]];
+    } else {
+        self.currentIndexPath = nil;
+    }
+    [UIView animateWithDuration:0.2
+                     animations:^{
+                         self.collectionView.alpha = 0.0;
+                     }];
+    [self.collectionView.collectionViewLayout invalidateLayout];
+}
+-(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    [self.collectionView performBatchUpdates:nil completion:nil];
+    
+    if (self.currentIndexPath) {
+        [self.collectionView scrollToItemAtIndexPath:self.currentIndexPath
+                                    atScrollPosition:UICollectionViewScrollPositionTop
+                                            animated:NO];
+        self.currentIndexPath = nil;
+    }
+    
+    [UIView animateWithDuration:0.75
+                     animations:^{
+                         self.collectionView.alpha = 1.0;
+                     }];
+    
+}
 #pragma mark - UICollectionViewDataSource
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {

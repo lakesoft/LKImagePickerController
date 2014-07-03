@@ -9,7 +9,8 @@
 "Common.Cancel" = "Cancel";
 "Common.Back" = "Back";
 "Common.NumerOfPics" = "%@ pics";
-"Common.NoPics" = "No pictures";
+"Common.NoPics" = "No Photos";
+"Common.NoSelections" = "No Selections";
 
 "Assets.Groups" = "Groups";
 
