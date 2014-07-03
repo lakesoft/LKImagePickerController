@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "LKAssetsLibrary.h"
 
+#define LKImagePickerControllerGroupTableViewControllerCellHeight   64
+
 @interface LKImagePickerControllerGroupTableViewCell : UITableViewCell
 
 @property (nonatomic, weak) LKAssetsGroup* assetsGroup;

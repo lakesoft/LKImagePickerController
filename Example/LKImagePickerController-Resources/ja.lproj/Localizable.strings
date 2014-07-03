@@ -8,6 +8,7 @@
 "Common.OK" = "OK";
 "Common.Cancel" = "キャンセル";
 "Common.Back" = "戻る";
+"Common.NumerOfPics" = "%zd 枚";
 
 "Assets.Groups" = "グループ";
 

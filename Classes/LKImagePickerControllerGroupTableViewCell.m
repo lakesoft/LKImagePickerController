@@ -7,6 +7,7 @@
 //
 
 #import "LKImagePickerControllerGroupTableViewCell.h"
+#import "LKImagePickerControllerBundleManager.h"
 
 @interface LKImagePickerControllerGroupTableViewCell()
 @property (weak, nonatomic) IBOutlet UIImageView *posterImageView;
@@ -23,7 +24,8 @@
     _assetsGroup = assetsGroup;
     self.posterImageView.image = assetsGroup.posterImage;
     self.groupTitle.text = assetsGroup.name;
-    self.numberLabel.text = [NSString stringWithFormat:@"%zd", assetsGroup.numberOfAssets];
+    self.numberLabel.text = [NSString stringWithFormat:[LKImagePickerControllerBundleManager localizedStringForKey:@"Common.NumerOfPics"],
+                             assetsGroup.numberOfAssets];
 }
 
 @end

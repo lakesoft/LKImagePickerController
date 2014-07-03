@@ -62,7 +62,10 @@
     [self.navigationController popToRootViewControllerAnimated:YES];
     [self.selectViewController didSelectAssetsGroup:assetsGroup];
 }
-
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return LKImagePickerControllerGroupTableViewControllerCellHeight;
+}
 
 
 @end

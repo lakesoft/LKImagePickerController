@@ -8,6 +8,7 @@
 "Common.OK" = "OK";
 "Common.Cancel" = "Cancel";
 "Common.Back" = "Back";
+"Common.NumerOfPics" = "%zd pics";
 
 "Assets.Groups" = "Groups";
 
