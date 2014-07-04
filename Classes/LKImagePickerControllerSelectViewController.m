@@ -311,7 +311,7 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
 {
     self.selectionButton.numberOfSelections = self.selectedAssets.count;
     self.selectionButton.active = self.displayingSelectedOnly;
-    self.doneItem.enabled = 
+    self.doneItem.enabled = self.selectedAssets.count > 0;
     self.filterItem.title = self.assetsManager.filter.description;
     self.checkButton.active = self.selectedAssets.count > 0 && self._allSelected;
     
@@ -556,33 +556,6 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
 }
 
 #pragma mark - UICollectionViewDelegate
-//- (BOOL)_collectionView:(UICollectionView*)collectionView shouldSelectDeSelectItemAtIndexPath:(NSIndexPath*)indexPath
-//{
-//    LKImagePickerControllerSelectCell* cell = (LKImagePickerControllerSelectCell*)[collectionView cellForItemAtIndexPath:indexPath];
-//    
-//    if (cell.touchedOnCheckmark) {
-//        return YES;
-//    } else {
-//        LKImagePickerControllerDetailViewController* viewController = LKImagePickerControllerDetailViewController.new;
-//        viewController.assetsCollection = self.displayingAssetsCollection;
-//        viewController.indexPath = indexPath;
-//        viewController.selectedAssets = self.selectedAssets;
-//        viewController.indexPathsForSelectedItems = self.collectionView.indexPathsForSelectedItems;
-//        viewController.selectViewController = self;
-//        [self.navigationController pushViewController:viewController animated:YES];
-//        return NO;
-//    }
-//}
-//
-//- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    return [self _collectionView:collectionView shouldSelectDeSelectItemAtIndexPath:indexPath];
-//}
-//- (BOOL)collectionView:(UICollectionView *)collectionView shouldDeselectItemAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    return [self _collectionView:collectionView shouldSelectDeSelectItemAtIndexPath:indexPath];
-//}
-
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     [self.selectedAssets addObject:[self.displayingAssetsCollection assetForIndexPath:indexPath]];

@@ -11,6 +11,8 @@
 #import "LKImagePickerControllerCheckmarkView.h"
 #import "LKImagePickerControllerPlayIconView.h"
 
+NSString * const LKImagePickerControllerDetailCellSingleTapNotification = @"LKImagePickerControllerDetailCellSingleTapNotification";
+
 @interface LKImagePickerControllerDetailCell() <UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet LKImagePickerControllerCheckmarkView *checkmarkView;
@@ -37,6 +39,12 @@
         self.scrollView.zoomScale = 2.0;
     } else {
         [self.scrollView setZoomScale:1.0 animated:YES];
+    }
+}
+- (void)_handleLogPress:(UILongPressGestureRecognizer*)lpgr
+{
+    if (lpgr.state == UIGestureRecognizerStateBegan) {
+        [NSNotificationCenter.defaultCenter postNotificationName:LKImagePickerControllerDetailCellSingleTapNotification object:self];
     }
 }
 
@@ -68,9 +76,15 @@
                                                name:MPMoviePlayerDidExitFullscreenNotification
                                              object:nil];
 
-    UITapGestureRecognizer* tgr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_handleDoubleTap:)];
+    UITapGestureRecognizer* tgr;
+    tgr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_handleDoubleTap:)];
     tgr.numberOfTapsRequired = 2;
     [self.imageView addGestureRecognizer:tgr];
+    
+    UILongPressGestureRecognizer* lprgr;
+    lprgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(_handleLogPress:)];
+    lprgr.minimumPressDuration = 0.1;
+    [self.imageView addGestureRecognizer:lprgr];
 }
 
 - (void)dealloc

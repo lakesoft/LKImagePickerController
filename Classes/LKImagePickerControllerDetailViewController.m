@@ -21,6 +21,8 @@
 @property (assign, nonatomic) BOOL scrollDirectionLeft;
 @property (assign, nonatomic) BOOL scrollingByThumbnailView;
 @property (strong, nonatomic) NSIndexPath* currentIndexPath;
+@property (assign, nonatomic) BOOL hideBars;
+
 @end
 
 @implementation LKImagePickerControllerDetailViewController
@@ -35,14 +37,23 @@
 
 - (void)_assetsGroupDidReload:(NSNotification*)notification
 {
-    NSLog(@"%s", __PRETTY_FUNCTION__);
+//    NSLog(@"%s", __PRETTY_FUNCTION__);
+}
+
+- (void)_toggleBars
+{
+    self.hideBars = !self.hideBars;
+    self.navigationController.navigationBar.hidden = self.hideBars;
+    CGFloat alpha = self.hideBars ? 0.0 : 1.0;
+    [UIView animateWithDuration:0.2
+                     animations:^{
+                         self.thumbnailCollectionView.alpha = alpha;
+                     }];
+    [UIApplication.sharedApplication setStatusBarHidden:self.hideBars
+                                          withAnimation:UIStatusBarAnimationFade];
 }
 
 #pragma mark - Privtates (Gestures)
-- (void)_handleTap:(UITapGestureRecognizer*)tgr
-{
-    NSLog(@"%s", __PRETTY_FUNCTION__);
-}
 
 -(void)_handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer
 {
@@ -91,6 +102,11 @@
                                            selector:@selector(_assetsGroupDidReload:)
                                                name:LKImagePickerControllerSelectViewControllerDidAssetsUpdateNotification
                                              object:nil];
+    
+    [NSNotificationCenter.defaultCenter addObserver:self
+                                           selector:@selector(_toggleBars)
+                                               name:LKImagePickerControllerDetailCellSingleTapNotification
+                                             object:nil];
 
     NSString* cellIdentifier = NSStringFromClass(LKImagePickerControllerDetailCell.class);
     
@@ -114,11 +130,6 @@
         [self.collectionView selectItemAtIndexPath:indexPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
         [self.thumbnailCollectionView selectItemAtIndexPath:indexPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
     }
-    
-    // Gestures
-    UILongPressGestureRecognizer *tgr = [[UILongPressGestureRecognizer alloc]
-                                         initWithTarget:self action:@selector(_handleTap:)];
-    [self.collectionView addGestureRecognizer:tgr];
     
     UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc]
                                           initWithTarget:self action:@selector(_handleLongPress:)];
@@ -314,5 +325,34 @@
         [detailCell didEndDisplay];
     }
 }
+
+//- (BOOL)_collectionView:(UICollectionView*)collectionView shouldSelectDeSelectItemAtIndexPath:(NSIndexPath*)indexPath
+//{
+//    LKImagePickerControllerSelectCell* cell = (LKImagePickerControllerSelectCell*)[collectionView cellForItemAtIndexPath:indexPath];
+//
+//    if (cell.touchedOnCheckmark) {
+//        return YES;
+//    } else {
+//        LKImagePickerControllerDetailViewController* viewController = LKImagePickerControllerDetailViewController.new;
+//        viewController.assetsCollection = self.displayingAssetsCollection;
+//        viewController.indexPath = indexPath;
+//        viewController.selectedAssets = self.selectedAssets;
+//        viewController.indexPathsForSelectedItems = self.collectionView.indexPathsForSelectedItems;
+//        viewController.selectViewController = self;
+//        [self.navigationController pushViewController:viewController animated:YES];
+//        return NO;
+//    }
+//}
+//
+//- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    return [self _collectionView:collectionView shouldSelectDeSelectItemAtIndexPath:indexPath];
+//}
+//- (BOOL)collectionView:(UICollectionView *)collectionView shouldDeselectItemAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    return [self _collectionView:collectionView shouldSelectDeSelectItemAtIndexPath:indexPath];
+//}
+
+
 
 @end

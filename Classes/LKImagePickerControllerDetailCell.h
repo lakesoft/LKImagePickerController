@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "LKAssetsLibrary.h"
 
+extern NSString * const LKImagePickerControllerDetailCellSingleTapNotification;
+
 @interface LKImagePickerControllerDetailCell : UICollectionViewCell
 
 @property (nonatomic, weak) LKAsset* asset;
