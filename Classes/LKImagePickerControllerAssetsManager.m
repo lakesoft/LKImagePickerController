@@ -99,6 +99,8 @@ NSString * const LKImagePickerControllerAssetsManagerKeyNumberOfSelections = @"L
 {
     self = [super init];
     if (self) {
+        self.selectedAssets = [NSMutableOrderedSet orderedSet];
+
         self.assetsLibrary = [LKAssetsLibrary assetsLibrary];
         self.selectable = YES;
 
@@ -177,6 +179,14 @@ NSString * const LKImagePickerControllerAssetsManagerKeyNumberOfSelections = @"L
     return self.new;
 }
 
+- (NSInteger)numberOfSelected
+{
+    return self.selectedAssets.count;
+}
+- (BOOL)reachedMaximumOfSelections
+{
+    return self.maximumOfSelections <= self.selectedAssets.count;
+}
 
 #pragma mark - API
 - (void)reloadAssetsWithCompletion:(LKImagePickerControllerAssetsManagerReloadAssetsCompletion)completion

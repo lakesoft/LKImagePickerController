@@ -78,7 +78,7 @@
     }
     [circlePath setLineWidth:lineWidth];
     [circlePath stroke];
-        
+    
     UIBezierPath* linePath = UIBezierPath.bezierPath;
     CGSize size = self.frame.size;
     [linePath moveToPoint:CGPointMake(size.width*0.30, size.height*0.5)];

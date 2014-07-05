@@ -303,7 +303,7 @@
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.selectedAssets addObject:[self.assetsCollection assetForIndexPath:indexPath]];
+    [self.assetsManager.selectedAssets addObject:[self.assetsCollection assetForIndexPath:indexPath]];
     if (collectionView == self.collectionView) {
         [self.thumbnailCollectionView selectItemAtIndexPath:indexPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
     } else {
@@ -314,7 +314,7 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.selectedAssets removeObject:[self.assetsCollection assetForIndexPath:indexPath]];
+    [self.assetsManager.selectedAssets removeObject:[self.assetsCollection assetForIndexPath:indexPath]];
     if (collectionView == self.collectionView) {
         [self.thumbnailCollectionView deselectItemAtIndexPath:indexPath animated:NO];
     } else {
@@ -334,8 +334,7 @@
 
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    BOOL filled = (self.assetsManager.maximumOfSelections <= self.selectedAssets.count);
-    if (filled) {
+    if (self.assetsManager.reachedMaximumOfSelections) {
         if (collectionView == self.collectionView) {
             LKImagePickerControllerDetailCell* cell = (LKImagePickerControllerDetailCell*)[collectionView cellForItemAtIndexPath:indexPath];
             [cell alert];
@@ -344,7 +343,7 @@
             [cell alert];
         }
     }
-    return !filled;
+    return !self.assetsManager.reachedMaximumOfSelections;
 }
 
 //- (BOOL)_collectionView:(UICollectionView*)collectionView shouldSelectDeSelectItemAtIndexPath:(NSIndexPath*)indexPath
