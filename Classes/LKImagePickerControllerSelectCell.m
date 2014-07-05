@@ -51,6 +51,12 @@
     self.touchedOnCheckmark = NO;
 }
 
+- (void)alert
+{
+    [self.checkmarkView alert];
+}
+
+
 //#define LKImagePickerControllerSelectCellHitThreshold   0.7
 //
 //- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event

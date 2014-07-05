@@ -11,5 +11,6 @@
 @interface LKImagePickerController : UINavigationController
 
 @property (nonatomic, strong) UIColor* tintColor;
+@property (assign, nonatomic) NSInteger maximumOfSelections;
 
 @end

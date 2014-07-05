@@ -92,6 +92,11 @@ NSString * const LKImagePickerControllerDetailCellSingleTapNotification = @"LKIm
     [NSNotificationCenter.defaultCenter removeObserver:self];
 }
 
+- (void)alert
+{
+    [self.checkmarkView alert];
+}
+
 
 #define LKImagePickerControlelrDetailCellCheckmarkMargin    10.0
 - (void)layoutSubviews

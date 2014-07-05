@@ -9,13 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "LKImagePickerControllerAssetsManager.h"
 
-extern NSString * const LKImagePickerControllerSelectViewControllerDidSelectCellNotification;
-extern NSString * const LKImagePickerControllerSelectViewControllerDidDeselectCellNotification;
-extern NSString * const LKImagePickerControllerSelectViewControllerDidAllDeselectCellNotification;
-extern NSString * const LKImagePickerControllerSelectViewControllerKeyIndexPath;
-extern NSString * const LKImagePickerControllerSelectViewControllerKeyAllSelected;
-
-
 @interface LKImagePickerControllerSelectViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate>
 
 @property (nonatomic, weak) LKImagePickerControllerAssetsManager* assetsManager;

@@ -21,9 +21,10 @@
 
 - (void)_didChangeSelection:(NSNotification*)notifiction
 {
-    NSIndexPath* indexPath = notifiction.userInfo[LKImagePickerControllerSelectViewControllerKeyIndexPath];
+    NSArray* array = notifiction.userInfo[LKImagePickerControllerAssetsManagerKeyIndexPaths];
+    NSIndexPath* indexPath = array.firstObject;
     if (self.section == indexPath.section) {
-        NSNumber* allSelected = notifiction.userInfo[LKImagePickerControllerSelectViewControllerKeyAllSelected];
+        NSNumber* allSelected = notifiction.userInfo[LKImagePickerControllerAssetsManagerKeyAllSelected];
         self.allSelected = allSelected.boolValue;
     }
 }
@@ -39,15 +40,15 @@
     
     [NSNotificationCenter.defaultCenter addObserver:self
                                            selector:@selector(_didChangeSelection:)
-                                               name:LKImagePickerControllerSelectViewControllerDidSelectCellNotification
+                                               name:LKImagePickerControllerAssetsManagerDidSelectNotification
                                              object:nil];
     [NSNotificationCenter.defaultCenter addObserver:self
                                            selector:@selector(_didChangeSelection:)
-                                               name:LKImagePickerControllerSelectViewControllerDidDeselectCellNotification
+                                               name:LKImagePickerControllerAssetsManagerDidDeselectNotification
                                              object:nil];
     [NSNotificationCenter.defaultCenter addObserver:self
                                            selector:@selector(_didAllDeselect:)
-                                               name:LKImagePickerControllerSelectViewControllerDidAllDeselectCellNotification
+                                               name:LKImagePickerControllerAssetsManagerDidAllDeselectNotification
                                              object:nil];
 
     UIColor* buttonForegroundColor = LKImagePickerControllerAppearance.sharedAppearance.backgroundColor;

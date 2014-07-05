@@ -12,6 +12,7 @@
 @interface LKImagePickerControllerCheckmarkView()
 @property (nonatomic, weak) id target;
 @property (nonatomic, assign) SEL action;
+@property (nonatomic, assign) BOOL alerting;
 @end
 @implementation LKImagePickerControllerCheckmarkView
 
@@ -51,7 +52,10 @@
     UIColor* strokeColor = LKImagePickerControllerAppearance.sharedAppearance.foregroundColor;
     UIColor* fillColor = LKImagePickerControllerAppearance.sharedAppearance.backgroundColor;
     CGFloat lineWidth = 1.5;
-    if (self.disabled) {
+
+    if (self.alerting) {
+        fillColor = LKImagePickerControllerAppearance.sharedAppearance.alertColor;
+    } else if (self.disabled) {
         UIColor* tmp = strokeColor;
         strokeColor = fillColor;
         fillColor = tmp;
@@ -61,11 +65,12 @@
         fillColor = UIColor.clearColor;
         lineWidth = 1.0;
     }
+
     [strokeColor setStroke];
     [fillColor setFill];
 
     UIBezierPath* circlePath = [UIBezierPath bezierPathWithOvalInRect:CGRectInset(self.bounds, 3.0, 3.0)];
-    if (self.disabled) {
+    if (self.disabled && !self.alerting) {
         strokeColor = UIColor.whiteColor;
         [strokeColor setStroke];
     } else {
@@ -73,9 +78,7 @@
     }
     [circlePath setLineWidth:lineWidth];
     [circlePath stroke];
-    [circlePath stroke];
-    
-    
+        
     UIBezierPath* linePath = UIBezierPath.bezierPath;
     CGSize size = self.frame.size;
     [linePath moveToPoint:CGPointMake(size.width*0.30, size.height*0.5)];
@@ -106,6 +109,31 @@
 {
     _active = active;
     [self setNeedsDisplay];
+}
+
+- (void)setAlerting:(BOOL)alerting
+{
+    _alerting = alerting;
+    [self setNeedsDisplay];
+}
+
+- (void)alert
+{
+    BOOL hidden = self.hidden;
+    self.hidden = NO;
+    self.alerting = YES;
+    
+    CABasicAnimation* animation = [CABasicAnimation animationWithKeyPath:@"opacity"];
+    [CATransaction setCompletionBlock:^{
+        self.hidden = hidden;
+        self.alerting = NO;
+    }];
+    animation.duration = 0.065f;
+    animation.autoreverses = YES;
+    animation.repeatCount = 3;
+    animation.fromValue = [NSNumber numberWithFloat:1.0f];
+    animation.toValue = [NSNumber numberWithFloat:0.0f];
+    [self.layer addAnimation:animation forKey:@"blink"];
 }
 
 @end

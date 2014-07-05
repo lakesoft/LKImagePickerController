@@ -11,6 +11,23 @@
 
 NSString * const LKImagePickerControllerSelectViewControllerDidAssetsUpdateNotification = @"LKImagePickerControllerSelectViewControllerDidAssetsUpdateNotification";
 
+NSString * const LKImagePickerControllerAssetsManagerDidChangeSelectable = @"LKImagePickerControllerAssetsManagerDidChangeSelectable";
+NSString * const LKImagePickerControllerAssetsManagerDidChangeSelectableKey = @"LKImagePickerControllerAssetsManagerDidChangeSelectableKey";
+
+
+NSString * const LKImagePickerControllerAssetsManagerDidSelectNotification = @"LKImagePickerControllerAssetsManagerDidSelectNotification";
+NSString * const LKImagePickerControllerAssetsManagerDidDeselectNotification = @"LKImagePickerControllerAssetsManagerDidDeselectNotification";
+
+NSString * const LKImagePickerControllerAssetsManagerDidSelectHeaderNotification = @"LKImagePickerControllerAssetsManagerDidSelectHeaderNotification";
+NSString * const LKImagePickerControllerAssetsManagerDidDeSelectHeaderNotification = @"LKImagePickerControllerAssetsManagerDidDeSelectHeaderNotification";
+
+NSString * const LKImagePickerControllerAssetsManagerDidAllDeselectNotification = @"LKImagePickerControllerAssetsManagerDidAllDeselectNotification";
+
+NSString * const LKImagePickerControllerAssetsManagerKeyIndexPaths = @"LKImagePickerControllerAssetsManagerKeyIndexPaths";
+NSString * const LKImagePickerControllerAssetsManagerKeyAllSelected = @"LKImagePickerControllerSelectViewControllerAllSelected";
+NSString * const LKImagePickerControllerAssetsManagerKeyNumberOfSelections = @"LKImagePickerControllerAssetsManagerKeyNumberOfSelections";
+
+
 @interface LKImagePickerControllerAssetsManager()
 @property (strong, nonatomic) LKAssetsLibrary* assetsLibrary;
 @property (strong, nonatomic) LKAssetsGroup* assetsGroup;
@@ -21,7 +38,7 @@ NSString * const LKImagePickerControllerSelectViewControllerDidAssetsUpdateNotif
 
 @implementation LKImagePickerControllerAssetsManager
 
-#pragma mark - Privates
+#pragma mark - Privates (LKAssetsLibrary)
 - (void)_assetsLibraryDidSetup:(NSNotification*)notification
 {
     for (LKAssetsGroup* assetsGroup in self.assetsLibrary.assetsGroups) {
@@ -61,39 +78,90 @@ NSString * const LKImagePickerControllerSelectViewControllerDidAssetsUpdateNotif
     [NSNotificationCenter.defaultCenter postNotificationName:LKImagePickerControllerSelectViewControllerDidAssetsUpdateNotification object:self];
 }
 
+#pragma mark - Privates (Selection/Deselection)
+- (void)_didChangeSelection:(NSNotification*)notification
+{
+    NSInteger numberOfSelections = ((NSNumber*)notification.userInfo[LKImagePickerControllerAssetsManagerKeyNumberOfSelections]).integerValue;
+    if (self.maximumOfSelections) {
+        BOOL newSelectable = numberOfSelections < self.maximumOfSelections;
+        if (newSelectable != self.selectable) {
+            NSDictionary* userInfo = @{LKImagePickerControllerAssetsManagerDidChangeSelectableKey:@(newSelectable)};
+            [NSNotificationCenter.defaultCenter postNotificationName:LKImagePickerControllerAssetsManagerDidChangeSelectable
+                                                              object:self
+                                                            userInfo:userInfo];
+            self.selectable = newSelectable;
+        }
+    }
+}
+
 #pragma mark - Basics
 - (instancetype)init
 {
     self = [super init];
     if (self) {
         self.assetsLibrary = [LKAssetsLibrary assetsLibrary];
+        self.selectable = YES;
 
-        // Notifications
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(_assetsLibraryDidSetup:)
-                                                     name:LKAssetsLibraryDidSetupNotification
-                                                   object:nil];
+        NSNotificationCenter* nc = NSNotificationCenter.defaultCenter;
 
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(_assetsGroupDidReload:)
-                                                     name:LKAssetsGroupDidReloadNotification
-                                                   object:nil];
+        // Notifications (LKAssetsLibrary)
+        [nc addObserver:self
+               selector:@selector(_assetsLibraryDidSetup:)
+                   name:LKAssetsLibraryDidSetupNotification
+                 object:nil];
+        
+        [nc addObserver:self
+               selector:@selector(_assetsGroupDidReload:)
+                   name:LKAssetsGroupDidReloadNotification
+                 object:nil];
+        
+        [nc addObserver:self
+               selector:@selector(_assetsLibraryDidInsertGroup:)
+                   name:LKAssetsLibraryDidInsertGroupsNotification
+                 object:nil];
+        
+        [nc addObserver:self
+               selector:@selector(_assetsLibraryDidUpdateGroup:)
+                   name:LKAssetsLibraryDidUpdateGroupsNotification
+                 object:nil];
+        
+        [nc addObserver:self
+               selector:@selector(_assetsLibraryDidDeleteGroup:)
+                   name:LKAssetsLibraryDidDeleteGroupsNotification
+                 object:nil];
+        
+        [nc addObserver:self
+               selector:@selector(_assetsLibraryDidDeleteGroup:)
+                   name:LKAssetsLibraryDidDeleteGroupsNotification
+                 object:nil];
 
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(_assetsLibraryDidInsertGroup:)
-                                                     name:LKAssetsLibraryDidInsertGroupsNotification
-                                                   object:nil];
+        // Notifications (Select/Deselect)
+        [nc addObserver:self
+               selector:@selector(_didChangeSelection:)
+                   name:LKImagePickerControllerAssetsManagerDidSelectNotification
+                 object:nil];
         
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(_assetsLibraryDidUpdateGroup:)
-                                                     name:LKAssetsLibraryDidUpdateGroupsNotification
-                                                   object:nil];
+        [nc addObserver:self
+               selector:@selector(_didChangeSelection:)
+                   name:LKImagePickerControllerAssetsManagerDidDeselectNotification
+                 object:nil];
+
+        [nc addObserver:self
+               selector:@selector(_didChangeSelection:)
+                   name:LKImagePickerControllerAssetsManagerDidSelectHeaderNotification
+                 object:nil];
         
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(_assetsLibraryDidDeleteGroup:)
-                                                     name:LKAssetsLibraryDidDeleteGroupsNotification
-                                                   object:nil];
+        [nc addObserver:self
+               selector:@selector(_didChangeSelection:)
+                   name:LKImagePickerControllerAssetsManagerDidDeSelectHeaderNotification
+                 object:nil];
         
+        [nc addObserver:self
+               selector:@selector(_didChangeSelection:)
+                   name:LKImagePickerControllerAssetsManagerDidAllDeselectNotification
+                 object:nil];
+
+        // filter
         self.filter = LKImagePickerControllerFilter.new;
     }
     return self;
@@ -126,12 +194,6 @@ NSString * const LKImagePickerControllerSelectViewControllerDidAssetsUpdateNotif
 {
     self.assetsGroup = assetsGroup;
     [self.assetsGroup reloadAssets];
-}
-
-#pragma mark - API (Properties)
-- (NSString*)filterDescription
-{
-    return @"すべて";
 }
 
 @end

@@ -10,6 +10,22 @@
 
 extern NSString * const LKImagePickerControllerSelectViewControllerDidAssetsUpdateNotification;
 
+extern NSString * const LKImagePickerControllerAssetsManagerDidChangeSelectable;
+extern NSString * const LKImagePickerControllerAssetsManagerDidChangeSelectableKey;
+
+extern NSString * const LKImagePickerControllerAssetsManagerDidSelectNotification;
+extern NSString * const LKImagePickerControllerAssetsManagerDidDeselectNotification;
+
+extern NSString * const LKImagePickerControllerAssetsManagerDidSelectHeaderNotification;
+extern NSString * const LKImagePickerControllerAssetsManagerDidDeSelectHeaderNotification;
+
+extern NSString * const LKImagePickerControllerAssetsManagerDidAllDeselectNotification;
+
+extern NSString * const LKImagePickerControllerAssetsManagerKeyIndexPaths;          // NSArray <IndexPath>
+extern NSString * const LKImagePickerControllerAssetsManagerKeyAllSelected;         // @(BOOL)
+extern NSString * const LKImagePickerControllerAssetsManagerKeyNumberOfSelections;   // @(NSInteger)
+
+
 typedef void(^LKImagePickerControllerAssetsManagerReloadAssetsCompletion)();
 
 @class LKImagePickerControllerFilter;
@@ -18,6 +34,8 @@ typedef void(^LKImagePickerControllerAssetsManagerReloadAssetsCompletion)();
 @property (strong, nonatomic, readonly) LKAssetsLibrary* assetsLibrary;
 @property (strong, nonatomic, readonly) LKAssetsGroup* assetsGroup;
 @property (strong, nonatomic, readonly) LKImagePickerControllerFilter* filter;
+@property (assign, nonatomic) NSInteger maximumOfSelections;
+@property (assign, nonatomic) BOOL selectable;
 
 + (instancetype)assetsManager;
 

@@ -12,5 +12,6 @@
 
 @property (nonatomic, assign) BOOL active;
 + (instancetype)checkmarkButtonWithTarget:(id)target action:(SEL)action;
+- (void)alert;
 
 @end

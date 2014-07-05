@@ -16,5 +16,6 @@ extern NSString * const LKImagePickerControllerDetailCellSingleTapNotification;
 @property (nonatomic, weak) LKAsset* asset;
 
 - (void)didEndDisplay;
+- (void)alert;
 
 @end

@@ -23,7 +23,8 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     LKImagePickerController* controller = [[LKImagePickerController alloc] init];
-//    controller.checkmarkBackgroundColor = [UIColor colorWithRed:0.078 green:0.67 blue:0.23 alpha:1.000];
+    controller.tintColor = [UIColor colorWithRed:0.078 green:0.67 blue:0.23 alpha:1.000];
+    controller.maximumOfSelections = 2;
     [self presentViewController:controller animated:NO completion:nil];
 }
 

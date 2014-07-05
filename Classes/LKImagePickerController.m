@@ -52,7 +52,14 @@
 
 - (void)setTintColor:(UIColor *)tintColor
 {
+    _tintColor = tintColor;
     LKImagePickerControllerAppearance.sharedAppearance.tintColor = tintColor;
+}
+
+- (void)setMaximumOfSelections:(NSInteger)maximumOfSelections
+{
+    _maximumOfSelections = maximumOfSelections;
+    self.assetsManager.maximumOfSelections = maximumOfSelections;
 }
 
 

@@ -84,6 +84,8 @@
 
 - (void)dealloc
 {
+    self.collectionView.delegate = nil;
+    self.thumbnailCollectionView.delegate = nil;
     [NSNotificationCenter.defaultCenter removeObserver:self];
 }
 
@@ -133,7 +135,7 @@
     
     UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc]
                                           initWithTarget:self action:@selector(_handleLongPress:)];
-    lpgr.minimumPressDuration = 0.2;
+    lpgr.minimumPressDuration = 0.4;
     [self.thumbnailCollectionView addGestureRecognizer:lpgr];
 }
 
@@ -163,6 +165,7 @@
                      }];
     [self.collectionView.collectionViewLayout invalidateLayout];
 }
+
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
     [self.collectionView performBatchUpdates:nil completion:nil];
 
@@ -220,6 +223,9 @@
 {
     if (collectionView == self.collectionView) {
         CGSize size = self.collectionView.frame.size;
+        if( [UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationLandscapeLeft || [UIApplication sharedApplication].statusBarOrientation == UIInterfaceOrientationLandscapeRight){
+            size = CGSizeMake(fmaxf(size.width, size.height), fminf(size.width, size.height));
+        }
         return size;
     } else {
         return LKImagePickerControlDetailThumbnailSize;
@@ -324,6 +330,21 @@
         LKImagePickerControllerDetailCell* detailCell = (LKImagePickerControllerDetailCell*)cell;
         [detailCell didEndDisplay];
     }
+}
+
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    BOOL filled = (self.assetsManager.maximumOfSelections <= self.selectedAssets.count);
+    if (filled) {
+        if (collectionView == self.collectionView) {
+            LKImagePickerControllerDetailCell* cell = (LKImagePickerControllerDetailCell*)[collectionView cellForItemAtIndexPath:indexPath];
+            [cell alert];
+        } else {
+            LKImagePickerControllerSelectCell* cell = (LKImagePickerControllerSelectCell*)[collectionView cellForItemAtIndexPath:indexPath];
+            [cell alert];
+        }
+    }
+    return !filled;
 }
 
 //- (BOOL)_collectionView:(UICollectionView*)collectionView shouldSelectDeSelectItemAtIndexPath:(NSIndexPath*)indexPath

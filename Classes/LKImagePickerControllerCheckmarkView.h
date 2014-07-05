@@ -15,4 +15,6 @@
 
 + (LKImagePickerControllerCheckmarkView*)checkmarkViewWithTarget:(id)target action:(SEL)action;
 
+- (void)alert;
+
 @end

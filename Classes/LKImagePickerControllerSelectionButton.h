@@ -8,11 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+@class LKImagePickerControllerAssetsManager;
 @interface LKImagePickerControllerSelectionButton : UIButton
 
 @property (nonatomic, assign) BOOL active;
+@property (nonatomic, assign) BOOL alerted;
 @property (nonatomic, assign) NSInteger numberOfSelections;
 
-+ (instancetype)selectionButtonTarget:(id)target action:(SEL)action;
++ (instancetype)selectionButtonTarget:(id)target action:(SEL)action assetsManager:(LKImagePickerControllerAssetsManager*)assetsManager;
+
+- (CGFloat)maxButtonWidth;
+
+- (void)warnAboutExceeding;
 
 @end

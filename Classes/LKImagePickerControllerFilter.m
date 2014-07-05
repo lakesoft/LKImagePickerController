@@ -45,6 +45,7 @@
     self = [super init];
     if (self) {
         self.availableTypes = LKImagePickerControllerFilterTypeAll;
+        self.type = LKImagePickerControllerFilterTypeAll;
         [self _setupFilterTypes];
     }
     return self;

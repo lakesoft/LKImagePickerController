@@ -44,7 +44,7 @@
     
     LKImagePickerControllerFilterType type = [self.assetsManager.filter typeAtIndex:indexPath.row];
     cell.textLabel.text = [self.assetsManager.filter descriptionFotType:type];
-    cell.accessoryType = self.assetsManager.filter.type == indexPath.row ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+    cell.accessoryType = self.assetsManager.filter.type == type ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     return cell;
 }
 

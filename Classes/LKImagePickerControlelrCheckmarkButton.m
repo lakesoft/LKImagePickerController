@@ -47,4 +47,9 @@
     return self.checkmarkView.active;
 }
 
+- (void)alert
+{
+    [self.checkmarkView alert];
+}
+
 @end
