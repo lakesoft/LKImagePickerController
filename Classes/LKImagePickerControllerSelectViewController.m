@@ -441,7 +441,13 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
                                            selector:@selector(_changedSelectable:)
                                                name:LKImagePickerControllerAssetsManagerDidChangeSelectable
                                              object:nil];
-// Bar buttons
+
+    // Setup tint color
+    UIColor* tintColor = LKImagePickerControllerAppearance.sharedAppearance.tintColor;
+    self.navigationController.toolbar.tintColor = tintColor;
+    self.navigationController.navigationBar.tintColor = tintColor;
+
+    // Bar buttons
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:[LKImagePickerControllerBundleManager localizedStringForKey:@"Common.Back"] style:UIBarButtonItemStylePlain target:nil action:nil];
 
     LKImagePickerControllerCloseButton* closeButton = [LKImagePickerControllerCloseButton closeButtonWithTarget:self action:@selector(_tappedCancel:)];

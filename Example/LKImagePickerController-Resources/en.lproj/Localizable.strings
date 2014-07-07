@@ -14,7 +14,8 @@
 
 "Assets.Groups" = "Groups";
 
-"FilterScreen.Title" = "Kinds";
+"FilterScreen.Title" = "Filter";
+
 "SelectionScreen.Title" = "Selected Photos";
 
 "Filter.All" = "All";

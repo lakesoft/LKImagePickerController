@@ -40,14 +40,16 @@
 //    NSLog(@"%s", __PRETTY_FUNCTION__);
 }
 
-- (void)_toggleBars
+- (void)_toggleFullscreen
 {
     self.hideBars = !self.hideBars;
     self.navigationController.navigationBar.hidden = self.hideBars;
     CGFloat alpha = self.hideBars ? 0.0 : 1.0;
+    UIColor* color = self.hideBars ? UIColor.blackColor : UIColor.whiteColor;
     [UIView animateWithDuration:0.2
                      animations:^{
                          self.thumbnailCollectionView.alpha = alpha;
+                         self.collectionView.backgroundColor = color;
                      }];
     [UIApplication.sharedApplication setStatusBarHidden:self.hideBars
                                           withAnimation:UIStatusBarAnimationFade];
@@ -106,7 +108,7 @@
                                              object:nil];
     
     [NSNotificationCenter.defaultCenter addObserver:self
-                                           selector:@selector(_toggleBars)
+                                           selector:@selector(_toggleFullscreen)
                                                name:LKImagePickerControllerDetailCellSingleTapNotification
                                              object:nil];
 

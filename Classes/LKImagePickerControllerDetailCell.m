@@ -41,9 +41,9 @@ NSString * const LKImagePickerControllerDetailCellSingleTapNotification = @"LKIm
         [self.scrollView setZoomScale:1.0 animated:YES];
     }
 }
-- (void)_handleLogPress:(UILongPressGestureRecognizer*)lpgr
+- (void)_handleLongPress:(UILongPressGestureRecognizer*)lpgr
 {
-    if (lpgr.state == UIGestureRecognizerStateBegan) {
+    if (lpgr.state == UIGestureRecognizerStateEnded) {
         [NSNotificationCenter.defaultCenter postNotificationName:LKImagePickerControllerDetailCellSingleTapNotification object:self];
     }
 }
@@ -82,8 +82,8 @@ NSString * const LKImagePickerControllerDetailCellSingleTapNotification = @"LKIm
     [self.imageView addGestureRecognizer:tgr];
     
     UILongPressGestureRecognizer* lprgr;
-    lprgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(_handleLogPress:)];
-    lprgr.minimumPressDuration = 0.1;
+    lprgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(_handleLongPress:)];
+    lprgr.minimumPressDuration = 0.15;
     [self.imageView addGestureRecognizer:lprgr];
 }
 

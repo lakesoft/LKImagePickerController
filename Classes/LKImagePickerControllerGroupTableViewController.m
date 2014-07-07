@@ -11,9 +11,30 @@
 #import "LKImagePickerControllerSelectViewController.h"
 #import "LKImagePickerControllerBundleManager.h"
 #import "LKImagePickerControllerGroupTableViewCell.h"
+#import "LKImagePickerControllerAppearance.h"
+
+@interface LKImagePickerControllerGroupTableViewController()
+@property (nonatomic, assign) BOOL didLayoutSubviews;
+@end
 
 @implementation LKImagePickerControllerGroupTableViewController
 
+#pragma mark - Privates
+- (void)_scrollAnimated:(BOOL)animated
+{
+    NSInteger index=0;
+    for (; index < self.assetsManager.assetsLibrary.assetsGroups.count; index++) {
+        LKAssetsGroup* assetGroup = self.assetsManager.assetsLibrary.assetsGroups[index];
+        if ([self.assetsManager.assetsGroup isEqual:assetGroup]) {
+            break;
+        }
+    }
+    if (index < self.assetsManager.assetsLibrary.assetsGroups.count) {
+        [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForItem:index inSection:0]
+                              atScrollPosition:UITableViewScrollPositionTop
+                                      animated:animated];
+    }
+}
 
 #pragma mark - Basics
 - (void)viewDidLoad
@@ -24,6 +45,18 @@
     UINib* nib = [UINib nibWithNibName:@"LKImagePickerControllerGroupTableViewCell" bundle:LKImagePickerControllerBundleManager.bundle];
     [self.tableView registerNib:nib
          forCellReuseIdentifier:@"LKImagePickerControllerGroupTableViewCell"];
+    
+    self.tableView.tintColor = LKImagePickerControllerAppearance.sharedAppearance.tintColor;
+
+}
+
+- (void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    if (!self.didLayoutSubviews) {
+        [self _scrollAnimated:NO];
+        self.didLayoutSubviews = YES;
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -42,10 +75,6 @@
 {
     LKImagePickerControllerGroupTableViewCell* cell = (LKImagePickerControllerGroupTableViewCell*)[tableView dequeueReusableCellWithIdentifier:@"LKImagePickerControllerGroupTableViewCell" forIndexPath:indexPath];
     cell.assetsGroup = self.assetsManager.assetsLibrary.assetsGroups[indexPath.row];
-    
-//    cell.imageView.image = assetsGroup.posterImage;
-//    cell.textLabel.text = assetsGroup.name;
-//    cell.detailTextLabel.text = [NSString stringWithFormat:@"%zd", assetsGroup.assets.count];
     
     if ([self.assetsManager.assetsGroup isEqual:cell.assetsGroup]) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
