@@ -47,6 +47,15 @@
                             <constraint firstAttribute="height" constant="30" id="LvC-kF-nsL"/>
                         </constraints>
                     </view>
+                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4DA-cl-enY" customClass="LKImagePickerControllerUsedMarkView">
+                        <rect key="frame" x="5" y="5" width="10" height="10"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="10" id="F0d-lS-U8x"/>
+                            <constraint firstAttribute="width" constant="10" id="JOu-1B-vvH"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
@@ -54,9 +63,11 @@
                 <constraint firstItem="Nxm-zR-Pdp" firstAttribute="leading" secondItem="F8R-td-26z" secondAttribute="leading" constant="1" id="0s3-ED-PJL"/>
                 <constraint firstAttribute="bottom" secondItem="o7F-ba-pPx" secondAttribute="bottom" constant="3" id="3zO-wb-LdH"/>
                 <constraint firstItem="qMo-gO-f9W" firstAttribute="leading" secondItem="F8R-td-26z" secondAttribute="leading" constant="1" id="ED1-0C-6hl"/>
+                <constraint firstItem="4DA-cl-enY" firstAttribute="leading" secondItem="F8R-td-26z" secondAttribute="leading" constant="5" id="Hd8-oc-ktk"/>
                 <constraint firstAttribute="bottom" secondItem="Nxm-zR-Pdp" secondAttribute="bottom" constant="1" id="JwI-tB-b8f"/>
                 <constraint firstItem="qMo-gO-f9W" firstAttribute="top" secondItem="F8R-td-26z" secondAttribute="top" constant="1" id="MTA-4K-FU4"/>
                 <constraint firstAttribute="bottom" secondItem="qMo-gO-f9W" secondAttribute="bottom" constant="1" id="W6V-RL-TRv"/>
+                <constraint firstItem="4DA-cl-enY" firstAttribute="top" secondItem="F8R-td-26z" secondAttribute="top" constant="5" id="e5X-sg-NCR"/>
                 <constraint firstAttribute="trailing" secondItem="qMo-gO-f9W" secondAttribute="trailing" constant="1" id="eNN-UM-riq"/>
                 <constraint firstAttribute="trailing" secondItem="Nxm-zR-Pdp" secondAttribute="trailing" constant="1" id="lu4-cF-WwJ"/>
                 <constraint firstAttribute="trailing" secondItem="o7F-ba-pPx" secondAttribute="trailing" constant="3" id="o8e-1b-Kp8"/>
@@ -64,6 +75,7 @@
             <connections>
                 <outlet property="checkmarkView" destination="o7F-ba-pPx" id="FoH-xp-1Bv"/>
                 <outlet property="photoImageView" destination="qMo-gO-f9W" id="6G3-8B-HfM"/>
+                <outlet property="usedView" destination="4DA-cl-enY" id="Q9P-9B-437"/>
                 <outlet property="videoLabel" destination="TNN-oD-ITt" id="b5P-ik-l4V"/>
                 <outlet property="videoView" destination="Nxm-zR-Pdp" id="XF9-px-ZQ4"/>
             </connections>

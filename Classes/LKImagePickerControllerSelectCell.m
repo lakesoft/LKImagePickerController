@@ -8,6 +8,7 @@
 
 #import "LKImagePickerControllerSelectCell.h"
 #import "LKImagePickerControllerCheckmarkView.h"
+#import "LKImagePickerControllerUsedMarkView.h"
 
 #define LKImagePickerControllerStandardSelectCellOffset 10
 
@@ -16,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet LKImagePickerControllerCheckmarkView* checkmarkView;
 @property (unsafe_unretained, nonatomic) IBOutlet UIView *videoView;
 @property (unsafe_unretained, nonatomic) IBOutlet UILabel *videoLabel;
+@property (weak, nonatomic) IBOutlet LKImagePickerControllerUsedMarkView *usedView;
 @end
 
 @implementation LKImagePickerControllerSelectCell

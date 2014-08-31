@@ -7,25 +7,34 @@
 //
 
 #import "LKImagePickerControllerUsedMarkView.h"
+#import "LKImagePickerControllerAppearance.h"
 
 @implementation LKImagePickerControllerUsedMarkView
 
-- (id)initWithFrame:(CGRect)frame
+- (id)initWithCoder:(NSCoder *)aDecoder
 {
-    self = [super initWithFrame:frame];
+    self = [super initWithCoder:aDecoder];
     if (self) {
-        // Initialization code
+        CALayer* layer = self.layer;
+        layer.cornerRadius = self.bounds.size.width/2.0;
+        layer.borderWidth = 1.0;
+        layer.masksToBounds = YES;
     }
     return self;
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
+- (void)setOn:(BOOL)on
 {
-    // Drawing code
+    _on = on;
+    CALayer* layer = self.layer;
+    if (on) {
+        layer.backgroundColor = LKImagePickerControllerAppearance.sharedAppearance.usedColor.CGColor;
+        layer.borderColor = UIColor.clearColor.CGColor;
+    } else {
+        layer.backgroundColor = UIColor.clearColor.CGColor;
+        layer.borderColor = LKImagePickerControllerAppearance.sharedAppearance.usedColor.CGColor;
+    }
+    [self setNeedsDisplay];
 }
-*/
 
 @end

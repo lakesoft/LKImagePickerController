@@ -13,6 +13,8 @@
 @property (strong, nonatomic) UIColor* foregroundColor;
 @property (strong, nonatomic) UIColor* backgroundColor;
 @property (strong, nonatomic) UIColor* alertColor;
+@property (strong, nonatomic) UIColor* usedColor;
+
 @property (strong, nonatomic) UIColor* tintColor;
 
 + (instancetype)sharedAppearance;

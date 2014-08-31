@@ -17,6 +17,8 @@
         self.foregroundColor = UIColor.whiteColor;
         self.backgroundColor = [UIColor colorWithRed:0.078 green:0.43 blue:0.87 alpha:1.000];
         self.alertColor = UIColor.redColor;
+
+        self.usedColor = _backgroundColor;
         _tintColor = _backgroundColor;
     }
     return self;
