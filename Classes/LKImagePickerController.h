@@ -8,9 +8,21 @@
 
 #import <UIKit/UIKit.h>
 
+@class LKImagePickerController;
+@protocol LKImagePickerControllerDelegate <NSObject>
+
+@optional
+- (NSString*)completionButtonTitle;
+- (BOOL)enableCompletionButtonWhenNoSelections;
+- (UIBarButtonItem*)rightBarButtonItem;
+//- (void)imagePickerController:(LKImagePickerController*)imagePickerController;
+@end
+
+
 @interface LKImagePickerController : UINavigationController
 
 @property (nonatomic, strong) UIColor* tintColor;
-@property (assign, nonatomic) NSInteger maximumOfSelections;
+@property (nonatomic, assign) NSInteger maximumOfSelections;
+@property (nonatomic, weak) id <LKImagePickerControllerDelegate> imagePickerControllerDelegate;
 
 @end

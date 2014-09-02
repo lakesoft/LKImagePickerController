@@ -11,12 +11,14 @@
 "Common.NumerOfPics" = "%@ pics";
 "Common.NoPics" = "No Photos";
 "Common.NoSelections" = "No Selections";
+"Common.Clear" = "Clear";
 
 "Assets.Groups" = "Groups";
 
 "FilterScreen.Title" = "Filter";
 
 "SelectionScreen.Title" = "Selected Photos";
+"SelectionScreen.SelectedLabel" = "Selected";
 
 "Filter.All" = "All";
 "Filter.JPEG" = "JPEG";

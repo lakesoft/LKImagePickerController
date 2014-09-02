@@ -9,9 +9,11 @@
 #import "LKImagePickerControllerSelectionButton.h"
 #import "LKImagePickerControllerAppearance.h"
 #import "LKImagePickerControllerAssetsManager.h"
+#import "LKImagePickerControllerBundleManager.h"
 
 #define  LKImagePickerControllerSelectionButtonStandardWidth 43.7
-#define  LKImagePickerControllerSelectionButtonStandardHeight 27.0
+//#define  LKImagePickerControllerSelectionButtonStandardHeight 27.0
+#define  LKImagePickerControllerSelectionButtonStandardHeight 33.0
 #define  LKImagePickerControllerSelectionButtonPadding 5.0
 
 @interface LKImagePickerControllerSelectionButton()
@@ -55,9 +57,13 @@
 {
     NSString* text = nil;
     if (self.assetsManager.maximumOfSelections) {
-        text = [NSString stringWithFormat:@"%zd/%zd", numberOfSelections, self.assetsManager.maximumOfSelections];
+        text = [NSString stringWithFormat:@"%@ %zd/%zd",
+                [LKImagePickerControllerBundleManager localizedStringForKey:@"SelectionScreen.SelectedLabel"],
+                numberOfSelections, self.assetsManager.maximumOfSelections];
     } else {
-        text = [NSString stringWithFormat:@"%zd", numberOfSelections];
+        text = [NSString stringWithFormat:@"%@ %zd",
+                [LKImagePickerControllerBundleManager localizedStringForKey:@"SelectionScreen.SelectedLabel"],
+                numberOfSelections];
     }
     return text;
 }

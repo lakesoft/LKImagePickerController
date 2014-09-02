@@ -6,6 +6,7 @@
 //  Created by Hiroshi Hashiguchi on 2014/06/15.
 //  Copyright (c) 2014年 lakesoft. All rights reserved.
 //
+#import "LKImagePickerController.h"
 #import "LKImagePickerControllerSelectViewController.h"
 #import "LKImagePickerControllerSelectCell.h"
 #import "LKImagePickerControllerSelectHeaderView.h"
@@ -41,11 +42,14 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
 @property (nonatomic, weak) LKImagePickerControlelrCheckmarkButton* checkButton;
 @property (nonatomic, strong) UIBarButtonItem* doneItem;
 @property (nonatomic, strong) UIBarButtonItem* cancelItem;
+@property (nonatomic, strong) UIBarButtonItem* clearItem;
 @property (nonatomic, strong) UIBarButtonItem* filterItem;
-@property (nonatomic, strong) UIBarButtonItem* groupItem;
+//@property (nonatomic, strong) UIBarButtonItem* groupItem;
 @property (nonatomic, strong) UIBarButtonItem* checkItem;
 @property (nonatomic, strong) UIBarButtonItem* buttonItem;
 @property (nonatomic, weak) LKImagePickerControllerEmptyView* emptyView;
+@property (nonatomic, weak) UIButton* titleButton;
+//@property (nonatomic, weak) UIView* titleView;
 
 #pragma mark - Models
 @property (nonatomic, assign) BOOL displayingSelectedOnly;
@@ -90,7 +94,7 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     self.displayingAssetsCollection = self.assetsCollection;
     self.displayingSelectedOnly = NO;
     [self _reloadAndSetupSelections];
-    self.title = self.assetsCollection.assetsGroup.name;
+    [self.titleButton setTitle:self.assetsCollection.assetsGroup.name forState:UIControlStateNormal];
     [self _updateControls];
 }
 
@@ -190,15 +194,15 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
 }
 
 #pragma mark - Privates (Actions)
-//- (void)_tappedClear:(id)sender
-//{
-//    UIActionSheet* sheet = [[UIActionSheet alloc] initWithTitle:[LKImagePickerControllerBundleManager localizedStringForKey:@"Selection.DeselectAll"]
-//                                                       delegate:self
-//                                              cancelButtonTitle:[LKImagePickerControllerBundleManager localizedStringForKey:@"Common.Cancel"]
-//                                         destructiveButtonTitle:[LKImagePickerControllerBundleManager localizedStringForKey:@"Common.OK"]                                              otherButtonTitles:nil];
-//    sheet.tag = LKImagePickerControllerSelectViewSheetResetSelections;
-//    [sheet showFromToolbar:self.navigationController.toolbar];
-//}
+- (void)_tappedClear:(id)sender
+{
+    UIActionSheet* sheet = [[UIActionSheet alloc] initWithTitle:[LKImagePickerControllerBundleManager localizedStringForKey:@"Selection.DeselectAll"]
+                                                       delegate:self
+                                              cancelButtonTitle:[LKImagePickerControllerBundleManager localizedStringForKey:@"Common.Cancel"]
+                                         destructiveButtonTitle:[LKImagePickerControllerBundleManager localizedStringForKey:@"Common.OK"]                                              otherButtonTitles:nil];
+    sheet.tag = LKImagePickerControllerSelectViewSheetResetSelections;
+    [sheet showFromToolbar:self.navigationController.toolbar];
+}
 
 - (void)_selectAllItems
 {
@@ -246,12 +250,18 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     [self.collectionView.layer addAnimation:animation forKey:@"CATransitionReloadAnimation"];
     
     if (self.displayingSelectedOnly) {
-        self.title = [LKImagePickerControllerBundleManager localizedStringForKey:@"SelectionScreen.Title"];
+//        self.title = [LKImagePickerControllerBundleManager localizedStringForKey:@"SelectionScreen.Title"];
+        [self.titleButton setTitle:[LKImagePickerControllerBundleManager localizedStringForKey:@"SelectionScreen.Title"]
+                          forState:UIControlStateNormal];
+        self.titleButton.enabled = NO;
         self.navigationItem.rightBarButtonItem = self.checkItem;
         self.checkButton.hidden = NO;
     } else {
-        self.title = self.assetsManager.assetsGroup.name;
-        self.navigationItem.rightBarButtonItem = self.filterItem;
+//        self.title = self.assetsManager.assetsGroup.name;
+        [self.titleButton setTitle:self.assetsManager.assetsGroup.name
+                          forState:UIControlStateNormal];
+        self.titleButton.enabled = YES;
+        self.navigationItem.rightBarButtonItem = self.cancelItem;
         self.checkButton.hidden = YES;
     }
     
@@ -328,7 +338,8 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)_tappedOrganize:(id)sender
+
+- (void)_tappedGroup:(id)sender
 {
     if (self.collectionView.indexPathsForSelectedItems.count > 0) {
         UIActionSheet* sheet = [[UIActionSheet alloc] initWithTitle:[LKImagePickerControllerBundleManager localizedStringForKey:@"Selection.ChangeGroup"]
@@ -352,7 +363,17 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
 {
     self.selectionButton.numberOfSelections = self.assetsManager.numberOfSelected;
     self.selectionButton.active = self.displayingSelectedOnly;
-    self.doneItem.enabled = self.assetsManager.numberOfSelected > 0;
+    if ([self.imagePickerController.imagePickerControllerDelegate respondsToSelector:@selector(enableCompletionButtonWhenNoSelections)]) {
+        if (self.imagePickerController.imagePickerControllerDelegate.enableCompletionButtonWhenNoSelections) {
+            self.doneItem.enabled = YES;
+        } else {
+            self.doneItem.enabled = self.assetsManager.numberOfSelected > 0;
+        }
+    } else {
+        self.doneItem.enabled = self.assetsManager.numberOfSelected > 0;
+    }
+    self.clearItem.enabled = self.assetsManager.numberOfSelected > 0;
+
     self.filterItem.title = self.assetsManager.filter.description;
     self.checkButton.active = self.assetsManager.numberOfSelected > 0 && self._allSelected;
     
@@ -452,14 +473,32 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
 
     LKImagePickerControllerCloseButton* closeButton = [LKImagePickerControllerCloseButton closeButtonWithTarget:self action:@selector(_tappedCancel:)];
     UIBarButtonItem* cancelItem = [[UIBarButtonItem alloc] initWithCustomView:closeButton];
+//    UIBarButtonItem* cancelItem = [[UIBarButtonItem alloc] initWithTitle:[LKImagePickerControllerBundleManager localizedStringForKey:@"Common.Cancel"]
+//                                                                   style:UIBarButtonItemStyleBordered
+//                                                                  target:self
+//                                                                  action:@selector(_tappedCancel:)];
+    UIBarButtonItem* clearItem = [[UIBarButtonItem alloc] initWithTitle:[LKImagePickerControllerBundleManager localizedStringForKey:@"Common.Clear"]
+                                                                  style:UIBarButtonItemStyleBordered
+                                                                 target:self
+                                                                 action:@selector(_tappedClear:)];
     
-    UIBarButtonItem* groupItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize target:self action:@selector(_tappedOrganize:)];
+//    UIBarButtonItem* groupItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize target:self action:@selector(_tappedGroup:)];
 
     UIBarButtonItem* filterItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:@selector(_tappedFilter:)];
 
     UIBarButtonItem *flexibleSpaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
 
-    UIBarButtonItem* doneItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(_tappedDone:)];
+    UIBarButtonItem* doneItem;
+    
+    if ([self.imagePickerController.imagePickerControllerDelegate respondsToSelector:@selector(completionButtonTitle)]) {
+        doneItem = [[UIBarButtonItem alloc] initWithTitle:self.imagePickerController.imagePickerControllerDelegate.completionButtonTitle
+
+                                                    style:UIBarButtonItemStyleBordered
+                                                   target:self
+                                                   action:@selector(_tappedDone:)];
+    } else {
+        doneItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(_tappedDone:)];
+    }
 
     LKImagePickerControllerSelectionButton* selectionButton =
     [LKImagePickerControllerSelectionButton selectionButtonTarget:self action:@selector(_tappedSelectionNumber:) assetsManager:self.assetsManager];
@@ -474,22 +513,39 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     dummyButton.hidden = YES;
     
     // Navigation bar
-    self.navigationItem.leftBarButtonItem = groupItem;
-    self.navigationItem.rightBarButtonItem = filterItem;
+//    self.navigationItem.leftBarButtonItem = groupItem;
+//    self.navigationItem.rightBarButtonItem = filterItem;
+    self.navigationItem.leftBarButtonItem = filterItem;
+    
+    if ([self.imagePickerController.imagePickerControllerDelegate respondsToSelector:@selector(rightBarButtonItem)]) {
+        self.navigationItem.rightBarButtonItem = self.imagePickerController.imagePickerControllerDelegate.rightBarButtonItem;
+    } else {
+        self.navigationItem.rightBarButtonItem = cancelItem;
+    }
 
     // Toolbar
     self.navigationController.toolbarHidden = NO;
-                  [self setToolbarItems:@[cancelItem, flexibleSpaceItem, buttonItem, flexibleSpaceItem, doneItem] animated:NO];
+                  [self setToolbarItems:@[clearItem, flexibleSpaceItem, buttonItem, flexibleSpaceItem, doneItem] animated:NO];
     
     // Retain bar buttons
     self.doneItem = doneItem;
     self.filterItem = filterItem;
     self.selectionButton = selectionButton;
-    self.groupItem = groupItem;
+//    self.groupItem = groupItem;
     self.checkButton = checkButton;
     self.cancelItem = cancelItem;
+    self.clearItem = clearItem;
     self.checkItem = checkItem;
     self.buttonItem = buttonItem;
+    
+    // Title
+    UIButton* titleButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [titleButton addTarget:self action:@selector(_tappedGroup:) forControlEvents:UIControlEventTouchUpInside];
+    [titleButton setTitleColor:tintColor forState:UIControlStateNormal];
+    CGRect frame = self.navigationController.navigationBar.frame;
+    titleButton.frame = frame;
+    self.navigationItem.titleView = titleButton;
+    self.titleButton = titleButton;
     
     // Collection view
     self.collectionView.allowsMultipleSelection = YES;
@@ -517,6 +573,13 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     emptyView.alpha = 0.0;
     [self.view addSubview:emptyView];
     self.emptyView = emptyView;
+    
+    
+    // handle deleagte
+    if ([self.imagePickerController.imagePickerControllerDelegate respondsToSelector:@selector(completionButtonTitle)])
+    {
+        [self.doneItem setTitle:[self.imagePickerController.imagePickerControllerDelegate completionButtonTitle]];
+    }
 }
 
 - (void)didReceiveMemoryWarning

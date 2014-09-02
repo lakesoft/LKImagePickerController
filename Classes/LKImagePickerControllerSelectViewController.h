@@ -9,8 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "LKImagePickerControllerAssetsManager.h"
 
+@class LKImagePickerController;
 @interface LKImagePickerControllerSelectViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate>
 
+@property (nonatomic, weak) LKImagePickerController* imagePickerController;
 @property (nonatomic, weak) LKImagePickerControllerAssetsManager* assetsManager;
 
 - (void)didSelectAssetsGroup:(LKAssetsGroup*)assetsGroup;

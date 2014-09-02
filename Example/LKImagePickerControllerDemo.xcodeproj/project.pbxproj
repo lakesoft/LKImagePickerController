@@ -45,6 +45,13 @@
 			remoteGlobalIDString = BC2A376719397F9600C672B7;
 			remoteInfo = LKImagePickerControllerDemo;
 		};
+		BC66744819B3EB2400C1F92C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BC2A376019397F9600C672B7 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BC074A101960D3A800144C47;
+			remoteInfo = "LKImagePickerController-Resources";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -368,6 +375,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				BC66744919B3EB2400C1F92C /* PBXTargetDependency */,
 			);
 			name = LKImagePickerControllerDemo;
 			productName = LKImagePickerControllerDemo;
@@ -533,6 +541,11 @@
 			isa = PBXTargetDependency;
 			target = BC2A376719397F9600C672B7 /* LKImagePickerControllerDemo */;
 			targetProxy = BC2A379119397F9600C672B7 /* PBXContainerItemProxy */;
+		};
+		BC66744919B3EB2400C1F92C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BC074A101960D3A800144C47 /* LKImagePickerController-Resources */;
+			targetProxy = BC66744819B3EB2400C1F92C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

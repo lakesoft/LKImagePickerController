@@ -39,6 +39,7 @@
     self.assetsManager = LKImagePickerControllerAssetsManager.assetsManager;
     [self.assetsManager reloadAssetsWithCompletion:^{
         LKImagePickerControllerSelectViewController* viewController = LKImagePickerControllerSelectViewController.new;
+        viewController.imagePickerController = self;
         viewController.assetsManager = self.assetsManager;
         [self pushViewController:viewController animated:NO];
     }];

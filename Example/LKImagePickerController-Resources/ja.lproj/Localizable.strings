@@ -11,12 +11,14 @@
 "Common.NumerOfPics" = "%@ 枚";
 "Common.NoPics" = "写真がありません";
 "Common.NoSelections" = "写真が選択されていません";
+"Common.Clear" = "クリア";
 
 "Assets.Groups" = "グループ";
 
 "FilterScreen.Title" = "フィルタ";
 
 "SelectionScreen.Title" = "選択されている写真";
+"SelectionScreen.SelectedLabel" = "選択";
 
 "Filter.All" = "すべて";
 "Filter.JPEG" = "JPEG";
