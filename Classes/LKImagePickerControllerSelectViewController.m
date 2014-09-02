@@ -156,7 +156,7 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
 - (void)_reloadAndSetupSelections
 {
     [self.collectionView reloadData];
-    for (LKAsset* asset in self.assetsManager.arraySelectedAssets) {
+    for (LKAsset* asset in self.assetsManager.arrayOfSelectedAssets) {
         NSIndexPath* indexPath = [self.displayingAssetsCollection indexPathForAsset:asset];
         if (indexPath) {
             [self.collectionView selectItemAtIndexPath:indexPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
@@ -225,7 +225,7 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     self.displayingSelectedOnly = !self.displayingSelectedOnly;
 
     if (self.displayingSelectedOnly) {
-        self.displayingAssetsCollection = [self _assetsCollectionWithAssetsGroup:nil orAssets:self.assetsManager.sortedSelectedAssets];
+        self.displayingAssetsCollection = [self _assetsCollectionWithAssetsGroup:nil orAssets:self.assetsManager.sortedArrayOfSelectedAssets];
     } else {
         self.displayingAssetsCollection = self.assetsCollection;
     }
@@ -261,7 +261,7 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
 
 - (void)_tappedDone:(id)sender
 {
-    NSLog(@"%@", self.assetsManager.arraySelectedAssets);
+    NSLog(@"%@", self.assetsManager.arrayOfSelectedAssets);
 }
 
 - (IBAction)tappedHeader:(UIButton*)sender
