@@ -60,15 +60,6 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
 
 @implementation LKImagePickerControllerSelectViewController
 
-#pragma mark - Privates
-- (NSArray*)_sortedArrayByDateWithOrderedSet:(NSOrderedSet*)orderedSet
-{
-    NSMutableArray* array = [NSMutableArray arrayWithArray:orderedSet.array];
-    [array sortUsingComparator:^NSComparisonResult(LKAsset* asset1, LKAsset* asset2) {
-        return [asset1.date compare:asset2.date];
-    }];
-    return array;
-}
 
 - (void)_alertForFilled
 {
@@ -138,7 +129,7 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     for (NSInteger item=0; item < numberOfItems; item++) {
         NSIndexPath* indexPath = [NSIndexPath indexPathForItem:item inSection:section];
         LKAsset* asset = [self.displayingAssetsCollection assetForIndexPath:indexPath];
-        if (![self.assetsManager.selectedAssets containsObject:asset]) {
+        if (![self.assetsManager containsSelectedAsset:asset]) {
             allSelected = NO;
             break;
         }
@@ -156,7 +147,7 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     for (NSIndexPath* indexPath in self.collectionView.indexPathsForSelectedItems) {
         [self.collectionView deselectItemAtIndexPath:indexPath animated:YES];
     }
-    [self.assetsManager.selectedAssets removeAllObjects];
+    [self.assetsManager removeAllSelectedAssets];
     [self _updateControls];
     [NSNotificationCenter.defaultCenter postNotificationName:LKImagePickerControllerAssetsManagerDidAllDeselectNotification
                                                       object:self];
@@ -165,7 +156,7 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
 - (void)_reloadAndSetupSelections
 {
     [self.collectionView reloadData];
-    for (LKAsset* asset in self.assetsManager.selectedAssets) {
+    for (LKAsset* asset in self.assetsManager.arraySelectedAssets) {
         NSIndexPath* indexPath = [self.displayingAssetsCollection indexPathForAsset:asset];
         if (indexPath) {
             [self.collectionView selectItemAtIndexPath:indexPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
@@ -212,7 +203,7 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
             NSIndexPath* indexPath = [NSIndexPath indexPathForItem:item inSection:section];
             [self.collectionView selectItemAtIndexPath:indexPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
             LKAsset* asset = entry.assets[item];
-            [self.assetsManager.selectedAssets addObject:asset];
+            [self.assetsManager selectAsset:asset];
             [self _postNotificationName:LKImagePickerControllerAssetsManagerDidSelectNotification
                               indexPath:indexPath];
         }
@@ -234,8 +225,7 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     self.displayingSelectedOnly = !self.displayingSelectedOnly;
 
     if (self.displayingSelectedOnly) {
-        NSArray* assets = [self _sortedArrayByDateWithOrderedSet:self.assetsManager.selectedAssets];
-        self.displayingAssetsCollection = [self _assetsCollectionWithAssetsGroup:nil orAssets:assets];
+        self.displayingAssetsCollection = [self _assetsCollectionWithAssetsGroup:nil orAssets:self.assetsManager.sortedSelectedAssets];
     } else {
         self.displayingAssetsCollection = self.assetsCollection;
     }
@@ -271,7 +261,7 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
 
 - (void)_tappedDone:(id)sender
 {
-    NSLog(@"%@", self.assetsManager.selectedAssets);
+    NSLog(@"%@", self.assetsManager.arraySelectedAssets);
 }
 
 - (IBAction)tappedHeader:(UIButton*)sender
@@ -284,8 +274,8 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     BOOL nextAllSelected = !allSelected;
 
     NSMutableArray* indexPaths = @[].mutableCopy;
-    NSInteger max = self.assetsManager.maximumOfSelections;
-    max = max ? max : NSIntegerMax;
+    NSInteger max = self.assetsManager.maximumOfSelections ? self.assetsManager.maximumOfSelections : NSIntegerMax;
+
     NSInteger rest = max - self.assetsManager.numberOfSelected;
 
     for (NSInteger item=0; item < numberOfItems; item++) {
@@ -301,13 +291,13 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
             [self.collectionView selectItemAtIndexPath:indexPath
                                               animated:NO
                                         scrollPosition:UICollectionViewScrollPositionNone];
-            [self.assetsManager.selectedAssets addObject:asset];
+            [self.assetsManager selectAsset:asset];
             rest--;
             
         } else {
             [self.collectionView deselectItemAtIndexPath:indexPath
                                                 animated:NO];
-            [self.assetsManager.selectedAssets removeObject:asset];
+            [self.assetsManager deselectAsset:asset];
         }
     }
 
@@ -680,7 +670,7 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.assetsManager.selectedAssets addObject:[self.displayingAssetsCollection assetForIndexPath:indexPath]];
+    [self.assetsManager selectAsset:[self.displayingAssetsCollection assetForIndexPath:indexPath]];
     [self _updateControls];
 
     [self _postNotificationName:LKImagePickerControllerAssetsManagerDidSelectNotification
@@ -689,7 +679,7 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
 
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.assetsManager.selectedAssets removeObject:[self.displayingAssetsCollection assetForIndexPath:indexPath]];
+    [self.assetsManager deselectAsset:[self.displayingAssetsCollection assetForIndexPath:indexPath]];
     [self _updateControls];
     
     [self _postNotificationName:LKImagePickerControllerAssetsManagerDidDeselectNotification

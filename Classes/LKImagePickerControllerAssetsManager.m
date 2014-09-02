@@ -32,6 +32,7 @@ NSString * const LKImagePickerControllerAssetsManagerKeyNumberOfSelections = @"L
 @property (strong, nonatomic) LKAssetsLibrary* assetsLibrary;
 @property (strong, nonatomic) LKAssetsGroup* assetsGroup;
 @property (strong, nonatomic) LKImagePickerControllerFilter* filter;
+@property (strong, nonatomic) NSMutableOrderedSet* selectedAssets;  // <LKAssets>
 
 @property (nonatomic, copy) LKImagePickerControllerAssetsManagerReloadAssetsCompletion reloadAssetsCompletion;
 @end
@@ -83,7 +84,8 @@ NSString * const LKImagePickerControllerAssetsManagerKeyNumberOfSelections = @"L
 {
     NSInteger numberOfSelections = ((NSNumber*)notification.userInfo[LKImagePickerControllerAssetsManagerKeyNumberOfSelections]).integerValue;
     if (self.maximumOfSelections) {
-        BOOL newSelectable = numberOfSelections < self.maximumOfSelections;
+        NSInteger max = self.maximumOfSelections ? self.maximumOfSelections : NSIntegerMax;
+        BOOL newSelectable = numberOfSelections < max;
         if (newSelectable != self.selectable) {
             NSDictionary* userInfo = @{LKImagePickerControllerAssetsManagerDidChangeSelectableKey:@(newSelectable)};
             [NSNotificationCenter.defaultCenter postNotificationName:LKImagePickerControllerAssetsManagerDidChangeSelectable
@@ -185,8 +187,41 @@ NSString * const LKImagePickerControllerAssetsManagerKeyNumberOfSelections = @"L
 }
 - (BOOL)reachedMaximumOfSelections
 {
-    return self.maximumOfSelections <= self.selectedAssets.count;
+    NSInteger max = self.maximumOfSelections ? self.maximumOfSelections : NSIntegerMax;
+    return max <= self.selectedAssets.count;
 }
+
+#pragma mark - Selection
+- (void)selectAsset:(LKAsset*)asset
+{
+    [self.selectedAssets addObject:asset];
+}
+- (void)deselectAsset:(LKAsset*)asset
+{
+    [self.selectedAssets removeObject:asset];
+}
+- (BOOL)containsSelectedAsset:(LKAsset*)asset
+{
+    return [self.selectedAssets containsObject:asset];
+}
+- (void)removeAllSelectedAssets
+{
+    [self.selectedAssets removeAllObjects];
+}
+- (NSArray*)arrayOfSelectedAssets
+{
+    return self.selectedAssets.array;
+}
+
+- (NSArray*)sortedArrayOfSelectedAssets
+{
+    NSMutableArray* array = [NSMutableArray arrayWithArray:self.selectedAssets.array];
+    [array sortUsingComparator:^NSComparisonResult(LKAsset* asset1, LKAsset* asset2) {
+        return [asset1.date compare:asset2.date];
+    }];
+    return array;
+}
+
 
 #pragma mark - API
 - (void)reloadAssetsWithCompletion:(LKImagePickerControllerAssetsManagerReloadAssetsCompletion)completion

@@ -305,7 +305,7 @@
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.assetsManager.selectedAssets addObject:[self.assetsCollection assetForIndexPath:indexPath]];
+    [self.assetsManager selectAsset:[self.assetsCollection assetForIndexPath:indexPath]];
     if (collectionView == self.collectionView) {
         [self.thumbnailCollectionView selectItemAtIndexPath:indexPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
     } else {
@@ -316,7 +316,7 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.assetsManager.selectedAssets removeObject:[self.assetsCollection assetForIndexPath:indexPath]];
+    [self.assetsManager deselectAsset:[self.assetsCollection assetForIndexPath:indexPath]];
     if (collectionView == self.collectionView) {
         [self.thumbnailCollectionView deselectItemAtIndexPath:indexPath animated:NO];
     } else {

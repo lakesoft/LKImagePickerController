@@ -11,7 +11,8 @@
 #import "LKImagePickerControllerAssetsManager.h"
 #import "LKImagePickerControllerBundleManager.h"
 
-#define  LKImagePickerControllerSelectionButtonStandardWidth 43.7
+//#define  LKImagePickerControllerSelectionButtonStandardWidth 43.7
+#define  LKImagePickerControllerSelectionButtonStandardWidth 100.0
 //#define  LKImagePickerControllerSelectionButtonStandardHeight 27.0
 #define  LKImagePickerControllerSelectionButtonStandardHeight 33.0
 #define  LKImagePickerControllerSelectionButtonPadding 5.0

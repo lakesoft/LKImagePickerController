@@ -38,9 +38,16 @@ typedef void(^LKImagePickerControllerAssetsManagerReloadAssetsCompletion)();
 // Selection management
 @property (assign, nonatomic) NSInteger maximumOfSelections;
 @property (assign, nonatomic) BOOL selectable;
-@property (strong, nonatomic) NSMutableOrderedSet* selectedAssets;  // <LKAssets>
 @property (assign, nonatomic, readonly) NSInteger numberOfSelected;
 @property (assign, nonatomic, readonly) BOOL reachedMaximumOfSelections;
+
+// Selection management (selectedAssets)
+- (void)selectAsset:(LKAsset*)asset;
+- (void)deselectAsset:(LKAsset*)asset;
+- (BOOL)containsSelectedAsset:(LKAsset*)asset;
+- (void)removeAllSelectedAssets;
+- (NSArray*)arrayOfSelectedAssets;
+- (NSArray*)sortedArrayOfSelectedAssets;
 
 + (instancetype)assetsManager;
 

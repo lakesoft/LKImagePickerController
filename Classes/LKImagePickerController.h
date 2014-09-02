@@ -15,14 +15,17 @@
 - (NSString*)completionButtonTitle;
 - (BOOL)enableCompletionButtonWhenNoSelections;
 - (UIBarButtonItem*)rightBarButtonItem;
-//- (void)imagePickerController:(LKImagePickerController*)imagePickerController;
+
+// [1]selected -> [2]deselected
+- (void)imagePickerController:(LKImagePickerController*)imagePickerController selectedAssets:(NSArray*)selectedAssets;
+- (void)imagePickerController:(LKImagePickerController*)imagePickerController deselectedAssets:(NSArray*)deselectedAssets;
 @end
 
 
 @interface LKImagePickerController : UINavigationController
 
 @property (nonatomic, strong) UIColor* tintColor;
-@property (nonatomic, assign) NSInteger maximumOfSelections;
+@property (nonatomic, assign) NSInteger maximumOfSelections;    // 0=No limit
 @property (nonatomic, weak) id <LKImagePickerControllerDelegate> imagePickerControllerDelegate;
 
 @end
