@@ -20,6 +20,7 @@
 #import "LKImagePickerControlelrCheckmarkButton.h"
 #import "LKImagePickerControllerCloseButton.h"
 #import "LKImagePickerControllerEmptyView.h"
+#import "LKImagePickerControllerNavigationController.h"
 
 NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     LKImagePickerControllerSelectViewSheetResetSelections,
@@ -71,6 +72,11 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     self.selectionButton.alerted = NO;
 }
 
+- (NSString*)_titleString
+{
+    return [NSString stringWithFormat:@"%@⇣",self.assetsCollection.assetsGroup.name];
+}
+
 #pragma mark - Privates (LKAssetsLibrary)
 - (void)setDisplayingAssetsCollection:(LKAssetsCollection *)displayingAssetsCollection
 {
@@ -85,7 +91,7 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     self.displayingAssetsCollection = self.assetsCollection;
     self.displayingSelectedOnly = NO;
     [self _reloadAndSetupSelections];
-    [self.titleButton setTitle:self.assetsCollection.assetsGroup.name forState:UIControlStateNormal];
+    [self.titleButton setTitle:self._titleString forState:UIControlStateNormal];
     [self _updateControls];
 }
 
@@ -165,14 +171,17 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     
     NSInteger lastSection = self.displayingAssetsCollection.entries.count-1;
     if (lastSection >= 0) {
-        LKAssetsCollectionEntry* lastEntry = self.displayingAssetsCollection.entries[lastSection];
-        NSInteger lastItem = lastEntry.assets.count - 1;
-        if (lastItem >=0 ) {
-            NSIndexPath* lastIndexPath = [NSIndexPath indexPathForItem:lastItem
-                                                             inSection:lastSection];
-            [self.collectionView scrollToItemAtIndexPath:lastIndexPath
-                                        atScrollPosition:UICollectionViewScrollPositionBottom
-                                                animated:NO];
+        for (NSInteger section=lastSection; section >= 0; section--) {
+            LKAssetsCollectionEntry* entry = self.displayingAssetsCollection.entries[section];
+            NSInteger item = entry.assets.count - 1;
+            if (item >=0 ) {
+                NSIndexPath* lastIndexPath = [NSIndexPath indexPathForItem:item
+                                                                 inSection:section];
+                [self.collectionView scrollToItemAtIndexPath:lastIndexPath
+                                            atScrollPosition:UICollectionViewScrollPositionBottom
+                                                    animated:NO];
+                break;
+            }
         }
     }
 }
@@ -246,13 +255,14 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
         self.titleButton.enabled = NO;
         self.navigationItem.rightBarButtonItem = self.checkItem;
         self.checkButton.hidden = NO;
+        self.filterItem.enabled = NO;
     } else {
 //        self.title = self.assetsManager.assetsGroup.name;
-        [self.titleButton setTitle:self.assetsManager.assetsGroup.name
-                          forState:UIControlStateNormal];
+        [self.titleButton setTitle:self._titleString forState:UIControlStateNormal];
         self.titleButton.enabled = YES;
         self.navigationItem.rightBarButtonItem = self.cancelItem;
         self.checkButton.hidden = YES;
+        self.filterItem.enabled = YES;
     }
     
     [self _clearAlert];
@@ -382,7 +392,8 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     LKImagePickerControllerGroupTableViewController* viewController = LKImagePickerControllerGroupTableViewController.new;
     viewController.assetsManager = self.assetsManager;
     viewController.selectViewController = self;
-    [self.navigationController pushViewController:viewController animated:YES];
+    LKImagePickerControllerNavigationController* navigationController = [[LKImagePickerControllerNavigationController alloc] initWithRootViewController:viewController];
+    [self presentViewController:navigationController animated:YES completion:nil];
 }
 - (void)_openFilterView
 {
@@ -391,7 +402,8 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     LKImagePickerControllerFilterSelectionViewController* viewController = LKImagePickerControllerFilterSelectionViewController.new;
     viewController.assetsManager = self.assetsManager;
     viewController.selectViewController = self;
-    [self.navigationController pushViewController:viewController animated:YES];
+    LKImagePickerControllerNavigationController* navigationController = [[LKImagePickerControllerNavigationController alloc] initWithRootViewController:viewController];
+    [self presentViewController:navigationController animated:YES completion:nil];
 }
 
 - (void)_openDetailViewAtIndexPath:(NSIndexPath*)indexPath
@@ -456,7 +468,7 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     // Setup tint color
     UIColor* tintColor = LKImagePickerControllerAppearance.sharedAppearance.tintColor;
     self.navigationController.toolbar.tintColor = tintColor;
-    self.navigationController.navigationBar.tintColor = tintColor;
+//    self.navigationController.navigationBar.tintColor = tintColor;
 
     // Bar buttons
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:[LKImagePickerControllerBundleManager localizedStringForKey:@"Common.Back"] style:UIBarButtonItemStylePlain target:nil action:nil];
@@ -530,8 +542,9 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     
     // Title
     UIButton* titleButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    titleButton.titleLabel.font = [UIFont boldSystemFontOfSize:17.0];
     [titleButton addTarget:self action:@selector(_tappedGroup:) forControlEvents:UIControlEventTouchUpInside];
-    [titleButton setTitleColor:tintColor forState:UIControlStateNormal];
+//    [titleButton setTitleColor:tintColor forState:UIControlStateNormal];
     CGRect frame = self.navigationController.navigationBar.frame;
     titleButton.frame = frame;
     self.navigationItem.titleView = titleButton;

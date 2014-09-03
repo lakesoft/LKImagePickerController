@@ -36,6 +36,10 @@
 {
     [super viewDidLoad];
     
+    [UINavigationBar appearance].barTintColor = LKImagePickerControllerAppearance.sharedAppearance.navigationBarColor;
+    [UINavigationBar appearance].tintColor = LKImagePickerControllerAppearance.sharedAppearance.foregroundColor;
+    [UINavigationBar appearance].titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
+    
     self.assetsManager = LKImagePickerControllerAssetsManager.assetsManager;
     [self.assetsManager reloadAssetsWithCompletion:^{
         LKImagePickerControllerSelectViewController* viewController = LKImagePickerControllerSelectViewController.new;
