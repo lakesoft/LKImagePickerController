@@ -29,11 +29,14 @@ extern NSString * const LKImagePickerControllerAssetsManagerKeyNumberOfSelection
 typedef void(^LKImagePickerControllerAssetsManagerReloadAssetsCompletion)();
 
 @class LKImagePickerControllerFilter;
+@class LKImagePickerController;
 @interface LKImagePickerControllerAssetsManager : NSObject
 
 @property (strong, nonatomic, readonly) LKAssetsLibrary* assetsLibrary;
 @property (strong, nonatomic, readonly) LKAssetsGroup* assetsGroup;
 @property (strong, nonatomic, readonly) LKImagePickerControllerFilter* filter;
+
+@property (weak  , nonatomic) LKImagePickerController* imagePickerController;
 
 // Selection management
 @property (assign, nonatomic) NSInteger maximumOfSelections;

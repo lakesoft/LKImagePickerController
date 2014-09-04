@@ -8,6 +8,7 @@
 
 #import "LKImagePickerControllerAssetsManager.h"
 #import "LKImagePickerControllerFilter.h"
+#import "LKImagePickerController.h"
 
 NSString * const LKImagePickerControllerSelectViewControllerDidAssetsUpdateNotification = @"LKImagePickerControllerSelectViewControllerDidAssetsUpdateNotification";
 
@@ -195,10 +196,18 @@ NSString * const LKImagePickerControllerAssetsManagerKeyNumberOfSelections = @"L
 - (void)selectAsset:(LKAsset*)asset
 {
     [self.selectedAssets addObject:asset];
+    
+    if ([self.imagePickerController.imagePickerControllerDelegate respondsToSelector:@selector(imagePickerController:selectedAssets:)]) {
+        [self.imagePickerController.imagePickerControllerDelegate imagePickerController:self.imagePickerController selectedAssets:@[asset]];
+    }
 }
 - (void)deselectAsset:(LKAsset*)asset
 {
     [self.selectedAssets removeObject:asset];
+
+    if ([self.imagePickerController.imagePickerControllerDelegate respondsToSelector:@selector(imagePickerController:deselectedAssets:)]) {
+        [self.imagePickerController.imagePickerControllerDelegate imagePickerController:self.imagePickerController deselectedAssets:@[asset]];
+    }
 }
 - (BOOL)containsSelectedAsset:(LKAsset*)asset
 {
@@ -206,7 +215,12 @@ NSString * const LKImagePickerControllerAssetsManagerKeyNumberOfSelections = @"L
 }
 - (void)removeAllSelectedAssets
 {
+    NSArray* assets = self.selectedAssets.array.copy;
     [self.selectedAssets removeAllObjects];
+
+    if ([self.imagePickerController.imagePickerControllerDelegate respondsToSelector:@selector(imagePickerController:deselectedAssets:)]) {
+        [self.imagePickerController.imagePickerControllerDelegate imagePickerController:self.imagePickerController deselectedAssets:assets];
+    }
 }
 - (NSArray*)arrayOfSelectedAssets
 {

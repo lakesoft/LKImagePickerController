@@ -41,6 +41,7 @@
     [UINavigationBar appearance].titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
     
     self.assetsManager = LKImagePickerControllerAssetsManager.assetsManager;
+    self.assetsManager.imagePickerController = self;
     [self.assetsManager reloadAssetsWithCompletion:^{
         LKImagePickerControllerSelectViewController* viewController = LKImagePickerControllerSelectViewController.new;
         viewController.imagePickerController = self;
