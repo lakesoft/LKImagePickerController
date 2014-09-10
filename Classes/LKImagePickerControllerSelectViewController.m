@@ -74,7 +74,7 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
 
 - (NSString*)_titleString
 {
-    return [NSString stringWithFormat:@"%@⇣",self.assetsCollection.assetsGroup.name];
+    return [NSString stringWithFormat:@"%@ ⇣",self.assetsCollection.assetsGroup.name];
 }
 
 #pragma mark - Privates (LKAssetsLibrary)
@@ -515,9 +515,7 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     dummyButton.hidden = YES;
     
     // Navigation bar
-//    self.navigationItem.leftBarButtonItem = groupItem;
-//    self.navigationItem.rightBarButtonItem = filterItem;
-    self.navigationItem.leftBarButtonItem = filterItem;
+    self.navigationItem.leftBarButtonItem = clearItem;
     
     if ([self.imagePickerController.imagePickerControllerDelegate respondsToSelector:@selector(rightBarButtonItem)]) {
         self.navigationItem.rightBarButtonItem = self.imagePickerController.imagePickerControllerDelegate.rightBarButtonItem;
@@ -527,7 +525,7 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
 
     // Toolbar
     self.navigationController.toolbarHidden = NO;
-                  [self setToolbarItems:@[clearItem, flexibleSpaceItem, buttonItem, flexibleSpaceItem, doneItem] animated:NO];
+                  [self setToolbarItems:@[filterItem, flexibleSpaceItem, buttonItem, flexibleSpaceItem, doneItem] animated:NO];
     
     // Retain bar buttons
     self.doneItem = doneItem;

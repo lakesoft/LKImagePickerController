@@ -9,7 +9,7 @@
 "Common.Cancel" = "Cancel";
 "Common.Back" = "Back";
 "Common.NumerOfPics" = "%@ pics";
-"Common.NoPics" = "No Photos";
+"Common.NoPics" = "No Pictures";
 "Common.NoSelections" = "No Selections";
 "Common.Clear" = "Clear";
 
@@ -17,7 +17,7 @@
 
 "FilterScreen.Title" = "Filter";
 
-"SelectionScreen.Title" = "Selected Photos";
+"SelectionScreen.Title" = "Selected Pictures";
 "SelectionScreen.NoSelectedLabel" = "0 Selected";
 
 "Filter.All" = "All";

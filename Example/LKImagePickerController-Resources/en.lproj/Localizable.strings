@@ -9,7 +9,7 @@
 "Common.Cancel" = "Cancel";
 "Common.Back" = "Back";
 "Common.NumerOfPics" = "%@ pics";
-"Common.NoPics" = "No pictures";
+"Common.NoPics" = "No Pictures";
 "Common.NoSelections" = "No Selections";
 "Common.Clear" = "Clear";
 
@@ -17,10 +17,10 @@
 
 "FilterScreen.Title" = "Filter";
 
-"SelectionScreen.Title" = "Selected Photos";
+"SelectionScreen.Title" = "Selected Pictures";
 "SelectionScreen.NoSelectedLabel" = "0 Selected";
 
-"Filter.All" = "All";
+"Filter.All" = "All Types";
 "Filter.JPEG" = "JPEG";
 "Filter.PNG" = "PNG";
 "Filter.ScreenShot" = "ScreenShot";
