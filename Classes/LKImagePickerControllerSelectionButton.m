@@ -58,13 +58,21 @@
 {
     NSString* text = nil;
     if (self.assetsManager.maximumOfSelections) {
-        text = [NSString stringWithFormat:@"%@ %zd/%zd",
-                [LKImagePickerControllerBundleManager localizedStringForKey:@"SelectionScreen.SelectedLabel"],
-                numberOfSelections, self.assetsManager.maximumOfSelections];
+        if (numberOfSelections) {
+            text = [NSString stringWithFormat:@"%zd / %zd",
+                    numberOfSelections, self.assetsManager.maximumOfSelections];
+        } else {
+            text = [NSString stringWithFormat:@"%@",
+                    [LKImagePickerControllerBundleManager localizedStringForKey:@"SelectionScreen.NoSelectedLabel"]];
+        }
     } else {
-        text = [NSString stringWithFormat:@"%@ %zd",
-                [LKImagePickerControllerBundleManager localizedStringForKey:@"SelectionScreen.SelectedLabel"],
-                numberOfSelections];
+        if (numberOfSelections) {
+            text = [NSString stringWithFormat:@"%zd / %zd",
+                    numberOfSelections, self.assetsManager.maximumOfSelections];
+        } else {
+            text = [NSString stringWithFormat:@"%@",
+                    [LKImagePickerControllerBundleManager localizedStringForKey:@"SelectionScreen.NoSelectedLabel"]];
+        }
     }
     return text;
 }

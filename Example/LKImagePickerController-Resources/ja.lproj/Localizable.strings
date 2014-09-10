@@ -18,7 +18,7 @@
 "FilterScreen.Title" = "フィルタ";
 
 "SelectionScreen.Title" = "選択されている写真";
-"SelectionScreen.SelectedLabel" = "選択";
+"SelectionScreen.NoSelectedLabel" = "選択なし";
 
 "Filter.All" = "すべて";
 "Filter.JPEG" = "JPEG";

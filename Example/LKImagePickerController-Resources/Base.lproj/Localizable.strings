@@ -18,7 +18,7 @@
 "FilterScreen.Title" = "Filter";
 
 "SelectionScreen.Title" = "Selected Photos";
-"SelectionScreen.SelectedLabel" = "Selected";
+"SelectionScreen.NoSelectedLabel" = "No Selected";
 
 "Filter.All" = "All";
 "Filter.JPEG" = "JPEG";
