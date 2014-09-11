@@ -91,6 +91,20 @@
     [NSNotificationCenter.defaultCenter removeObserver:self];
 }
 
+- (void)_scrollToStartpoint
+{
+    [self.collectionView scrollToItemAtIndexPath:self.indexPath
+                                atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally
+                                        animated:NO];
+    [self.thumbnailCollectionView scrollToItemAtIndexPath:self.indexPath
+                                         atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally
+                                                 animated:NO];
+    [UIView animateWithDuration:0.2
+                     animations:^{
+                         self.collectionView.alpha = 1.0;
+                     }];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -123,13 +137,6 @@
     self.collectionView.allowsMultipleSelection = YES;
     self.thumbnailCollectionView.allowsMultipleSelection = YES;
 
-    [self.collectionView scrollToItemAtIndexPath:self.indexPath
-                                atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally
-                                        animated:NO];
-    [self.thumbnailCollectionView scrollToItemAtIndexPath:self.indexPath
-                                atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally
-                                        animated:NO];
-    
     for (NSIndexPath* indexPath in self.indexPathsForSelectedItems) {
         [self.collectionView selectItemAtIndexPath:indexPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
         [self.thumbnailCollectionView selectItemAtIndexPath:indexPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
@@ -139,6 +146,9 @@
                                           initWithTarget:self action:@selector(_handleLongPress:)];
     lpgr.minimumPressDuration = 0.4;
     [self.thumbnailCollectionView addGestureRecognizer:lpgr];
+    
+    self.collectionView.alpha = 0.0;
+    [self performSelector:@selector(_scrollToStartpoint) withObject:nil afterDelay:0.005];
 }
 
 -(void) viewWillDisappear:(BOOL)animated {
@@ -147,6 +157,7 @@
     }
     [super viewWillDisappear:animated];
 }
+
 
 - (void)didReceiveMemoryWarning
 {

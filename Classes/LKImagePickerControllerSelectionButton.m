@@ -67,8 +67,7 @@
         }
     } else {
         if (numberOfSelections) {
-            text = [NSString stringWithFormat:@"%zd / %zd",
-                    numberOfSelections, self.assetsManager.maximumOfSelections];
+            text = [NSString stringWithFormat:@"%zd", numberOfSelections];
         } else {
             text = [NSString stringWithFormat:@"%@",
                     [LKImagePickerControllerBundleManager localizedStringForKey:@"SelectionScreen.NoSelectedLabel"]];

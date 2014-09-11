@@ -18,7 +18,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="no5-Lh-Cmm">
-                    <rect key="frame" x="260" y="10" width="50" height="30"/>
+                    <rect key="frame" x="265" y="10" width="50" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="50" id="qM9-Al-3RI"/>
@@ -34,8 +34,8 @@
             </subviews>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="GGp-PL-zXq" secondAttribute="bottom" constant="12" id="6Jn-1o-bPs"/>
-                <constraint firstAttribute="trailing" secondItem="no5-Lh-Cmm" secondAttribute="trailing" constant="10" id="MW3-34-Xxv"/>
-                <constraint firstItem="no5-Lh-Cmm" firstAttribute="leading" secondItem="GGp-PL-zXq" secondAttribute="trailing" constant="38" id="Ouf-5w-zfe"/>
+                <constraint firstAttribute="trailing" secondItem="no5-Lh-Cmm" secondAttribute="trailing" constant="5" id="MW3-34-Xxv"/>
+                <constraint firstItem="no5-Lh-Cmm" firstAttribute="leading" secondItem="GGp-PL-zXq" secondAttribute="trailing" constant="43" id="Ouf-5w-zfe"/>
                 <constraint firstAttribute="bottom" secondItem="no5-Lh-Cmm" secondAttribute="bottom" constant="10" id="aLx-VV-nPH"/>
                 <constraint firstItem="no5-Lh-Cmm" firstAttribute="top" secondItem="WCX-SI-Dcw" secondAttribute="top" constant="10" id="iPz-cU-frg"/>
                 <constraint firstItem="GGp-PL-zXq" firstAttribute="leading" secondItem="WCX-SI-Dcw" secondAttribute="leading" constant="10" id="uoj-VL-tnk"/>

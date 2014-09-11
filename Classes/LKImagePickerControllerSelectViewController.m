@@ -27,7 +27,7 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     LKImagePickerControllerSelectViewSheetLoseSelections,
 };
 
-
+#define LK_IMAGE_PICKER_CONTROLLER_SPACHE   @"        "
 
 @interface LKImagePickerControllerSelectViewController () <UIActionSheetDelegate>
 
@@ -48,6 +48,7 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
 //@property (nonatomic, strong) UIBarButtonItem* groupItem;
 @property (nonatomic, strong) UIBarButtonItem* checkItem;
 @property (nonatomic, strong) UIBarButtonItem* buttonItem;
+@property (nonatomic, strong) UIBarButtonItem* emptyItem;
 @property (nonatomic, weak) LKImagePickerControllerEmptyView* emptyView;
 @property (nonatomic, weak) UIButton* titleButton;
 //@property (nonatomic, weak) UIView* titleView;
@@ -235,6 +236,7 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
 
     if (self.displayingSelectedOnly) {
         self.displayingAssetsCollection = [self _assetsCollectionWithAssetsGroup:nil orAssets:self.assetsManager.sortedArrayOfSelectedAssets];
+        self.displayingAssetsCollection.filter = [LKAssetsCollectionGenericFilter filterWithType:LKAssetsCollectionGenericFilterTypeAll];
     } else {
         self.displayingAssetsCollection = self.assetsCollection;
     }
@@ -254,13 +256,16 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
                           forState:UIControlStateNormal];
         self.titleButton.enabled = NO;
         self.navigationItem.rightBarButtonItem = self.checkItem;
+        self.navigationItem.leftBarButtonItem = self.emptyItem;
         self.checkButton.hidden = NO;
+        self.filterItem.title = LK_IMAGE_PICKER_CONTROLLER_SPACHE;
         self.filterItem.enabled = NO;
     } else {
 //        self.title = self.assetsManager.assetsGroup.name;
         [self.titleButton setTitle:self._titleString forState:UIControlStateNormal];
         self.titleButton.enabled = YES;
         self.navigationItem.rightBarButtonItem = self.cancelItem;
+        self.navigationItem.leftBarButtonItem = self.clearItem;
         self.checkButton.hidden = YES;
         self.filterItem.enabled = YES;
     }
@@ -374,7 +379,7 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     }
     self.clearItem.enabled = self.assetsManager.numberOfSelected > 0;
 
-    self.filterItem.title = self.assetsManager.filter.description;
+    self.filterItem.title = self.displayingSelectedOnly ? LK_IMAGE_PICKER_CONTROLLER_SPACHE : self.assetsManager.filter.description;
     self.checkButton.active = self.assetsManager.numberOfSelected > 0 && self._allSelected;
     
     BOOL emptyCollection = (self.displayingAssetsCollection.numberOfAssets == 0);
@@ -501,6 +506,8 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     } else {
         doneItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(_tappedDone:)];
     }
+    
+    self.emptyItem = [[UIBarButtonItem alloc] initWithTitle:LK_IMAGE_PICKER_CONTROLLER_SPACHE style:UIBarButtonItemStyleBordered target:nil action:nil];
 
     LKImagePickerControllerSelectionButton* selectionButton =
     [LKImagePickerControllerSelectionButton selectionButtonTarget:self action:@selector(_tappedSelectionNumber:) assetsManager:self.assetsManager];
@@ -750,7 +757,7 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
 
 - (void)didChangeFilterType
 {
-    self.displayingAssetsCollection.filter = [self.assetsManager.filter assetsFilter];
+    self.displayingAssetsCollection.filter = self.assetsManager.filter.assetsFilter;
     [self _reloadAndSetupSelections];
     [self _updateControls];
 }

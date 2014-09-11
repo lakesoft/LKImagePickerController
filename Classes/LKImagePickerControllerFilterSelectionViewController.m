@@ -12,7 +12,7 @@
 #import "LKImagePickerControllerBundleManager.h"
 
 @interface LKImagePickerControllerFilterSelectionViewController ()
-
+@property (nonatomic, assign) LKImagePickerControllerFilterType firstType;
 @end
 
 @implementation LKImagePickerControllerFilterSelectionViewController
@@ -23,6 +23,9 @@
     
     self.title = [LKImagePickerControllerBundleManager localizedStringForKey:@"FilterScreen.Title"];
     [self.tableView registerClass:UITableViewCell.class forCellReuseIdentifier:@"FilterCell"];
+    
+    self.firstType = self.assetsManager.filter.type;
+    NSLog(@"%zd", self.firstType);
 }
 
 - (void)didReceiveMemoryWarning
@@ -52,8 +55,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    self.assetsManager.filter.type = [self.assetsManager.filter typeAtIndex:indexPath.row];
-    [self.selectViewController didChangeFilterType];
+    LKImagePickerControllerFilterType filterType = [self.assetsManager.filter typeAtIndex:indexPath.row];
+    self.assetsManager.filter.type = filterType;
+    if (filterType != self.firstType) {
+        [self.selectViewController didChangeFilterType];
+    }
 //    [self.navigationController popViewControllerAnimated:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
