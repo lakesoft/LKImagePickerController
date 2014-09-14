@@ -32,4 +32,6 @@
 @property (nonatomic, assign) NSInteger maximumOfSelections;    // 0=No limit
 @property (nonatomic, weak) id <LKImagePickerControllerDelegate> imagePickerControllerDelegate;
 
+- (void)deselectAll;
+
 @end

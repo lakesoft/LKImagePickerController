@@ -14,6 +14,7 @@
 
 @interface LKImagePickerController ()
 @property (strong, nonatomic) LKImagePickerControllerAssetsManager* assetsManager;
+@property (weak  , nonatomic) LKImagePickerControllerSelectViewController* selectViewController;
 @end
 
 @implementation LKImagePickerController
@@ -47,6 +48,7 @@
         viewController.imagePickerController = self;
         viewController.assetsManager = self.assetsManager;
         [self pushViewController:viewController animated:NO];
+        self.selectViewController = viewController;
     }];
 }
 
@@ -68,5 +70,9 @@
     self.assetsManager.maximumOfSelections = maximumOfSelections;
 }
 
+- (void)deselectAll
+{
+    [self.selectViewController deselectAll];
+}
 
 @end

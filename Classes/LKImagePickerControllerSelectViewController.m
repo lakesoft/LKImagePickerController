@@ -62,7 +62,6 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
 
 @implementation LKImagePickerControllerSelectViewController
 
-
 - (void)_alertForFilled
 {
     [self.selectionButton warnAboutExceeding];
@@ -149,17 +148,6 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     return (self.assetsManager.numberOfSelected == self.displayingAssetsCollection.numberOfAssets);
 }
 
-- (void)_resetSelections
-{
-    for (NSIndexPath* indexPath in self.collectionView.indexPathsForSelectedItems) {
-        [self.collectionView deselectItemAtIndexPath:indexPath animated:YES];
-    }
-    [self.assetsManager removeAllSelectedAssets];
-    [self _updateControls];
-    [NSNotificationCenter.defaultCenter postNotificationName:LKImagePickerControllerAssetsManagerDidAllDeselectNotification
-                                                      object:self];
-}
-
 - (void)_reloadAndSetupSelections
 {
     [self.collectionView reloadData];
@@ -225,7 +213,7 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
 - (void)_tappedCheckbutton:(id)sender
 {
     if (self.assetsManager.numberOfSelected > 0) {
-        [self _resetSelections];
+        [self deselectAll];
     } else {
         [self _selectAllItems];
     }
@@ -234,49 +222,12 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
 - (void)_tappedSelectionNumber:(id)sender
 {
     self.displayingSelectedOnly = !self.displayingSelectedOnly;
-
-    if (self.displayingSelectedOnly) {
-        self.displayingAssetsCollection = [self _assetsCollectionWithAssetsGroup:nil orAssets:self.assetsManager.sortedArrayOfSelectedAssets];
-        self.displayingAssetsCollection.filter = [LKAssetsCollectionGenericFilter filterWithType:LKAssetsCollectionGenericFilterTypeAll];
-    } else {
-        self.displayingAssetsCollection = self.assetsCollection;
-    }
-    [self _reloadAndSetupSelections];
-
-    CATransition *animation = [CATransition animation];
-    [animation setType:kCATransitionReveal];
-    [animation setSubtype:self.displayingSelectedOnly ? kCATransitionFromTop: kCATransitionFromBottom];
-    [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut]];
-    [animation setFillMode:kCAFillModeBoth];
-    [animation setDuration:0.5];
-    [self.collectionView.layer addAnimation:animation forKey:@"CATransitionReloadAnimation"];
-    
-    if (self.displayingSelectedOnly) {
-//        self.title = [LKImagePickerControllerBundleManager localizedStringForKey:@"SelectionScreen.Title"];
-        [self.titleButton setTitle:[LKImagePickerControllerBundleManager localizedStringForKey:@"SelectionScreen.Title"]
-                          forState:UIControlStateNormal];
-        self.titleButton.enabled = NO;
-        self.navigationItem.rightBarButtonItem = self.checkItem;
-        self.navigationItem.leftBarButtonItem = self.emptyItem;
-        self.checkButton.hidden = NO;
-        self.filterItem.title = LK_IMAGE_PICKER_CONTROLLER_SPACHE;
-        self.filterItem.enabled = NO;
-    } else {
-//        self.title = self.assetsManager.assetsGroup.name;
-        [self.titleButton setTitle:self._titleString forState:UIControlStateNormal];
-        self.titleButton.enabled = YES;
-        self.navigationItem.rightBarButtonItem = self.cancelItem;
-        self.navigationItem.leftBarButtonItem = self.clearItem;
-        self.checkButton.hidden = YES;
-        self.filterItem.enabled = YES;
-    }
-    
-    [self _clearAlert];
-    [self _updateControls];
 }
 
 - (void)_tappedDone:(id)sender
 {
+    self.displayingSelectedOnly = NO;
+    
     BOOL closeWhenFinish = YES;
     if ([self.imagePickerController.imagePickerControllerDelegate respondsToSelector:@selector(closeWhenFinish)]) {
         closeWhenFinish = [self.imagePickerController.imagePickerControllerDelegate closeWhenFinish];
@@ -647,8 +598,71 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
                      animations:^{
                          self.collectionView.alpha = 1.0;
                      }];
-    
 }
+
+#pragma mark - API
+- (void)deselectAll
+{
+    for (NSIndexPath* indexPath in self.collectionView.indexPathsForSelectedItems) {
+        [self.collectionView deselectItemAtIndexPath:indexPath animated:YES];
+    }
+    [self.assetsManager removeAllSelectedAssets];
+    [self _updateControls];
+    [NSNotificationCenter.defaultCenter postNotificationName:LKImagePickerControllerAssetsManagerDidAllDeselectNotification
+                                                      object:self];
+}
+
+
+#pragma mark - Properties
+- (void)setDisplayingSelectedOnly:(BOOL)displayingSelectedOnly
+{
+    if (_displayingSelectedOnly == displayingSelectedOnly) {
+        return;
+    }
+    _displayingSelectedOnly = displayingSelectedOnly;
+    
+    if (_displayingSelectedOnly) {
+        self.displayingAssetsCollection = [self _assetsCollectionWithAssetsGroup:nil orAssets:self.assetsManager.sortedArrayOfSelectedAssets];
+        self.displayingAssetsCollection.filter = [LKAssetsCollectionGenericFilter filterWithType:LKAssetsCollectionGenericFilterTypeAll];
+    } else {
+        self.displayingAssetsCollection = self.assetsCollection;
+    }
+    [self _reloadAndSetupSelections];
+    
+    CATransition *animation = [CATransition animation];
+    [animation setType:kCATransitionReveal];
+    [animation setSubtype:_displayingSelectedOnly ? kCATransitionFromTop: kCATransitionFromBottom];
+    [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut]];
+    [animation setFillMode:kCAFillModeBoth];
+    [animation setDuration:0.5];
+    [self.collectionView.layer addAnimation:animation forKey:@"CATransitionReloadAnimation"];
+    
+    if (_displayingSelectedOnly) {
+        //        self.title = [LKImagePickerControllerBundleManager localizedStringForKey:@"SelectionScreen.Title"];
+        [self.titleButton setTitle:[LKImagePickerControllerBundleManager localizedStringForKey:@"SelectionScreen.Title"]
+                          forState:UIControlStateNormal];
+        self.titleButton.enabled = NO;
+        self.navigationItem.rightBarButtonItem = self.checkItem;
+        self.navigationItem.leftBarButtonItem = self.emptyItem;
+        self.checkButton.hidden = NO;
+        self.filterItem.title = LK_IMAGE_PICKER_CONTROLLER_SPACHE;
+        self.filterItem.enabled = NO;
+    } else {
+        //        self.title = self.assetsManager.assetsGroup.name;
+        [self.titleButton setTitle:self._titleString forState:UIControlStateNormal];
+        self.titleButton.enabled = YES;
+        self.navigationItem.rightBarButtonItem = self.cancelItem;
+        self.navigationItem.leftBarButtonItem = self.clearItem;
+        self.checkButton.hidden = YES;
+        self.filterItem.enabled = YES;
+    }
+    
+    [self _clearAlert];
+    [self _updateControls];
+}
+
+
+
 #pragma mark - UICollectionViewDataSource
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
@@ -729,7 +743,7 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
 {
     if (buttonIndex != actionSheet.cancelButtonIndex) {
         if (actionSheet.tag  == LKImagePickerControllerSelectViewSheetResetSelections) {
-            [self _resetSelections];
+            [self deselectAll];
         } else if (actionSheet.tag == LKImagePickerControllerSelectViewSheetLoseSelections) {
             [self _openGroupView];
         }
@@ -760,7 +774,7 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
 
 - (void)didSelectAssetsGroup:(LKAssetsGroup*)assetsGroup
 {
-    [self _resetSelections];
+    [self deselectAll];
     [self.assetsManager setAndReloadAssetsGroup:assetsGroup];
 }
 

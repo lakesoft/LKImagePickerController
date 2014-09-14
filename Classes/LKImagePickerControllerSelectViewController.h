@@ -19,4 +19,6 @@
 - (void)setIndexPathsForSelectedItems:(NSArray*)indexPathsForSelectedItems;    // for callback
 - (void)didChangeFilterType;    // for callback
 
+- (void)deselectAll;
+
 @end
