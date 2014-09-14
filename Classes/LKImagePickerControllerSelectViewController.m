@@ -226,6 +226,9 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
 
 - (void)_tappedDone:(id)sender
 {
+    [self.imagePickerController.imagePickerControllerDelegate imagePickerController:self.imagePickerController
+                                                                didFinishWithAssets:self.assetsManager.arrayOfSelectedAssets];
+
     self.displayingSelectedOnly = NO;
     
     BOOL closeWhenFinish = YES;
@@ -234,10 +237,9 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     }
     if (closeWhenFinish) {
         [self dismissViewControllerAnimated:YES completion:nil];
+    } else {
+        [self deselectAll];
     }
-    
-    [self.imagePickerController.imagePickerControllerDelegate imagePickerController:self.imagePickerController
-                                                                didFinishWithAssets:self.assetsManager.arrayOfSelectedAssets];
 }
 
 - (IBAction)tappedHeader:(UIButton*)sender
