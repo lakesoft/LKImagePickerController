@@ -11,10 +11,14 @@
 @class LKImagePickerController;
 @protocol LKImagePickerControllerDelegate <NSObject>
 
+- (void)imagePickerController:(LKImagePickerController*)imagePickerController didFinishWithAssets:
+(NSArray*)selectedAssets;
+
 @optional
 - (NSString*)completionButtonTitle;
 - (BOOL)enableCompletionButtonWhenNoSelections;
 - (UIBarButtonItem*)rightBarButtonItem;
+- (BOOL)closeWhenFinish;
 
 // [1]selected -> [2]deselected
 - (void)imagePickerController:(LKImagePickerController*)imagePickerController selectedAssets:(NSArray*)selectedAssets;

@@ -163,6 +163,7 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
 - (void)_reloadAndSetupSelections
 {
     [self.collectionView reloadData];
+
     for (LKAsset* asset in self.assetsManager.arrayOfSelectedAssets) {
         NSIndexPath* indexPath = [self.displayingAssetsCollection indexPathForAsset:asset];
         if (indexPath) {
@@ -276,7 +277,16 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
 
 - (void)_tappedDone:(id)sender
 {
-    NSLog(@"%@", self.assetsManager.arrayOfSelectedAssets);
+    BOOL closeWhenFinish = YES;
+    if ([self.imagePickerController.imagePickerControllerDelegate respondsToSelector:@selector(closeWhenFinish)]) {
+        closeWhenFinish = [self.imagePickerController.imagePickerControllerDelegate closeWhenFinish];
+    }
+    if (closeWhenFinish) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+    
+    [self.imagePickerController.imagePickerControllerDelegate imagePickerController:self.imagePickerController
+                                                                didFinishWithAssets:self.assetsManager.arrayOfSelectedAssets];
 }
 
 - (IBAction)tappedHeader:(UIButton*)sender
