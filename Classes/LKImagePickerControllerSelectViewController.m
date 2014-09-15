@@ -237,8 +237,6 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     }
     if (closeWhenFinish) {
         [self dismissViewControllerAnimated:YES completion:nil];
-    } else {
-        [self deselectAll];
     }
 }
 
