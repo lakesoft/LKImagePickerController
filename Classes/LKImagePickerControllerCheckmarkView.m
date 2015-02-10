@@ -9,17 +9,18 @@
 #import "LKImagePickerControllerCheckmarkView.h"
 #import "LKImagePickerControllerAppearance.h"
 
+#define LKImagePickerControllerCheckmarkViewMargin  5.0
+
 @interface LKImagePickerControllerCheckmarkView()
-@property (nonatomic, weak) id target;
-@property (nonatomic, assign) SEL action;
 @property (nonatomic, assign) BOOL alerting;
 @end
+
 @implementation LKImagePickerControllerCheckmarkView
 
 - (void)_setup
 {
-    self.backgroundColor = UIColor.clearColor;
-    _active = YES;
+    self.userInteractionEnabled = NO;
+    self.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.05];
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder
@@ -39,14 +40,6 @@
     return self;
 }
 
-+ (LKImagePickerControllerCheckmarkView*)checkmarkViewWithTarget:(id)target action:(SEL)action
-{
-    LKImagePickerControllerCheckmarkView* view = LKImagePickerControllerCheckmarkView.new;
-    view.target = target;
-    view.action = action;
-    return view;
-}
-
 - (void)drawRect:(CGRect)rect
 {
     UIColor* strokeColor = LKImagePickerControllerAppearance.sharedAppearance.foregroundColor;
@@ -60,8 +53,7 @@
         strokeColor = fillColor;
         fillColor = tmp;
         lineWidth = 1.0;
-    } else if (!self.active) {
-        strokeColor = fillColor;
+    } else if (!self.checked) {
         fillColor = UIColor.clearColor;
         lineWidth = 1.0;
     }
@@ -69,7 +61,7 @@
     [strokeColor setStroke];
     [fillColor setFill];
 
-    UIBezierPath* circlePath = [UIBezierPath bezierPathWithOvalInRect:CGRectInset(self.bounds, 3.0, 3.0)];
+    UIBezierPath* circlePath = [UIBezierPath bezierPathWithOvalInRect:CGRectInset(self.bounds, LKImagePickerControllerCheckmarkViewMargin, LKImagePickerControllerCheckmarkViewMargin)];
     if (self.disabled && !self.alerting) {
         strokeColor = UIColor.whiteColor;
         [strokeColor setStroke];
@@ -94,20 +86,9 @@
     self.alpha = disabled ? 0.75 : 1.0;
 }
 
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+- (void)setChecked:(BOOL)active
 {
-    if (self.target && self.action) {
-// @see http://captainshadow.hatenablog.com/entry/20121114/1352834276
-//        [self.target performSelector:_action withObject:self];
-        [self.target performSelector:self.action withObject:self afterDelay:0];
-    } else {
-        [super touchesEnded:touches withEvent:event];
-    }
-}
-
-- (void)setActive:(BOOL)active
-{
-    _active = active;
+    _checked = active;
     [self setNeedsDisplay];
 }
 
@@ -135,5 +116,6 @@
     animation.toValue = [NSNumber numberWithFloat:0.0f];
     [self.layer addAnimation:animation forKey:@"blink"];
 }
+
 
 @end

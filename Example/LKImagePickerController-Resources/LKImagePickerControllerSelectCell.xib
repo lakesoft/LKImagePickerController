@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -15,19 +16,15 @@
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qMo-gO-f9W">
                         <rect key="frame" x="1" y="1" width="78" height="78"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nxm-zR-Pdp">
                         <rect key="frame" x="1" y="59" width="78" height="20"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="LKImagePickerController_Icon_Video" translatesAutoresizingMaskIntoConstraints="NO" id="77g-4i-W4S">
                                 <rect key="frame" x="3" y="2" width="16" height="16"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="99:99" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TNN-oD-ITt">
                                 <rect key="frame" x="23" y="2" width="42" height="16"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -38,42 +35,45 @@
                             <constraint firstAttribute="height" constant="20" id="5n8-Uu-M2g"/>
                         </constraints>
                     </view>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o7F-ba-pPx" customClass="LKImagePickerControllerCheckmarkView">
-                        <rect key="frame" x="47" y="47" width="30" height="30"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="30" id="4Sq-Q3-LVC"/>
-                            <constraint firstAttribute="height" constant="30" id="LvC-kF-nsL"/>
-                        </constraints>
-                    </view>
                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4DA-cl-enY" customClass="LKImagePickerControllerUsedMarkView">
                         <rect key="frame" x="5" y="5" width="10" height="10"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="10" id="F0d-lS-U8x"/>
                             <constraint firstAttribute="width" constant="10" id="JOu-1B-vvH"/>
                         </constraints>
                     </view>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cJx-Bd-xv5" customClass="LKImagePickerControllerCheckmarkButton">
+                        <rect key="frame" x="0.0" y="0.0" width="34" height="34"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="34" id="8m5-Br-7Cw"/>
+                            <constraint firstAttribute="width" constant="34" id="omI-iu-XHA"/>
+                        </constraints>
+                        <state key="normal">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="checkmarkTouchded:event:" destination="-2" eventType="touchUpInside" id="ZNO-Mr-2bt"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <constraints>
                 <constraint firstItem="Nxm-zR-Pdp" firstAttribute="leading" secondItem="F8R-td-26z" secondAttribute="leading" constant="1" id="0s3-ED-PJL"/>
-                <constraint firstAttribute="bottom" secondItem="o7F-ba-pPx" secondAttribute="bottom" constant="3" id="3zO-wb-LdH"/>
                 <constraint firstItem="qMo-gO-f9W" firstAttribute="leading" secondItem="F8R-td-26z" secondAttribute="leading" constant="1" id="ED1-0C-6hl"/>
                 <constraint firstItem="4DA-cl-enY" firstAttribute="leading" secondItem="F8R-td-26z" secondAttribute="leading" constant="5" id="Hd8-oc-ktk"/>
                 <constraint firstAttribute="bottom" secondItem="Nxm-zR-Pdp" secondAttribute="bottom" constant="1" id="JwI-tB-b8f"/>
                 <constraint firstItem="qMo-gO-f9W" firstAttribute="top" secondItem="F8R-td-26z" secondAttribute="top" constant="1" id="MTA-4K-FU4"/>
                 <constraint firstAttribute="bottom" secondItem="qMo-gO-f9W" secondAttribute="bottom" constant="1" id="W6V-RL-TRv"/>
+                <constraint firstItem="cJx-Bd-xv5" firstAttribute="leading" secondItem="F8R-td-26z" secondAttribute="leading" id="bSg-Vh-9bP"/>
+                <constraint firstItem="cJx-Bd-xv5" firstAttribute="top" secondItem="F8R-td-26z" secondAttribute="top" id="dnf-Xw-azq"/>
                 <constraint firstItem="4DA-cl-enY" firstAttribute="top" secondItem="F8R-td-26z" secondAttribute="top" constant="5" id="e5X-sg-NCR"/>
                 <constraint firstAttribute="trailing" secondItem="qMo-gO-f9W" secondAttribute="trailing" constant="1" id="eNN-UM-riq"/>
                 <constraint firstAttribute="trailing" secondItem="Nxm-zR-Pdp" secondAttribute="trailing" constant="1" id="lu4-cF-WwJ"/>
-                <constraint firstAttribute="trailing" secondItem="o7F-ba-pPx" secondAttribute="trailing" constant="3" id="o8e-1b-Kp8"/>
             </constraints>
             <connections>
-                <outlet property="checkmarkView" destination="o7F-ba-pPx" id="FoH-xp-1Bv"/>
+                <outlet property="checkmarkButton" destination="cJx-Bd-xv5" id="irl-jR-rlX"/>
                 <outlet property="photoImageView" destination="qMo-gO-f9W" id="6G3-8B-HfM"/>
                 <outlet property="usedView" destination="4DA-cl-enY" id="Q9P-9B-437"/>
                 <outlet property="videoLabel" destination="TNN-oD-ITt" id="b5P-ik-l4V"/>
@@ -84,4 +84,9 @@
     <resources>
         <image name="LKImagePickerController_Icon_Video" width="16" height="16"/>
     </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
 </document>

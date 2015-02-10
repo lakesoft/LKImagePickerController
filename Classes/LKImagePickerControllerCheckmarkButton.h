@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LKImagePickerControlelrCheckmarkButton : UIButton
+@interface LKImagePickerControllerCheckmarkButton : UIButton
 
-@property (nonatomic, assign) BOOL active;
-+ (instancetype)checkmarkButtonWithTarget:(id)target action:(SEL)action;
+@property (nonatomic, assign) BOOL checked;
++ (instancetype)checkmarkButtonWithTarget:(id)target action:(SEL)action size:(CGSize)size;
 - (void)alert;
 
 @end

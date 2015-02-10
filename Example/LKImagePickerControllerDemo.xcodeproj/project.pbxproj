@@ -55,8 +55,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		221470A05E72C96C09EEDA87 /* Pods-LKImagePickerControllerDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LKImagePickerControllerDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-LKImagePickerControllerDemo/Pods-LKImagePickerControllerDemo.release.xcconfig"; sourceTree = "<group>"; };
 		40EE24068165439CA7807C50 /* libPods-LKImagePickerControllerDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LKImagePickerControllerDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		75C1B7E6770B4B4B8578E510 /* Pods-LKImagePickerControllerDemo.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LKImagePickerControllerDemo.xcconfig"; path = "Pods/Pods-LKImagePickerControllerDemo.xcconfig"; sourceTree = "<group>"; };
 		BC074A111960D3A800144C47 /* LKImagePickerController-Resources.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LKImagePickerController-Resources.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC074A121960D3A900144C47 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		BC074A151960D3A900144C47 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -114,8 +114,8 @@
 		BC94FFB7196B540800EF8FC2 /* LKImagePickerControllerSelectCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = LKImagePickerControllerSelectCell.m; path = ../Classes/LKImagePickerControllerSelectCell.m; sourceTree = "<group>"; };
 		BC94FFB8196B540800EF8FC2 /* LKImagePickerControllerDetailCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = LKImagePickerControllerDetailCell.m; path = ../Classes/LKImagePickerControllerDetailCell.m; sourceTree = "<group>"; };
 		BC94FFB9196B540800EF8FC2 /* LKImagePickerControllerDetailCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LKImagePickerControllerDetailCell.h; path = ../Classes/LKImagePickerControllerDetailCell.h; sourceTree = "<group>"; };
-		BC94FFBA196B540800EF8FC2 /* LKImagePickerControlelrCheckmarkButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = LKImagePickerControlelrCheckmarkButton.m; path = ../Classes/LKImagePickerControlelrCheckmarkButton.m; sourceTree = "<group>"; };
-		BC94FFBB196B540800EF8FC2 /* LKImagePickerControlelrCheckmarkButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LKImagePickerControlelrCheckmarkButton.h; path = ../Classes/LKImagePickerControlelrCheckmarkButton.h; sourceTree = "<group>"; };
+		BC94FFBA196B540800EF8FC2 /* LKImagePickerControllerCheckmarkButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = LKImagePickerControllerCheckmarkButton.m; path = ../Classes/LKImagePickerControllerCheckmarkButton.m; sourceTree = "<group>"; };
+		BC94FFBB196B540800EF8FC2 /* LKImagePickerControllerCheckmarkButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LKImagePickerControllerCheckmarkButton.h; path = ../Classes/LKImagePickerControllerCheckmarkButton.h; sourceTree = "<group>"; };
 		BC94FFBC196B540800EF8FC2 /* LKImagePickerControllerCheckmarkView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LKImagePickerControllerCheckmarkView.h; path = ../Classes/LKImagePickerControllerCheckmarkView.h; sourceTree = "<group>"; };
 		BC94FFBD196B540800EF8FC2 /* LKImagePickerControllerSelectionButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = LKImagePickerControllerSelectionButton.m; path = ../Classes/LKImagePickerControllerSelectionButton.m; sourceTree = "<group>"; };
 		BC94FFBE196B540800EF8FC2 /* LKImagePickerControllerSelectionButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LKImagePickerControllerSelectionButton.h; path = ../Classes/LKImagePickerControllerSelectionButton.h; sourceTree = "<group>"; };
@@ -140,6 +140,7 @@
 		BC94FFD1196B540900EF8FC2 /* LKImagePickerControllerFilterSelectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LKImagePickerControllerFilterSelectionViewController.h; path = ../Classes/LKImagePickerControllerFilterSelectionViewController.h; sourceTree = "<group>"; };
 		BC94FFD2196B540900EF8FC2 /* LKImagePickerControllerGroupTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LKImagePickerControllerGroupTableViewController.h; path = ../Classes/LKImagePickerControllerGroupTableViewController.h; sourceTree = "<group>"; };
 		BC94FFD3196B540900EF8FC2 /* LKImagePickerControllerSelectHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LKImagePickerControllerSelectHeaderView.h; path = ../Classes/LKImagePickerControllerSelectHeaderView.h; sourceTree = "<group>"; };
+		F15AE65097E7E8161C0692A2 /* Pods-LKImagePickerControllerDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LKImagePickerControllerDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LKImagePickerControllerDemo/Pods-LKImagePickerControllerDemo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +176,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		43ABF09F037E0E5558B31EC5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F15AE65097E7E8161C0692A2 /* Pods-LKImagePickerControllerDemo.debug.xcconfig */,
+				221470A05E72C96C09EEDA87 /* Pods-LKImagePickerControllerDemo.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		BC074A141960D3A900144C47 /* Other Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -222,7 +232,7 @@
 				BC2A379319397F9600C672B7 /* LKImagePickerControllerDemoTests */,
 				BC2A376A19397F9600C672B7 /* Frameworks */,
 				BC2A376919397F9600C672B7 /* Products */,
-				75C1B7E6770B4B4B8578E510 /* Pods-LKImagePickerControllerDemo.xcconfig */,
+				43ABF09F037E0E5558B31EC5 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -308,16 +318,16 @@
 				BC94FFAF196B540800EF8FC2 /* LKImagePickerControllerSelectViewController.m */,
 				BC94FFB3196B540800EF8FC2 /* LKImagePickerControllerAssetsManager.h */,
 				BC94FFB1196B540800EF8FC2 /* LKImagePickerControllerAssetsManager.m */,
-				BC94FFB5196B540800EF8FC2 /* LKImagePickerControllerCheckmarkView.m */,
 				BC94FFB6196B540800EF8FC2 /* LKImagePickerControllerSelectCell.h */,
 				BC94FFB7196B540800EF8FC2 /* LKImagePickerControllerSelectCell.m */,
 				BC94FFB4196B540800EF8FC2 /* LKImagePickerControllerDetailViewController.h */,
 				BC94FFB2196B540800EF8FC2 /* LKImagePickerControllerDetailViewController.m */,
 				BC94FFB9196B540800EF8FC2 /* LKImagePickerControllerDetailCell.h */,
 				BC94FFB8196B540800EF8FC2 /* LKImagePickerControllerDetailCell.m */,
-				BC94FFBA196B540800EF8FC2 /* LKImagePickerControlelrCheckmarkButton.m */,
-				BC94FFBB196B540800EF8FC2 /* LKImagePickerControlelrCheckmarkButton.h */,
+				BC94FFBB196B540800EF8FC2 /* LKImagePickerControllerCheckmarkButton.h */,
+				BC94FFBA196B540800EF8FC2 /* LKImagePickerControllerCheckmarkButton.m */,
 				BC94FFBC196B540800EF8FC2 /* LKImagePickerControllerCheckmarkView.h */,
+				BC94FFB5196B540800EF8FC2 /* LKImagePickerControllerCheckmarkView.m */,
 				BC94FFBD196B540800EF8FC2 /* LKImagePickerControllerSelectionButton.m */,
 				BC94FFBE196B540800EF8FC2 /* LKImagePickerControllerSelectionButton.h */,
 				BC94FFBF196B540800EF8FC2 /* LKImagePickerControllerAppearance.h */,
@@ -503,7 +513,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-LKImagePickerControllerDemo-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LKImagePickerControllerDemo/Pods-LKImagePickerControllerDemo-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -726,7 +736,7 @@
 		};
 		BC2A379E19397F9600C672B7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 75C1B7E6770B4B4B8578E510 /* Pods-LKImagePickerControllerDemo.xcconfig */;
+			baseConfigurationReference = F15AE65097E7E8161C0692A2 /* Pods-LKImagePickerControllerDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -740,7 +750,7 @@
 		};
 		BC2A379F19397F9600C672B7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 75C1B7E6770B4B4B8578E510 /* Pods-LKImagePickerControllerDemo.xcconfig */;
+			baseConfigurationReference = 221470A05E72C96C09EEDA87 /* Pods-LKImagePickerControllerDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;

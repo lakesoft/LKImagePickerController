@@ -21,4 +21,6 @@
 
 - (void)deselectAll;
 
+- (IBAction)checkmarkTouchded:(id)sender event:(UIEvent*)event;
+
 @end
