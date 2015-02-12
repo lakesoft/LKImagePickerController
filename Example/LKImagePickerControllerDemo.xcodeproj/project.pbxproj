@@ -743,6 +743,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LKImagePickerControllerDemo/LKImagePickerControllerDemo-Prefix.pch";
 				INFOPLIST_FILE = "LKImagePickerControllerDemo/LKImagePickerControllerDemo-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -757,6 +758,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LKImagePickerControllerDemo/LKImagePickerControllerDemo-Prefix.pch";
 				INFOPLIST_FILE = "LKImagePickerControllerDemo/LKImagePickerControllerDemo-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

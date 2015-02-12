@@ -45,11 +45,11 @@
     self.hideBars = !self.hideBars;
     self.navigationController.navigationBar.hidden = self.hideBars;
     CGFloat alpha = self.hideBars ? 0.0 : 1.0;
-    UIColor* color = self.hideBars ? UIColor.blackColor : UIColor.whiteColor;
+//    UIColor* color = self.hideBars ? UIColor.blackColor : UIColor.whiteColor;
     [UIView animateWithDuration:0.2
                      animations:^{
                          self.thumbnailCollectionView.alpha = alpha;
-                         self.collectionView.backgroundColor = color;
+//                         self.collectionView.backgroundColor = color;
                      }];
     [UIApplication.sharedApplication setStatusBarHidden:self.hideBars
                                           withAnimation:UIStatusBarAnimationFade];
@@ -102,6 +102,8 @@
     [UIView animateWithDuration:0.2
                      animations:^{
                          self.collectionView.alpha = 1.0;
+                     } completion:^(BOOL finished) {
+                         self.indexPath = self.indexPath;    // for .current property
                      }];
 }
 
@@ -127,36 +129,28 @@
                                              object:nil];
 
     NSString* cellIdentifier = NSStringFromClass(LKImagePickerControllerDetailCell.class);
-    
     [self.collectionView registerNib:[UINib nibWithNibName:cellIdentifier bundle:LKImagePickerControllerBundleManager.bundle]
           forCellWithReuseIdentifier:cellIdentifier];
+    
     NSString* cellIdentifier2 = NSStringFromClass(LKImagePickerControllerSelectCell.class);
     [self.thumbnailCollectionView registerNib:[UINib nibWithNibName:cellIdentifier2 bundle:LKImagePickerControllerBundleManager.bundle]
                    forCellWithReuseIdentifier:cellIdentifier2];
-    
-    self.collectionView.allowsMultipleSelection = YES;
-    self.thumbnailCollectionView.allowsMultipleSelection = YES;
 
-    for (NSIndexPath* indexPath in self.indexPathsForSelectedItems) {
-        [self.collectionView selectItemAtIndexPath:indexPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
-        [self.thumbnailCollectionView selectItemAtIndexPath:indexPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
-    }
-    
     UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc]
                                           initWithTarget:self action:@selector(_handleLongPress:)];
-    lpgr.minimumPressDuration = 0.4;
+    lpgr.minimumPressDuration = 0.3;
     [self.thumbnailCollectionView addGestureRecognizer:lpgr];
     
     self.collectionView.alpha = 0.0;
     [self performSelector:@selector(_scrollToStartpoint) withObject:nil afterDelay:0.005];
 }
 
--(void) viewWillDisappear:(BOOL)animated {
-    if ([self.navigationController.viewControllers indexOfObject:self]==NSNotFound) {
-        [self.selectViewController setIndexPathsForSelectedItems:self.collectionView.indexPathsForSelectedItems];
-    }
-    [super viewWillDisappear:animated];
-}
+//-(void) viewWillDisappear:(BOOL)animated {
+//    if ([self.navigationController.viewControllers indexOfObject:self]==NSNotFound) {
+//        [self.selectViewController setIndexPathsForSelectedItems:self.collectionView.indexPathsForSelectedItems];
+//    }
+//    [super viewWillDisappear:animated];
+//}
 
 
 - (void)didReceiveMemoryWarning
@@ -197,39 +191,39 @@
 }
 
 #pragma mark - UIScrollViewDelegate
-- (NSInteger)_indexForIndexPath:(NSIndexPath*)indexPath
-{
-    NSInteger index = 0;
-    for (NSInteger section=0; section < indexPath.section; section++) {
-        LKAssetsCollectionEntry* entry = self.assetsCollection.entries[section];
-        index += entry.assets.count;
-    }
-    index += indexPath.item;
-    
-    return index;
-}
+//- (NSInteger)_indexForIndexPath:(NSIndexPath*)indexPath
+//{
+//    NSInteger index = 0;
+//    for (NSInteger section=0; section < indexPath.section; section++) {
+//        LKAssetsCollectionEntry* entry = self.assetsCollection.entries[section];
+//        index += entry.assets.count;
+//    }
+//    index += indexPath.item;
+//    
+//    return index;
+//}
 
-- (NSIndexPath*)_indexPathFromIndex:(NSInteger)index
-{
-    NSInteger section = 0;
-    NSInteger item = 0;
-    NSInteger count = index;
-    while (count) {
-        NSInteger numberOfEntries = self.assetsCollection.entries.count;
-        if (numberOfEntries <= section) {
-            return nil;
-        }
-        LKAssetsCollectionEntry* entry = self.assetsCollection.entries[section];
-        NSInteger numberOfAssets = entry.assets.count;
-        if (count < numberOfAssets) {
-            item = count;
-            break;
-        }
-        count -= numberOfAssets;
-        section++;
-    }
-    return [NSIndexPath indexPathForItem:item inSection:section];
-}
+//- (NSIndexPath*)_indexPathFromIndex:(NSInteger)index
+//{
+//    NSInteger section = 0;
+//    NSInteger item = 0;
+//    NSInteger count = index;
+//    while (count) {
+//        NSInteger numberOfEntries = self.assetsCollection.entries.count;
+//        if (numberOfEntries <= section) {
+//            return nil;
+//        }
+//        LKAssetsCollectionEntry* entry = self.assetsCollection.entries[section];
+//        NSInteger numberOfAssets = entry.assets.count;
+//        if (count < numberOfAssets) {
+//            item = count;
+//            break;
+//        }
+//        count -= numberOfAssets;
+//        section++;
+//    }
+//    return [NSIndexPath indexPathForItem:item inSection:section];
+//}
 
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -262,24 +256,24 @@
         CGFloat dr = dx / self.collectionView.frame.size.width;
         CGPoint thumbnailContentOffset = self.thumbnailCollectionView.contentOffset;
         thumbnailContentOffset.x = thumbnailContentOffset.x - cellSize.width*dr;
+        CGFloat maxX = self.thumbnailCollectionView.contentSize.width - self.thumbnailCollectionView.bounds.size.width;
+        thumbnailContentOffset.x = fmin(thumbnailContentOffset.x, maxX);
         self.thumbnailCollectionView.contentOffset = thumbnailContentOffset;
     }
 
     if (fmod(self.collectionView.contentOffset.x, size.width) == 0) {
-        if (self.scrollingByThumbnailView) {
-            self.scrollingByThumbnailView = NO;
-        } else {
-            CGPoint p = self.contentOffset;
-            p.x += size.width / 2.0;
-            p.y += size.height / 2.0;
-            NSIndexPath* indexPath = [self.collectionView indexPathForItemAtPoint:p];
-            if (indexPath) {
-                self.indexPath = indexPath;
-                [self.thumbnailCollectionView scrollToItemAtIndexPath:self.indexPath
-                                                     atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally
-                                                             animated:YES];
-            }
+        CGPoint p = self.contentOffset;
+        p.x += size.width / 2.0;
+        p.y += size.height / 2.0;
+        NSIndexPath* indexPath = [self.collectionView indexPathForItemAtPoint:p];
+        if (indexPath) {
+            self.indexPath = indexPath;
+
+            [self.thumbnailCollectionView scrollToItemAtIndexPath:self.indexPath
+                                                 atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally
+                                                         animated:YES];
         }
+        self.scrollingByThumbnailView = NO;
     }
 }
 
@@ -299,15 +293,22 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    LKAsset* asset = [self.assetsCollection assetForIndexPath:indexPath];
+
     if (collectionView == self.collectionView) {
         LKImagePickerControllerDetailCell* cell = (LKImagePickerControllerDetailCell*)[collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass(LKImagePickerControllerDetailCell.class)
                                                                                 forIndexPath:indexPath];
-        cell.asset = [self.assetsCollection assetForIndexPath:indexPath];
+        cell.asset = asset;
+        cell.checked = [self.assetsManager containsSelectedAsset:asset];
         return cell;
     } else {
         LKImagePickerControllerSelectCell* cell = (LKImagePickerControllerSelectCell*)[collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass(LKImagePickerControllerSelectCell.class)
                                                                                                                                 forIndexPath:indexPath];
-        cell.asset = [self.assetsCollection assetForIndexPath:indexPath];
+        cell.asset = asset;
+        cell.checkmarkUserInteractionEnabled = NO;
+        cell.checkmarkHiddenMode = YES; // call me at first !
+        cell.current = [self.indexPath isEqual:indexPath];
+        cell.checked = [self.assetsManager containsSelectedAsset:asset];
         return cell;
     }
 }
@@ -316,25 +317,21 @@
 #pragma mark - UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.assetsManager selectAsset:[self.assetsCollection assetForIndexPath:indexPath]];
-    if (collectionView == self.collectionView) {
-        [self.thumbnailCollectionView selectItemAtIndexPath:indexPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
-    } else {
-        [self.collectionView selectItemAtIndexPath:indexPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
+    if (collectionView == self.thumbnailCollectionView) {
+        self.scrollingByThumbnailView = YES;
+        [self.collectionView scrollToItemAtIndexPath:indexPath
+                                    atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally
+                                            animated:YES];
     }
-    [self _updateControls];
 }
 
-- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    [self.assetsManager deselectAsset:[self.assetsCollection assetForIndexPath:indexPath]];
-    if (collectionView == self.collectionView) {
-        [self.thumbnailCollectionView deselectItemAtIndexPath:indexPath animated:NO];
-    } else {
-        [self.collectionView deselectItemAtIndexPath:indexPath animated:NO];
-    }
-    [self _updateControls];
-}
+//- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    [self.assetsManager deselectAsset:[self.assetsCollection assetForIndexPath:indexPath]];
+//    if (collectionView == self.thumbnailCollectionView) {
+//    }
+//    [self _updateControls];
+//}
 
 
 - (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
@@ -345,19 +342,19 @@
     }
 }
 
-- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (self.assetsManager.reachedMaximumOfSelections) {
-        if (collectionView == self.collectionView) {
-            LKImagePickerControllerDetailCell* cell = (LKImagePickerControllerDetailCell*)[collectionView cellForItemAtIndexPath:indexPath];
-            [cell alert];
-        } else {
-            LKImagePickerControllerSelectCell* cell = (LKImagePickerControllerSelectCell*)[collectionView cellForItemAtIndexPath:indexPath];
-            [cell alert];
-        }
-    }
-    return !self.assetsManager.reachedMaximumOfSelections;
-}
+//- (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    if (self.assetsManager.reachedMaximumOfSelections) {
+//        if (collectionView == self.collectionView) {
+//            LKImagePickerControllerDetailCell* cell = (LKImagePickerControllerDetailCell*)[collectionView cellForItemAtIndexPath:indexPath];
+//            [cell alert];
+//        } else {
+//            LKImagePickerControllerSelectCell* cell = (LKImagePickerControllerSelectCell*)[collectionView cellForItemAtIndexPath:indexPath];
+//            [cell alert];
+//        }
+//    }
+//    return !self.assetsManager.reachedMaximumOfSelections;
+//}
 
 //- (BOOL)_collectionView:(UICollectionView*)collectionView shouldSelectDeSelectItemAtIndexPath:(NSIndexPath*)indexPath
 //{
@@ -387,5 +384,45 @@
 //}
 
 
+#pragma mark - Actions
+- (IBAction)checkmarkTouchded:(id)sender event:(UIEvent*)event
+{
+    UITouch* touch = [[event allTouches] anyObject];
+    CGPoint p = [touch locationInView:self.collectionView];
+    NSIndexPath* indexPath = [self.collectionView indexPathForItemAtPoint:p];
+    
+    LKImagePickerControllerDetailCell* cell = (LKImagePickerControllerDetailCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
+    
+    if (cell.checked) {
+        if (self.assetsManager.reachedMaximumOfSelections) {
+            [cell alert];
+            cell.checked = NO;
+        } else {
+            [self.assetsManager selectAsset:[self.assetsCollection assetForIndexPath:indexPath]];
+            [self _updateControls];
+        }
+    } else {
+        [self.assetsManager deselectAsset:[self.assetsCollection assetForIndexPath:indexPath]];
+        [self _updateControls];
+    }
+
+    LKImagePickerControllerDetailCell* detailCell = (LKImagePickerControllerDetailCell*)[self.thumbnailCollectionView cellForItemAtIndexPath:indexPath];
+    detailCell.checked = cell.checked;
+}
+
+
+- (void)setIndexPath:(NSIndexPath *)indexPath
+{
+    LKImagePickerControllerSelectCell* cell;
+    
+    cell = (LKImagePickerControllerSelectCell*)[self.thumbnailCollectionView cellForItemAtIndexPath:_indexPath];
+    cell.current = NO;
+    
+    _indexPath = indexPath;
+
+
+    cell = (LKImagePickerControllerSelectCell*)[self.thumbnailCollectionView cellForItemAtIndexPath:_indexPath];
+    cell.current = YES;
+}
 
 @end

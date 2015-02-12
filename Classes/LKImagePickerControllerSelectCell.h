@@ -13,6 +13,9 @@
 
 @property (nonatomic, weak) LKAsset* asset;
 @property (nonatomic, assign) BOOL checked;
+@property (nonatomic, assign) BOOL checkmarkUserInteractionEnabled;
+@property (nonatomic, assign) BOOL checkmarkHiddenMode;
+@property (nonatomic, assign) BOOL current;
 
 - (void)alert;
 

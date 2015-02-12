@@ -14,6 +14,7 @@ extern NSString * const LKImagePickerControllerDetailCellSingleTapNotification;
 @interface LKImagePickerControllerDetailCell : UICollectionViewCell
 
 @property (nonatomic, weak) LKAsset* asset;
+@property (nonatomic, assign) BOOL checked;
 
 - (void)didEndDisplay;
 - (void)alert;

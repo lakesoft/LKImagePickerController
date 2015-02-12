@@ -54,6 +54,9 @@
 - (void)setChecked:(BOOL)checked
 {
     self.checkmarkView.checked = checked;
+    if (self.hiddenMode) {
+        self.checkmarkView.hidden = !checked;
+    }
 }
 - (BOOL)checked
 {

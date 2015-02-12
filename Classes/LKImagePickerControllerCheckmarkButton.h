@@ -11,6 +11,7 @@
 @interface LKImagePickerControllerCheckmarkButton : UIButton
 
 @property (nonatomic, assign) BOOL checked;
+@property (nonatomic, assign) BOOL hiddenMode;  // if !checked then be hidden.
 + (instancetype)checkmarkButtonWithTarget:(id)target action:(SEL)action size:(CGSize)size;
 - (void)alert;
 

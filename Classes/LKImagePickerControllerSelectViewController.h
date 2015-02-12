@@ -16,7 +16,7 @@
 @property (nonatomic, weak) LKImagePickerControllerAssetsManager* assetsManager;
 
 - (void)didSelectAssetsGroup:(LKAssetsGroup*)assetsGroup;
-- (void)setIndexPathsForSelectedItems:(NSArray*)indexPathsForSelectedItems;    // for callback
+//- (void)setIndexPathsForSelectedItems:(NSArray*)indexPathsForSelectedItems;    // for callback
 - (void)didChangeFilterType;    // for callback
 
 - (void)deselectAll;

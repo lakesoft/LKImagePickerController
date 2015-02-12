@@ -53,6 +53,24 @@
 - (void)setChecked:(BOOL)checked
 {
     self.checkmarkButton.checked = checked;
+    [self setNeedsDisplay];
+}
+
+- (void)setCheckmarkUserInteractionEnabled:(BOOL)checkmarkUserInteractionEnabled
+{
+    self.checkmarkButton.userInteractionEnabled = checkmarkUserInteractionEnabled;
+}
+- (void)setCheckmarkHiddenMode:(BOOL)checkmarkHiddenMode
+{
+    self.checkmarkButton.hiddenMode = checkmarkHiddenMode;
+}
+
+- (void)setCurrent:(BOOL)current
+{
+    _current = current;
+    self.photoImageView.alpha = current ? 1.0 : 0.6;
+    [self setNeedsDisplay];
+
 }
 
 @end

@@ -16,6 +16,8 @@
 @property (nonatomic, weak) LKAssetsCollection* assetsCollection;
 @property (nonatomic, weak) LKImagePickerControllerAssetsManager* assetsManager;
 @property (nonatomic, weak) NSIndexPath* indexPath;
-@property (nonatomic, weak) NSArray* indexPathsForSelectedItems;    // strong?
 @property (nonatomic, weak) LKImagePickerControllerSelectViewController* selectViewController;
+
+- (IBAction)checkmarkTouchded:(id)sender event:(UIEvent*)event;
+
 @end

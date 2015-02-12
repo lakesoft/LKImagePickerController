@@ -12,6 +12,7 @@
 "Common.NoPics" = "画像がありません";
 "Common.NoSelections" = "画像が選択されていません";
 "Common.Clear" = "クリア";
+"Common.Close" = "閉じる";
 
 "Assets.Groups" = "グループ";
 

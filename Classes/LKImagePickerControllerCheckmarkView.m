@@ -20,7 +20,7 @@
 - (void)_setup
 {
     self.userInteractionEnabled = NO;
-    self.backgroundColor = [UIColor colorWithWhite:0.5 alpha:0.05];
+    self.backgroundColor = UIColor.clearColor;
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder
@@ -40,6 +40,32 @@
     return self;
 }
 
+- (void)_drawWithStrokeColor:(UIColor*)strokeColor fillColor:(UIColor*)fillColor lineWidth:(CGFloat)lineWidth offset:(CGSize)offset
+{
+    [strokeColor setStroke];
+    [fillColor setFill];
+    
+    CGRect bounds = CGRectOffset(self.bounds, offset.width, offset.height);
+    
+    UIBezierPath* circlePath = [UIBezierPath bezierPathWithOvalInRect:CGRectInset(bounds, LKImagePickerControllerCheckmarkViewMargin, LKImagePickerControllerCheckmarkViewMargin)];
+    if (self.disabled && !self.alerting) {
+        strokeColor = UIColor.whiteColor;
+        [strokeColor setStroke];
+    } else {
+        [circlePath fill];
+    }
+    [circlePath setLineWidth:lineWidth];
+    [circlePath stroke];
+    
+    UIBezierPath* linePath = UIBezierPath.bezierPath;
+    CGSize size = bounds.size;
+    [linePath moveToPoint:CGPointMake(size.width*0.30+offset.width, size.height*0.5 + offset.height)];
+    [linePath addLineToPoint:CGPointMake(size.width*0.45+offset.width, size.height*0.65 + offset.height)];
+    [linePath addLineToPoint:CGPointMake(size.width*0.70+offset.width, size.height*0.37 + offset.height)];
+    [linePath setLineWidth:lineWidth];
+    [linePath stroke];
+    
+}
 - (void)drawRect:(CGRect)rect
 {
     UIColor* strokeColor = LKImagePickerControllerAppearance.sharedAppearance.foregroundColor;
@@ -58,26 +84,11 @@
         lineWidth = 1.0;
     }
 
-    [strokeColor setStroke];
-    [fillColor setFill];
-
-    UIBezierPath* circlePath = [UIBezierPath bezierPathWithOvalInRect:CGRectInset(self.bounds, LKImagePickerControllerCheckmarkViewMargin, LKImagePickerControllerCheckmarkViewMargin)];
-    if (self.disabled && !self.alerting) {
-        strokeColor = UIColor.whiteColor;
-        [strokeColor setStroke];
-    } else {
-        [circlePath fill];
-    }
-    [circlePath setLineWidth:lineWidth];
-    [circlePath stroke];
-    
-    UIBezierPath* linePath = UIBezierPath.bezierPath;
-    CGSize size = self.frame.size;
-    [linePath moveToPoint:CGPointMake(size.width*0.30, size.height*0.5)];
-    [linePath addLineToPoint:CGPointMake(size.width*0.45, size.height*0.65)];
-    [linePath addLineToPoint:CGPointMake(size.width*0.70, size.height*0.37)];
-    [linePath setLineWidth:lineWidth];
-    [linePath stroke];
+//    if (!self.checked) {
+//        UIColor* shadowColor = [UIColor colorWithWhite:0.0 alpha:0.2];
+//        [self _drawWithStrokeColor:shadowColor fillColor:UIColor.clearColor lineWidth:lineWidth*1.5 offset:CGSizeMake(2.0, 1.0)];
+//    }
+    [self _drawWithStrokeColor:strokeColor fillColor:fillColor lineWidth:lineWidth offset:CGSizeMake(0, 0)];
 }
 
 - (void)setDisabled:(BOOL)disabled
