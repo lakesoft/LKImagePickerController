@@ -425,13 +425,13 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:[LKImagePickerControllerBundleManager localizedStringForKey:@"Common.Back"] style:UIBarButtonItemStylePlain target:nil action:nil];
     UIBarButtonItem* cancelItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(_tappedCancel:)];
     UIBarButtonItem* clearItem = [[UIBarButtonItem alloc] initWithTitle:[LKImagePickerControllerBundleManager localizedStringForKey:@"Common.Clear"]
-                                                                  style:UIBarButtonItemStyleBordered
+                                                                  style:UIBarButtonItemStylePlain
                                                                  target:self
                                                                  action:@selector(_tappedClear:)];
     
 //    UIBarButtonItem* groupItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize target:self action:@selector(_tappedGroup:)];
 
-    UIBarButtonItem* filterItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleBordered target:self action:@selector(_tappedFilter:)];
+    UIBarButtonItem* filterItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:self action:@selector(_tappedFilter:)];
 
     UIBarButtonItem *flexibleSpaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
 
@@ -440,14 +440,14 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     if ([self.imagePickerController.imagePickerControllerDelegate respondsToSelector:@selector(completionButtonTitle)]) {
         doneItem = [[UIBarButtonItem alloc] initWithTitle:self.imagePickerController.imagePickerControllerDelegate.completionButtonTitle
 
-                                                    style:UIBarButtonItemStyleBordered
+                                                    style:UIBarButtonItemStylePlain
                                                    target:self
                                                    action:@selector(_tappedDone:)];
     } else {
         doneItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(_tappedDone:)];
     }
     
-    self.emptyItem = [[UIBarButtonItem alloc] initWithTitle:LK_IMAGE_PICKER_CONTROLLER_SPACHE style:UIBarButtonItemStyleBordered target:nil action:nil];
+    self.emptyItem = [[UIBarButtonItem alloc] initWithTitle:LK_IMAGE_PICKER_CONTROLLER_SPACHE style:UIBarButtonItemStylePlain target:nil action:nil];
 
     LKImagePickerControllerSelectionButton* selectionButton =
     [LKImagePickerControllerSelectionButton selectionButtonTarget:self action:@selector(_tappedSelectionNumber:) assetsManager:self.assetsManager];
