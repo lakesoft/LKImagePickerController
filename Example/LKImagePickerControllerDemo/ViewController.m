@@ -9,7 +9,7 @@
 #import "ViewController.h"
 #import "LKImagePickerController.h"
 
-@interface ViewController ()
+@interface ViewController () <LKImagePickerControllerDelegate>
 
 @end
 
@@ -23,6 +23,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     LKImagePickerController* controller = [[LKImagePickerController alloc] init];
+    controller.imagePickerControllerDelegate = self;
 //    controller.tintColor = [UIColor colorWithRed:0.078 green:0.67 blue:0.23 alpha:1.000];
     controller.maximumOfSelections = 20;
     [self presentViewController:controller animated:NO completion:nil];
@@ -34,6 +35,15 @@
 }
 
 - (IBAction)openPicker:(id)sender {
+}
+
+- (void)imagePickerController:(LKImagePickerController *)imagePickerController didFinishWithAssets:(NSArray *)selectedAssets {
+    
+}
+
+- (BOOL)canSelectGroups
+{
+    return NO;
 }
 
 @end

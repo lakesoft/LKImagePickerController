@@ -19,6 +19,7 @@
 - (BOOL)enableCompletionButtonWhenNoSelections;
 - (UIBarButtonItem*)rightBarButtonItem;
 - (BOOL)closeWhenFinish;
+- (BOOL)canSelectGroups;
 
 // [1]selected -> [2]deselected
 - (void)imagePickerController:(LKImagePickerController*)imagePickerController selectedAssets:(NSArray*)selectedAssets;
@@ -31,6 +32,8 @@
 @property (nonatomic, strong) UIColor* tintColor;
 @property (nonatomic, assign) NSInteger maximumOfSelections;    // 0=No limit
 @property (nonatomic, weak) IBOutlet id <LKImagePickerControllerDelegate> imagePickerControllerDelegate;
+
+@property (nonatomic, weak, readonly) NSArray* selectedAssets;
 
 - (void)deselectAll;
 

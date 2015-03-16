@@ -75,4 +75,9 @@
     [self.selectViewController deselectAll];
 }
 
+- (NSArray*)selectedAssets
+{
+    return self.assetsManager.arrayOfSelectedAssets;
+}
+
 @end

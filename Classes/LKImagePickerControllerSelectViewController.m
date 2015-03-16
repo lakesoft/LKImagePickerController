@@ -92,6 +92,7 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     self.displayingSelectedOnly = NO;
     [self _reloadAndSetupSelections];
     [self.titleButton setTitle:self._titleString forState:UIControlStateNormal];
+    self.title = self.assetsCollection.assetsGroup.name;
     [self _updateControls];
 }
 
@@ -481,14 +482,21 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     
 
     // Title
-    UIButton* titleButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    titleButton.titleLabel.font = [UIFont boldSystemFontOfSize:17.0];
-    [titleButton addTarget:self action:@selector(_tappedGroup:) forControlEvents:UIControlEventTouchUpInside];
-//    [titleButton setTitleColor:tintColor forState:UIControlStateNormal];
-    CGRect frame = self.navigationController.navigationBar.frame;
-    titleButton.frame = frame;
-    self.navigationItem.titleView = titleButton;
-    self.titleButton = titleButton;
+    BOOL canSelectGroups = YES;
+    if ([self.imagePickerController.imagePickerControllerDelegate respondsToSelector:@selector(canSelectGroups)]) {
+        canSelectGroups = [self.imagePickerController.imagePickerControllerDelegate canSelectGroups];
+    }
+
+    if (canSelectGroups) {
+        UIButton* titleButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        titleButton.titleLabel.font = [UIFont boldSystemFontOfSize:17.0];
+        [titleButton addTarget:self action:@selector(_tappedGroup:) forControlEvents:UIControlEventTouchUpInside];
+    //    [titleButton setTitleColor:tintColor forState:UIControlStateNormal];
+        CGRect frame = self.navigationController.navigationBar.frame;
+        titleButton.frame = frame;
+        self.navigationItem.titleView = titleButton;
+        self.titleButton = titleButton;
+    }
     
     // Collection view
     self.collectionView.allowsMultipleSelection = YES;
