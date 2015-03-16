@@ -30,7 +30,7 @@
 
 @property (nonatomic, strong) UIColor* tintColor;
 @property (nonatomic, assign) NSInteger maximumOfSelections;    // 0=No limit
-@property (nonatomic, weak) id <LKImagePickerControllerDelegate> imagePickerControllerDelegate;
+@property (nonatomic, weak) IBOutlet id <LKImagePickerControllerDelegate> imagePickerControllerDelegate;
 
 - (void)deselectAll;
 
