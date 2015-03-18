@@ -320,7 +320,11 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     } else {
         self.navigationItem.rightBarButtonItem = self.doneItem;
     }
-    self.navigationItem.leftBarButtonItem = self.cancelItem;
+    if ([self.imagePickerController.imagePickerControllerDelegate respondsToSelector:@selector(leftBarButtonItem)]) {
+        self.navigationItem.leftBarButtonItem = self.imagePickerController.imagePickerControllerDelegate.leftBarButtonItem;
+    } else {
+        self.navigationItem.leftBarButtonItem = self.cancelItem;
+    }
 }
 
 

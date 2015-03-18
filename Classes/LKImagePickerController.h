@@ -17,9 +17,11 @@
 @optional
 - (NSString*)completionButtonTitle;
 - (BOOL)enableCompletionButtonWhenNoSelections;
-- (UIBarButtonItem*)rightBarButtonItem;
 - (BOOL)closeWhenFinish;
 - (BOOL)canSelectGroups;
+
+- (UIBarButtonItem*)leftBarButtonItem;
+- (UIBarButtonItem*)rightBarButtonItem;
 
 // [1]selected -> [2]deselected
 - (void)imagePickerController:(LKImagePickerController*)imagePickerController selectedAssets:(NSArray*)selectedAssets;
