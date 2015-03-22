@@ -22,6 +22,7 @@
 
 - (UIBarButtonItem*)leftBarButtonItem;
 - (UIBarButtonItem*)rightBarButtonItem;
+- (UIBarButtonItem*)rightBarButtonItem2;
 
 // [1]selected -> [2]deselected
 - (void)imagePickerController:(LKImagePickerController*)imagePickerController selectedAssets:(NSArray*)selectedAssets;
@@ -38,5 +39,6 @@
 @property (nonatomic, weak, readonly) NSArray* selectedAssets;
 
 - (void)deselectAll;
+- (void)displayMainScreen;
 
 @end

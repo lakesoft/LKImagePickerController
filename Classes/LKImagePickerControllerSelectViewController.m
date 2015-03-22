@@ -459,9 +459,16 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     UIBarButtonItem* buttonItem = [[UIBarButtonItem alloc] initWithCustomView:selectionButton];
     buttonItem.width = selectionButton.maxButtonWidth;
 
-    LKImagePickerControllerCheckmarkButton* checkButton = [LKImagePickerControllerCheckmarkButton checkmarkButtonWithTarget:self action:@selector(_tappedCheckbutton:) size:CGSizeMake(30.0, 30.0)];
-    checkButton.hidden = YES;
-    UIBarButtonItem* checkItem = [[UIBarButtonItem alloc] initWithCustomView:checkButton];
+    
+    UIBarButtonItem* checkItem = nil;
+    LKImagePickerControllerCheckmarkButton* checkButton = nil;
+    if ([self.imagePickerController.imagePickerControllerDelegate respondsToSelector:@selector(rightBarButtonItem2)]) {
+        checkItem = self.imagePickerController.imagePickerControllerDelegate.rightBarButtonItem2;
+    } else {
+        checkButton = [LKImagePickerControllerCheckmarkButton checkmarkButtonWithTarget:self action:@selector(_tappedCheckbutton:) size:CGSizeMake(30.0, 30.0)];
+        checkButton.hidden = YES;
+        checkItem = [[UIBarButtonItem alloc] initWithCustomView:checkButton];
+    }
     
     LKImagePickerControllerCheckmarkButton* dummyButton = [LKImagePickerControllerCheckmarkButton checkmarkButtonWithTarget:nil action:nil size:CGSizeMake(30.0, 30.0)];
     dummyButton.hidden = YES;
@@ -591,6 +598,11 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     [self.collectionView reloadData];
     [NSNotificationCenter.defaultCenter postNotificationName:LKImagePickerControllerAssetsManagerDidAllDeselectNotification
                                                       object:self];
+}
+
+- (void)displayMainScreen
+{
+    self.displayingSelectedOnly = NO;
 }
 
 

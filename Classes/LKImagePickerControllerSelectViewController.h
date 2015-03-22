@@ -17,10 +17,13 @@
 
 - (void)didSelectAssetsGroup:(LKAssetsGroup*)assetsGroup;
 //- (void)setIndexPathsForSelectedItems:(NSArray*)indexPathsForSelectedItems;    // for callback
+
 - (void)didChangeFilterType;    // for callback
-
-- (void)deselectAll;
-
 - (IBAction)checkmarkTouchded:(id)sender event:(UIEvent*)event;
+
+
+// API (manupilations)
+- (void)deselectAll;
+- (void)displayMainScreen;
 
 @end

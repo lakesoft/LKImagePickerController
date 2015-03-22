@@ -75,6 +75,11 @@
     [self.selectViewController deselectAll];
 }
 
+- (void)displayMainScreen
+{
+    [self.selectViewController displayMainScreen];
+}
+
 - (NSArray*)selectedAssets
 {
     return self.assetsManager.arrayOfSelectedAssets;

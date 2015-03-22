@@ -10,7 +10,7 @@
 #import "LKImagePickerController.h"
 
 @interface ViewController () <LKImagePickerControllerDelegate>
-
+@property (nonatomic, strong) LKImagePickerController* controller;
 @end
 
 @implementation ViewController
@@ -22,11 +22,11 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    LKImagePickerController* controller = [[LKImagePickerController alloc] init];
-    controller.imagePickerControllerDelegate = self;
+    self.controller = [[LKImagePickerController alloc] init];
+    self.controller.imagePickerControllerDelegate = self;
 //    controller.tintColor = [UIColor colorWithRed:0.078 green:0.67 blue:0.23 alpha:1.000];
-    controller.maximumOfSelections = 20;
-    [self presentViewController:controller animated:NO completion:nil];
+    self.controller.maximumOfSelections = 20;
+    [self presentViewController:self.controller animated:NO completion:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -45,6 +45,12 @@
 //{
 //    return nil;
 //}
+- (UIBarButtonItem*)rightBarButtonItem2
+{
+    return [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
+                                                         target:self.controller
+                                                         action:@selector(displayMainScreen)];
+}
 
 - (BOOL)canSelectGroups
 {
