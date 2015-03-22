@@ -152,6 +152,11 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
 - (void)_reloadAndSetupSelections
 {
     [self.collectionView reloadData];
+    CATransition *animation = [CATransition animation];[animation setType:kCATransitionPush];
+    [animation setSubtype:kCATransitionFade];
+    [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+    [animation setFillMode:kCAFillModeBoth];[animation setDuration:0.75];
+    [self.collectionView.layer addAnimation:animation forKey:@"CATransitionReloadAnimation"];
 
     NSInteger lastSection = self.displayingAssetsCollection.entries.count-1;
     if (lastSection >= 0) {

@@ -25,7 +25,7 @@
     [self.tableView registerClass:UITableViewCell.class forCellReuseIdentifier:@"FilterCell"];
     
     self.firstType = self.assetsManager.filter.type;
-    NSLog(@"%zd", self.firstType);
+//    NSLog(@"%zd", self.firstType);
 }
 
 - (void)didReceiveMemoryWarning
