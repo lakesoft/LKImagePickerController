@@ -333,19 +333,37 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
 {
     self.selectionButton.numberOfSelections = self.assetsManager.numberOfSelected;
     self.selectionButton.active = self.displayingSelectedOnly;
+    BOOL enabled = self.assetsManager.numberOfSelected > 0;
+    
     if ([self.imagePickerController.imagePickerControllerDelegate respondsToSelector:@selector(enableCompletionButtonWhenNoSelections)]) {
         if (self.imagePickerController.imagePickerControllerDelegate.enableCompletionButtonWhenNoSelections) {
             self.doneItem.enabled = YES;
         } else {
-            self.doneItem.enabled = self.assetsManager.numberOfSelected > 0;
+            self.doneItem.enabled = enabled;
         }
     } else {
-        self.doneItem.enabled = self.assetsManager.numberOfSelected > 0;
+        self.doneItem.enabled = enabled;
     }
-    self.clearItem.enabled = self.assetsManager.numberOfSelected > 0;
+    
+    self.clearItem.enabled = enabled;
 
+    if (self.displayingSelectedOnly) {
+        if ([self.imagePickerController.imagePickerControllerDelegate respondsToSelector:@selector(disableRightBarButtonItem2WhenNoSelected)]) {
+            if ([self.imagePickerController.imagePickerControllerDelegate respondsToSelector:@selector(rightBarButtonItem2)]) {
+                self.navigationItem.rightBarButtonItem.enabled = enabled;
+            }
+        }
+    } else {
+        if ([self.imagePickerController.imagePickerControllerDelegate respondsToSelector:@selector(disableRightBarButtonItemWhenNoSelected)]) {
+            if ([self.imagePickerController.imagePickerControllerDelegate respondsToSelector:@selector(rightBarButtonItem)]) {
+                self.navigationItem.rightBarButtonItem.enabled = enabled;
+            }
+        }
+    }
+    
+    
     self.filterItem.title = self.displayingSelectedOnly ? LK_IMAGE_PICKER_CONTROLLER_SPACHE : self.assetsManager.filter.description;
-    self.checkButton.checked = self.assetsManager.numberOfSelected > 0 && self._allSelected;
+    self.checkButton.checked = enabled && self._allSelected;
     
     BOOL emptyCollection = (self.displayingAssetsCollection.numberOfAssets == 0);
     self.emptyView.alpha = emptyCollection ? 1.0 : 0.0;

@@ -51,6 +51,10 @@
                                                          target:self.controller
                                                          action:@selector(displayMainScreen)];
 }
+- (BOOL)disableRightBarButtonItem2WhenNoSelected
+{
+    return YES;
+}
 
 - (BOOL)canSelectGroups
 {

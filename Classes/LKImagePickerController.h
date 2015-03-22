@@ -22,6 +22,8 @@
 
 - (UIBarButtonItem*)leftBarButtonItem;
 - (UIBarButtonItem*)rightBarButtonItem;
+- (BOOL)disableRightBarButtonItemWhenNoSelected;
+- (BOOL)disableRightBarButtonItem2WhenNoSelected;
 - (UIBarButtonItem*)rightBarButtonItem2;
 
 // [1]selected -> [2]deselected
