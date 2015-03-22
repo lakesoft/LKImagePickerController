@@ -20,11 +20,19 @@
 - (BOOL)closeWhenFinish;
 - (BOOL)canSelectGroups;
 
+// Main Screen
 - (UIBarButtonItem*)leftBarButtonItem;
 - (UIBarButtonItem*)rightBarButtonItem;
 - (BOOL)disableRightBarButtonItemWhenNoSelected;
-- (BOOL)disableRightBarButtonItem2WhenNoSelected;
+
+// Selected Pictures Screen
 - (UIBarButtonItem*)rightBarButtonItem2;
+- (BOOL)disableRightBarButtonItem2WhenNoSelected;
+
+// Detail Screen
+- (UIBarButtonItem*)rightBarButtonItem3;
+- (BOOL)disableRightBarButtonItem3WhenNoSelected;
+
 
 // [1]selected -> [2]deselected
 - (void)imagePickerController:(LKImagePickerController*)imagePickerController selectedAssets:(NSArray*)selectedAssets;
@@ -41,6 +49,6 @@
 @property (nonatomic, weak, readonly) NSArray* selectedAssets;
 
 - (void)deselectAll;
-- (void)displayMainScreen;
+- (void)displayMainScreenAnimated:(BOOL)animated;
 
 @end

@@ -11,6 +11,7 @@
 #import "LKImagePickerControllerSelectCell.h"
 #import "LKImagePickerControllerSelectionButton.h"
 #import "LKImagePickerControllerBundleManager.h"
+#import "LKImagePickerController.h"
 
 #define LKImagePickerControlDetailThumbnailSize (CGSizeMake(50.0,50.0))
 
@@ -30,6 +31,11 @@
 #pragma mark - Privates
 - (void)_updateControls
 {
+    if ([self.selectViewController.imagePickerController.imagePickerControllerDelegate respondsToSelector:@selector(disableRightBarButtonItem3WhenNoSelected)]) {
+        if ([self.selectViewController.imagePickerController.imagePickerControllerDelegate respondsToSelector:@selector(rightBarButtonItem3)]) {
+            self.navigationItem.rightBarButtonItem.enabled = self.assetsManager.numberOfSelected > 0;
+        }
+    }
 }
 - (void)_tappedClear:(id)sender
 {
@@ -143,6 +149,12 @@
     
     self.collectionView.alpha = 0.0;
     [self performSelector:@selector(_scrollToStartpoint) withObject:nil afterDelay:0.005];
+    
+    if ([self.selectViewController.imagePickerController.imagePickerControllerDelegate respondsToSelector:@selector(rightBarButtonItem3)]) {
+        self.navigationItem.rightBarButtonItem = self.selectViewController.imagePickerController.imagePickerControllerDelegate.rightBarButtonItem3;
+    }
+    
+    [self _updateControls];
 }
 
 //-(void) viewWillDisappear:(BOOL)animated {

@@ -623,14 +623,14 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
                                                       object:self];
 }
 
-- (void)displayMainScreen
+- (void)displayMainScreenAnimated:(BOOL)animated
 {
-    self.displayingSelectedOnly = NO;
+    [self _setDisplayingSelectedOnly:NO animated:animated];
 }
 
 
 #pragma mark - Properties
-- (void)setDisplayingSelectedOnly:(BOOL)displayingSelectedOnly
+- (void)_setDisplayingSelectedOnly:(BOOL)displayingSelectedOnly animated:(BOOL)animated
 {
     if (_displayingSelectedOnly == displayingSelectedOnly) {
         return;
@@ -645,14 +645,16 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     }
     [self _reloadAndSetupSelections];
     
-    CATransition *animation = [CATransition animation];
-    [animation setType:kCATransitionReveal];
-    [animation setSubtype:_displayingSelectedOnly ? kCATransitionFromTop: kCATransitionFromBottom];
-    [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut]];
-    [animation setFillMode:kCAFillModeBoth];
-    [animation setDuration:0.5];
-    [self.collectionView.layer addAnimation:animation forKey:@"CATransitionReloadAnimation"];
-    
+    if (animated) {
+        CATransition *animation = [CATransition animation];
+        [animation setType:kCATransitionReveal];
+        [animation setSubtype:_displayingSelectedOnly ? kCATransitionFromTop: kCATransitionFromBottom];
+        [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut]];
+        [animation setFillMode:kCAFillModeBoth];
+        [animation setDuration:0.5];
+        [self.collectionView.layer addAnimation:animation forKey:@"CATransitionReloadAnimation"];
+    }
+
     if (_displayingSelectedOnly) {
         //        self.title = [LKImagePickerControllerBundleManager localizedStringForKey:@"SelectionScreen.Title"];
         [self.titleButton setTitle:[LKImagePickerControllerBundleManager localizedStringForKey:@"SelectionScreen.Title"]
@@ -676,6 +678,10 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     [self _updateControls];
 }
 
+- (void)setDisplayingSelectedOnly:(BOOL)displayingSelectedOnly
+{
+    [self _setDisplayingSelectedOnly:displayingSelectedOnly animated:YES];
+}
 
 
 #pragma mark - UICollectionViewDataSource

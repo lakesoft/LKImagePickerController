@@ -75,9 +75,10 @@
     [self.selectViewController deselectAll];
 }
 
-- (void)displayMainScreen
+- (void)displayMainScreenAnimated:(BOOL)animated
 {
-    [self.selectViewController displayMainScreen];
+    [self.selectViewController displayMainScreenAnimated:animated];
+    [self popToRootViewControllerAnimated:animated];
 }
 
 - (NSArray*)selectedAssets

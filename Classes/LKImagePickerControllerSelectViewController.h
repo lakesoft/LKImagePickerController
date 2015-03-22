@@ -24,6 +24,6 @@
 
 // API (manupilations)
 - (void)deselectAll;
-- (void)displayMainScreen;
+- (void)displayMainScreenAnimated:(BOOL)animated;
 
 @end

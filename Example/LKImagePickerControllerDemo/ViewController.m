@@ -45,13 +45,18 @@
 //{
 //    return nil;
 //}
-- (UIBarButtonItem*)rightBarButtonItem2
+- (void)_on3
+{
+    [self.controller displayMainScreenAnimated:YES];
+}
+
+- (UIBarButtonItem*)rightBarButtonItem3
 {
     return [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
-                                                         target:self.controller
-                                                         action:@selector(displayMainScreen)];
+                                                         target:self
+                                                         action:@selector(_on3)];
 }
-- (BOOL)disableRightBarButtonItem2WhenNoSelected
+- (BOOL)disableRightBarButtonItem3WhenNoSelected
 {
     return YES;
 }
