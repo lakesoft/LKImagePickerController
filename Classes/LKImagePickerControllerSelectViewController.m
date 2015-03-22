@@ -94,6 +94,10 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     [self.titleButton setTitle:self._titleString forState:UIControlStateNormal];
     self.title = self.assetsCollection.assetsGroup.name;
     [self _updateControls];
+    
+    [UIView animateWithDuration:0.2 animations:^{
+        self.emptyView.alpha = 1.0;
+    }];
 }
 
 - (LKAssetsCollection*)_assetsCollectionWithAssetsGroup:(LKAssetsGroup*)assetsGroup orAssets:(NSArray*)orAssets
@@ -369,9 +373,6 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     
     self.filterItem.title = self.displayingSelectedOnly ? LK_IMAGE_PICKER_CONTROLLER_SPACHE : self.assetsManager.filter.description;
     self.checkButton.checked = enabled && self._allSelected;
-    
-    BOOL emptyCollection = (self.displayingAssetsCollection.numberOfAssets == 0);
-    self.emptyView.alpha = emptyCollection ? 1.0 : 0.0;
     
     self.emptyView.text = [LKImagePickerControllerBundleManager localizedStringForKey:self.displayingSelectedOnly ? @"Common.NoSelections" : @"Common.NoPics"];
     
