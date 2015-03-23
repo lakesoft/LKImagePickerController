@@ -57,6 +57,7 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
 @property (nonatomic, assign) BOOL displayingSelectedOnly;
 @property (nonatomic, strong) LKAssetsCollection* displayingAssetsCollection;
 @property (nonatomic, strong) NSIndexPath* currentIndexPath;
+@property (nonatomic, assign) BOOL firstReloadingFinished;
 
 @end
 
@@ -87,6 +88,8 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
 - (void)_assetsGroupDidReload:(NSNotification*)notification
 
 {
+    self.firstReloadingFinished = YES;
+
     self.assetsCollection = [self _assetsCollectionWithAssetsGroup:self.assetsManager.assetsGroup orAssets:nil];
     self.displayingAssetsCollection = self.assetsCollection;
     self.displayingSelectedOnly = NO;
@@ -95,9 +98,13 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     self.title = self.assetsCollection.assetsGroup.name;
     [self _updateControls];
     
-    [UIView animateWithDuration:0.2 animations:^{
-        self.emptyView.alpha = 1.0;
-    }];
+    if (self.assetsCollection.numberOfAssets == 0) {
+        self.emptyView.hidden = NO;
+        self.emptyView.alpha = 0.0;
+        [UIView animateWithDuration:0.2 animations:^{
+            self.emptyView.alpha = 1.0;
+        }];
+    }
 }
 
 - (LKAssetsCollection*)_assetsCollectionWithAssetsGroup:(LKAssetsGroup*)assetsGroup orAssets:(NSArray*)orAssets
@@ -374,10 +381,8 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     self.filterItem.title = self.displayingSelectedOnly ? LK_IMAGE_PICKER_CONTROLLER_SPACHE : self.assetsManager.filter.description;
     self.checkButton.checked = enabled && self._allSelected;
     
-    if (self.displayingSelectedOnly) {
-        BOOL emptyCollection = (self.displayingAssetsCollection.numberOfAssets == 0);
-        self.emptyView.alpha = emptyCollection ? 1.0 : 0.0;
-    }
+    BOOL emptyCollection = (self.displayingAssetsCollection.numberOfAssets == 0);
+    self.emptyView.hidden = !(emptyCollection && self.firstReloadingFinished);
     self.emptyView.text = [LKImagePickerControllerBundleManager localizedStringForKey:self.displayingSelectedOnly ? @"Common.NoSelections" : @"Common.NoPics"];
     
 }
@@ -554,7 +559,7 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
 
     // Empty view
     LKImagePickerControllerEmptyView* emptyView = LKImagePickerControllerEmptyView.emptyView;
-    emptyView.alpha = 0.0;
+    emptyView.hidden = YES;
     [self.view addSubview:emptyView];
     self.emptyView = emptyView;
     
