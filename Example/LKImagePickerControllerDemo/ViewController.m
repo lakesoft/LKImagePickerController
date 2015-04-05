@@ -41,6 +41,17 @@
     
 }
 
+//- (NSArray*)rightBarButtonItems {
+//    return @[
+//             [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+//                                                           target:self
+//                                                           action:@selector(_on3)],
+//             [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemBookmarks
+//                                                           target:self
+//                                                           action:@selector(_on3)]
+//             ];
+//}
+
 //- (UIBarButtonItem*)leftBarButtonItem
 //{
 //    return nil;

@@ -331,12 +331,17 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
 
 - (void)_setupBarButtonItem
 {
-    if ([self.imagePickerController.imagePickerControllerDelegate respondsToSelector:@selector(rightBarButtonItem)]) {
+    if ([self.imagePickerController.imagePickerControllerDelegate respondsToSelector:@selector(rightBarButtonItems)]) {
+        self.navigationItem.rightBarButtonItems = self.imagePickerController.imagePickerControllerDelegate.rightBarButtonItems;
+    } else if ([self.imagePickerController.imagePickerControllerDelegate respondsToSelector:@selector(rightBarButtonItem)]) {
         self.navigationItem.rightBarButtonItem = self.imagePickerController.imagePickerControllerDelegate.rightBarButtonItem;
     } else {
         self.navigationItem.rightBarButtonItem = self.doneItem;
     }
-    if ([self.imagePickerController.imagePickerControllerDelegate respondsToSelector:@selector(leftBarButtonItem)]) {
+    
+    if ([self.imagePickerController.imagePickerControllerDelegate respondsToSelector:@selector(leftBarButtonItems)]) {
+        self.navigationItem.leftBarButtonItems = self.imagePickerController.imagePickerControllerDelegate.leftBarButtonItems;
+    } else if ([self.imagePickerController.imagePickerControllerDelegate respondsToSelector:@selector(leftBarButtonItem)]) {
         self.navigationItem.leftBarButtonItem = self.imagePickerController.imagePickerControllerDelegate.leftBarButtonItem;
     } else {
         self.navigationItem.leftBarButtonItem = self.cancelItem;

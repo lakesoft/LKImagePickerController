@@ -22,7 +22,9 @@
 
 // Main Screen
 - (UIBarButtonItem*)leftBarButtonItem;
+- (NSArray*)leftBarButtonItems;
 - (UIBarButtonItem*)rightBarButtonItem;
+- (NSArray*)rightBarButtonItems;
 - (BOOL)disableRightBarButtonItemWhenNoSelected;
 
 // Selected Pictures Screen
