@@ -8,6 +8,8 @@
 
 #import "LKImagePickerControllerAppearance.h"
 
+NSString* const LKImagePickerControllerAppearanceDidChangeTintColorNotification = @"LKImagePickerControllerAppearanceDidChangeTintColorNotification";
+
 @implementation LKImagePickerControllerAppearance
 
 - (instancetype)init
@@ -21,6 +23,7 @@
 
         self.usedColor = _backgroundColor;
         _tintColor = _backgroundColor;
+        
     }
     return self;
 }
@@ -39,6 +42,8 @@
 {
     _tintColor = tintColor;
     self.backgroundColor = tintColor;
+    self.navigationBarColor = tintColor;
+    [NSNotificationCenter.defaultCenter postNotificationName:LKImagePickerControllerAppearanceDidChangeTintColorNotification object:nil];
 }
 
 @end

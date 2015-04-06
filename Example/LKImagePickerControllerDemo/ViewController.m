@@ -24,7 +24,7 @@
 {
     self.controller = [[LKImagePickerController alloc] init];
     self.controller.imagePickerControllerDelegate = self;
-//    controller.tintColor = [UIColor colorWithRed:0.078 green:0.67 blue:0.23 alpha:1.000];
+    self.controller.tintColor = [UIColor colorWithRed:0.078 green:0.67 blue:0.23 alpha:1.000];
     self.controller.maximumOfSelections = 20;
     [self presentViewController:self.controller animated:NO completion:nil];
 }

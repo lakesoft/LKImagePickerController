@@ -6,7 +6,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = "LKImagePickerController"
-  s.version          = "0.1.23"
+  s.version          = "0.1.24"
   s.summary          = "A short description of LKImagePickerController."
   s.description      = <<-DESC
                        An optional longer description of LKImagePickerController

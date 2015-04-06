@@ -20,7 +20,12 @@
 @implementation LKImagePickerController
 
 #pragma mark - Privates
-
+- (void)_didChangeTintColor:(NSNotification*)notification
+{
+    [UINavigationBar appearance].barTintColor = LKImagePickerControllerAppearance.sharedAppearance.navigationBarColor;
+    [UINavigationBar appearance].tintColor = LKImagePickerControllerAppearance.sharedAppearance.foregroundColor;
+    [UINavigationBar appearance].titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
+}
 
 #pragma mark - Basics
 
@@ -36,10 +41,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    [UINavigationBar appearance].barTintColor = LKImagePickerControllerAppearance.sharedAppearance.navigationBarColor;
-    [UINavigationBar appearance].tintColor = LKImagePickerControllerAppearance.sharedAppearance.foregroundColor;
-    [UINavigationBar appearance].titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
+    [self _didChangeTintColor:nil];
     
     self.assetsManager = LKImagePickerControllerAssetsManager.assetsManager;
     self.assetsManager.imagePickerController = self;
@@ -50,6 +52,9 @@
         [self pushViewController:viewController animated:NO];
         self.selectViewController = viewController;
     }];
+    
+    [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didChangeTintColor:) name:LKImagePickerControllerAppearanceDidChangeTintColorNotification object:nil];
+
 }
 
 - (void)didReceiveMemoryWarning
