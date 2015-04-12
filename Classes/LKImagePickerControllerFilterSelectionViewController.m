@@ -46,7 +46,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"FilterCell" forIndexPath:indexPath];
     
     LKImagePickerControllerFilterType type = [self.assetsManager.filter typeAtIndex:indexPath.row];
-    cell.textLabel.text = [self.assetsManager.filter descriptionFotType:type];
+    cell.textLabel.text = [self.assetsManager.filter descriptionForType:type];
     cell.accessoryType = self.assetsManager.filter.type == type ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     return cell;
 }

@@ -29,7 +29,7 @@ typedef NS_ENUM(NSUInteger, LKImagePickerControllerFilterType) {
 - (instancetype)initWithAvailableTypes:(NSUInteger)availableTypes;
 
 - (LKImagePickerControllerFilterType)typeAtIndex:(NSInteger)index;
-- (NSString*)descriptionFotType:(LKImagePickerControllerFilterType)type;
+- (NSString*)descriptionForType:(LKImagePickerControllerFilterType)type;
 - (LKAssetsCollectionGenericFilter*)assetsFilter;
 
 @end

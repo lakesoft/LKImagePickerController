@@ -63,7 +63,7 @@
 }
 
 
-- (NSString*)descriptionFotType:(LKImagePickerControllerFilterType)type
+- (NSString*)descriptionForType:(LKImagePickerControllerFilterType)type
 {
     NSString* key;
     switch (type) {
@@ -99,7 +99,7 @@
 
 - (NSString*)description
 {
-    return [self descriptionFotType:self.type];
+    return [self descriptionForType:self.type];
 }
 
 - (LKAssetsCollectionGenericFilter*)assetsFilter
