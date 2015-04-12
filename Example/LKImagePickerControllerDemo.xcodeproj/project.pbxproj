@@ -334,6 +334,7 @@
 				BC94FFC0196B540800EF8FC2 /* LKImagePickerControllerAppearance.m */,
 				BC94FFC1196B540800EF8FC2 /* LKImagePickerControllerSelectHeaderView.m */,
 				BC94FFC4196B540900EF8FC2 /* LKImagePickerControllerFilter.m */,
+				BC94FFCE196B540900EF8FC2 /* LKImagePickerControllerFilter.h */,
 				BC94FFD1196B540900EF8FC2 /* LKImagePickerControllerFilterSelectionViewController.h */,
 				BC94FFC5196B540900EF8FC2 /* LKImagePickerControllerFilterSelectionViewController.m */,
 				BC94FFC6196B540900EF8FC2 /* LKImagePickerControllerEmptyView.m */,
@@ -344,7 +345,6 @@
 				BC94FFCB196B540900EF8FC2 /* LKImagePickerControllerCloseButton.h */,
 				BC94FFCC196B540900EF8FC2 /* LKImagePickerControllerBundleManager.m */,
 				BC94FFCD196B540900EF8FC2 /* LKImagePickerControllerBundleManager.h */,
-				BC94FFCE196B540900EF8FC2 /* LKImagePickerControllerFilter.h */,
 				BC94FFCF196B540900EF8FC2 /* LKImagePickerControllerPlayIconView.m */,
 				BC94FFD0196B540900EF8FC2 /* LKImagePickerControllerPlayIconView.h */,
 				BC94FFD3196B540900EF8FC2 /* LKImagePickerControllerSelectHeaderView.h */,
@@ -694,7 +694,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -727,7 +727,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -743,7 +743,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LKImagePickerControllerDemo/LKImagePickerControllerDemo-Prefix.pch";
 				INFOPLIST_FILE = "LKImagePickerControllerDemo/LKImagePickerControllerDemo-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -758,7 +758,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LKImagePickerControllerDemo/LKImagePickerControllerDemo-Prefix.pch";
 				INFOPLIST_FILE = "LKImagePickerControllerDemo/LKImagePickerControllerDemo-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

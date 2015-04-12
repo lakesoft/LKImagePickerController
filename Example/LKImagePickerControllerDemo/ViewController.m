@@ -22,7 +22,8 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    self.controller = [[LKImagePickerController alloc] init];
+    self.controller = LKImagePickerController.new;
+//    self.controller = [[LKImagePickerController alloc] initWithAvaliableTypes:LKImagePickerControllerFilterTypeAll ^ LKImagePickerControllerFilterTypeVideo currentType:LKImagePickerControllerFilterTypeScreenShot];
     self.controller.imagePickerControllerDelegate = self;
     self.controller.tintColor = [UIColor colorWithRed:0.078 green:0.67 blue:0.23 alpha:1.000];
     self.controller.maximumOfSelections = 20;

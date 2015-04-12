@@ -15,6 +15,7 @@
 @interface LKImagePickerController ()
 @property (strong, nonatomic) LKImagePickerControllerAssetsManager* assetsManager;
 @property (weak  , nonatomic) LKImagePickerControllerSelectViewController* selectViewController;
+@property (nonatomic, assign) NSUInteger availableTypes;
 @end
 
 @implementation LKImagePickerController
@@ -29,13 +30,25 @@
 
 #pragma mark - Basics
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (instancetype)initWithAvaliableTypes:(NSUInteger)availableTypes currentType:(NSUInteger)currentType
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super init];
     if (self) {
-        self.view.backgroundColor = UIColor.whiteColor;
+        _availableTypes = availableTypes;
+        _currentType = currentType;
+//        self.view.backgroundColor = UIColor.whiteColor;
     }
     return self;
+}
+- (instancetype)init
+{
+    return [self initWithAvaliableTypes:LKImagePickerControllerFilterTypeAll currentType:LKImagePickerControllerFilterTypeAll];
+}
+
+- (void)setCurrentType:(LKImagePickerControllerFilterType)currentType
+{
+    // TODO: change current type of filter
+    _currentType = currentType;
 }
 
 - (void)viewDidLoad
@@ -43,7 +56,8 @@
     [super viewDidLoad];
     [self _didChangeTintColor:nil];
     
-    self.assetsManager = LKImagePickerControllerAssetsManager.assetsManager;
+    self.assetsManager = [LKImagePickerControllerAssetsManager assetsManagerWithAvaliableTypes:self.availableTypes currentType:self.currentType];
+
     self.assetsManager.imagePickerController = self;
     [self.assetsManager reloadAssetsWithCompletion:^{
         LKImagePickerControllerSelectViewController* viewController = LKImagePickerControllerSelectViewController.new;

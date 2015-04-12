@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "LKAssetsCollectionGenericFilter.h"
 typedef NS_ENUM(NSUInteger, LKImagePickerControllerFilterType) {
     LKImagePickerControllerFilterTypeJPEG       = (1 << 0),
     LKImagePickerControllerFilterTypePNG        = (1 << 1),
@@ -20,13 +20,16 @@ typedef NS_ENUM(NSUInteger, LKImagePickerControllerFilterType) {
 
 @interface LKImagePickerControllerFilter : NSObject
 
-@property (nonatomic, assign) LKImagePickerControllerFilterType type;
+// combination of LKImagePickerControllerFilterType
+@property (nonatomic, assign) LKImagePickerControllerFilterType currentType;
 @property (nonatomic, assign, readonly) NSUInteger availableTypes;
+
+// for list
 @property (nonatomic, strong, readonly) NSArray* filterTypes;
 
 + (NSArray*)allFilterTypes;
 
-- (instancetype)initWithAvailableTypes:(NSUInteger)availableTypes;
+- (instancetype)initWithAvailableTypes:(NSUInteger)availableTypes currentType:(LKImagePickerControllerFilterType)currentType;
 
 - (LKImagePickerControllerFilterType)typeAtIndex:(NSInteger)index;
 - (NSString*)descriptionForType:(LKImagePickerControllerFilterType)type;

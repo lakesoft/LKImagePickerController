@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LKImagePickerControllerFilter.h"
 
 @class LKImagePickerController;
 @protocol LKImagePickerControllerDelegate <NSObject>
@@ -47,10 +48,14 @@
 @property (nonatomic, strong) UIColor* tintColor;
 @property (nonatomic, assign) NSInteger maximumOfSelections;    // 0=No limit
 @property (nonatomic, weak) IBOutlet id <LKImagePickerControllerDelegate> imagePickerControllerDelegate;
-
 @property (nonatomic, weak, readonly) NSArray* selectedAssets;
+
+@property (nonatomic, assign, readonly) NSUInteger availableTypes;  // combination of LKAssetsCollectionGenericFilterType
+@property (nonatomic, assign) LKImagePickerControllerFilterType currentType;
 
 - (void)deselectAll;
 - (void)displayMainScreenAnimated:(BOOL)animated;
+
+- (instancetype)initWithAvaliableTypes:(NSUInteger)availableTypes currentType:(NSUInteger)currentType;
 
 @end

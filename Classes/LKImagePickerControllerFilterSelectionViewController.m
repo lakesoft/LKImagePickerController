@@ -24,7 +24,7 @@
     self.title = [LKImagePickerControllerBundleManager localizedStringForKey:@"FilterScreen.Title"];
     [self.tableView registerClass:UITableViewCell.class forCellReuseIdentifier:@"FilterCell"];
     
-    self.firstType = self.assetsManager.filter.type;
+    self.firstType = self.assetsManager.filter.currentType;
 //    NSLog(@"%zd", self.firstType);
 }
 
@@ -47,7 +47,7 @@
     
     LKImagePickerControllerFilterType type = [self.assetsManager.filter typeAtIndex:indexPath.row];
     cell.textLabel.text = [self.assetsManager.filter descriptionForType:type];
-    cell.accessoryType = self.assetsManager.filter.type == type ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
+    cell.accessoryType = self.assetsManager.filter.currentType == type ? UITableViewCellAccessoryCheckmark : UITableViewCellAccessoryNone;
     return cell;
 }
 
@@ -56,7 +56,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     LKImagePickerControllerFilterType filterType = [self.assetsManager.filter typeAtIndex:indexPath.row];
-    self.assetsManager.filter.type = filterType;
+    self.assetsManager.filter.currentType = filterType;
     if (filterType != self.firstType) {
         [self.selectViewController didChangeFilterType];
     }

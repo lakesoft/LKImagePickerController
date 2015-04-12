@@ -98,7 +98,8 @@ NSString * const LKImagePickerControllerAssetsManagerKeyNumberOfSelections = @"L
 }
 
 #pragma mark - Basics
-- (instancetype)init
+
+- (instancetype)initWithAvailableTypes:(NSUInteger)availableTypes currentType:(LKImagePickerControllerFilterType)currentType
 {
     self = [super init];
     if (self) {
@@ -167,9 +168,14 @@ NSString * const LKImagePickerControllerAssetsManagerKeyNumberOfSelections = @"L
                  object:nil];
 
         // filter
-        self.filter = LKImagePickerControllerFilter.new;
+        self.filter = [[LKImagePickerControllerFilter alloc] initWithAvailableTypes:availableTypes currentType:currentType];
     }
     return self;
+}
+
+- (instancetype)init
+{
+    return [self initWithAvailableTypes:LKImagePickerControllerFilterTypeAll currentType:LKImagePickerControllerFilterTypeAll];
 }
 
 - (void)dealloc
@@ -181,6 +187,18 @@ NSString * const LKImagePickerControllerAssetsManagerKeyNumberOfSelections = @"L
 {
     return self.new;
 }
+
++ (instancetype)assetsManagerWithAvaliableTypes:(NSUInteger)availableTypes currentType:(LKImagePickerControllerFilterType)currentType
+{
+    if (availableTypes == 0) {
+        availableTypes = LKImagePickerControllerFilterTypeAll;
+    }
+    if (currentType == 0) {
+        currentType = LKImagePickerControllerFilterTypeAll;
+    }
+    return [[self alloc] initWithAvailableTypes:availableTypes currentType:currentType];
+}
+
 
 - (NSInteger)numberOfSelected
 {

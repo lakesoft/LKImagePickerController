@@ -7,6 +7,7 @@
 //
 #import "LKAssetsLibrary.h"
 #import <Foundation/Foundation.h>
+#import "LKImagePickerControllerFilter.h"
 
 extern NSString * const LKImagePickerControllerSelectViewControllerDidAssetsUpdateNotification;
 
@@ -53,6 +54,7 @@ typedef void(^LKImagePickerControllerAssetsManagerReloadAssetsCompletion)();
 - (NSArray*)sortedArrayOfSelectedAssets;
 
 + (instancetype)assetsManager;
++ (instancetype)assetsManagerWithAvaliableTypes:(NSUInteger)availableTypes currentType:(LKImagePickerControllerFilterType)currentType;
 
 - (void)reloadAssetsWithCompletion:(LKImagePickerControllerAssetsManagerReloadAssetsCompletion)completion;
 - (void)reloadAssetsGroup;

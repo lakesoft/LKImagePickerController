@@ -42,21 +42,16 @@
 
 - (instancetype)init
 {
-    self = [super init];
-    if (self) {
-        self.availableTypes = LKImagePickerControllerFilterTypeAll;
-        self.type = LKImagePickerControllerFilterTypeAll;
-        [self _setupFilterTypes];
-    }
-    return self;
+    return [self initWithAvailableTypes:LKImagePickerControllerFilterTypeAll currentType:LKImagePickerControllerFilterTypeAll];
 }
 
 
-- (instancetype)initWithAvailableTypes:(NSUInteger)availableTypes
+- (instancetype)initWithAvailableTypes:(NSUInteger)availableTypes currentType:(LKImagePickerControllerFilterType)currentType
 {
     self = [super init];
     if (self) {
         self.availableTypes = availableTypes;
+        self.currentType = currentType;
         [self _setupFilterTypes];
     }
     return self;
@@ -99,35 +94,27 @@
 
 - (NSString*)description
 {
-    return [self descriptionForType:self.type];
+    return [self descriptionForType:self.currentType];
 }
 
 - (LKAssetsCollectionGenericFilter*)assetsFilter
 {
-    LKAssetsCollectionGenericFilter* assetsFilter = nil;
-    switch (self.type) {
-        case LKImagePickerControllerFilterTypeJPEG:
-            assetsFilter =[LKAssetsCollectionGenericFilter filterWithType:LKAssetsCollectionGenericFilterTypeJPEG];
-            break;
-            
-        case LKImagePickerControllerFilterTypePNG:
-            assetsFilter =[LKAssetsCollectionGenericFilter filterWithType:LKAssetsCollectionGenericFilterTypePNG];
-            break;
-            
-        case LKImagePickerControllerFilterTypeScreenShot:
-            assetsFilter =[LKAssetsCollectionGenericFilter filterWithType:LKAssetsCollectionGenericFilterTypeScreenShot];
-            break;
-            
-        case LKImagePickerControllerFilterTypeVideo:
-            assetsFilter =[LKAssetsCollectionGenericFilter filterWithType:LKAssetsCollectionGenericFilterTypeVideo];
-            break;
-            
-        case LKImagePickerControllerFilterTypeAll:
-        default:
-            assetsFilter =[LKAssetsCollectionGenericFilter filterWithType:LKAssetsCollectionGenericFilterTypeAll];
-            break;
+    LKImagePickerControllerFilterType type = self.currentType & self.availableTypes;
+    LKAssetsCollectionGenericFilterType genericFilterType = 0;
+
+    if (type & LKImagePickerControllerFilterTypeJPEG) {
+        genericFilterType |= LKAssetsCollectionGenericFilterTypeJPEG;
     }
-    return assetsFilter;
+    if (type & LKImagePickerControllerFilterTypePNG) {
+        genericFilterType |= LKAssetsCollectionGenericFilterTypePNG;
+    }
+    if (type & LKImagePickerControllerFilterTypeScreenShot) {
+        genericFilterType |= LKAssetsCollectionGenericFilterTypeScreenShot;
+    }
+    if (type & LKImagePickerControllerFilterTypeVideo) {
+        genericFilterType |= LKAssetsCollectionGenericFilterTypeVideo;
+    }
+    return [LKAssetsCollectionGenericFilter filterWithType:genericFilterType];
 }
 
 
