@@ -15,7 +15,6 @@
 @interface LKImagePickerController ()
 @property (strong, nonatomic) LKImagePickerControllerAssetsManager* assetsManager;
 @property (weak  , nonatomic) LKImagePickerControllerSelectViewController* selectViewController;
-@property (nonatomic, assign) NSUInteger availableTypes;
 @end
 
 @implementation LKImagePickerController
