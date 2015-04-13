@@ -50,12 +50,12 @@
 @property (nonatomic, weak) IBOutlet id <LKImagePickerControllerDelegate> imagePickerControllerDelegate;
 @property (nonatomic, weak, readonly) NSArray* selectedAssets;
 
-@property (nonatomic, assign) NSUInteger availableTypes;  // combination of LKAssetsCollectionGenericFilterType
+@property (nonatomic, assign) NSUInteger availableTypes;  // combination of LKImagePickerControllerFilterType
 @property (nonatomic, assign) LKImagePickerControllerFilterType currentType;
 
 - (void)deselectAll;
 - (void)displayMainScreenAnimated:(BOOL)animated;
 
-- (instancetype)initWithAvaliableTypes:(NSUInteger)availableTypes currentType:(NSUInteger)currentType;
+- (instancetype)initWithAvaliableTypes:(NSUInteger)availableTypes currentType:(LKImagePickerControllerFilterType)currentType;
 
 @end

@@ -60,9 +60,15 @@
 - (void)setCollectionEntry:(LKAssetsCollectionEntry *)collectionEntry
 {
     _collectionEntry = collectionEntry;
-    NSDateFormatter* formatter = NSDateFormatter.new;
-    formatter.dateStyle = NSDateFormatterLongStyle;
-    self.titleLabel.text = [formatter stringFromDate:collectionEntry.date];
+    NSDateFormatter* formatter1 = NSDateFormatter.new;
+    formatter1.dateStyle = NSDateFormatterMediumStyle;
+    NSString* dateString1 = [formatter1 stringFromDate:collectionEntry.date];
+
+    NSDateFormatter* formatter2 = NSDateFormatter.new;
+    formatter2.dateFormat = @"E";
+    NSString* dateString2 = [formatter2 stringFromDate:collectionEntry.date];
+    
+    self.titleLabel.text = [NSString stringWithFormat:@"%@ %@", dateString1, dateString2];
     
     [self.checkButton setTitle:[NSString stringWithFormat:@"%zd", collectionEntry.assets.count]
                       forState:UIControlStateNormal];

@@ -29,7 +29,7 @@
 
 #pragma mark - Basics
 
-- (instancetype)initWithAvaliableTypes:(NSUInteger)availableTypes currentType:(NSUInteger)currentType
+- (instancetype)initWithAvaliableTypes:(NSUInteger)availableTypes currentType:(LKImagePickerControllerFilterType)currentType
 {
     self = [super init];
     if (self) {
