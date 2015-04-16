@@ -27,6 +27,7 @@
 - (UIBarButtonItem*)rightBarButtonItem;
 - (NSArray*)rightBarButtonItems;
 - (BOOL)disableRightBarButtonItemWhenNoSelected;
+- (void)didUpdateSelections:(NSInteger)numberOfSelections;
 
 // Selected Pictures Screen
 - (UIBarButtonItem*)rightBarButtonItem2;

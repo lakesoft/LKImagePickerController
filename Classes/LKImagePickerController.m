@@ -44,6 +44,11 @@
     return [self initWithAvaliableTypes:LKImagePickerControllerFilterTypeAll currentType:LKImagePickerControllerFilterTypeAll];
 }
 
+- (void)dealloc
+{
+    [NSNotificationCenter.defaultCenter removeObserver:self];
+}
+
 - (void)setCurrentType:(LKImagePickerControllerFilterType)currentType
 {
     // TODO: change current type of filter
@@ -66,8 +71,17 @@
         self.selectViewController = viewController;
     }];
     
-    [NSNotificationCenter.defaultCenter addObserver:self selector:@selector(_didChangeTintColor:) name:LKImagePickerControllerAppearanceDidChangeTintColorNotification object:nil];
+    NSNotificationCenter* nc = NSNotificationCenter.defaultCenter;
+    [nc addObserver:self selector:@selector(_didChangeTintColor:) name:LKImagePickerControllerAppearanceDidChangeTintColorNotification object:nil];
 
+    for (NSString* name in @[LKImagePickerControllerAssetsManagerDidSelectNotification,
+                             LKImagePickerControllerAssetsManagerDidDeselectNotification,
+                             LKImagePickerControllerAssetsManagerDidSelectHeaderNotification,
+                             LKImagePickerControllerAssetsManagerDidDeSelectHeaderNotification,
+                             LKImagePickerControllerAssetsManagerDidAllDeselectNotification,
+                             ]) {
+        [nc addObserver:self selector:@selector(_didUpdateSelections:) name:name object:nil];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -103,5 +117,13 @@
 {
     return self.assetsManager.arrayOfSelectedAssets;
 }
+
+- (void)_didUpdateSelections:(NSNotification*)notification
+{
+    if ([self.imagePickerControllerDelegate respondsToSelector:@selector(didUpdateSelections:)]) {
+        [self.imagePickerControllerDelegate didUpdateSelections:self.selectedAssets.count];
+    }
+}
+
 
 @end

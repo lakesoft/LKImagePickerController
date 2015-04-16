@@ -78,4 +78,9 @@
     return NO;
 }
 
+- (void)didUpdateSelections:(NSInteger)numberOfSelections
+{
+    NSLog(@"selected: %d", numberOfSelections);
+}
+
 @end
