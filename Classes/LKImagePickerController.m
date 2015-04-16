@@ -115,7 +115,15 @@
 
 - (NSArray*)selectedAssets
 {
-    return self.assetsManager.arrayOfSelectedAssets;
+    BOOL sortBySelectionOrder = NO;
+    if ([self.imagePickerControllerDelegate respondsToSelector:@selector(sortBySelectionOrder)]) {
+        sortBySelectionOrder = [self.imagePickerControllerDelegate sortBySelectionOrder];
+    }
+    if (sortBySelectionOrder) {
+        return self.assetsManager.arrayOfSelectedAssets;
+    } else {
+        return self.assetsManager.sortedArrayOfSelectedAssets;
+    }
 }
 
 - (void)_didUpdateSelections:(NSNotification*)notification

@@ -235,7 +235,7 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
 - (void)_tappedDone:(id)sender
 {
     [self.imagePickerController.imagePickerControllerDelegate imagePickerController:self.imagePickerController
-                                                                didFinishWithAssets:self.assetsManager.arrayOfSelectedAssets];
+                                                                didFinishWithAssets:self.imagePickerController.selectedAssets];
 
     self.displayingSelectedOnly = NO;
     

@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "LKImagePickerController.h"
+#import "LKAsset.h"
 
 @interface ViewController () <LKImagePickerControllerDelegate>
 @property (nonatomic, strong) LKImagePickerController* controller;
@@ -40,6 +41,9 @@
 
 - (void)imagePickerController:(LKImagePickerController *)imagePickerController didFinishWithAssets:(NSArray *)selectedAssets {
     
+    for (LKAsset* asset in selectedAssets) {
+        NSLog(@"%@", asset.date);
+    }
 }
 
 //- (NSArray*)rightBarButtonItems {
@@ -78,9 +82,14 @@
     return NO;
 }
 
-- (void)didUpdateSelections:(NSInteger)numberOfSelections
-{
-    NSLog(@"selected: %d", numberOfSelections);
-}
+//- (BOOL)sortBySelectionOrder
+//{
+//    return YES;
+//}
+
+//- (void)didUpdateSelections:(NSInteger)numberOfSelections
+//{
+//    NSLog(@"selected: %zd", numberOfSelections);
+//}
 
 @end

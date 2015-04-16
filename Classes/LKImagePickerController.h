@@ -20,6 +20,7 @@
 - (BOOL)enableCompletionButtonWhenNoSelections;
 - (BOOL)closeWhenFinish;
 - (BOOL)canSelectGroups;
+- (BOOL)sortBySelectionOrder;      // YES=sort by touching order / NO=sort by date ascending (default)
 
 // Main Screen
 - (UIBarButtonItem*)leftBarButtonItem;
