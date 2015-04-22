@@ -36,10 +36,6 @@
         _availableTypes = availableTypes;
         _currentType = currentType;
 //        self.view.backgroundColor = UIColor.whiteColor;
-        
-        self.assetsManager = [LKImagePickerControllerAssetsManager assetsManagerWithAvaliableTypes:self.availableTypes currentType:self.currentType];
-        self.assetsManager.imagePickerController = self;
-
     }
     return self;
 }
@@ -64,6 +60,9 @@
     [super viewDidLoad];
     [self _didChangeTintColor:nil];
     
+    self.assetsManager = [LKImagePickerControllerAssetsManager assetsManagerWithAvaliableTypes:self.availableTypes currentType:self.currentType];
+    self.assetsManager.imagePickerController = self;
+
     [self.assetsManager reloadAssetsWithCompletion:^{
         LKImagePickerControllerSelectViewController* viewController = LKImagePickerControllerSelectViewController.new;
         viewController.imagePickerController = self;
