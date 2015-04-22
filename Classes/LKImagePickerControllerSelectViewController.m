@@ -809,6 +809,10 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     CGPoint p = [touch locationInView:self.collectionView];
     NSIndexPath* indexPath = [self.collectionView indexPathForItemAtPoint:p];
     
+    if (indexPath == nil) {
+        return;
+    }
+
     LKImagePickerControllerSelectCell* cell = (LKImagePickerControllerSelectCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
     
     if (cell.checked) {
