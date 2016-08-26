@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "LKAssetsCollectionGenericFilter.h"
+#import <LKAssetsLibrary/LKAssetsCollectionGenericFilter.h>
 typedef NS_ENUM(NSUInteger, LKImagePickerControllerFilterType) {
     LKImagePickerControllerFilterTypeJPEG       = (1 << 0),
     LKImagePickerControllerFilterTypePNG        = (1 << 1),
