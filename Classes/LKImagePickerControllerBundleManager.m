@@ -16,8 +16,10 @@
 
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        NSString* path = [[NSBundle mainBundle] pathForResource:@"LKImagePickerController-Resources" ofType:@"bundle"];
-        _bundle = [NSBundle bundleWithPath:path];
+//        NSString* path = [[NSBundle mainBundle] pathForResource:@"LKImagePickerController-Resources" ofType:@"bundle"];
+//        _bundle = [NSBundle bundleWithPath:path];
+        // http://qiita.com/masahiko24/items/e4abfa8dce6d2d80c0cf
+        _bundle = [NSBundle bundleForClass:[self class]];
     });
     return _bundle;
 }
