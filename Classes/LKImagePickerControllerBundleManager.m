@@ -18,8 +18,8 @@
     dispatch_once(&onceToken, ^{
 //        NSString* path = [[NSBundle mainBundle] pathForResource:@"LKImagePickerController-Resources" ofType:@"bundle"];
 //        _bundle = [NSBundle bundleWithPath:path];
-        // http://qiita.com/masahiko24/items/e4abfa8dce6d2d80c0cf
-        _bundle = [NSBundle bundleForClass:[self class]];
+        NSString* path = [[NSBundle bundleForClass:[self class]].bundlePath stringByAppendingPathComponent:@"LKImagePickerController-Resources.bundle"];
+        _bundle = [NSBundle bundleWithPath:path];
     });
     return _bundle;
 }
