@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "LKAssetsLibrary.h"
+#import <LKAssetsLibrary/LKAssetsLibrary.h>
 
 @interface LKImagePickerControllerSelectHeaderView : UICollectionReusableView
 

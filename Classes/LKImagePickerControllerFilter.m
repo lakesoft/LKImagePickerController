@@ -6,7 +6,7 @@
 //
 
 #import "LKImagePickerControllerFilter.h"
-#import "LKAssetsLibrary.h"
+#import <LKAssetsLibrary/LKAssetsLibrary.h>
 #import "LKImagePickerControllerBundleManager.h"
 
 @interface LKImagePickerControllerFilter()

@@ -5,7 +5,7 @@
 //  Created by Hiroshi Hashiguchi on 2014/06/26.
 //  Copyright (c) 2014年 lakesoft. All rights reserved.
 //
-#import "LKAssetsLibrary.h"
+#import <LKAssetsLibrary/LKAssetsLibrary.h>
 #import <Foundation/Foundation.h>
 #import "LKImagePickerControllerFilter.h"
 

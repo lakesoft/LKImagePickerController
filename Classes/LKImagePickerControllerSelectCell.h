@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "LKAssetsLibrary.h"
+#import <LKAssetsLibrary/LKAssetsLibrary.h>
 @class LKImagePickerControllerSelectViewController;
 @interface LKImagePickerControllerSelectCell : UICollectionViewCell
 

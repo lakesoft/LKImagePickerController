@@ -7,7 +7,7 @@
 //
 
 #import "LKImagePickerControllerGroupTableViewController.h"
-#import "LKAssetsLibrary.h"
+#import <LKAssetsLibrary/LKAssetsLibrary.h>
 #import "LKImagePickerControllerSelectViewController.h"
 #import "LKImagePickerControllerBundleManager.h"
 #import "LKImagePickerControllerGroupTableViewCell.h"
