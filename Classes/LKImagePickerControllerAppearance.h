@@ -8,8 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-extern NSString * const LKImagePickerControllerAppearanceDidChangeTintColorNotification;
-
 @interface LKImagePickerControllerAppearance : NSObject
 
 @property (strong, nonatomic) UIColor* foregroundColor;

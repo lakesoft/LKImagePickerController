@@ -22,6 +22,11 @@
 {
     [super viewDidLoad];
     
+    self.navigationController.navigationBar.barTintColor = LKImagePickerControllerAppearance.sharedAppearance.navigationBarColor;
+    self.navigationController.navigationBar.tintColor = LKImagePickerControllerAppearance.sharedAppearance.fontColor;
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: LKImagePickerControllerAppearance.sharedAppearance.fontColor};
+
+    
     self.title = [LKImagePickerControllerBundleManager localizedStringForKey:@"FilterScreen.Title"];
     [self.tableView registerClass:UITableViewCell.class forCellReuseIdentifier:@"FilterCell"];
     self.tableView.tintColor = LKImagePickerControllerAppearance.sharedAppearance.tintColor;
