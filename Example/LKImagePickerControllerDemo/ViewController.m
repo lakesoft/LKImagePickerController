@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "LKImagePickerController.h"
+#import "LKImagePickerControllerAppearance.h"
 #import "LKAsset.h"
 
 @interface ViewController () <LKImagePickerControllerDelegate>
@@ -26,8 +27,16 @@
     self.controller = LKImagePickerController.new;
 //    self.controller = [[LKImagePickerController alloc] initWithAvaliableTypes:LKImagePickerControllerFilterTypeAll ^ LKImagePickerControllerFilterTypeVideo currentType:LKImagePickerControllerFilterTypeScreenShot];
     self.controller.imagePickerControllerDelegate = self;
-    self.controller.tintColor = [UIColor colorWithRed:0.078 green:0.67 blue:0.23 alpha:1.000];
+//    self.controller.tintColor = [UIColor colorWithRed:0.078 green:0.67 blue:0.23 alpha:1.000];
+    LKImagePickerControllerAppearance.sharedAppearance.fontColor = UIColor.grayColor;
+    LKImagePickerControllerAppearance.sharedAppearance.toolbarFontColor = UIColor.grayColor;
+    LKImagePickerControllerAppearance.sharedAppearance.tintColor = UIColor.grayColor;
+//    LKImagePickerControllerAppearance.sharedAppearance.foregroundColor = UIColor.blueColor;
     self.controller.maximumOfSelections = 20;
+    
+    self.controller.navigationBarHidden = YES;
+    self.controller.toolBarHidden = YES;
+    
     [self presentViewController:self.controller animated:NO completion:nil];
 }
 

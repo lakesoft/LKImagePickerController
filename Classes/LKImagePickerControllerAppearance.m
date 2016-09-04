@@ -22,6 +22,8 @@ NSString* const LKImagePickerControllerAppearanceDidChangeTintColorNotification 
         self.alertColor = UIColor.redColor;
 
         self.usedColor = _backgroundColor;
+        self.fontColor = UIColor.whiteColor;
+        self.toolbarFontColor = self.backgroundColor;
         _tintColor = _backgroundColor;
         
     }

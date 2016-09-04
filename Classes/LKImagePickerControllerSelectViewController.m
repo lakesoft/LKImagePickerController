@@ -423,6 +423,7 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     viewController.indexPath = indexPath;
     viewController.assetsManager = self.assetsManager;
     viewController.selectViewController = self;
+    viewController.navigatioBarHidden = self.imagePickerController.navigationBarHidden;
     [self.navigationController pushViewController:viewController animated:YES];
 }
 
@@ -460,9 +461,7 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
                                              object:nil];
 
     // Setup tint color
-    UIColor* tintColor = LKImagePickerControllerAppearance.sharedAppearance.tintColor;
-    self.navigationController.toolbar.tintColor = tintColor;
-//    self.navigationController.navigationBar.tintColor = tintColor;
+    self.navigationController.toolbar.tintColor = LKImagePickerControllerAppearance.sharedAppearance.toolbarFontColor;
 
     // Bar buttons
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:[LKImagePickerControllerBundleManager localizedStringForKey:@"Common.Back"] style:UIBarButtonItemStylePlain target:nil action:nil];
@@ -526,7 +525,7 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     [self _setupBarButtonItem];
     
     // Toolbar
-    self.navigationController.toolbarHidden = NO;
+    self.navigationController.toolbarHidden = self.imagePickerController.toolBarHidden;
     [self setToolbarItems:@[filterItem, flexibleSpaceItem, buttonItem, flexibleSpaceItem, clearItem] animated:NO];
     
 

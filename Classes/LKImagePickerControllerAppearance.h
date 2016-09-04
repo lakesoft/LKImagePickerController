@@ -19,6 +19,8 @@ extern NSString * const LKImagePickerControllerAppearanceDidChangeTintColorNotif
 @property (strong, nonatomic) UIColor* usedColor;
 
 @property (strong, nonatomic) UIColor* tintColor;
+@property (strong, nonatomic) UIColor* fontColor;
+@property (strong, nonatomic) UIColor* toolbarFontColor;
 
 + (instancetype)sharedAppearance;
 

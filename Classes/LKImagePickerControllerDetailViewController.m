@@ -18,6 +18,7 @@
 @interface LKImagePickerControllerDetailViewController ()
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UICollectionView *thumbnailCollectionView;
+@property (weak, nonatomic) IBOutlet UIButton *closeButton;
 @property (assign, nonatomic) CGPoint contentOffset;
 @property (assign, nonatomic) BOOL scrollDirectionLeft;
 @property (assign, nonatomic) BOOL scrollingByThumbnailView;
@@ -153,6 +154,8 @@
     if ([self.selectViewController.imagePickerController.imagePickerControllerDelegate respondsToSelector:@selector(rightBarButtonItem3)]) {
         self.navigationItem.rightBarButtonItem = self.selectViewController.imagePickerController.imagePickerControllerDelegate.rightBarButtonItem3;
     }
+
+    self.closeButton.hidden = !self.navigatioBarHidden;
     
     [self _updateControls];
 }
@@ -435,6 +438,10 @@
 
     cell = (LKImagePickerControllerSelectCell*)[self.thumbnailCollectionView cellForItemAtIndexPath:_indexPath];
     cell.current = YES;
+}
+
+- (IBAction)onCloseButton:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

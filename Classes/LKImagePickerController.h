@@ -47,13 +47,14 @@
 
 @interface LKImagePickerController : UINavigationController
 
-@property (nonatomic, strong) UIColor* tintColor;
+
 @property (nonatomic, assign) NSInteger maximumOfSelections;    // 0=No limit
 @property (nonatomic, weak) IBOutlet id <LKImagePickerControllerDelegate> imagePickerControllerDelegate;
 @property (nonatomic, weak, readonly) NSArray* selectedAssets;
 
 @property (nonatomic, assign) NSUInteger availableTypes;  // combination of LKImagePickerControllerFilterType
 @property (nonatomic, assign) LKImagePickerControllerFilterType currentType;
+@property (nonatomic, assign) BOOL toolBarHidden;
 
 - (void)deselectAll;
 - (void)displayMainScreenAnimated:(BOOL)animated;

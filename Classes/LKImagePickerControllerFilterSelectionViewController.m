@@ -10,6 +10,7 @@
 #import "LKImagePickerControllerFilter.h"
 #import "LKImagePickerControllerSelectViewController.h"
 #import "LKImagePickerControllerBundleManager.h"
+#import "LKImagePickerControllerAppearance.h"
 
 @interface LKImagePickerControllerFilterSelectionViewController ()
 @property (nonatomic, assign) LKImagePickerControllerFilterType firstType;
@@ -23,6 +24,7 @@
     
     self.title = [LKImagePickerControllerBundleManager localizedStringForKey:@"FilterScreen.Title"];
     [self.tableView registerClass:UITableViewCell.class forCellReuseIdentifier:@"FilterCell"];
+    self.tableView.tintColor = LKImagePickerControllerAppearance.sharedAppearance.tintColor;
     
     self.firstType = self.assetsManager.filter.currentType;
 //    NSLog(@"%zd", self.firstType);

@@ -23,8 +23,8 @@
 - (void)_didChangeTintColor:(NSNotification*)notification
 {
     [UINavigationBar appearance].barTintColor = LKImagePickerControllerAppearance.sharedAppearance.navigationBarColor;
-    [UINavigationBar appearance].tintColor = LKImagePickerControllerAppearance.sharedAppearance.foregroundColor;
-    [UINavigationBar appearance].titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
+    [UINavigationBar appearance].tintColor = LKImagePickerControllerAppearance.sharedAppearance.fontColor;
+    [UINavigationBar appearance].titleTextAttributes = @{NSForegroundColorAttributeName: LKImagePickerControllerAppearance.sharedAppearance.fontColor};
 }
 
 #pragma mark - Basics
@@ -35,6 +35,7 @@
     if (self) {
         _availableTypes = availableTypes;
         _currentType = currentType;
+        self.toolBarHidden = NO;
 //        self.view.backgroundColor = UIColor.whiteColor;
         
 
@@ -91,12 +92,6 @@
     [super didReceiveMemoryWarning];
 }
 
-
-- (void)setTintColor:(UIColor *)tintColor
-{
-    _tintColor = tintColor;
-    LKImagePickerControllerAppearance.sharedAppearance.tintColor = tintColor;
-}
 
 - (void)setMaximumOfSelections:(NSInteger)maximumOfSelections
 {

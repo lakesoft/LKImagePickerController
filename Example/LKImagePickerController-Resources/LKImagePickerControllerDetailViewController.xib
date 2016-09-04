@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LKImagePickerControllerDetailViewController">
             <connections>
+                <outlet property="closeButton" destination="R9X-QZ-Xmo" id="rIr-2h-Wta"/>
                 <outlet property="collectionView" destination="EKc-bL-G2J" id="tK2-L3-Bcd"/>
                 <outlet property="thumbnailCollectionView" destination="dLc-gu-JSm" id="HBc-0G-HYP"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="QUe-g3-7qN"/>
@@ -50,14 +51,27 @@
                         <outlet property="delegate" destination="-1" id="f2J-Uf-81Z"/>
                     </connections>
                 </collectionView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R9X-QZ-Xmo">
+                    <rect key="frame" x="266" y="10" width="44" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="44" id="C6e-KY-YEf"/>
+                        <constraint firstAttribute="height" constant="44" id="EYs-58-5nP"/>
+                    </constraints>
+                    <state key="normal" image="LKImagePickerController_ButtonClose.png"/>
+                    <connections>
+                        <action selector="onCloseButton:" destination="-1" eventType="touchUpInside" id="9PX-Fj-ap4"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="EKc-bL-G2J" secondAttribute="trailing" id="5Mg-an-vfA"/>
                 <constraint firstAttribute="bottom" secondItem="dLc-gu-JSm" secondAttribute="bottom" id="9kJ-QB-Rxl"/>
+                <constraint firstItem="R9X-QZ-Xmo" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="10" id="FhS-2t-tWH"/>
                 <constraint firstItem="EKc-bL-G2J" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="YzA-a5-MAj"/>
                 <constraint firstAttribute="bottom" secondItem="EKc-bL-G2J" secondAttribute="bottom" id="fuw-Ek-zIO"/>
                 <constraint firstItem="dLc-gu-JSm" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="gPh-H1-riB"/>
+                <constraint firstAttribute="trailing" secondItem="R9X-QZ-Xmo" secondAttribute="trailing" constant="10" id="m8y-Fn-GlN"/>
                 <constraint firstItem="EKc-bL-G2J" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="uol-Ur-Kig"/>
                 <constraint firstAttribute="trailing" secondItem="dLc-gu-JSm" secondAttribute="trailing" id="zgC-7R-7WR"/>
             </constraints>
@@ -65,9 +79,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
         </view>
     </objects>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
-    </simulatedMetricsContainer>
+    <resources>
+        <image name="LKImagePickerController_ButtonClose.png" width="132" height="132"/>
+    </resources>
 </document>

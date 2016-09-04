@@ -94,14 +94,14 @@
         }
     } else {
         if (self.active) {
-            [self setTitleColor:LKImagePickerControllerAppearance.sharedAppearance.foregroundColor forState:UIControlStateNormal];
-            self.backgroundColor = LKImagePickerControllerAppearance.sharedAppearance.backgroundColor;
+            [self setTitleColor:LKImagePickerControllerAppearance.sharedAppearance.backgroundColor forState:UIControlStateNormal];
+            self.backgroundColor = LKImagePickerControllerAppearance.sharedAppearance.toolbarFontColor;
             self.layer.borderWidth = 0.0;
         } else {
-            [self setTitleColor:LKImagePickerControllerAppearance.sharedAppearance.backgroundColor forState:UIControlStateNormal];
+            [self setTitleColor:LKImagePickerControllerAppearance.sharedAppearance.toolbarFontColor forState:UIControlStateNormal];
             self.backgroundColor = UIColor.clearColor;
             self.layer.borderWidth = 1.0;
-            self.layer.borderColor = LKImagePickerControllerAppearance.sharedAppearance.backgroundColor.CGColor;
+            self.layer.borderColor = LKImagePickerControllerAppearance.sharedAppearance.toolbarFontColor.CGColor;
 
         }
     }
