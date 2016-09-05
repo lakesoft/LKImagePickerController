@@ -10,15 +10,19 @@
 
 @interface LKImagePickerControllerAppearance : NSObject
 
-@property (strong, nonatomic) UIColor* foregroundColor;
-@property (strong, nonatomic) UIColor* backgroundColor;
 @property (strong, nonatomic) UIColor* navigationBarColor;
+@property (strong, nonatomic) UIColor* navigationFontColor;
+
+@property (strong, nonatomic) UIColor* dayBoxColor;
+@property (strong, nonatomic) UIColor* dateFontColor;
+
+@property (strong, nonatomic) UIColor* checkForegroundColor;
+@property (strong, nonatomic) UIColor* checkBackgroundColor;
+
+@property (strong, nonatomic) UIColor* toolbarFontColor;
+
 @property (strong, nonatomic) UIColor* alertColor;
 @property (strong, nonatomic) UIColor* usedColor;
-
-@property (strong, nonatomic) UIColor* tintColor;
-@property (strong, nonatomic) UIColor* fontColor;
-@property (strong, nonatomic) UIColor* toolbarFontColor;
 
 + (instancetype)sharedAppearance;
 

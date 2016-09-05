@@ -51,7 +51,7 @@
                                                name:LKImagePickerControllerAssetsManagerDidAllDeselectNotification
                                              object:nil];
 
-    UIColor* buttonForegroundColor = LKImagePickerControllerAppearance.sharedAppearance.backgroundColor;
+    UIColor* buttonForegroundColor = LKImagePickerControllerAppearance.sharedAppearance.checkBackgroundColor;
     CALayer* layer = self.checkButton.layer;
     layer.borderColor = buttonForegroundColor.CGColor;
     layer.borderWidth = 1.0;
@@ -88,7 +88,7 @@
         allSelected = NO;
     }
     _allSelected = allSelected;
-    UIColor* buttonForegroundColor = LKImagePickerControllerAppearance.sharedAppearance.backgroundColor;
+    UIColor* buttonForegroundColor = LKImagePickerControllerAppearance.sharedAppearance.checkBackgroundColor;
     UIColor* buttonBackgroundColor = UIColor.whiteColor;
     
     if (allSelected) {

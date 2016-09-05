@@ -13,17 +13,20 @@
 - (instancetype)init
 {
     self = [super init];
-    if (self) {
-        self.foregroundColor = UIColor.whiteColor;
-        self.backgroundColor = [UIColor colorWithRed:0.078 green:0.43 blue:0.87 alpha:1.000];
+    if (self) {        
         self.navigationBarColor = [UIColor colorWithRed:0.276 green:0.534 blue:0.975 alpha:1.000];
+        self.navigationFontColor = UIColor.whiteColor;
+
+        self.dayBoxColor = self.navigationBarColor = [UIColor colorWithRed:0.276 green:0.534 blue:0.975 alpha:1.000];
+        self.dateFontColor = self.navigationBarColor = [UIColor colorWithRed:0.276 green:0.534 blue:0.975 alpha:1.000];
+
+        self.checkForegroundColor = UIColor.whiteColor;
+        self.checkBackgroundColor = [UIColor colorWithRed:0.078 green:0.43 blue:0.87 alpha:1.000];
+
         self.alertColor = UIColor.redColor;
 
-        self.usedColor = _backgroundColor;
-        self.fontColor = UIColor.whiteColor;
-        self.toolbarFontColor = self.backgroundColor;
-        _tintColor = _backgroundColor;
-        
+        self.usedColor = _checkBackgroundColor;
+        self.toolbarFontColor = self.checkBackgroundColor;
     }
     return self;
 }
@@ -36,13 +39,6 @@
         _sharedApperance = self.new;
     });
     return _sharedApperance;
-}
-
-- (void)setTintColor:(UIColor *)tintColor
-{
-    _tintColor = tintColor;
-    self.backgroundColor = tintColor;
-    self.navigationBarColor = tintColor;
 }
 
 @end

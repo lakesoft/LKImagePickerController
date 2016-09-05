@@ -43,7 +43,7 @@
     [path moveToPoint:p1];
     [path addLineToPoint:p2];
     
-    [LKImagePickerControllerAppearance.sharedAppearance.foregroundColor setStroke];
+    [LKImagePickerControllerAppearance.sharedAppearance.checkForegroundColor setStroke];
     [path stroke];
 }
 

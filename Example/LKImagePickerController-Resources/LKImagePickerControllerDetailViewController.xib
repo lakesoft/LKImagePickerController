@@ -51,7 +51,7 @@
                         <outlet property="delegate" destination="-1" id="f2J-Uf-81Z"/>
                     </connections>
                 </collectionView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R9X-QZ-Xmo">
+                <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R9X-QZ-Xmo">
                     <rect key="frame" x="266" y="10" width="44" height="44"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="44" id="C6e-KY-YEf"/>

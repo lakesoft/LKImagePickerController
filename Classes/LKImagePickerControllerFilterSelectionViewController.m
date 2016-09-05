@@ -23,13 +23,13 @@
     [super viewDidLoad];
     
     self.navigationController.navigationBar.barTintColor = LKImagePickerControllerAppearance.sharedAppearance.navigationBarColor;
-    self.navigationController.navigationBar.tintColor = LKImagePickerControllerAppearance.sharedAppearance.fontColor;
-    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: LKImagePickerControllerAppearance.sharedAppearance.fontColor};
+    self.navigationController.navigationBar.tintColor = LKImagePickerControllerAppearance.sharedAppearance.navigationFontColor;
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: LKImagePickerControllerAppearance.sharedAppearance.navigationFontColor};
 
     
     self.title = [LKImagePickerControllerBundleManager localizedStringForKey:@"FilterScreen.Title"];
     [self.tableView registerClass:UITableViewCell.class forCellReuseIdentifier:@"FilterCell"];
-    self.tableView.tintColor = LKImagePickerControllerAppearance.sharedAppearance.tintColor;
+    self.tableView.tintColor = LKImagePickerControllerAppearance.sharedAppearance.checkBackgroundColor;
     
     self.firstType = self.assetsManager.filter.currentType;
 //    NSLog(@"%zd", self.firstType);

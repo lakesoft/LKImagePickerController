@@ -46,7 +46,7 @@
     [self.tableView registerNib:nib
          forCellReuseIdentifier:@"LKImagePickerControllerGroupTableViewCell"];
     
-    self.tableView.tintColor = LKImagePickerControllerAppearance.sharedAppearance.tintColor;
+    self.tableView.tintColor = LKImagePickerControllerAppearance.sharedAppearance.checkBackgroundColor;
 
 }
 

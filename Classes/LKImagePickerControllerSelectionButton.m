@@ -83,25 +83,25 @@
     self.enabled = YES;
     if (self.alerted) {
         if (self.active) {
-            [self setTitleColor:LKImagePickerControllerAppearance.sharedAppearance.foregroundColor forState:UIControlStateNormal];
+            [self setTitleColor:LKImagePickerControllerAppearance.sharedAppearance.checkForegroundColor forState:UIControlStateNormal];
             self.backgroundColor = LKImagePickerControllerAppearance.sharedAppearance.alertColor;
             self.layer.borderWidth = 0.0;
         } else {
             [self setTitleColor:LKImagePickerControllerAppearance.sharedAppearance.alertColor forState:UIControlStateNormal];
             self.backgroundColor = UIColor.clearColor;
-            self.layer.borderWidth = 1.0;
+            self.layer.borderWidth = 0.5;
             self.layer.borderColor = LKImagePickerControllerAppearance.sharedAppearance.alertColor.CGColor;
         }
     } else {
         if (self.active) {
-            [self setTitleColor:LKImagePickerControllerAppearance.sharedAppearance.backgroundColor forState:UIControlStateNormal];
-            self.backgroundColor = LKImagePickerControllerAppearance.sharedAppearance.toolbarFontColor;
+            [self setTitleColor:LKImagePickerControllerAppearance.sharedAppearance.checkForegroundColor forState:UIControlStateNormal];
+            self.backgroundColor = LKImagePickerControllerAppearance.sharedAppearance.checkBackgroundColor;
             self.layer.borderWidth = 0.0;
         } else {
-            [self setTitleColor:LKImagePickerControllerAppearance.sharedAppearance.toolbarFontColor forState:UIControlStateNormal];
+            [self setTitleColor:LKImagePickerControllerAppearance.sharedAppearance.checkBackgroundColor forState:UIControlStateNormal];
             self.backgroundColor = UIColor.clearColor;
-            self.layer.borderWidth = 1.0;
-            self.layer.borderColor = LKImagePickerControllerAppearance.sharedAppearance.toolbarFontColor.CGColor;
+            self.layer.borderWidth = 0.5;
+            self.layer.borderColor = LKImagePickerControllerAppearance.sharedAppearance.checkBackgroundColor.CGColor;
 
         }
     }

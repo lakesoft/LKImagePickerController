@@ -68,8 +68,8 @@
 }
 - (void)drawRect:(CGRect)rect
 {
-    UIColor* strokeColor = LKImagePickerControllerAppearance.sharedAppearance.foregroundColor;
-    UIColor* fillColor = LKImagePickerControllerAppearance.sharedAppearance.backgroundColor;
+    UIColor* strokeColor = LKImagePickerControllerAppearance.sharedAppearance.checkForegroundColor;
+    UIColor* fillColor = LKImagePickerControllerAppearance.sharedAppearance.checkBackgroundColor;
     CGFloat lineWidth = 1.5;
 
     if (self.alerting) {

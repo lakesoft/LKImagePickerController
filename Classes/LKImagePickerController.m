@@ -57,8 +57,8 @@
     [super viewDidLoad];
     
     self.navigationBar.barTintColor = LKImagePickerControllerAppearance.sharedAppearance.navigationBarColor;
-    self.navigationBar.tintColor = LKImagePickerControllerAppearance.sharedAppearance.fontColor;
-    self.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: LKImagePickerControllerAppearance.sharedAppearance.fontColor};
+    self.navigationBar.tintColor = LKImagePickerControllerAppearance.sharedAppearance.navigationFontColor;
+    self.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: LKImagePickerControllerAppearance.sharedAppearance.navigationFontColor};
     
     self.assetsManager = [LKImagePickerControllerAssetsManager assetsManagerWithAvaliableTypes:self.availableTypes currentType:self.currentType];
     self.assetsManager.imagePickerController = self;
@@ -70,6 +70,7 @@
         [self pushViewController:viewController animated:NO];
         self.selectViewController = viewController;
     }];
+    self.maximumOfSelections = self.maximumOfSelections;    // reuired
     
     NSNotificationCenter* nc = NSNotificationCenter.defaultCenter;
 
