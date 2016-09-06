@@ -462,6 +462,7 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
 
     // Setup tint color
     self.navigationController.toolbar.tintColor = LKImagePickerControllerAppearance.sharedAppearance.toolbarFontColor;
+    self.navigationController.toolbar.clipsToBounds = true;
 
     // Bar buttons
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:[LKImagePickerControllerBundleManager localizedStringForKey:@"Common.Back"] style:UIBarButtonItemStylePlain target:nil action:nil];
@@ -752,6 +753,26 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
 {
     [self _openDetailViewAtIndexPath:indexPath];
 
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    CGFloat viewWidth = fmin(collectionView.frame.size.width, collectionView.frame.size.height);
+    CGFloat cellWidth;
+    CGFloat div = 4.0;
+    
+    while (1) {
+        cellWidth = viewWidth / div;
+        if (75.0 < cellWidth && cellWidth < 86.0) {
+            break;
+        }
+        div += 1.0;
+        if (div > 15.0) {
+            break;
+        }
+    }
+    
+    return CGSizeMake(cellWidth, cellWidth);
 }
 
 #pragma mark - UIActionSheetDelegate
