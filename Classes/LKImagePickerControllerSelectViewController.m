@@ -757,7 +757,8 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    CGFloat viewWidth = fmin(collectionView.frame.size.width, collectionView.frame.size.height);
+    CGSize size = UIScreen.mainScreen.bounds.size;
+    CGFloat viewWidth = fmin(size.width, size.height);
     CGFloat cellWidth;
     CGFloat div = 4.0;
     
