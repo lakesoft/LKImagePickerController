@@ -764,7 +764,7 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     
     while (1) {
         cellWidth = viewWidth / div;
-        if (75.0 <= cellWidth) {
+        if (cellWidth <= 100.0) {
             break;
         }
         div += 1.0;
