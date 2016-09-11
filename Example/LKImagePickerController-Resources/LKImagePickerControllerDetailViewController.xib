@@ -38,7 +38,7 @@
                     </connections>
                 </collectionView>
                 <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gyx-qs-Qar">
-                    <rect key="frame" x="0.0" y="28" width="320" height="34"/>
+                    <rect key="frame" x="0.0" y="-36" width="320" height="34"/>
                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="OoP-y1-flZ">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="34"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -101,7 +101,7 @@
                 <constraint firstAttribute="trailing" secondItem="EKc-bL-G2J" secondAttribute="trailing" id="5Mg-an-vfA"/>
                 <constraint firstItem="gyx-qs-Qar" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="7MA-AT-QGx"/>
                 <constraint firstAttribute="bottom" secondItem="dLc-gu-JSm" secondAttribute="bottom" constant="-50" id="9kJ-QB-Rxl"/>
-                <constraint firstItem="gyx-qs-Qar" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="28" id="ADJ-uy-A4e"/>
+                <constraint firstItem="gyx-qs-Qar" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="-36" id="ADJ-uy-A4e"/>
                 <constraint firstAttribute="trailing" secondItem="gyx-qs-Qar" secondAttribute="trailing" id="BFG-vT-tRT"/>
                 <constraint firstItem="EKc-bL-G2J" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="YzA-a5-MAj"/>
                 <constraint firstAttribute="bottom" secondItem="EKc-bL-G2J" secondAttribute="bottom" id="fuw-Ek-zIO"/>

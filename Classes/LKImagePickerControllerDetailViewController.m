@@ -173,7 +173,7 @@
     self.subHeaderView.alpha = 0.0;
     self.thumbnailCollectionView.alpha = 0.0;
     [UIView animateWithDuration:0.5 animations:^{
-        self.subHeaderTopConstraint.constant = 64.0;
+        self.subHeaderTopConstraint.constant = 0.0;
         [self.subHeaderView layoutIfNeeded];
         self.subHeaderView.alpha = 1.0;
         
