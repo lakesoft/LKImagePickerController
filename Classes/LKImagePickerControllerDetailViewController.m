@@ -12,18 +12,26 @@
 #import "LKImagePickerControllerSelectionButton.h"
 #import "LKImagePickerControllerBundleManager.h"
 #import "LKImagePickerController.h"
+#import "LKImagePickerControllerUtility.h"
 
 #define LKImagePickerControlDetailThumbnailSize (CGSizeMake(50.0,50.0))
 
 @interface LKImagePickerControllerDetailViewController ()
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UICollectionView *thumbnailCollectionView;
-@property (weak, nonatomic) IBOutlet UIButton *closeButton;
 @property (assign, nonatomic) CGPoint contentOffset;
 @property (assign, nonatomic) BOOL scrollDirectionLeft;
 @property (assign, nonatomic) BOOL scrollingByThumbnailView;
 @property (strong, nonatomic) NSIndexPath* currentIndexPath;
 @property (assign, nonatomic) BOOL hideBars;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *thumbnailBottomConstraint;
+
+// sub header
+@property (weak, nonatomic) IBOutlet UIVisualEffectView *subHeaderView;
+@property (weak, nonatomic) IBOutlet UIButton *subBackButton;
+@property (weak, nonatomic) IBOutlet UILabel *subTitleLabel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *subHeaderTopConstraint;
+
 
 @end
 
@@ -106,12 +114,14 @@
     [self.thumbnailCollectionView scrollToItemAtIndexPath:self.indexPath
                                          atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally
                                                  animated:NO];
-    [UIView animateWithDuration:0.2
+    [UIView animateWithDuration:0.5
                      animations:^{
                          self.collectionView.alpha = 1.0;
                      } completion:^(BOOL finished) {
                          self.indexPath = self.indexPath;    // for .current property
                      }];
+    
+    [self updateSubHeader];
 }
 
 - (void)viewDidLoad
@@ -155,9 +165,22 @@
         self.navigationItem.rightBarButtonItem = self.selectViewController.imagePickerController.imagePickerControllerDelegate.rightBarButtonItem3;
     }
 
-    self.closeButton.hidden = !self.navigatioBarHidden;
+    self.subBackButton.hidden = !self.selectViewController.imagePickerController.navigationBarHidden;
     
     [self _updateControls];
+    
+    // sub header & thumbnail animation
+    self.subHeaderView.alpha = 0.0;
+    self.thumbnailCollectionView.alpha = 0.0;
+    [UIView animateWithDuration:0.5 animations:^{
+        self.subHeaderTopConstraint.constant = 64.0;
+        [self.subHeaderView layoutIfNeeded];
+        self.subHeaderView.alpha = 1.0;
+        
+        self.thumbnailBottomConstraint.constant = 0.0;
+        [self.thumbnailCollectionView layoutIfNeeded];
+        self.thumbnailCollectionView.alpha = 1.0;
+    }];
 }
 
 //-(void) viewWillDisappear:(BOOL)animated {
@@ -287,9 +310,19 @@
             [self.thumbnailCollectionView scrollToItemAtIndexPath:self.indexPath
                                                  atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally
                                                          animated:YES];
+            [self updateSubHeader];
         }
         self.scrollingByThumbnailView = NO;
     }
+    
+}
+
+#pragma mark - Sub header
+- (void)updateSubHeader
+{
+    // update sub header
+    LKAsset* asset = [self.assetsCollection assetForIndexPath:self.indexPath];
+    self.subTitleLabel.text = [LKImagePickerControllerUtility formattedDateTimeStringForDate:asset.date];
 }
 
 
@@ -440,7 +473,7 @@
     cell.current = YES;
 }
 
-- (IBAction)onCloseButton:(id)sender {
+- (IBAction)onSubBackButton:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
 

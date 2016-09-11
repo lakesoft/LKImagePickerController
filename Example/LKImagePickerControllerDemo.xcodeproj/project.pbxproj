@@ -35,7 +35,7 @@
 		BC2A379019397F9600C672B7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC2A376F19397F9600C672B7 /* UIKit.framework */; };
 		BC2A379819397F9600C672B7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BC2A379619397F9600C672B7 /* InfoPlist.strings */; };
 		BC2A379A19397F9600C672B7 /* LKImagePickerControllerDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BC2A379919397F9600C672B7 /* LKImagePickerControllerDemoTests.m */; };
-		BCB31F4D1D7E1EFD00A4592F /* LKImagePickerController_ButtonClose.png in Resources */ = {isa = PBXBuildFile; fileRef = BCB31F4C1D7E1EFD00A4592F /* LKImagePickerController_ButtonClose.png */; };
+		BCDBB1391D86108D00CC9EB2 /* LKImagePickerController_ButtonBack.png in Resources */ = {isa = PBXBuildFile; fileRef = BCDBB1381D86108D00CC9EB2 /* LKImagePickerController_ButtonBack.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -142,7 +142,7 @@
 		BC94FFD1196B540900EF8FC2 /* LKImagePickerControllerFilterSelectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LKImagePickerControllerFilterSelectionViewController.h; path = ../Classes/LKImagePickerControllerFilterSelectionViewController.h; sourceTree = "<group>"; };
 		BC94FFD2196B540900EF8FC2 /* LKImagePickerControllerGroupTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LKImagePickerControllerGroupTableViewController.h; path = ../Classes/LKImagePickerControllerGroupTableViewController.h; sourceTree = "<group>"; };
 		BC94FFD3196B540900EF8FC2 /* LKImagePickerControllerSelectHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LKImagePickerControllerSelectHeaderView.h; path = ../Classes/LKImagePickerControllerSelectHeaderView.h; sourceTree = "<group>"; };
-		BCB31F4C1D7E1EFD00A4592F /* LKImagePickerController_ButtonClose.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LKImagePickerController_ButtonClose.png; sourceTree = "<group>"; };
+		BCDBB1381D86108D00CC9EB2 /* LKImagePickerController_ButtonBack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LKImagePickerController_ButtonBack.png; sourceTree = "<group>"; };
 		F15AE65097E7E8161C0692A2 /* Pods-LKImagePickerControllerDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LKImagePickerControllerDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LKImagePickerControllerDemo/Pods-LKImagePickerControllerDemo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -210,7 +210,7 @@
 				BC11E59C19650DA00082D882 /* LKImagePickerControllerEmptyView.xib */,
 				BC074A351960DBBE00144C47 /* LKImagePickerController_Icon_Video.png */,
 				BC11E59519650B0D0082D882 /* LKImagePickerController_Icon_NoPics.png */,
-				BCB31F4C1D7E1EFD00A4592F /* LKImagePickerController_ButtonClose.png */,
+				BCDBB1381D86108D00CC9EB2 /* LKImagePickerController_ButtonBack.png */,
 				BC074A3B19610DAB00144C47 /* Localizable.strings */,
 				BC074A191960D3A900144C47 /* Supporting Files */,
 			);
@@ -460,9 +460,9 @@
 				BC11E59619650B0D0082D882 /* LKImagePickerController_Icon_NoPics.png in Resources */,
 				BC074A2F1960D3F400144C47 /* LKImagePickerControllerSelectViewController.xib in Resources */,
 				BC074A291960D3F400144C47 /* LKImagePickerControllerDetailCell.xib in Resources */,
+				BCDBB1391D86108D00CC9EB2 /* LKImagePickerController_ButtonBack.png in Resources */,
 				BC074A3919610DAB00144C47 /* Localizable.strings in Resources */,
 				BC074A2D1960D3F400144C47 /* LKImagePickerControllerSelectCell.xib in Resources */,
-				BCB31F4D1D7E1EFD00A4592F /* LKImagePickerController_ButtonClose.png in Resources */,
 				BC074A361960DBBE00144C47 /* LKImagePickerController_Icon_Video.png in Resources */,
 				BC074A2A1960D3F400144C47 /* LKImagePickerControllerDetailViewController.xib in Resources */,
 				BC074A2E1960D3F400144C47 /* LKImagePickerControllerSelectHeaderView.xib in Resources */,

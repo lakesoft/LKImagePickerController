@@ -10,6 +10,7 @@
 #import "LKImagePickerControllerSelectViewController.h"
 #import "LKImagePickerControllerCheckmarkView.h"
 #import "LKImagePickerControllerAppearance.h"
+#import "LKImagePickerControllerUtility.h"
 
 @interface LKImagePickerControllerSelectHeaderView()
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
@@ -60,15 +61,7 @@
 - (void)setCollectionEntry:(LKAssetsCollectionEntry *)collectionEntry
 {
     _collectionEntry = collectionEntry;
-    NSDateFormatter* formatter1 = NSDateFormatter.new;
-    formatter1.dateStyle = NSDateFormatterMediumStyle;
-    NSString* dateString1 = [formatter1 stringFromDate:collectionEntry.date];
-
-    NSDateFormatter* formatter2 = NSDateFormatter.new;
-    formatter2.dateFormat = @"E";
-    NSString* dateString2 = [formatter2 stringFromDate:collectionEntry.date];
-    
-    self.titleLabel.text = [NSString stringWithFormat:@"%@ %@", dateString1, dateString2];
+    self.titleLabel.text = [LKImagePickerControllerUtility formattedDateStringForDate:collectionEntry.date];
     
     [self.checkButton setTitle:[NSString stringWithFormat:@"%zd", collectionEntry.assets.count]
                       forState:UIControlStateNormal];
