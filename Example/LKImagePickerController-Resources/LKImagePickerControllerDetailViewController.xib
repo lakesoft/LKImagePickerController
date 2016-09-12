@@ -72,10 +72,14 @@
                             <constraint firstItem="z3S-xl-jhr" firstAttribute="leading" secondItem="OoP-y1-flZ" secondAttribute="leading" constant="4" id="s68-05-JJd"/>
                         </constraints>
                     </view>
+                    <gestureRecognizers/>
                     <constraints>
                         <constraint firstAttribute="height" constant="34" id="ORJ-mj-zeC"/>
                     </constraints>
                     <blurEffect style="dark"/>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="HYV-IN-w82" appends="YES" id="f4R-FE-Mcc"/>
+                    </connections>
                 </visualEffectView>
                 <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="dLc-gu-JSm">
                     <rect key="frame" x="0.0" y="568" width="320" height="50"/>
@@ -120,6 +124,11 @@
                 <constraint firstAttribute="trailing" secondItem="dLc-gu-JSm" secondAttribute="trailing" id="zgC-7R-7WR"/>
             </constraints>
         </view>
+        <tapGestureRecognizer id="HYV-IN-w82">
+            <connections>
+                <action selector="tappedOnSubHeaderView:" destination="-1" id="KQt-Wc-hc2"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
     <resources>
         <image name="LKImagePickerController_ButtonBack.png" width="120" height="120"/>

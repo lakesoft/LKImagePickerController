@@ -61,4 +61,8 @@
 
 - (instancetype)initWithAvaliableTypes:(NSUInteger)availableTypes currentType:(LKImagePickerControllerFilterType)currentType;
 
+- (void)markSelectedAssets;
+- (void)unmarkAllAssets;
+
+
 @end

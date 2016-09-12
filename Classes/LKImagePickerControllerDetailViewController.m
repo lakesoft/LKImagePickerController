@@ -64,6 +64,7 @@
     [UIView animateWithDuration:0.2
                      animations:^{
                          self.thumbnailCollectionView.alpha = alpha;
+                         self.subHeaderView.alpha = alpha;
 //                         self.collectionView.backgroundColor = color;
                      }];
     [UIApplication.sharedApplication setStatusBarHidden:self.hideBars
@@ -474,6 +475,9 @@
 }
 
 - (IBAction)onSubBackButton:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+- (IBAction)tappedOnSubHeaderView:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
 

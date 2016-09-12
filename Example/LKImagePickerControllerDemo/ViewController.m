@@ -19,6 +19,7 @@
 
 - (void)viewDidLoad
 {
+    
     [super viewDidLoad];
 }
 
@@ -36,7 +37,9 @@
     
 //    self.controller.navigationBarHidden = YES;
 //    self.controller.toolBarHidden = YES;
-    
+
+//    [self.controller unmarkAllAssets];
+
     [self presentViewController:self.controller animated:NO completion:nil];
 }
 
@@ -53,6 +56,7 @@
     for (LKAsset* asset in selectedAssets) {
         NSLog(@"%@", asset.date);
     }
+    [imagePickerController markSelectedAssets];
 }
 
 //- (NSArray*)rightBarButtonItems {

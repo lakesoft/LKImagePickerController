@@ -11,6 +11,7 @@
 #import "LKImagePickerControllerAppearance.h"
 #import "LKImagePickerControllerGroupTableViewController.h"
 #import "LKImagePickerControllerSelectViewController.h"
+#import "LKImagePickerControllerMarkedAssetsManager.h"
 
 @interface LKImagePickerController ()
 @property (strong, nonatomic) LKImagePickerControllerAssetsManager* assetsManager;
@@ -127,5 +128,14 @@
     }
 }
 
+- (void)markSelectedAssets
+{
+    [LKImagePickerControllerMarkedAssetsManager markAssets:self.selectedAssets];
+}
+
+- (void)unmarkAllAssets
+{
+    [LKImagePickerControllerMarkedAssetsManager unmarkAllAssets];
+}
 
 @end

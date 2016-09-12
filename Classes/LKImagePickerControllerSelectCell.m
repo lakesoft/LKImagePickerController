@@ -10,6 +10,7 @@
 #import "LKImagePickerControllerCheckmarkButton.h"
 #import "LKImagePickerControllerUsedMarkView.h"
 #import "LKImagePickerControllerSelectViewController.h"
+#import "LKImagePickerControllerMarkedAssetsManager.h"
 
 #define LKImagePickerControllerStandardSelectCellOffset 10
 
@@ -19,6 +20,8 @@
 @property (unsafe_unretained, nonatomic) IBOutlet UIView *videoView;
 @property (unsafe_unretained, nonatomic) IBOutlet UILabel *videoLabel;
 @property (weak, nonatomic) IBOutlet LKImagePickerControllerUsedMarkView *usedView;
+@property (weak, nonatomic) IBOutlet UIImageView *postedIconImageView;
+
 @end
 
 @implementation LKImagePickerControllerSelectCell
@@ -39,6 +42,7 @@
     self.videoView.hidden = asset.type != LKAssetTypeVideo;
     self.videoLabel.text = self._durationString;
     self.videoLabel.hidden = self.bounds.size.width < 80.0;
+    self.postedIconImageView.hidden = ![LKImagePickerControllerMarkedAssetsManager isMarkedAsset:asset];
 }
 
 - (void)alert
