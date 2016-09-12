@@ -13,6 +13,8 @@
 #import "LKImagePickerControllerBundleManager.h"
 #import "LKImagePickerController.h"
 #import "LKImagePickerControllerUtility.h"
+#import "LKImagePickerCOntrollerMarkedAssetsManager.h"
+
 
 #define LKImagePickerControlDetailThumbnailSize (CGSizeMake(50.0,50.0))
 
@@ -31,6 +33,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *subBackButton;
 @property (weak, nonatomic) IBOutlet UILabel *subTitleLabel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *subHeaderTopConstraint;
+@property (weak, nonatomic) IBOutlet UIImageView *markImageView;
 
 
 @end
@@ -324,6 +327,7 @@
     // update sub header
     LKAsset* asset = [self.assetsCollection assetForIndexPath:self.indexPath];
     self.subTitleLabel.text = [LKImagePickerControllerUtility formattedDateTimeStringForDate:asset.date];
+    self.markImageView.hidden = ![LKImagePickerControllerMarkedAssetsManager isMarkedAsset:asset];
 }
 
 
