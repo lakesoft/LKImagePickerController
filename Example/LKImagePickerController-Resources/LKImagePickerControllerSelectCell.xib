@@ -17,7 +17,7 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qMo-gO-f9W">
                         <rect key="frame" x="1" y="1" width="78" height="78"/>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LKImagePickerController_IconPosted.png" translatesAutoresizingMaskIntoConstraints="NO" id="rK7-rU-KoH">
+                    <imageView userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LKImagePickerController_IconPosted.png" translatesAutoresizingMaskIntoConstraints="NO" id="rK7-rU-KoH">
                         <rect key="frame" x="61" y="1" width="18" height="18"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="18" id="HhT-xs-xuu"/>
