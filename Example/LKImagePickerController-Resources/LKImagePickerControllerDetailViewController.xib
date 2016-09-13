@@ -109,24 +109,34 @@
                         <outlet property="delegate" destination="-1" id="f2J-Uf-81Z"/>
                     </connections>
                 </collectionView>
+                <view alpha="0.01" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="08h-zw-Sqz" userLabel="Swipe back view">
+                    <rect key="frame" x="0.0" y="0.0" width="44" height="568"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    <gestureRecognizers/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="44" id="8J2-tb-7Pj"/>
+                    </constraints>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="hvw-Vy-dHp" appends="YES" id="hOV-eW-pvE"/>
+                    </connections>
+                </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-            <gestureRecognizers/>
             <constraints>
+                <constraint firstItem="08h-zw-Sqz" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="2R7-52-Wf1"/>
                 <constraint firstAttribute="trailing" secondItem="EKc-bL-G2J" secondAttribute="trailing" id="5Mg-an-vfA"/>
                 <constraint firstItem="gyx-qs-Qar" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="7MA-AT-QGx"/>
                 <constraint firstAttribute="bottom" secondItem="dLc-gu-JSm" secondAttribute="bottom" constant="-50" id="9kJ-QB-Rxl"/>
                 <constraint firstItem="gyx-qs-Qar" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="-36" id="ADJ-uy-A4e"/>
                 <constraint firstAttribute="trailing" secondItem="gyx-qs-Qar" secondAttribute="trailing" id="BFG-vT-tRT"/>
+                <constraint firstItem="08h-zw-Sqz" firstAttribute="top" secondItem="gyx-qs-Qar" secondAttribute="bottom" constant="2" id="DVY-V3-mE4"/>
                 <constraint firstItem="EKc-bL-G2J" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="YzA-a5-MAj"/>
                 <constraint firstAttribute="bottom" secondItem="EKc-bL-G2J" secondAttribute="bottom" id="fuw-Ek-zIO"/>
                 <constraint firstItem="dLc-gu-JSm" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="gPh-H1-riB"/>
+                <constraint firstItem="dLc-gu-JSm" firstAttribute="top" secondItem="08h-zw-Sqz" secondAttribute="bottom" id="kSw-Ka-p9Z"/>
                 <constraint firstItem="EKc-bL-G2J" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="uol-Ur-Kig"/>
                 <constraint firstAttribute="trailing" secondItem="dLc-gu-JSm" secondAttribute="trailing" id="zgC-7R-7WR"/>
             </constraints>
-            <connections>
-                <outletCollection property="gestureRecognizers" destination="1ob-BM-6nk" appends="YES" id="zE5-Mc-BMG"/>
-            </connections>
             <point key="canvasLocation" x="367" y="208"/>
         </view>
         <tapGestureRecognizer id="HYV-IN-w82">
@@ -134,11 +144,11 @@
                 <action selector="tappedOnSubHeaderView:" destination="-1" id="KQt-Wc-hc2"/>
             </connections>
         </tapGestureRecognizer>
-        <screenEdgePanGestureRecognizer minimumNumberOfTouches="1" id="1ob-BM-6nk">
+        <swipeGestureRecognizer direction="right" id="hvw-Vy-dHp">
             <connections>
-                <action selector="onScreenEdge:" destination="-1" id="rAB-Q9-T2r"/>
+                <action selector="onSwipeBackView:" destination="-1" id="hiG-HK-bU7"/>
             </connections>
-        </screenEdgePanGestureRecognizer>
+        </swipeGestureRecognizer>
     </objects>
     <resources>
         <image name="LKImagePickerController_ButtonBack.png" width="120" height="120"/>

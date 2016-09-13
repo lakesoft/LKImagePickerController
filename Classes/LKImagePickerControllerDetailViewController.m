@@ -484,7 +484,7 @@
 - (IBAction)tappedOnSubHeaderView:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
-- (IBAction)onScreenEdge:(id)sender {
+- (IBAction)onSwipeBackView:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
