@@ -8,7 +8,6 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LKImagePickerControllerDetailViewController">
             <connections>
                 <outlet property="collectionView" destination="EKc-bL-G2J" id="tK2-L3-Bcd"/>
-                <outlet property="markImageView" destination="4lB-iT-y0k" id="8wa-0J-YJt"/>
                 <outlet property="subBackButton" destination="z3S-xl-jhr" id="ITO-Dy-a52"/>
                 <outlet property="subHeaderTopConstraint" destination="ADJ-uy-A4e" id="HOj-YN-z1g"/>
                 <outlet property="subHeaderView" destination="gyx-qs-Qar" id="iOq-xr-CNY"/>
@@ -44,13 +43,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="34"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LKImagePickerController_IconPosted.png" translatesAutoresizingMaskIntoConstraints="NO" id="4lB-iT-y0k">
-                                <rect key="frame" x="291" y="5" width="24" height="24"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="24" id="6SP-Fl-cnv"/>
-                                    <constraint firstAttribute="width" constant="24" id="BNn-It-OLE"/>
-                                </constraints>
-                            </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z3S-xl-jhr">
                                 <rect key="frame" x="4" y="-1" width="36" height="36"/>
                                 <constraints>
@@ -75,11 +67,9 @@
                         </subviews>
                         <constraints>
                             <constraint firstItem="z3S-xl-jhr" firstAttribute="centerY" secondItem="OoP-y1-flZ" secondAttribute="centerY" id="T2v-hJ-fG4"/>
-                            <constraint firstItem="4lB-iT-y0k" firstAttribute="top" secondItem="OoP-y1-flZ" secondAttribute="top" constant="5" id="fOu-Rd-qZN"/>
                             <constraint firstItem="j7A-QL-SBc" firstAttribute="centerX" secondItem="OoP-y1-flZ" secondAttribute="centerX" id="lMV-j1-BQM"/>
                             <constraint firstItem="j7A-QL-SBc" firstAttribute="centerY" secondItem="OoP-y1-flZ" secondAttribute="centerY" id="mdZ-6z-zey"/>
                             <constraint firstItem="z3S-xl-jhr" firstAttribute="leading" secondItem="OoP-y1-flZ" secondAttribute="leading" constant="4" id="s68-05-JJd"/>
-                            <constraint firstAttribute="trailing" secondItem="4lB-iT-y0k" secondAttribute="trailing" constant="5" id="t5q-cw-r6f"/>
                         </constraints>
                     </view>
                     <gestureRecognizers/>
@@ -152,6 +142,5 @@
     </objects>
     <resources>
         <image name="LKImagePickerController_ButtonBack.png" width="120" height="120"/>
-        <image name="LKImagePickerController_IconPosted.png" width="120" height="120"/>
     </resources>
 </document>
