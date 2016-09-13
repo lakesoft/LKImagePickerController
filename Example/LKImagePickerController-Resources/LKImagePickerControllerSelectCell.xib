@@ -17,11 +17,11 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qMo-gO-f9W">
                         <rect key="frame" x="1" y="1" width="78" height="78"/>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LKImagePickerController_IconPosted.png" translatesAutoresizingMaskIntoConstraints="NO" id="rK7-rU-KoH">
-                        <rect key="frame" x="61" y="1" width="18" height="18"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LKImagePickerController_IconPosted.png" translatesAutoresizingMaskIntoConstraints="NO" id="rK7-rU-KoH">
+                        <rect key="frame" x="49" y="1" width="30" height="30"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="18" id="HhT-xs-xuu"/>
-                            <constraint firstAttribute="height" constant="18" id="oQ8-cO-ZA5"/>
+                            <constraint firstAttribute="width" constant="30" id="HhT-xs-xuu"/>
+                            <constraint firstAttribute="height" constant="30" id="oQ8-cO-ZA5"/>
                         </constraints>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nxm-zR-Pdp">
