@@ -45,7 +45,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LKImagePickerController_IconPosted.png" translatesAutoresizingMaskIntoConstraints="NO" id="4lB-iT-y0k">
-                                <rect key="frame" x="296" y="0.0" width="24" height="24"/>
+                                <rect key="frame" x="291" y="5" width="24" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="6SP-Fl-cnv"/>
                                     <constraint firstAttribute="width" constant="24" id="BNn-It-OLE"/>
@@ -75,11 +75,11 @@
                         </subviews>
                         <constraints>
                             <constraint firstItem="z3S-xl-jhr" firstAttribute="centerY" secondItem="OoP-y1-flZ" secondAttribute="centerY" id="T2v-hJ-fG4"/>
-                            <constraint firstItem="4lB-iT-y0k" firstAttribute="top" secondItem="OoP-y1-flZ" secondAttribute="top" id="fOu-Rd-qZN"/>
+                            <constraint firstItem="4lB-iT-y0k" firstAttribute="top" secondItem="OoP-y1-flZ" secondAttribute="top" constant="5" id="fOu-Rd-qZN"/>
                             <constraint firstItem="j7A-QL-SBc" firstAttribute="centerX" secondItem="OoP-y1-flZ" secondAttribute="centerX" id="lMV-j1-BQM"/>
                             <constraint firstItem="j7A-QL-SBc" firstAttribute="centerY" secondItem="OoP-y1-flZ" secondAttribute="centerY" id="mdZ-6z-zey"/>
                             <constraint firstItem="z3S-xl-jhr" firstAttribute="leading" secondItem="OoP-y1-flZ" secondAttribute="leading" constant="4" id="s68-05-JJd"/>
-                            <constraint firstAttribute="trailing" secondItem="4lB-iT-y0k" secondAttribute="trailing" id="t5q-cw-r6f"/>
+                            <constraint firstAttribute="trailing" secondItem="4lB-iT-y0k" secondAttribute="trailing" constant="5" id="t5q-cw-r6f"/>
                         </constraints>
                     </view>
                     <gestureRecognizers/>
