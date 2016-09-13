@@ -36,7 +36,7 @@
 		BC2A379819397F9600C672B7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BC2A379619397F9600C672B7 /* InfoPlist.strings */; };
 		BC2A379A19397F9600C672B7 /* LKImagePickerControllerDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BC2A379919397F9600C672B7 /* LKImagePickerControllerDemoTests.m */; };
 		BCDBB1391D86108D00CC9EB2 /* LKImagePickerController_ButtonBack.png in Resources */ = {isa = PBXBuildFile; fileRef = BCDBB1381D86108D00CC9EB2 /* LKImagePickerController_ButtonBack.png */; };
-		BCDBB1691D87BBEF00CC9EB2 /* LKImagePickerController_IconPosted.png in Resources */ = {isa = PBXBuildFile; fileRef = BCDBB1681D87BBEF00CC9EB2 /* LKImagePickerController_IconPosted.png */; };
+		BCDBB1711D88167800CC9EB2 /* LKImagePickerController_IconPosted.png in Resources */ = {isa = PBXBuildFile; fileRef = BCDBB1701D88167800CC9EB2 /* LKImagePickerController_IconPosted.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -146,7 +146,7 @@
 		BCDBB13D1D86AF2300CC9EB2 /* LKImagePickerControllerMarkedAssetsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LKImagePickerControllerMarkedAssetsManager.h; path = ../Classes/LKImagePickerControllerMarkedAssetsManager.h; sourceTree = "<group>"; };
 		BCDBB13E1D86AF2300CC9EB2 /* LKImagePickerControllerMarkedAssetsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LKImagePickerControllerMarkedAssetsManager.m; path = ../Classes/LKImagePickerControllerMarkedAssetsManager.m; sourceTree = "<group>"; };
 		BCDBB1471D86B55300CC9EB2 /* LKImagePickerController_IconPosted.pxm */ = {isa = PBXFileReference; lastKnownFileType = file; path = LKImagePickerController_IconPosted.pxm; sourceTree = "<group>"; };
-		BCDBB1681D87BBEF00CC9EB2 /* LKImagePickerController_IconPosted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LKImagePickerController_IconPosted.png; sourceTree = "<group>"; };
+		BCDBB1701D88167800CC9EB2 /* LKImagePickerController_IconPosted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LKImagePickerController_IconPosted.png; sourceTree = "<group>"; };
 		F15AE65097E7E8161C0692A2 /* Pods-LKImagePickerControllerDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LKImagePickerControllerDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LKImagePickerControllerDemo/Pods-LKImagePickerControllerDemo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -215,7 +215,7 @@
 				BC074A351960DBBE00144C47 /* LKImagePickerController_Icon_Video.png */,
 				BC11E59519650B0D0082D882 /* LKImagePickerController_Icon_NoPics.png */,
 				BCDBB1381D86108D00CC9EB2 /* LKImagePickerController_ButtonBack.png */,
-				BCDBB1681D87BBEF00CC9EB2 /* LKImagePickerController_IconPosted.png */,
+				BCDBB1701D88167800CC9EB2 /* LKImagePickerController_IconPosted.png */,
 				BC074A3B19610DAB00144C47 /* Localizable.strings */,
 				BC074A191960D3A900144C47 /* Supporting Files */,
 			);
@@ -468,7 +468,7 @@
 				BC074A2F1960D3F400144C47 /* LKImagePickerControllerSelectViewController.xib in Resources */,
 				BC074A291960D3F400144C47 /* LKImagePickerControllerDetailCell.xib in Resources */,
 				BCDBB1391D86108D00CC9EB2 /* LKImagePickerController_ButtonBack.png in Resources */,
-				BCDBB1691D87BBEF00CC9EB2 /* LKImagePickerController_IconPosted.png in Resources */,
+				BCDBB1711D88167800CC9EB2 /* LKImagePickerController_IconPosted.png in Resources */,
 				BC074A3919610DAB00144C47 /* Localizable.strings in Resources */,
 				BC074A2D1960D3F400144C47 /* LKImagePickerControllerSelectCell.xib in Resources */,
 				BC074A361960DBBE00144C47 /* LKImagePickerController_Icon_Video.png in Resources */,

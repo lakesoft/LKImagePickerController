@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet LKImagePickerControllerUsedMarkView *usedView;
 @property (weak, nonatomic) IBOutlet UIImageView *postedIconImageView;
 
+
 @end
 
 @implementation LKImagePickerControllerSelectCell
@@ -39,10 +40,12 @@
 {
     _asset = asset;
     self.photoImageView.image = self.asset.thumbnail;
+    BOOL marked = [LKImagePickerControllerMarkedAssetsManager isMarkedAsset:asset];
+    self.photoImageView.alpha = marked ? 0.5 : 1.0;
+    self.postedIconImageView.hidden = !marked;
     self.videoView.hidden = asset.type != LKAssetTypeVideo;
     self.videoLabel.text = self._durationString;
     self.videoLabel.hidden = self.bounds.size.width < 80.0;
-    self.postedIconImageView.hidden = ![LKImagePickerControllerMarkedAssetsManager isMarkedAsset:asset];
 }
 
 - (void)alert
