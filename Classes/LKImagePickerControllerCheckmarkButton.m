@@ -8,9 +8,12 @@
 
 #import "LKImagePickerControllerCheckmarkButton.h"
 #import "LKImagePickerControllerCheckmarkView.h"
+#import "LKImagePickerControllerSelectCell.h"
 
 @interface LKImagePickerControllerCheckmarkButton()
 @property (nonatomic, weak) LKImagePickerControllerCheckmarkView* checkmarkView;
+@property (nonatomic, weak) IBOutlet LKImagePickerControllerSelectCell* selectCell;
+
 @end
 @implementation LKImagePickerControllerCheckmarkButton
 
@@ -57,6 +60,7 @@
     if (self.hiddenMode) {
         self.checkmarkView.hidden = !checked;
     }
+    [self.selectCell setHilighted:checked];
 }
 - (BOOL)checked
 {

@@ -37,6 +37,7 @@
     
 //    self.controller.navigationBarHidden = YES;
 //    self.controller.toolBarHidden = YES;
+//    self.controller.fullScreenDisabled = YES;
 
 //    [self.controller unmarkAllAssets];
 

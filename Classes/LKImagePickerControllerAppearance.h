@@ -23,6 +23,7 @@
 
 @property (strong, nonatomic) UIColor* alertColor;
 @property (strong, nonatomic) UIColor* usedColor;
+@property (strong, nonatomic) UIColor* usedBorderColor;
 
 + (instancetype)sharedAppearance;
 

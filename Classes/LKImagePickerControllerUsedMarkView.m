@@ -17,7 +17,7 @@
     if (self) {
         CALayer* layer = self.layer;
         layer.cornerRadius = self.bounds.size.width/2.0;
-        layer.borderWidth = 1.0;
+        layer.borderWidth = 0.5;
         layer.masksToBounds = YES;
     }
     return self;
@@ -29,10 +29,10 @@
     CALayer* layer = self.layer;
     if (on) {
         layer.backgroundColor = LKImagePickerControllerAppearance.sharedAppearance.usedColor.CGColor;
-        layer.borderColor = UIColor.clearColor.CGColor;
+        layer.borderColor = LKImagePickerControllerAppearance.sharedAppearance.usedBorderColor.CGColor;
     } else {
         layer.backgroundColor = UIColor.clearColor.CGColor;
-        layer.borderColor = LKImagePickerControllerAppearance.sharedAppearance.usedColor.CGColor;
+        layer.borderColor = UIColor.clearColor.CGColor;
     }
     [self setNeedsDisplay];
 }

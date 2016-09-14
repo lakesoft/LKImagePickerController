@@ -54,7 +54,9 @@
 
 @property (nonatomic, assign) NSUInteger availableTypes;  // combination of LKImagePickerControllerFilterType
 @property (nonatomic, assign) LKImagePickerControllerFilterType currentType;
+
 @property (nonatomic, assign) BOOL toolBarHidden;
+@property (nonatomic, assign) BOOL fullScreenDisabled;
 
 - (void)deselectAll;
 - (void)displayMainScreenAnimated:(BOOL)animated;

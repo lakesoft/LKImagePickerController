@@ -26,6 +26,7 @@
         self.alertColor = UIColor.redColor;
 
         self.usedColor = _checkBackgroundColor;
+        self.usedBorderColor = UIColor.whiteColor;
         self.toolbarFontColor = self.checkBackgroundColor;
     }
     return self;

@@ -60,6 +60,9 @@
 
 - (void)_toggleFullscreen
 {
+    if (self.selectViewController.imagePickerController.fullScreenDisabled) {
+        return;
+    }
     self.hideBars = !self.hideBars;
     self.navigationController.navigationBar.hidden = self.hideBars;
     CGFloat alpha = self.hideBars ? 0.0 : 1.0;

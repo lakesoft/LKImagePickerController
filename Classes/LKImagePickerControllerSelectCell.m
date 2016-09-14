@@ -20,7 +20,6 @@
 @property (unsafe_unretained, nonatomic) IBOutlet UIView *videoView;
 @property (unsafe_unretained, nonatomic) IBOutlet UILabel *videoLabel;
 @property (weak, nonatomic) IBOutlet LKImagePickerControllerUsedMarkView *usedView;
-@property (weak, nonatomic) IBOutlet UIImageView *postedIconImageView;
 
 
 @end
@@ -40,9 +39,7 @@
 {
     _asset = asset;
     self.photoImageView.image = self.asset.thumbnail;
-    BOOL marked = [LKImagePickerControllerMarkedAssetsManager isMarkedAsset:asset];
-    self.photoImageView.alpha = marked ? 0.5 : 1.0;
-    self.postedIconImageView.hidden = !marked;
+    self.usedView.on = [LKImagePickerControllerMarkedAssetsManager isMarkedAsset:asset];
     self.videoView.hidden = asset.type != LKAssetTypeVideo;
     self.videoLabel.text = self._durationString;
     self.videoLabel.hidden = self.bounds.size.width < 80.0;
@@ -75,9 +72,15 @@
 - (void)setCurrent:(BOOL)current
 {
     _current = current;
-    self.photoImageView.alpha = current ? 1.0 : 0.6;
-    [self setNeedsDisplay];
+//    self.photoImageView.alpha = current ? 1.0 : 0.6;
+//    [self setNeedsDisplay];
 
 }
+
+- (void)setHilighted:(BOOL)higlighted
+{
+    self.photoImageView.alpha = higlighted ? 0.6 : 1.0;
+}
+
 
 @end

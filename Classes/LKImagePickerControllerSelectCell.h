@@ -18,5 +18,6 @@
 @property (nonatomic, assign) BOOL current;
 
 - (void)alert;
+- (void)setHilighted:(BOOL)higlighted;
 
 @end

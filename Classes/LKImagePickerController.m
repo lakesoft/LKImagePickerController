@@ -31,6 +31,7 @@
         _availableTypes = availableTypes;
         _currentType = currentType;
         self.toolBarHidden = NO;
+        self.fullScreenDisabled = NO;
 //        self.view.backgroundColor = UIColor.whiteColor;
         
 
