@@ -20,6 +20,7 @@
 @property (unsafe_unretained, nonatomic) IBOutlet UIView *videoView;
 @property (unsafe_unretained, nonatomic) IBOutlet UILabel *videoLabel;
 @property (weak, nonatomic) IBOutlet LKImagePickerControllerUsedMarkView *usedView;
+@property (weak, nonatomic) IBOutlet UIView *markedMaskView;
 
 
 @end
@@ -39,7 +40,8 @@
 {
     _asset = asset;
     self.photoImageView.image = self.asset.thumbnail;
-    self.usedView.on = [LKImagePickerControllerMarkedAssetsManager isMarkedAsset:asset];
+//    self.usedView.on = [LKImagePickerControllerMarkedAssetsManager isMarkedAsset:asset];
+    self.markedMaskView.hidden = ![LKImagePickerControllerMarkedAssetsManager isMarkedAsset:asset];
     self.videoView.hidden = asset.type != LKAssetTypeVideo;
     self.videoLabel.text = self._durationString;
     self.videoLabel.hidden = self.bounds.size.width < 80.0;
