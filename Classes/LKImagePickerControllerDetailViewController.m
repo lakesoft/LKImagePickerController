@@ -464,6 +464,13 @@
 
     LKImagePickerControllerDetailCell* detailCell = (LKImagePickerControllerDetailCell*)[self.thumbnailCollectionView cellForItemAtIndexPath:indexPath];
     detailCell.checked = cell.checked;
+    
+    NSDictionary* userInfo = @{LKImagePickerControllerAssetsManagerKeyIndexPaths:@[indexPath],
+//                               LKImagePickerControllerAssetsManagerKeyAllSelected:@(allSelected),
+                               LKImagePickerControllerAssetsManagerKeyNumberOfSelections:@(self.assetsManager.numberOfSelected)};
+    [NSNotificationCenter.defaultCenter postNotificationName:LKImagePickerControllerAssetsManagerDidSelectNotification
+                                                      object:self
+                                                    userInfo:userInfo];
 }
 
 
