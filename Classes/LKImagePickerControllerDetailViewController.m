@@ -329,7 +329,7 @@
 {
     // update sub header
     LKAsset* asset = [self.assetsCollection assetForIndexPath:self.indexPath];
-    self.subTitleLabel.text = [LKImagePickerControllerUtility formattedDateTimeStringForDate:asset.date];
+    self.subTitleLabel.text = asset.date != nil ? [LKImagePickerControllerUtility formattedDateTimeStringForDate:asset.date] : @"";
     self.markImageView.hidden = ![LKImagePickerControllerMarkedAssetsManager isMarkedAsset:asset];
 }
 
