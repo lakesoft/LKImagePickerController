@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "LKImagePickerControllerFilter.h"
-#import "LKAssetsLibrary.h"
+#import <LKAssetsLibrary/LKAssetsLibrary.h>
 
 @class LKImagePickerController;
 @protocol LKImagePickerControllerDelegate <NSObject>
