@@ -23,12 +23,6 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    // frame
-//    UIBezierPath* path1 = [UIBezierPath bezierPathWithRect:self.bounds];
-//    [[UIColor colorWithWhite:1.0 alpha:1.0] set];
-//    [path1 setLineWidth:2.0];
-//    [path1 stroke];
-    
     // triangle
     UIBezierPath* path2 = [UIBezierPath bezierPath];
     CGFloat r = self.bounds.size.height / 50.0;
@@ -37,9 +31,13 @@
     [path2 addLineToPoint:CGPointMake(offset+7.0*r, 48.0*r)];
     [path2 addLineToPoint:CGPointMake(offset+37.0*r, 32.0*r)];
     [path2 closePath];
-//    [[UIColor colorWithWhite:0.25 alpha:0.25] set];
-    [[UIColor colorWithWhite:1.0 alpha:1.0] set];
+
+    [[UIColor colorWithWhite:1.0 alpha:0.8] setFill];
     [path2 fill];
+    
+    [[UIColor colorWithWhite:0.0 alpha:0.1] setStroke];
+    [path2 setLineWidth:1.0];
+    [path2 stroke];
 }
 
 @end

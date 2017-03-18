@@ -26,7 +26,7 @@ NSString * const LKImagePickerControllerDetailCellSingleTapNotification = @"LKIm
 - (void)setAsset:(LKAsset *)asset
 {
     _asset = asset;
-    self.imageView.image = asset.fullScreenImage;
+    self.imageView.image = asset.fullScreenImageWithoutOrientation;
     self.scrollView.zoomScale = 1.0;
     self.playMovieButton.hidden = self.asset.type != LKAssetTypeVideo;
 }
@@ -96,7 +96,8 @@ NSString * const LKImagePickerControllerDetailCellSingleTapNotification = @"LKIm
 }
 
 
-#define LKImagePickerControlelrDetailCellCheckmarkMargin    10.0
+#define CheckmarkMarginX    40.0
+#define CheckmarkMarginY    (CheckmarkMarginX+44.0)
 - (void)layoutSubviews
 {
     CGRect bounds = self.bounds;
@@ -107,16 +108,17 @@ NSString * const LKImagePickerControllerDetailCellSingleTapNotification = @"LKIm
 
     CGRect buttonFrame;
     
-    CGPoint p1 = CGPointMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds));
+    CGPoint p1 = CGPointMake(CGRectGetWidth(bounds), CGRectGetHeight(bounds));
+    CGPoint p2 = CGPointMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds));
     
     buttonFrame = self.checkmarkButton.frame;
-    buttonFrame.origin.x = p1.x - buttonFrame.size.width/2.0;
-    buttonFrame.origin.y = p1.y - buttonFrame.size.height/2.0;
+    buttonFrame.origin.x = p1.x - buttonFrame.size.width - CheckmarkMarginX;
+    buttonFrame.origin.y = p1.y - buttonFrame.size.height - CheckmarkMarginY;
     self.checkmarkButton.frame = buttonFrame;
 
     buttonFrame = self.playMovieButton.frame;
-    buttonFrame.origin.x = p1.x - buttonFrame.size.width/2.0;
-    buttonFrame.origin.y = p1.y - buttonFrame.size.height/2.0 + buttonFrame.size.height * 1.5;
+    buttonFrame.origin.x = p2.x - buttonFrame.size.width / 2.0;
+    buttonFrame.origin.y = p2.y - buttonFrame.size.height/ 2.0;
     self.playMovieButton.frame = buttonFrame;
     
 }

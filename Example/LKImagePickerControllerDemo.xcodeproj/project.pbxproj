@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2C6DF23D620C49BFA6297186 /* libPods-LKImagePickerControllerDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 40EE24068165439CA7807C50 /* libPods-LKImagePickerControllerDemo.a */; };
+		8F6BFB2E614D833D1E1C8892 /* libPods-LKImagePickerControllerDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 145FB5DD991146ECE65A14FD /* libPods-LKImagePickerControllerDemo.a */; };
 		BC074A131960D3A900144C47 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC074A121960D3A900144C47 /* Cocoa.framework */; };
 		BC074A1D1960D3A900144C47 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BC074A1B1960D3A900144C47 /* InfoPlist.strings */; };
 		BC074A291960D3F400144C47 /* LKImagePickerControllerDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC074A221960D3F400144C47 /* LKImagePickerControllerDetailCell.xib */; };
@@ -57,8 +57,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		221470A05E72C96C09EEDA87 /* Pods-LKImagePickerControllerDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LKImagePickerControllerDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-LKImagePickerControllerDemo/Pods-LKImagePickerControllerDemo.release.xcconfig"; sourceTree = "<group>"; };
-		40EE24068165439CA7807C50 /* libPods-LKImagePickerControllerDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LKImagePickerControllerDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		145FB5DD991146ECE65A14FD /* libPods-LKImagePickerControllerDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LKImagePickerControllerDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F03622103651696CF79EF46 /* Pods-LKImagePickerControllerDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LKImagePickerControllerDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LKImagePickerControllerDemo/Pods-LKImagePickerControllerDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		BC074A111960D3A800144C47 /* LKImagePickerController-Resources.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "LKImagePickerController-Resources.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC074A121960D3A900144C47 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		BC074A151960D3A900144C47 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -147,7 +147,7 @@
 		BCDBB13E1D86AF2300CC9EB2 /* LKImagePickerControllerMarkedAssetsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LKImagePickerControllerMarkedAssetsManager.m; path = ../Classes/LKImagePickerControllerMarkedAssetsManager.m; sourceTree = "<group>"; };
 		BCDBB1471D86B55300CC9EB2 /* LKImagePickerController_IconPosted.pxm */ = {isa = PBXFileReference; lastKnownFileType = file; path = LKImagePickerController_IconPosted.pxm; sourceTree = "<group>"; };
 		BCDBB1701D88167800CC9EB2 /* LKImagePickerController_IconPosted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LKImagePickerController_IconPosted.png; sourceTree = "<group>"; };
-		F15AE65097E7E8161C0692A2 /* Pods-LKImagePickerControllerDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LKImagePickerControllerDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LKImagePickerControllerDemo/Pods-LKImagePickerControllerDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		E0414075D13FA7C2332FC912 /* Pods-LKImagePickerControllerDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LKImagePickerControllerDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-LKImagePickerControllerDemo/Pods-LKImagePickerControllerDemo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,7 +166,7 @@
 				BC2A376E19397F9600C672B7 /* CoreGraphics.framework in Frameworks */,
 				BC2A377019397F9600C672B7 /* UIKit.framework in Frameworks */,
 				BC2A376C19397F9600C672B7 /* Foundation.framework in Frameworks */,
-				2C6DF23D620C49BFA6297186 /* libPods-LKImagePickerControllerDemo.a in Frameworks */,
+				8F6BFB2E614D833D1E1C8892 /* libPods-LKImagePickerControllerDemo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -183,11 +183,11 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		43ABF09F037E0E5558B31EC5 /* Pods */ = {
+		9519A97A8885B0831472DF08 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				F15AE65097E7E8161C0692A2 /* Pods-LKImagePickerControllerDemo.debug.xcconfig */,
-				221470A05E72C96C09EEDA87 /* Pods-LKImagePickerControllerDemo.release.xcconfig */,
+				9F03622103651696CF79EF46 /* Pods-LKImagePickerControllerDemo.debug.xcconfig */,
+				E0414075D13FA7C2332FC912 /* Pods-LKImagePickerControllerDemo.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -241,7 +241,7 @@
 				BC2A379319397F9600C672B7 /* LKImagePickerControllerDemoTests */,
 				BC2A376A19397F9600C672B7 /* Frameworks */,
 				BC2A376919397F9600C672B7 /* Products */,
-				43ABF09F037E0E5558B31EC5 /* Pods */,
+				9519A97A8885B0831472DF08 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -262,10 +262,10 @@
 				BC2A376D19397F9600C672B7 /* CoreGraphics.framework */,
 				BC2A376F19397F9600C672B7 /* UIKit.framework */,
 				BC2A378D19397F9600C672B7 /* XCTest.framework */,
-				40EE24068165439CA7807C50 /* libPods-LKImagePickerControllerDemo.a */,
 				BC1CB2DD19491EC800CBD8CE /* CoreFoundation.framework */,
 				BC074A121960D3A900144C47 /* Cocoa.framework */,
 				BC074A141960D3A900144C47 /* Other Frameworks */,
+				145FB5DD991146ECE65A14FD /* libPods-LKImagePickerControllerDemo.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -388,11 +388,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BC2A379D19397F9600C672B7 /* Build configuration list for PBXNativeTarget "LKImagePickerControllerDemo" */;
 			buildPhases = (
-				4A1C2DACB7C94EDE870A5375 /* Check Pods Manifest.lock */,
+				8902EA162653FF9B9A0BB6B6 /* [CP] Check Pods Manifest.lock */,
 				BC2A376419397F9600C672B7 /* Sources */,
 				BC2A376519397F9600C672B7 /* Frameworks */,
 				BC2A376619397F9600C672B7 /* Resources */,
-				86143DA260384B97AA55EC84 /* Copy Pods Resources */,
+				3432157643C81B73EBC8382C /* [CP] Embed Pods Frameworks */,
+				F75F37C0095A9B406DD23911 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -428,9 +429,12 @@
 		BC2A376019397F9600C672B7 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = lakesoft;
 				TargetAttributes = {
+					BC2A376719397F9600C672B7 = {
+						DevelopmentTeam = EDF37AMEEW;
+					};
 					BC2A378B19397F9600C672B7 = {
 						TestTargetID = BC2A376719397F9600C672B7;
 					};
@@ -500,29 +504,44 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		4A1C2DACB7C94EDE870A5375 /* Check Pods Manifest.lock */ = {
+		3432157643C81B73EBC8382C /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LKImagePickerControllerDemo/Pods-LKImagePickerControllerDemo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		86143DA260384B97AA55EC84 /* Copy Pods Resources */ = {
+		8902EA162653FF9B9A0BB6B6 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		F75F37C0095A9B406DD23911 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -682,6 +701,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -691,14 +711,19 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -722,6 +747,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -731,13 +757,18 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -753,10 +784,11 @@
 		};
 		BC2A379E19397F9600C672B7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F15AE65097E7E8161C0692A2 /* Pods-LKImagePickerControllerDemo.debug.xcconfig */;
+			baseConfigurationReference = 9F03622103651696CF79EF46 /* Pods-LKImagePickerControllerDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				DEVELOPMENT_TEAM = EDF37AMEEW;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LKImagePickerControllerDemo/LKImagePickerControllerDemo-Prefix.pch";
 				INFOPLIST_FILE = "LKImagePickerControllerDemo/LKImagePickerControllerDemo-Info.plist";
@@ -769,10 +801,11 @@
 		};
 		BC2A379F19397F9600C672B7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 221470A05E72C96C09EEDA87 /* Pods-LKImagePickerControllerDemo.release.xcconfig */;
+			baseConfigurationReference = E0414075D13FA7C2332FC912 /* Pods-LKImagePickerControllerDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				DEVELOPMENT_TEAM = EDF37AMEEW;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LKImagePickerControllerDemo/LKImagePickerControllerDemo-Prefix.pch";
 				INFOPLIST_FILE = "LKImagePickerControllerDemo/LKImagePickerControllerDemo-Info.plist";

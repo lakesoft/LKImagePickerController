@@ -39,7 +39,7 @@
 - (void)setAsset:(LKAsset *)asset
 {
     _asset = asset;
-    self.photoImageView.image = self.asset.thumbnail;
+    self.photoImageView.image = self.asset.aspectRatioThumbnail;
 //    self.usedView.on = [LKImagePickerControllerMarkedAssetsManager isMarkedAsset:asset];
     self.markedMaskView.hidden = ![LKImagePickerControllerMarkedAssetsManager isMarkedAsset:asset];
     self.videoView.hidden = asset.type != LKAssetTypeVideo;

@@ -40,7 +40,7 @@
     return self;
 }
 
-- (void)_drawWithStrokeColor:(UIColor*)strokeColor fillColor:(UIColor*)fillColor lineWidth:(CGFloat)lineWidth offset:(CGSize)offset
+- (void)_drawWithStrokeColor:(UIColor*)strokeColor fillColor:(UIColor*)fillColor lineWidth:(CGFloat)lineWidth circleLineWith:(CGFloat)circleLineWith offset:(CGSize)offset
 {
     [strokeColor setStroke];
     [fillColor setFill];
@@ -54,7 +54,7 @@
     } else {
         [circlePath fill];
     }
-    [circlePath setLineWidth:lineWidth];
+    [circlePath setLineWidth:circleLineWith];
     [circlePath stroke];
     
     UIBezierPath* linePath = UIBezierPath.bezierPath;
@@ -71,6 +71,7 @@
     UIColor* strokeColor = LKImagePickerControllerAppearance.sharedAppearance.checkForegroundColor;
     UIColor* fillColor = LKImagePickerControllerAppearance.sharedAppearance.checkBackgroundColor;
     CGFloat lineWidth = 1.5;
+    CGFloat circleLineWith = lineWidth * 1.5;
 
     if (self.alerting) {
         fillColor = LKImagePickerControllerAppearance.sharedAppearance.alertColor;
@@ -80,15 +81,12 @@
         fillColor = tmp;
         lineWidth = 1.0;
     } else if (!self.checked) {
-        fillColor = UIColor.clearColor;
-        lineWidth = 1.0;
+        fillColor = [UIColor colorWithWhite:0.0 alpha:0.05];
+        lineWidth = 2.0;
+        circleLineWith = 1.0;
     }
 
-//    if (!self.checked) {
-//        UIColor* shadowColor = [UIColor colorWithWhite:0.0 alpha:0.2];
-//        [self _drawWithStrokeColor:shadowColor fillColor:UIColor.clearColor lineWidth:lineWidth*1.5 offset:CGSizeMake(2.0, 1.0)];
-//    }
-    [self _drawWithStrokeColor:strokeColor fillColor:fillColor lineWidth:lineWidth offset:CGSizeMake(0, 0)];
+    [self _drawWithStrokeColor:strokeColor fillColor:fillColor lineWidth:lineWidth circleLineWith:circleLineWith offset:CGSizeMake(0, 0)];
 }
 
 - (void)setDisabled:(BOOL)disabled
