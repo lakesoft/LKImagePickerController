@@ -35,13 +35,16 @@
 //    LKImagePickerControllerAppearance.sharedAppearance.foregroundColor = UIColor.blueColor;
     self.controller.maximumOfSelections = 20;
     
-//    self.controller.navigationBarHidden = YES;
+    self.controller.navigationBarHidden = YES;
 //    self.controller.toolBarHidden = YES;
 //    self.controller.fullScreenDisabled = YES;
+    self.controller.doOpenKeyboardInDetailView = YES;
 
 //    [self.controller unmarkAllAssets];
 
     [self presentViewController:self.controller animated:NO completion:nil];
+    
+//    [self.controller removeAllComments];
 }
 
 - (void)didReceiveMemoryWarning

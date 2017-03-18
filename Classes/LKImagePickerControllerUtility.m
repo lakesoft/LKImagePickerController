@@ -7,6 +7,7 @@
 //
 
 #import "LKImagePickerControllerUtility.h"
+#import "LKAssetsLibrary.h"
 
 @implementation LKImagePickerControllerUtility
 
@@ -32,5 +33,21 @@
     
     return [NSString stringWithFormat:@"%@", dateString1];
 }
+
++ (NSString*)getIdForAsset:(LKAsset*)asset
+{
+    NSArray* pairs = [asset.url.query componentsSeparatedByString:@"&"];
+    for (NSString* pair in pairs) {
+        NSArray* comp = [pair componentsSeparatedByString:@"="];
+        if (comp.count > 1) {
+            NSString* key = [[comp firstObject] stringByRemovingPercentEncoding];
+            if ([key isEqualToString:@"id"]) {
+                return [[comp lastObject] stringByRemovingPercentEncoding];
+            }
+        }
+    }
+    return NULL;
+}
+
 
 @end

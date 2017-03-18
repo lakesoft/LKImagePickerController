@@ -18,6 +18,7 @@
 @property (nonatomic, weak) NSIndexPath* indexPath;
 @property (nonatomic, weak) LKImagePickerControllerSelectViewController* selectViewController;
 @property (nonatomic, assign) BOOL navigatioBarHidden;
+@property (nonatomic, assign) BOOL aspectFill;
 
 - (IBAction)checkmarkTouchded:(id)sender event:(UIEvent*)event;
 

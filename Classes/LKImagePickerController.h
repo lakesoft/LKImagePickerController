@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "LKImagePickerControllerFilter.h"
+#import "LKAssetsLibrary.h"
 
 @class LKImagePickerController;
 @protocol LKImagePickerControllerDelegate <NSObject>
@@ -57,6 +58,7 @@
 
 @property (nonatomic, assign) BOOL toolBarHidden;
 @property (nonatomic, assign) BOOL fullScreenDisabled;
+@property (nonatomic, assign) BOOL doOpenKeyboardInDetailView;
 
 - (void)deselectAll;
 - (void)displayMainScreenAnimated:(BOOL)animated;
@@ -65,6 +67,12 @@
 
 - (void)markSelectedAssets;
 - (void)unmarkAllAssets;
+- (void)removeAllComments;
+
+@end
 
 
+@interface LKAsset (LKImagePickerController)
+@property (nonatomic, weak) NSString* commentString;
+@property (nonatomic, assign, readonly) BOOL hasComment;
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "LKImagePickerControllerMarkedAssetsManager.h"
+#import "LKImagePickerControllerUtility.h"
 #import "LKAssetsLibrary.h"
 //#import <CommonCrypto/CommonDigest.h>
 
@@ -53,23 +54,9 @@
 }
 
 
-+ (NSString*)_getIdForAsset:(LKAsset*)asset
-{
-    NSArray* pairs = [asset.url.query componentsSeparatedByString:@"&"];
-    for (NSString* pair in pairs) {
-        NSArray* comp = [pair componentsSeparatedByString:@"="];
-        if (comp.count > 1) {
-            NSString* key = [[comp firstObject] stringByRemovingPercentEncoding];
-            if ([key isEqualToString:@"id"]) {
-                return [[comp lastObject] stringByRemovingPercentEncoding];
-            }
-        }
-    }
-    return NULL;
-}
 
 + (NSString*)_filePathForAsset:(LKAsset*)asset {
-    NSString* assetId = [self _getIdForAsset:asset];
+    NSString* assetId = [LKImagePickerControllerUtility getIdForAsset:asset];
     NSString* filePath = [[self _defaultPath] stringByAppendingPathComponent:assetId];
     return filePath;
 }

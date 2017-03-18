@@ -68,10 +68,11 @@
 }
 - (void)drawRect:(CGRect)rect
 {
+    CGFloat ds = rect.size.width > 40 ? 1.5 : 0;    // size adjustment
     UIColor* strokeColor = LKImagePickerControllerAppearance.sharedAppearance.checkForegroundColor;
     UIColor* fillColor = LKImagePickerControllerAppearance.sharedAppearance.checkBackgroundColor;
-    CGFloat lineWidth = 1.5;
-    CGFloat circleLineWith = lineWidth * 1.5;
+    CGFloat lineWidth = 1.5 + ds;
+    CGFloat circleLineWith = 1.0 + ds;
 
     if (self.alerting) {
         fillColor = LKImagePickerControllerAppearance.sharedAppearance.alertColor;
@@ -79,10 +80,8 @@
         UIColor* tmp = strokeColor;
         strokeColor = fillColor;
         fillColor = tmp;
-        lineWidth = 1.0;
     } else if (!self.checked) {
         fillColor = [UIColor colorWithWhite:0.0 alpha:0.05];
-        lineWidth = 2.0;
         circleLineWith = 1.0;
     }
 

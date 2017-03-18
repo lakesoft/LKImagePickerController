@@ -14,27 +14,32 @@
 #import "LKImagePickerController.h"
 #import "LKImagePickerControllerUtility.h"
 #import "LKImagePickerCOntrollerMarkedAssetsManager.h"
-
+#import "LKImagePickerControllerCommentManager.h"
+#import "LKImagePickerControllerCheckmarkButton.h"
 
 #define LKImagePickerControlDetailThumbnailSize (CGSizeMake(50.0,50.0))
 
-@interface LKImagePickerControllerDetailViewController ()
+@interface LKImagePickerControllerDetailViewController () <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *collectionViewButtomConstraint;
+
 @property (weak, nonatomic) IBOutlet UICollectionView *thumbnailCollectionView;
 @property (assign, nonatomic) CGPoint contentOffset;
 @property (assign, nonatomic) BOOL scrollDirectionLeft;
 @property (assign, nonatomic) BOOL scrollingByThumbnailView;
 @property (strong, nonatomic) NSIndexPath* currentIndexPath;
 @property (assign, nonatomic) BOOL hideBars;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *thumbnailBottomConstraint;
+//@property (weak, nonatomic) IBOutlet UIButton *toggleFullScreenButton;
 
-// sub header
-@property (weak, nonatomic) IBOutlet UIVisualEffectView *subHeaderView;
-@property (weak, nonatomic) IBOutlet UIButton *subBackButton;
-@property (weak, nonatomic) IBOutlet UILabel *subTitleLabel;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *subHeaderTopConstraint;
-@property (weak, nonatomic) IBOutlet UIImageView *markImageView;
+// navi view
+@property (weak, nonatomic) IBOutlet UIView *naviView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *naviViewBottomConstraint;
 
+// info view (in navi View)
+@property (weak, nonatomic) IBOutlet UIButton *backButton;
+@property (weak, nonatomic) IBOutlet UILabel *assetDateLabel;
+@property (weak, nonatomic) IBOutlet UITextField *assetCommentTextField;
+@property (weak, nonatomic) IBOutlet LKImagePickerControllerCheckmarkButton *checkmarkButton;
 
 @end
 
@@ -53,46 +58,64 @@
 {
 }
 
+- (void)_tappedDetailCell:(NSNotification*)notification
+{
+    if (self.assetCommentTextField.isFirstResponder) {
+        [self.assetCommentTextField resignFirstResponder];
+    } else {
+        [self.assetCommentTextField becomeFirstResponder];
+    }
+}
+
+- (void)_longPressedDetailCell:(NSNotification*)notification
+{
+    NSLog(@"long pressed");
+}
+
 - (void)_assetsGroupDidReload:(NSNotification*)notification
 {
 //    NSLog(@"%s", __PRETTY_FUNCTION__);
 }
 
-- (void)_toggleFullscreen
-{
-    if (self.selectViewController.imagePickerController.fullScreenDisabled) {
-        return;
-    }
-    self.hideBars = !self.hideBars;
-    self.navigationController.navigationBar.hidden = self.hideBars;
-    CGFloat alpha = self.hideBars ? 0.0 : 1.0;
-//    UIColor* color = self.hideBars ? UIColor.blackColor : UIColor.whiteColor;
-    [UIView animateWithDuration:0.2
-                     animations:^{
-                         self.thumbnailCollectionView.alpha = alpha;
-                         self.subHeaderView.alpha = alpha;
-//                         self.collectionView.backgroundColor = color;
-                     }];
-    [UIApplication.sharedApplication setStatusBarHidden:self.hideBars
-                                          withAnimation:UIStatusBarAnimationFade];
-}
+//- (void)_toggleFullscreen
+//{
+//    if (self.selectViewController.imagePickerController.fullScreenDisabled) {
+//        return;
+//    }
+//    self.hideBars = !self.hideBars;
+//    [self.assetCommentTextField resignFirstResponder];
+//    NSString* imageName = self.hideBars ? @"LKImagePickerController_ButtonFullClose" : @"LKImagePickerController_ButtonFullOpen";
+//    UIImage* buttonImage = [UIImage imageNamed:imageName inBundle:LKImagePickerControllerBundleManager.bundle compatibleWithTraitCollection:nil];
+//    [self.toggleFullScreenButton setImage:buttonImage forState:UIControlStateNormal];
+//
+//
+//    self.navigationController.navigationBar.hidden = self.hideBars;
+//    CGFloat alpha = self.hideBars ? 0.0 : 1.0;
+//    
+//    self.naviViewBottomConstraint.constant = self.hideBars ? -self.naviView.bounds.size.height : 0.0;
+//    [UIView animateWithDuration:0.2
+//                     animations:^{
+//                         self.naviView.alpha = alpha;
+//                         [self.view layoutIfNeeded];
+//                     }];
+//    [UIApplication.sharedApplication setStatusBarHidden:self.hideBars
+//                                          withAnimation:UIStatusBarAnimationFade];
+//}
 
 #pragma mark - Privtates (Gestures)
 
 -(void)_handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer
 {
-    if (gestureRecognizer.state != UIGestureRecognizerStateEnded) {
-        return;
-    }
-    CGPoint p = [gestureRecognizer locationInView:self.thumbnailCollectionView];
-    
-    NSIndexPath *indexPath = [self.thumbnailCollectionView indexPathForItemAtPoint:p];
-    if (indexPath){
-        [self.collectionView scrollToItemAtIndexPath:indexPath
-                                    atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally
-                                            animated:YES];
-        self.scrollingByThumbnailView = YES;
-    }
+//    if (gestureRecognizer.state != UIGestureRecognizerStateBegan) {
+//        return;
+//    }
+//    CGPoint p = [gestureRecognizer locationInView:self.thumbnailCollectionView];
+//    
+//    NSIndexPath *indexPath = [self.thumbnailCollectionView indexPathForItemAtPoint:p];
+//    if (indexPath){
+//        LKImagePickerControllerDetailCell* cell = (LKImagePickerControllerDetailCell*)[self.thumbnailCollectionView cellForItemAtIndexPath:indexPath];
+//        cell.checked = !cell.checked;
+//    }
 }
 
 
@@ -121,14 +144,13 @@
     [self.thumbnailCollectionView scrollToItemAtIndexPath:self.indexPath
                                          atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally
                                                  animated:NO];
-    [UIView animateWithDuration:0.5
+    [UIView animateWithDuration:0.2
                      animations:^{
                          self.collectionView.alpha = 1.0;
                      } completion:^(BOOL finished) {
                          self.indexPath = self.indexPath;    // for .current property
+                         [self updateNaviView];
                      }];
-    
-    [self updateSubHeader];
 }
 
 - (void)viewDidLoad
@@ -148,8 +170,23 @@
                                              object:nil];
     
     [NSNotificationCenter.defaultCenter addObserver:self
-                                           selector:@selector(_toggleFullscreen)
+                                           selector:@selector(_tappedDetailCell:)
                                                name:LKImagePickerControllerDetailCellSingleTapNotification
+                                             object:nil];
+    
+    [NSNotificationCenter.defaultCenter addObserver:self
+                                           selector:@selector(_longPressedDetailCell:)
+                                               name:LKImagePickerControllerDetailCellLongPressNotification
+                                             object:nil];
+
+    [NSNotificationCenter.defaultCenter addObserver:self
+                                           selector:@selector(keyboardWillChangeFrame:)
+                                               name:UIKeyboardWillChangeFrameNotification
+                                             object:nil];
+
+    [NSNotificationCenter.defaultCenter addObserver:self
+                                           selector:@selector(keyboardWillHide:)
+                                               name:UIKeyboardWillHideNotification
                                              object:nil];
 
     NSString* cellIdentifier = NSStringFromClass(LKImagePickerControllerDetailCell.class);
@@ -172,30 +209,36 @@
         self.navigationItem.rightBarButtonItem = self.selectViewController.imagePickerController.imagePickerControllerDelegate.rightBarButtonItem3;
     }
 
-    self.subBackButton.hidden = !self.selectViewController.imagePickerController.navigationBarHidden;
-    
     [self _updateControls];
     
-    // sub header & thumbnail animation
-    self.subHeaderView.alpha = 0.0;
+    self.assetCommentTextField.attributedPlaceholder =
+    [[NSAttributedString alloc] initWithString:[LKImagePickerControllerBundleManager localizedStringForKey:@"Comment.Placeholder"]
+                                    attributes:@{ NSForegroundColorAttributeName:[UIColor colorWithWhite:0.8 alpha:0.8] }];
+    // navi view animation
+//    self.naviView.alpha = 0.0;
+//    [UIView animateWithDuration:0.5 animations:^{
+//        self.naviView.alpha = 1.0;
+//    } completion:^(BOOL finished) {
+//    }];
+//    
+//    if (self.selectViewController.imagePickerController.doOpenKeyboardInDetailView) {
+//        [self.assetCommentTextField becomeFirstResponder];
+//    }
+    if (self.selectViewController.imagePickerController.doOpenKeyboardInDetailView) {
+        [self.assetCommentTextField becomeFirstResponder];
+    }
+    
+    self.naviView.alpha = 0.0;
     self.thumbnailCollectionView.alpha = 0.0;
-    [UIView animateWithDuration:0.5 animations:^{
-        self.subHeaderTopConstraint.constant = 0.0;
-        [self.subHeaderView layoutIfNeeded];
-        self.subHeaderView.alpha = 1.0;
-        
-        self.thumbnailBottomConstraint.constant = 0.0;
-        [self.thumbnailCollectionView layoutIfNeeded];
+    [UIView animateWithDuration:1.0 animations:^{
+        self.naviView.alpha = 1.0;
+    } completion:^(BOOL finished) {
+    }];
+    [UIView animateWithDuration:1.5 animations:^{
         self.thumbnailCollectionView.alpha = 1.0;
+    } completion:^(BOOL finished) {
     }];
 }
-
-//-(void) viewWillDisappear:(BOOL)animated {
-//    if ([self.navigationController.viewControllers indexOfObject:self]==NSNotFound) {
-//        [self.selectViewController setIndexPathsForSelectedItems:self.collectionView.indexPathsForSelectedItems];
-//    }
-//    [super viewWillDisappear:animated];
-//}
 
 
 - (void)didReceiveMemoryWarning
@@ -317,7 +360,7 @@
             [self.thumbnailCollectionView scrollToItemAtIndexPath:self.indexPath
                                                  atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally
                                                          animated:YES];
-            [self updateSubHeader];
+            [self updateNaviView];
         }
         self.scrollingByThumbnailView = NO;
     }
@@ -325,12 +368,14 @@
 }
 
 #pragma mark - Sub header
-- (void)updateSubHeader
+- (void)updateNaviView
 {
-    // update sub header
+    // update navi view
     LKAsset* asset = [self.assetsCollection assetForIndexPath:self.indexPath];
-    self.subTitleLabel.text = asset.date != nil ? [LKImagePickerControllerUtility formattedDateTimeStringForDate:asset.date] : @"";
-    self.markImageView.hidden = ![LKImagePickerControllerMarkedAssetsManager isMarkedAsset:asset];
+    self.assetDateLabel.text = asset.date != nil ? [LKImagePickerControllerUtility formattedDateTimeStringForDate:asset.date] : @"";
+    self.assetCommentTextField.text = asset.commentString;
+    LKImagePickerControllerDetailCell* cell = (LKImagePickerControllerDetailCell*)[self.collectionView cellForItemAtIndexPath:self.indexPath];
+    self.checkmarkButton.checked = cell.checked;
 }
 
 
@@ -356,6 +401,8 @@
                                                                                 forIndexPath:indexPath];
         cell.asset = asset;
         cell.checked = [self.assetsManager containsSelectedAsset:asset];
+        cell.viewController = self;
+        cell.aspectFill = self.aspectFill;
         return cell;
     } else {
         LKImagePickerControllerSelectCell* cell = (LKImagePickerControllerSelectCell*)[collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass(LKImagePickerControllerSelectCell.class)
@@ -443,36 +490,36 @@
 #pragma mark - Actions
 - (IBAction)checkmarkTouchded:(id)sender event:(UIEvent*)event
 {
-    UITouch* touch = [[event allTouches] anyObject];
-    CGPoint p = [touch locationInView:self.collectionView];
-    NSIndexPath* indexPath = [self.collectionView indexPathForItemAtPoint:p];
+    LKImagePickerControllerDetailCell* cell = (LKImagePickerControllerDetailCell*)[self.collectionView cellForItemAtIndexPath:self.indexPath];
     
-    LKImagePickerControllerDetailCell* cell = (LKImagePickerControllerDetailCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
-    
+    cell.checked = !cell.checked;
+
     if (cell.checked) {
         if (self.assetsManager.reachedMaximumOfSelections) {
-            [cell alert];
+            [self.checkmarkButton alert];
             cell.checked = NO;
         } else {
-            [self.assetsManager selectAsset:[self.assetsCollection assetForIndexPath:indexPath]];
+            [self.assetsManager selectAsset:[self.assetsCollection assetForIndexPath:self.indexPath]];
             [self _updateControls];
         }
     } else {
-        [self.assetsManager deselectAsset:[self.assetsCollection assetForIndexPath:indexPath]];
+        [self.assetsManager deselectAsset:[self.assetsCollection assetForIndexPath:self.indexPath]];
         [self _updateControls];
     }
 
-    LKImagePickerControllerDetailCell* detailCell = (LKImagePickerControllerDetailCell*)[self.thumbnailCollectionView cellForItemAtIndexPath:indexPath];
+    LKImagePickerControllerDetailCell* detailCell = (LKImagePickerControllerDetailCell*)[self.thumbnailCollectionView cellForItemAtIndexPath:self.indexPath];
     detailCell.checked = cell.checked;
     
-    NSDictionary* userInfo = @{LKImagePickerControllerAssetsManagerKeyIndexPaths:@[indexPath],
-//                               LKImagePickerControllerAssetsManagerKeyAllSelected:@(allSelected),
+    NSDictionary* userInfo = @{LKImagePickerControllerAssetsManagerKeyIndexPaths:@[self.indexPath],
                                LKImagePickerControllerAssetsManagerKeyNumberOfSelections:@(self.assetsManager.numberOfSelected)};
     [NSNotificationCenter.defaultCenter postNotificationName:LKImagePickerControllerAssetsManagerDidSelectNotification
                                                       object:self
                                                     userInfo:userInfo];
 }
 
+//- (IBAction)onToggleFullScreen:(id)sender {
+//    [self _toggleFullscreen];
+//}
 
 - (void)setIndexPath:(NSIndexPath *)indexPath
 {
@@ -488,7 +535,7 @@
     cell.current = YES;
 }
 
-- (IBAction)onSubBackButton:(id)sender {
+- (IBAction)onBackButton:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
 - (IBAction)tappedOnSubHeaderView:(id)sender {
@@ -496,6 +543,58 @@
 }
 - (IBAction)onSwipeBackView:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+
+#pragma mark - UITextFieldDelegate
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    NSString* str = [textField.text stringByReplacingCharactersInRange:range withString:string];
+    LKAsset* asset = [self.assetsCollection assetForIndexPath:self.indexPath];
+    asset.commentString = str;
+    return YES;
+}
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+}
+
+#pragma mark - Keyboard management
+- (void)keyboardWillChangeFrame:(NSNotification*)notification
+{
+    NSValue* keyBoardValue = notification.userInfo[UIKeyboardFrameEndUserInfoKey];
+//    NSLog(@"%@", keyBoardValue);
+    CGRect keyBoardFrame = keyBoardValue.CGRectValue;
+    CGFloat screenHeight = UIScreen.mainScreen.bounds.size.height;
+    
+    NSNumber* duration = notification.userInfo[UIKeyboardAnimationDurationUserInfoKey];
+    
+    CGFloat constant = screenHeight - keyBoardFrame.origin.y;
+    self.naviViewBottomConstraint.constant = constant;
+    self.collectionViewButtomConstraint.constant = constant;
+    [self.collectionView.collectionViewLayout invalidateLayout];
+    [self.view layoutIfNeeded];
+    
+    self.aspectFill = YES;
+    LKImagePickerControllerDetailCell* cell = (LKImagePickerControllerSelectCell*)[self.collectionView cellForItemAtIndexPath:self.indexPath];
+    cell.aspectFill = YES;
+}
+
+-(void)keyboardWillHide:(NSNotification*)notification
+{
+    NSNumber* duration = notification.userInfo[UIKeyboardAnimationDurationUserInfoKey];
+    self.naviViewBottomConstraint.constant = 0;
+    self.collectionViewButtomConstraint.constant = 0;
+    [UIView animateWithDuration:duration.doubleValue animations:^{
+        [self.view layoutIfNeeded];
+    } completion:^(BOOL finished) {
+    }];
+    
+    self.aspectFill = NO;
+    LKImagePickerControllerDetailCell* cell = (LKImagePickerControllerSelectCell*)[self.collectionView cellForItemAtIndexPath:self.indexPath];
+    cell.aspectFill = NO;
+
 }
 
 @end

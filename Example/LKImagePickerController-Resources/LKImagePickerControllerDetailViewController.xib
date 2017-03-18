@@ -1,30 +1,36 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" colorMatched="YES">
+    <device id="retina5_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LKImagePickerControllerDetailViewController">
             <connections>
+                <outlet property="assetCommentTextField" destination="ThX-qM-UsX" id="yMZ-OT-a2Y"/>
+                <outlet property="assetDateLabel" destination="CvX-4k-rnH" id="oS9-Nr-dpL"/>
+                <outlet property="backButton" destination="i9q-22-OLa" id="2Kx-ph-RWP"/>
+                <outlet property="checkmarkButton" destination="5ct-9E-Jsa" id="ggK-iJ-T8z"/>
                 <outlet property="collectionView" destination="EKc-bL-G2J" id="tK2-L3-Bcd"/>
-                <outlet property="subBackButton" destination="z3S-xl-jhr" id="ITO-Dy-a52"/>
-                <outlet property="subHeaderTopConstraint" destination="ADJ-uy-A4e" id="HOj-YN-z1g"/>
-                <outlet property="subHeaderView" destination="gyx-qs-Qar" id="iOq-xr-CNY"/>
-                <outlet property="subTitleLabel" destination="j7A-QL-SBc" id="taa-aL-bNv"/>
-                <outlet property="thumbnailBottomConstraint" destination="9kJ-QB-Rxl" id="vmq-u3-acO"/>
+                <outlet property="collectionViewButtomConstraint" destination="fuw-Ek-zIO" id="yxI-wg-p7o"/>
+                <outlet property="naviView" destination="Qaa-AM-tMN" id="UgD-ZQ-e5j"/>
+                <outlet property="naviViewBottomConstraint" destination="run-Bo-Br4" id="piC-ZC-Uvh"/>
                 <outlet property="thumbnailCollectionView" destination="dLc-gu-JSm" id="HBc-0G-HYP"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="QUe-g3-7qN"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" pagingEnabled="YES" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="EKc-bL-G2J">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="52z-6N-7bD">
                         <size key="itemSize" width="320" height="568"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -37,71 +43,107 @@
                         <outlet property="delegate" destination="-1" id="p9u-sy-1bO"/>
                     </connections>
                 </collectionView>
-                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gyx-qs-Qar">
-                    <rect key="frame" x="0.0" y="-36" width="320" height="34"/>
-                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="OoP-y1-flZ">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="34"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z3S-xl-jhr">
-                                <rect key="frame" x="4" y="-1" width="36" height="36"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="36" id="Mwa-do-13Y"/>
-                                    <constraint firstAttribute="height" constant="36" id="qhT-Y4-5lv"/>
-                                </constraints>
-                                <state key="normal" image="LKImagePickerController_ButtonBack.png"/>
-                                <connections>
-                                    <action selector="onSubBackButton:" destination="-1" eventType="touchUpInside" id="iNZ-XM-bjR"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2016/07/01 08:01" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j7A-QL-SBc">
-                                <rect key="frame" x="40" y="7" width="240" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="Haa-qT-dhN"/>
-                                    <constraint firstAttribute="width" constant="240" id="XR6-jh-zfU"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <constraints>
-                            <constraint firstItem="z3S-xl-jhr" firstAttribute="centerY" secondItem="OoP-y1-flZ" secondAttribute="centerY" id="T2v-hJ-fG4"/>
-                            <constraint firstItem="j7A-QL-SBc" firstAttribute="centerX" secondItem="OoP-y1-flZ" secondAttribute="centerX" id="lMV-j1-BQM"/>
-                            <constraint firstItem="j7A-QL-SBc" firstAttribute="centerY" secondItem="OoP-y1-flZ" secondAttribute="centerY" id="mdZ-6z-zey"/>
-                            <constraint firstItem="z3S-xl-jhr" firstAttribute="leading" secondItem="OoP-y1-flZ" secondAttribute="leading" constant="4" id="s68-05-JJd"/>
-                        </constraints>
-                    </view>
-                    <gestureRecognizers/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qaa-AM-tMN">
+                    <rect key="frame" x="0.0" y="616" width="414" height="120"/>
+                    <subviews>
+                        <view opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="yoE-ho-XYJ">
+                            <rect key="frame" x="0.0" y="5" width="414" height="60"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5ct-9E-Jsa" customClass="LKImagePickerControllerCheckmarkButton">
+                                    <rect key="frame" x="364" y="7" width="45" height="45"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="45" id="N0T-kX-ZHj"/>
+                                        <constraint firstAttribute="height" constant="45" id="tLT-9q-UwY"/>
+                                    </constraints>
+                                    <state key="normal">
+                                        <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="checkmarkTouchded:event:" destination="-2" eventType="touchUpInside" id="zqG-94-uNa"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i9q-22-OLa">
+                                    <rect key="frame" x="5" y="12" width="36" height="36"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="36" id="Flt-fO-3Mj"/>
+                                        <constraint firstAttribute="height" constant="36" id="Lrk-1K-cGl"/>
+                                    </constraints>
+                                    <state key="normal" image="LKImagePickerController_ButtonBack.png"/>
+                                    <connections>
+                                        <action selector="onBackButton:" destination="-1" eventType="touchUpInside" id="xqj-tt-cM5"/>
+                                    </connections>
+                                </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2016/07/01 08:01" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CvX-4k-rnH">
+                                    <rect key="frame" x="87" y="5" width="240" height="21"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="240" id="WId-G5-VkO"/>
+                                        <constraint firstAttribute="height" constant="21" id="j1j-nt-VBW"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ThX-qM-UsX">
+                                    <rect key="frame" x="45" y="25" width="324" height="30"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="30" id="KEG-ex-fx2"/>
+                                    </constraints>
+                                    <color key="textColor" red="0.99997665999999996" green="1" blue="0.999987552" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                    <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="-1" id="Xv3-OU-unr"/>
+                                    </connections>
+                                </textField>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="ThX-qM-UsX" firstAttribute="leading" secondItem="yoE-ho-XYJ" secondAttribute="leading" constant="45" id="2vj-52-E42"/>
+                                <constraint firstAttribute="trailing" secondItem="ThX-qM-UsX" secondAttribute="trailing" constant="45" id="OvJ-M0-yF3"/>
+                                <constraint firstItem="i9q-22-OLa" firstAttribute="centerY" secondItem="yoE-ho-XYJ" secondAttribute="centerY" id="PKS-uq-UmS"/>
+                                <constraint firstAttribute="height" constant="60" id="XaV-pr-UEd"/>
+                                <constraint firstAttribute="bottom" secondItem="ThX-qM-UsX" secondAttribute="bottom" constant="5" id="Xvc-Yj-Z4d"/>
+                                <constraint firstItem="i9q-22-OLa" firstAttribute="leading" secondItem="yoE-ho-XYJ" secondAttribute="leading" constant="5" id="fIX-tv-TfU"/>
+                                <constraint firstItem="CvX-4k-rnH" firstAttribute="centerX" secondItem="yoE-ho-XYJ" secondAttribute="centerX" id="fj2-LB-BQB"/>
+                                <constraint firstItem="5ct-9E-Jsa" firstAttribute="centerY" secondItem="yoE-ho-XYJ" secondAttribute="centerY" id="fk7-Hd-Zev"/>
+                                <constraint firstAttribute="trailing" secondItem="5ct-9E-Jsa" secondAttribute="trailing" constant="5" id="hPp-0l-2pX"/>
+                                <constraint firstItem="CvX-4k-rnH" firstAttribute="top" secondItem="yoE-ho-XYJ" secondAttribute="top" constant="5" id="xoB-fm-JOR"/>
+                            </constraints>
+                        </view>
+                        <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="dLc-gu-JSm">
+                            <rect key="frame" x="3" y="68" width="408" height="50"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="GJ2-ZC-2By"/>
+                            </constraints>
+                            <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="cav-IM-v3O">
+                                <size key="itemSize" width="50" height="50"/>
+                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            </collectionViewFlowLayout>
+                            <cells/>
+                            <connections>
+                                <outlet property="dataSource" destination="-1" id="tya-AI-EEm"/>
+                                <outlet property="delegate" destination="-1" id="f2J-Uf-81Z"/>
+                            </connections>
+                        </collectionView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.44879936733128833" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="34" id="ORJ-mj-zeC"/>
+                        <constraint firstAttribute="trailing" secondItem="dLc-gu-JSm" secondAttribute="trailing" constant="3" id="92O-LW-p6T"/>
+                        <constraint firstAttribute="height" constant="120" id="OZC-Jw-H02"/>
+                        <constraint firstItem="yoE-ho-XYJ" firstAttribute="top" secondItem="Qaa-AM-tMN" secondAttribute="top" constant="5" id="b3e-xj-PdH"/>
+                        <constraint firstAttribute="trailing" secondItem="yoE-ho-XYJ" secondAttribute="trailing" id="gHa-oQ-47T"/>
+                        <constraint firstItem="yoE-ho-XYJ" firstAttribute="leading" secondItem="Qaa-AM-tMN" secondAttribute="leading" id="heb-Wx-dJr"/>
+                        <constraint firstItem="dLc-gu-JSm" firstAttribute="leading" secondItem="Qaa-AM-tMN" secondAttribute="leading" constant="3" id="qUg-TD-heS"/>
+                        <constraint firstAttribute="bottom" secondItem="dLc-gu-JSm" secondAttribute="bottom" constant="2" id="qWG-bs-AX0"/>
                     </constraints>
-                    <blurEffect style="dark"/>
-                    <connections>
-                        <outletCollection property="gestureRecognizers" destination="HYV-IN-w82" appends="YES" id="f4R-FE-Mcc"/>
-                    </connections>
-                </visualEffectView>
-                <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="dLc-gu-JSm">
-                    <rect key="frame" x="0.0" y="568" width="320" height="50"/>
-                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="50" id="GJ2-ZC-2By"/>
-                    </constraints>
-                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="cav-IM-v3O">
-                        <size key="itemSize" width="50" height="50"/>
-                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                    </collectionViewFlowLayout>
-                    <cells/>
-                    <connections>
-                        <outlet property="dataSource" destination="-1" id="tya-AI-EEm"/>
-                        <outlet property="delegate" destination="-1" id="f2J-Uf-81Z"/>
-                    </connections>
-                </collectionView>
+                </view>
                 <view alpha="0.01" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="08h-zw-Sqz" userLabel="Swipe back view">
-                    <rect key="frame" x="0.0" y="0.0" width="44" height="568"/>
-                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    <rect key="frame" x="0.0" y="0.0" width="44" height="616"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <gestureRecognizers/>
                     <constraints>
                         <constraint firstAttribute="width" constant="44" id="8J2-tb-7Pj"/>
@@ -111,23 +153,20 @@
                     </connections>
                 </view>
             </subviews>
-            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="Qaa-AM-tMN" secondAttribute="trailing" id="1q1-qc-ILi"/>
                 <constraint firstItem="08h-zw-Sqz" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="2R7-52-Wf1"/>
                 <constraint firstAttribute="trailing" secondItem="EKc-bL-G2J" secondAttribute="trailing" id="5Mg-an-vfA"/>
-                <constraint firstItem="gyx-qs-Qar" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="7MA-AT-QGx"/>
-                <constraint firstAttribute="bottom" secondItem="dLc-gu-JSm" secondAttribute="bottom" constant="-50" id="9kJ-QB-Rxl"/>
-                <constraint firstItem="gyx-qs-Qar" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="-36" id="ADJ-uy-A4e"/>
-                <constraint firstAttribute="trailing" secondItem="gyx-qs-Qar" secondAttribute="trailing" id="BFG-vT-tRT"/>
-                <constraint firstItem="08h-zw-Sqz" firstAttribute="top" secondItem="gyx-qs-Qar" secondAttribute="bottom" constant="2" id="DVY-V3-mE4"/>
+                <constraint firstItem="Qaa-AM-tMN" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="RkZ-kF-ogN"/>
                 <constraint firstItem="EKc-bL-G2J" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="YzA-a5-MAj"/>
+                <constraint firstItem="Qaa-AM-tMN" firstAttribute="top" secondItem="08h-zw-Sqz" secondAttribute="bottom" id="eND-q9-kic"/>
                 <constraint firstAttribute="bottom" secondItem="EKc-bL-G2J" secondAttribute="bottom" id="fuw-Ek-zIO"/>
-                <constraint firstItem="dLc-gu-JSm" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="gPh-H1-riB"/>
-                <constraint firstItem="dLc-gu-JSm" firstAttribute="top" secondItem="08h-zw-Sqz" secondAttribute="bottom" id="kSw-Ka-p9Z"/>
+                <constraint firstItem="08h-zw-Sqz" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="i31-gA-R7p"/>
+                <constraint firstAttribute="bottom" secondItem="Qaa-AM-tMN" secondAttribute="bottom" id="run-Bo-Br4"/>
                 <constraint firstItem="EKc-bL-G2J" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="uol-Ur-Kig"/>
-                <constraint firstAttribute="trailing" secondItem="dLc-gu-JSm" secondAttribute="trailing" id="zgC-7R-7WR"/>
             </constraints>
-            <point key="canvasLocation" x="367" y="208"/>
+            <point key="canvasLocation" x="231" y="39"/>
         </view>
         <tapGestureRecognizer id="HYV-IN-w82">
             <connections>
@@ -143,4 +182,9 @@
     <resources>
         <image name="LKImagePickerController_ButtonBack.png" width="120" height="120"/>
     </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina5_5.fullscreen"/>
+    </simulatedMetricsContainer>
 </document>

@@ -8,14 +8,13 @@
 @import MediaPlayer;
 
 #import "LKImagePickerControllerDetailCell.h"
-#import "LKImagePickerControllerCheckmarkButton.h"
 #import "LKImagePickerControllerPlayIconView.h"
 
 NSString * const LKImagePickerControllerDetailCellSingleTapNotification = @"LKImagePickerControllerDetailCellSingleTapNotification";
+NSString * const LKImagePickerControllerDetailCellLongPressNotification = @"LKImagePickerControllerDetailCellLongPressNotification";
 
 @interface LKImagePickerControllerDetailCell() <UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
-@property (weak, nonatomic) IBOutlet LKImagePickerControllerCheckmarkButton* checkmarkButton;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (unsafe_unretained, nonatomic) IBOutlet UIButton *playMovieButton;
 @property (strong, nonatomic) MPMoviePlayerController* moviePlayerController;
@@ -31,7 +30,19 @@ NSString * const LKImagePickerControllerDetailCellSingleTapNotification = @"LKIm
     self.playMovieButton.hidden = self.asset.type != LKAssetTypeVideo;
 }
 
+-(void)setAspectFill:(BOOL)aspectFill
+{
+    self.imageView.contentMode = aspectFill ? UIViewContentModeScaleAspectFill : UIViewContentModeScaleAspectFit;
+}
+- (BOOL)aspectFill {
+    return self.imageView.contentMode == UIViewContentModeScaleAspectFill;
+}
+
 #pragma mark - Privates
+- (void)_handleSingleTap:(UITapGestureRecognizer*)tgr
+{
+    [NSNotificationCenter.defaultCenter postNotificationName:LKImagePickerControllerDetailCellSingleTapNotification object:self];
+}
 - (void)_handleDoubleTap:(UITapGestureRecognizer*)tgr
 {
     if (self.scrollView.zoomScale <= 1.0) {
@@ -44,7 +55,7 @@ NSString * const LKImagePickerControllerDetailCellSingleTapNotification = @"LKIm
 - (void)_handleLongPress:(UILongPressGestureRecognizer*)lpgr
 {
     if (lpgr.state == UIGestureRecognizerStateEnded) {
-        [NSNotificationCenter.defaultCenter postNotificationName:LKImagePickerControllerDetailCellSingleTapNotification object:self];
+        [NSNotificationCenter.defaultCenter postNotificationName:LKImagePickerControllerDetailCellLongPressNotification object:self];
     }
 }
 
@@ -75,10 +86,14 @@ NSString * const LKImagePickerControllerDetailCellSingleTapNotification = @"LKIm
                                              object:nil];
 
     UITapGestureRecognizer* tgr;
+    tgr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_handleSingleTap:)];
+    tgr.numberOfTapsRequired = 1;
+    [self.imageView addGestureRecognizer:tgr];
+    
     tgr = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(_handleDoubleTap:)];
     tgr.numberOfTapsRequired = 2;
     [self.imageView addGestureRecognizer:tgr];
-    
+
     UILongPressGestureRecognizer* lprgr;
     lprgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(_handleLongPress:)];
     lprgr.minimumPressDuration = 0.15;
@@ -90,14 +105,14 @@ NSString * const LKImagePickerControllerDetailCellSingleTapNotification = @"LKIm
     [NSNotificationCenter.defaultCenter removeObserver:self];
 }
 
-- (void)alert
-{
-    [self.checkmarkButton alert];
-}
+//- (void)alert
+//{
+//    [self.checkmarkButton alert];
+//}
 
 
 #define CheckmarkMarginX    40.0
-#define CheckmarkMarginY    (CheckmarkMarginX+44.0)
+#define CheckmarkMarginY    (CheckmarkMarginX+60.0)
 - (void)layoutSubviews
 {
     CGRect bounds = self.bounds;
@@ -111,23 +126,11 @@ NSString * const LKImagePickerControllerDetailCellSingleTapNotification = @"LKIm
     CGPoint p1 = CGPointMake(CGRectGetWidth(bounds), CGRectGetHeight(bounds));
     CGPoint p2 = CGPointMake(CGRectGetMidX(bounds), CGRectGetMidY(bounds));
     
-    buttonFrame = self.checkmarkButton.frame;
-    buttonFrame.origin.x = p1.x - buttonFrame.size.width - CheckmarkMarginX;
-    buttonFrame.origin.y = p1.y - buttonFrame.size.height - CheckmarkMarginY;
-    self.checkmarkButton.frame = buttonFrame;
-
     buttonFrame = self.playMovieButton.frame;
     buttonFrame.origin.x = p2.x - buttonFrame.size.width / 2.0;
     buttonFrame.origin.y = p2.y - buttonFrame.size.height/ 2.0;
     self.playMovieButton.frame = buttonFrame;
     
-}
-
-- (void)setSelected:(BOOL)selected
-{
-    [super setSelected:selected];
-    
-    self.checkmarkButton.checked = selected;
 }
 
 #pragma mark - UIScrollViewDelegate
@@ -161,14 +164,5 @@ NSString * const LKImagePickerControllerDetailCellSingleTapNotification = @"LKIm
 }
 
 
-#pragma mark - Properties
-- (BOOL)checked
-{
-    return self.checkmarkButton.checked;
-}
-- (void)setChecked:(BOOL)checked
-{
-    self.checkmarkButton.checked = checked;
-}
 
 @end

@@ -8,9 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+@class LKAsset;
 @interface LKImagePickerControllerUtility : NSObject
 
 + (NSString*)formattedDateStringForDate:(NSDate*)date;
 + (NSString*)formattedDateTimeStringForDate:(NSDate*)date;
++ (NSString*)getIdForAsset:(LKAsset*)asset;
 
 @end

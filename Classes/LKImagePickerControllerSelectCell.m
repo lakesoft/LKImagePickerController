@@ -5,7 +5,7 @@
 //  Created by Hiroshi Hashiguchi on 2014/06/16.
 //  Copyright (c) 2014年 lakesoft. All rights reserved.
 //
-
+#import "LKImagePickerController.h"
 #import "LKImagePickerControllerSelectCell.h"
 #import "LKImagePickerControllerCheckmarkButton.h"
 #import "LKImagePickerControllerUsedMarkView.h"
@@ -21,6 +21,7 @@
 @property (unsafe_unretained, nonatomic) IBOutlet UILabel *videoLabel;
 @property (weak, nonatomic) IBOutlet LKImagePickerControllerUsedMarkView *usedView;
 @property (weak, nonatomic) IBOutlet UIView *markedMaskView;
+@property (weak, nonatomic) IBOutlet UIImageView *commentIconImageView;
 
 
 @end
@@ -45,6 +46,7 @@
     self.videoView.hidden = asset.type != LKAssetTypeVideo;
     self.videoLabel.text = self._durationString;
     self.videoLabel.hidden = self.bounds.size.width < 80.0;
+    self.commentIconImageView.hidden = !asset.hasComment;
 }
 
 - (void)alert
