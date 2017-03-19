@@ -49,7 +49,7 @@
                             <constraint firstAttribute="width" constant="10" id="oa7-x5-zQ5"/>
                         </constraints>
                     </view>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LKImagePickerController_Icon_Comment.png" translatesAutoresizingMaskIntoConstraints="NO" id="9A2-jz-7dt">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LKImagePickerController_Icon_Comment" translatesAutoresizingMaskIntoConstraints="NO" id="9A2-jz-7dt">
                         <rect key="frame" x="48" y="0.0" width="32" height="32"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="32" id="Fzl-QB-nDI"/>
@@ -107,7 +107,7 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="LKImagePickerController_Icon_Comment.png" width="32" height="32"/>
+        <image name="LKImagePickerController_Icon_Comment" width="16" height="16"/>
         <image name="LKImagePickerController_Icon_Video" width="16" height="16"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

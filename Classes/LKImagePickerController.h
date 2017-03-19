@@ -59,6 +59,7 @@
 @property (nonatomic, assign) BOOL toolBarHidden;
 @property (nonatomic, assign) BOOL fullScreenDisabled;
 @property (nonatomic, assign) BOOL doOpenKeyboardInDetailView;
+@property (nonatomic, assign) CGFloat detailNaviViewOffset;
 
 - (void)deselectAll;
 - (void)displayMainScreenAnimated:(BOOL)animated;

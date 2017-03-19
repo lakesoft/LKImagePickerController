@@ -30,4 +30,4 @@
 "Selection.DeselectAll" = "選択をすべて解除";
 "Selection.ChangeGroup" = "選択がすべて解除されます";
 
-"Comment.Placeholder" = "タップしてコメント";
+"Comment.Placeholder" = "";

@@ -567,7 +567,7 @@
 //    NSLog(@"%@", keyBoardValue);
     CGRect keyBoardFrame = keyBoardValue.CGRectValue;
 //    CGFloat screenHeight = UIScreen.mainScreen.bounds.size.height;
-    CGFloat viewHeight = self.view.bounds.size.height + self.view.frame.origin.y;
+    CGFloat viewHeight = self.view.bounds.size.height + self.view.frame.origin.y + self.selectViewController.imagePickerController.detailNaviViewOffset;
     
     NSNumber* duration = notification.userInfo[UIKeyboardAnimationDurationUserInfoKey];
     
