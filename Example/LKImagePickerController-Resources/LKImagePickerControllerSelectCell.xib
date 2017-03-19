@@ -61,7 +61,7 @@
                         <color key="backgroundColor" red="0.80572916666666661" green="0.80572916666666661" blue="0.80572916666666661" alpha="0.40332932692307694" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cJx-Bd-xv5" customClass="LKImagePickerControllerCheckmarkButton">
-                        <rect key="frame" x="48" y="48" width="32" height="32"/>
+                        <rect key="frame" x="43" y="43" width="32" height="32"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="32" id="8m5-Br-7Cw"/>
                             <constraint firstAttribute="width" constant="32" id="omI-iu-XHA"/>
@@ -80,9 +80,9 @@
                 <constraint firstItem="Nxm-zR-Pdp" firstAttribute="leading" secondItem="F8R-td-26z" secondAttribute="leading" constant="1" id="0s3-ED-PJL"/>
                 <constraint firstAttribute="trailing" secondItem="4DA-cl-enY" secondAttribute="trailing" constant="5" id="1CT-ck-n4d"/>
                 <constraint firstAttribute="trailing" secondItem="aaN-th-7CW" secondAttribute="trailing" constant="1" id="2EG-fb-G4t"/>
-                <constraint firstAttribute="trailing" secondItem="cJx-Bd-xv5" secondAttribute="trailing" id="4FE-wU-6cr"/>
+                <constraint firstAttribute="trailing" secondItem="cJx-Bd-xv5" secondAttribute="trailing" constant="5" id="4FE-wU-6cr"/>
                 <constraint firstAttribute="trailing" secondItem="9A2-jz-7dt" secondAttribute="trailing" id="6Y4-8B-ZFX"/>
-                <constraint firstAttribute="bottom" secondItem="cJx-Bd-xv5" secondAttribute="bottom" id="CGb-ms-yAu"/>
+                <constraint firstAttribute="bottom" secondItem="cJx-Bd-xv5" secondAttribute="bottom" constant="5" id="CGb-ms-yAu"/>
                 <constraint firstItem="9A2-jz-7dt" firstAttribute="top" secondItem="F8R-td-26z" secondAttribute="top" id="CGk-PS-XKJ"/>
                 <constraint firstItem="qMo-gO-f9W" firstAttribute="leading" secondItem="F8R-td-26z" secondAttribute="leading" constant="1" id="ED1-0C-6hl"/>
                 <constraint firstAttribute="bottom" secondItem="aaN-th-7CW" secondAttribute="bottom" constant="1" id="Jmn-gW-MD1"/>

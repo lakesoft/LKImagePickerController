@@ -50,7 +50,7 @@
                             <rect key="frame" x="0.0" y="5" width="414" height="60"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5ct-9E-Jsa" customClass="LKImagePickerControllerCheckmarkButton">
-                                    <rect key="frame" x="364" y="7" width="45" height="45"/>
+                                    <rect key="frame" x="359" y="7" width="45" height="45"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="45" id="N0T-kX-ZHj"/>
                                         <constraint firstAttribute="height" constant="45" id="tLT-9q-UwY"/>
@@ -83,8 +83,8 @@
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ThX-qM-UsX">
-                                    <rect key="frame" x="45" y="25" width="324" height="30"/>
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ThX-qM-UsX">
+                                    <rect key="frame" x="69" y="25" width="282" height="30"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="30" id="KEG-ex-fx2"/>
@@ -99,15 +99,15 @@
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstItem="ThX-qM-UsX" firstAttribute="leading" secondItem="yoE-ho-XYJ" secondAttribute="leading" constant="45" id="2vj-52-E42"/>
-                                <constraint firstAttribute="trailing" secondItem="ThX-qM-UsX" secondAttribute="trailing" constant="45" id="OvJ-M0-yF3"/>
                                 <constraint firstItem="i9q-22-OLa" firstAttribute="centerY" secondItem="yoE-ho-XYJ" secondAttribute="centerY" id="PKS-uq-UmS"/>
+                                <constraint firstItem="ThX-qM-UsX" firstAttribute="leading" secondItem="i9q-22-OLa" secondAttribute="trailing" id="RMv-gd-04F"/>
+                                <constraint firstItem="5ct-9E-Jsa" firstAttribute="leading" secondItem="ThX-qM-UsX" secondAttribute="trailing" id="Vfp-VL-L60"/>
                                 <constraint firstAttribute="height" constant="60" id="XaV-pr-UEd"/>
                                 <constraint firstAttribute="bottom" secondItem="ThX-qM-UsX" secondAttribute="bottom" constant="5" id="Xvc-Yj-Z4d"/>
                                 <constraint firstItem="i9q-22-OLa" firstAttribute="leading" secondItem="yoE-ho-XYJ" secondAttribute="leading" constant="5" id="fIX-tv-TfU"/>
                                 <constraint firstItem="CvX-4k-rnH" firstAttribute="centerX" secondItem="yoE-ho-XYJ" secondAttribute="centerX" id="fj2-LB-BQB"/>
                                 <constraint firstItem="5ct-9E-Jsa" firstAttribute="centerY" secondItem="yoE-ho-XYJ" secondAttribute="centerY" id="fk7-Hd-Zev"/>
-                                <constraint firstAttribute="trailing" secondItem="5ct-9E-Jsa" secondAttribute="trailing" constant="5" id="hPp-0l-2pX"/>
+                                <constraint firstAttribute="trailing" secondItem="5ct-9E-Jsa" secondAttribute="trailing" constant="10" id="hPp-0l-2pX"/>
                                 <constraint firstItem="CvX-4k-rnH" firstAttribute="top" secondItem="yoE-ho-XYJ" secondAttribute="top" constant="5" id="xoB-fm-JOR"/>
                             </constraints>
                         </view>
