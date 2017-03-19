@@ -35,7 +35,7 @@
 //    LKImagePickerControllerAppearance.sharedAppearance.foregroundColor = UIColor.blueColor;
     self.controller.maximumOfSelections = 20;
     
-    self.controller.navigationBarHidden = YES;
+//    self.controller.navigationBarHidden = YES;
 //    self.controller.toolBarHidden = YES;
 //    self.controller.fullScreenDisabled = YES;
     self.controller.doOpenKeyboardInDetailView = YES;

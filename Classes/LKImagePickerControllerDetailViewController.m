@@ -566,11 +566,13 @@
     NSValue* keyBoardValue = notification.userInfo[UIKeyboardFrameEndUserInfoKey];
 //    NSLog(@"%@", keyBoardValue);
     CGRect keyBoardFrame = keyBoardValue.CGRectValue;
-    CGFloat screenHeight = UIScreen.mainScreen.bounds.size.height;
+//    CGFloat screenHeight = UIScreen.mainScreen.bounds.size.height;
+    CGFloat viewHeight = self.view.bounds.size.height;
     
     NSNumber* duration = notification.userInfo[UIKeyboardAnimationDurationUserInfoKey];
     
-    CGFloat constant = screenHeight - keyBoardFrame.origin.y;
+//    CGFloat constant = screenHeight - keyBoardFrame.origin.y;
+    CGFloat constant = viewHeight - keyBoardFrame.origin.y;
     self.naviViewBottomConstraint.constant = constant;
     self.collectionViewButtomConstraint.constant = constant;
     [self.collectionView.collectionViewLayout invalidateLayout];

@@ -803,7 +803,6 @@
 			baseConfigurationReference = 9F03622103651696CF79EF46 /* Pods-LKImagePickerControllerDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEVELOPMENT_TEAM = EDF37AMEEW;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LKImagePickerControllerDemo/LKImagePickerControllerDemo-Prefix.pch";
@@ -820,7 +819,6 @@
 			baseConfigurationReference = E0414075D13FA7C2332FC912 /* Pods-LKImagePickerControllerDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEVELOPMENT_TEAM = EDF37AMEEW;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LKImagePickerControllerDemo/LKImagePickerControllerDemo-Prefix.pch";
