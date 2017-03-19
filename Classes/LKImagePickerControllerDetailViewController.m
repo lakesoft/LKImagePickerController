@@ -19,6 +19,10 @@
 
 #define LKImagePickerControlDetailThumbnailSize (CGSizeMake(50.0,50.0))
 
+NSString * const LKImagePickerControllerDetailViewControllerWillAppearNotification = @"LKImagePickerControllerDetailViewControllerWillAppearNotification";
+NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotification = @"LKImagePickerControllerDetailViewControllerWillDisappearNotification";
+
+
 @interface LKImagePickerControllerDetailViewController () <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *collectionViewButtomConstraint;
@@ -240,6 +244,16 @@
     }];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [NSNotificationCenter.defaultCenter postNotificationName:LKImagePickerControllerDetailViewControllerWillAppearNotification object:self userInfo:nil];
+}
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [NSNotificationCenter.defaultCenter postNotificationName:LKImagePickerControllerDetailViewControllerWillDisappearNotification object:self userInfo:nil];
+}
 
 - (void)didReceiveMemoryWarning
 {

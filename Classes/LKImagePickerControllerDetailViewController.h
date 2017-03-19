@@ -10,6 +10,9 @@
 #import <LKAssetsLibrary/LKAssetsLibrary.h>
 #import "LKImagePickerControllerSelectViewController.h"
 
+extern NSString * const LKImagePickerControllerDetailViewControllerWillAppearNotification;
+extern NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotification;
+
 @class LKImagePickerControllerAssetsManager;
 @interface LKImagePickerControllerDetailViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate>
 
