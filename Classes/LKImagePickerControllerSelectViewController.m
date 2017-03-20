@@ -557,7 +557,11 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     [self.collectionView registerNib:[UINib nibWithNibName:headerIdentifier bundle:LKImagePickerControllerBundleManager.bundle]
           forSupplementaryViewOfKind:UICollectionElementKindSectionHeader
                  withReuseIdentifier:headerIdentifier];
-
+    
+    UIEdgeInsets collectionViewInsets = self.imagePickerController.selectionViewContentInset;
+    self.collectionView.contentInset = collectionViewInsets;
+    self.collectionView.scrollIndicatorInsets = UIEdgeInsetsMake(collectionViewInsets.top, 0, collectionViewInsets.bottom, 0);
+    
     // Update controls
     [self.assetsManager reloadAssetsGroup];
     [self _updateControls];

@@ -34,7 +34,7 @@
         self.toolBarHidden = NO;
         self.fullScreenDisabled = NO;
 //        self.view.backgroundColor = UIColor.whiteColor;
-        
+        self.selectionViewContentInset = UIEdgeInsetsZero;
 
     }
     return self;

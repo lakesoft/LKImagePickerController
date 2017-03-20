@@ -60,6 +60,7 @@
 @property (nonatomic, assign) BOOL fullScreenDisabled;
 @property (nonatomic, assign) BOOL doOpenKeyboardInDetailView;
 @property (nonatomic, assign) CGFloat detailNaviViewOffset;
+@property (nonatomic, assign) UIEdgeInsets selectionViewContentInset;
 
 - (void)deselectAll;
 - (void)displayMainScreenAnimated:(BOOL)animated;
