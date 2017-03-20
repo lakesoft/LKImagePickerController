@@ -583,7 +583,7 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
 //    CGFloat screenHeight = UIScreen.mainScreen.bounds.size.height;
     CGFloat viewHeight = self.view.bounds.size.height + self.view.frame.origin.y + self.selectViewController.imagePickerController.detailNaviViewOffset;
     
-    NSNumber* duration = notification.userInfo[UIKeyboardAnimationDurationUserInfoKey];
+//    NSNumber* duration = notification.userInfo[UIKeyboardAnimationDurationUserInfoKey];
     
 //    CGFloat constant = screenHeight - keyBoardFrame.origin.y;
     CGFloat constant = viewHeight - keyBoardFrame.origin.y;
@@ -593,7 +593,7 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
     [self.view layoutIfNeeded];
     
     self.aspectFill = YES;
-    LKImagePickerControllerDetailCell* cell = (LKImagePickerControllerSelectCell*)[self.collectionView cellForItemAtIndexPath:self.indexPath];
+    LKImagePickerControllerDetailCell* cell = (LKImagePickerControllerDetailCell*)[self.collectionView cellForItemAtIndexPath:self.indexPath];
     cell.aspectFill = YES;
 }
 
@@ -609,7 +609,7 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
     }];
     
     self.aspectFill = NO;
-    LKImagePickerControllerDetailCell* cell = (LKImagePickerControllerSelectCell*)[self.collectionView cellForItemAtIndexPath:self.indexPath];
+    LKImagePickerControllerDetailCell* cell = (LKImagePickerControllerDetailCell*)[self.collectionView cellForItemAtIndexPath:self.indexPath];
     cell.aspectFill = NO;
 
 }
