@@ -502,12 +502,12 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
 
 
 #pragma mark - Actions
-- (IBAction)checkmarkTouchded:(id)sender event:(UIEvent*)event
+- (void)toggleCheckmark
 {
     LKImagePickerControllerDetailCell* cell = (LKImagePickerControllerDetailCell*)[self.collectionView cellForItemAtIndexPath:self.indexPath];
     
     cell.checked = !cell.checked;
-
+    
     if (cell.checked) {
         if (self.assetsManager.reachedMaximumOfSelections) {
             [self.checkmarkButton alert];
@@ -520,7 +520,7 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
         [self.assetsManager deselectAsset:[self.assetsCollection assetForIndexPath:self.indexPath]];
         [self _updateControls];
     }
-
+    
     LKImagePickerControllerDetailCell* detailCell = (LKImagePickerControllerDetailCell*)[self.thumbnailCollectionView cellForItemAtIndexPath:self.indexPath];
     detailCell.checked = cell.checked;
     
@@ -529,6 +529,10 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
     [NSNotificationCenter.defaultCenter postNotificationName:LKImagePickerControllerAssetsManagerDidSelectNotification
                                                       object:self
                                                     userInfo:userInfo];
+}
+- (IBAction)checkmarkTouchded:(id)sender event:(UIEvent*)event
+{
+    [self toggleCheckmark];
 }
 
 //- (IBAction)onToggleFullScreen:(id)sender {
@@ -571,7 +575,8 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    [textField resignFirstResponder];
+    self.checkmarkButton.checked = !self.checkmarkButton.checked;
+    [self toggleCheckmark];
 }
 
 #pragma mark - Keyboard management

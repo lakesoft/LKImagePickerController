@@ -31,6 +31,7 @@
                 <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" pagingEnabled="YES" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="EKc-bL-G2J">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <inset key="scrollIndicatorInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="44"/>
                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="52z-6N-7bD">
                         <size key="itemSize" width="320" height="568"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -83,8 +84,8 @@
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ThX-qM-UsX">
-                                    <rect key="frame" x="69" y="25" width="282" height="30"/>
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ThX-qM-UsX">
+                                    <rect key="frame" x="55" y="25" width="304" height="30"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="30" id="KEG-ex-fx2"/>
@@ -100,7 +101,7 @@
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstItem="i9q-22-OLa" firstAttribute="centerY" secondItem="yoE-ho-XYJ" secondAttribute="centerY" id="PKS-uq-UmS"/>
-                                <constraint firstItem="ThX-qM-UsX" firstAttribute="leading" secondItem="i9q-22-OLa" secondAttribute="trailing" id="RMv-gd-04F"/>
+                                <constraint firstItem="ThX-qM-UsX" firstAttribute="leading" secondItem="i9q-22-OLa" secondAttribute="trailing" constant="14" id="RMv-gd-04F"/>
                                 <constraint firstItem="5ct-9E-Jsa" firstAttribute="leading" secondItem="ThX-qM-UsX" secondAttribute="trailing" id="Vfp-VL-L60"/>
                                 <constraint firstAttribute="height" constant="60" id="XaV-pr-UEd"/>
                                 <constraint firstAttribute="bottom" secondItem="ThX-qM-UsX" secondAttribute="bottom" constant="5" id="Xvc-Yj-Z4d"/>
