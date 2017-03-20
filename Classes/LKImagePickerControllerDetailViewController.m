@@ -602,6 +602,7 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
     NSNumber* duration = notification.userInfo[UIKeyboardAnimationDurationUserInfoKey];
     self.naviViewBottomConstraint.constant = 0;
     self.collectionViewButtomConstraint.constant = 0;
+    [self.collectionView.collectionViewLayout invalidateLayout];
     [UIView animateWithDuration:duration.doubleValue animations:^{
         [self.view layoutIfNeeded];
     } completion:^(BOOL finished) {
