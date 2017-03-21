@@ -228,9 +228,6 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
 //    if (self.selectViewController.imagePickerController.doOpenKeyboardInDetailView) {
 //        [self.assetCommentTextField becomeFirstResponder];
 //    }
-    if (self.selectViewController.imagePickerController.doOpenKeyboardInDetailView) {
-        [self.assetCommentTextField becomeFirstResponder];
-    }
     
     self.naviView.alpha = 0.0;
     self.thumbnailCollectionView.alpha = 0.0;
@@ -253,6 +250,13 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
 {
     [super viewWillDisappear:animated];
     [NSNotificationCenter.defaultCenter postNotificationName:LKImagePickerControllerDetailViewControllerWillDisappearNotification object:self userInfo:nil];
+}
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    if (self.selectViewController.imagePickerController.doOpenKeyboardInDetailView) {
+        [self.assetCommentTextField becomeFirstResponder];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -588,14 +592,17 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
 //    CGFloat screenHeight = UIScreen.mainScreen.bounds.size.height;
     CGFloat viewHeight = self.view.bounds.size.height + self.view.frame.origin.y + self.selectViewController.imagePickerController.detailNaviViewOffset;
     
-//    NSNumber* duration = notification.userInfo[UIKeyboardAnimationDurationUserInfoKey];
+    NSNumber* duration = notification.userInfo[UIKeyboardAnimationDurationUserInfoKey];
     
 //    CGFloat constant = screenHeight - keyBoardFrame.origin.y;
     CGFloat constant = viewHeight - keyBoardFrame.origin.y;
     self.naviViewBottomConstraint.constant = constant;
     self.collectionViewButtomConstraint.constant = constant;
     [self.collectionView.collectionViewLayout invalidateLayout];
-    [self.view layoutIfNeeded];
+    
+    [UIView animateWithDuration:duration.doubleValue animations:^{
+        [self.view layoutIfNeeded];
+    }];
     
     self.aspectFill = YES;
     LKImagePickerControllerDetailCell* cell = (LKImagePickerControllerDetailCell*)[self.collectionView cellForItemAtIndexPath:self.indexPath];

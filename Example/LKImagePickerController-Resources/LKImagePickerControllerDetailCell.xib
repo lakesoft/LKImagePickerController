@@ -25,8 +25,10 @@
                             <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="nTw-er-9BC">
                                 <rect key="frame" x="0.0" y="0.0" width="1200" height="1200"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </imageView>
                         </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <connections>
                             <outlet property="delegate" destination="xLA-mz-Kom" id="5qb-Sh-eBh"/>
                         </connections>
@@ -43,6 +45,7 @@
                     </button>
                 </subviews>
             </view>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <size key="customSize" width="1200" height="1200"/>
             <connections>
                 <outlet property="imageView" destination="nTw-er-9BC" id="I92-33-pPa"/>
