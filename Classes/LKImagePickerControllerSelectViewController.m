@@ -463,6 +463,7 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     // Setup tint color
     self.navigationController.toolbar.tintColor = LKImagePickerControllerAppearance.sharedAppearance.toolbarFontColor;
     self.navigationController.toolbar.clipsToBounds = true;
+    self.navigationController.toolbar.barTintColor = [UIColor colorWithWhite:1.0 alpha:0.75];
 
     // Bar buttons
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:[LKImagePickerControllerBundleManager localizedStringForKey:@"Common.Back"] style:UIBarButtonItemStylePlain target:nil action:nil];

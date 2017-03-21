@@ -91,7 +91,7 @@
                                     </constraints>
                                     <color key="textColor" red="0.99997665999999996" green="1" blue="0.999987552" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                    <textInputTraits key="textInputTraits" keyboardAppearance="alert" returnKeyType="done"/>
                                     <connections>
                                         <outlet property="delegate" destination="-1" id="Xv3-OU-unr"/>
                                     </connections>
