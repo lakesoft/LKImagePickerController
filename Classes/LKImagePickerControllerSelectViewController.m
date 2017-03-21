@@ -591,6 +591,7 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
 {
     self.navigationController.toolbar.hidden = NO;
     [self.collectionView reloadData];
+    [self.collectionView.collectionViewLayout invalidateLayout];
     [self _updateControls];
 }
 
