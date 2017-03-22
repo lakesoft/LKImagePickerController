@@ -613,6 +613,10 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
 #pragma mark - Keyboard management
 - (void)keyboardWillChangeFrame:(NSNotification*)notification
 {
+    if (self.isWhileClosing) {
+        return;
+    }
+
     NSValue* keyBoardValue = notification.userInfo[UIKeyboardFrameEndUserInfoKey];
 //    NSLog(@"%@", keyBoardValue);
     CGRect keyBoardFrame = keyBoardValue.CGRectValue;
