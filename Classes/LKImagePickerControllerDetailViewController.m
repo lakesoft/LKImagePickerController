@@ -314,6 +314,9 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
                      }];
 
 }
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
+}
 
 #pragma mark - UIScrollViewDelegate
 //- (NSInteger)_indexForIndexPath:(NSIndexPath*)indexPath
