@@ -121,7 +121,10 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
 //        cell.checked = !cell.checked;
 //    }
 }
-
+-(void)_handleSwipeDown:(UISwipeGestureRecognizer *)gestureRecognizer
+{
+    [self onBackButton:nil];
+}
 
 #pragma mark - Basics
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -205,9 +208,15 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
                                           initWithTarget:self action:@selector(_handleLongPress:)];
     lpgr.minimumPressDuration = 0.3;
     [self.thumbnailCollectionView addGestureRecognizer:lpgr];
+
+    UISwipeGestureRecognizer *swgr = [[UISwipeGestureRecognizer alloc]
+                                          initWithTarget:self action:@selector(_handleSwipeDown:)];
+    swgr.direction = UISwipeGestureRecognizerDirectionDown;
+    [self.naviView addGestureRecognizer:swgr];
+
     
-    self.collectionView.alpha = 0.0;
-    [self performSelector:@selector(_scrollToStartpoint) withObject:nil afterDelay:0.005];
+//    self.collectionView.alpha = 0.0;
+//    [self performSelector:@selector(_scrollToStartpoint) withObject:nil afterDelay:0.1];
     
     if ([self.selectViewController.imagePickerController.imagePickerControllerDelegate respondsToSelector:@selector(rightBarButtonItem3)]) {
         self.navigationItem.rightBarButtonItem = self.selectViewController.imagePickerController.imagePickerControllerDelegate.rightBarButtonItem3;
@@ -218,6 +227,11 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
     self.assetCommentTextField.attributedPlaceholder =
     [[NSAttributedString alloc] initWithString:[LKImagePickerControllerBundleManager localizedStringForKey:@"Comment.Placeholder"]
                                     attributes:@{ NSForegroundColorAttributeName:[UIColor colorWithWhite:0.8 alpha:0.8] }];
+    
+    NSString* imageName = self.selectViewController.imagePickerController.navigationBarHidden ? @"LKImagePickerController_ButtonDown.png" : @"LKImagePickerController_ButtonBack.png";
+    UIImage* buttonImage = [UIImage imageNamed:imageName inBundle:LKImagePickerControllerBundleManager.bundle compatibleWithTraitCollection:nil];
+    [self.backButton setImage:buttonImage forState:UIControlStateNormal];
+    
     // navi view animation
 //    self.naviView.alpha = 0.0;
 //    [UIView animateWithDuration:0.5 animations:^{
@@ -229,22 +243,29 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
 //        [self.assetCommentTextField becomeFirstResponder];
 //    }
     
-    self.naviView.alpha = 0.0;
-    self.thumbnailCollectionView.alpha = 0.0;
-    [UIView animateWithDuration:1.0 animations:^{
-        self.naviView.alpha = 1.0;
-    } completion:^(BOOL finished) {
-    }];
-    [UIView animateWithDuration:1.5 animations:^{
-        self.thumbnailCollectionView.alpha = 1.0;
-    } completion:^(BOOL finished) {
-    }];
+//    self.naviView.alpha = 0.0;
+//    [UIView animateWithDuration:1.0 animations:^{
+//        self.naviView.alpha = 1.0;
+//    } completion:^(BOOL finished) {
+//    }];
+//    self.thumbnailCollectionView.alpha = 0.0;
+//    [UIView animateWithDuration:1.5 animations:^{
+//        self.thumbnailCollectionView.alpha = 1.0;
+//    } completion:^(BOOL finished) {
+//    }];
+    if (self.selectViewController.imagePickerController.doOpenKeyboardInDetailView) {
+        [self.assetCommentTextField becomeFirstResponder];
+    }
+
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     [NSNotificationCenter.defaultCenter postNotificationName:LKImagePickerControllerDetailViewControllerWillAppearNotification object:self userInfo:nil];
+    self.collectionView.alpha = 0.0;
+    [self performSelector:@selector(_scrollToStartpoint) withObject:nil afterDelay:0.1];
+
 }
 - (void)viewWillDisappear:(BOOL)animated
 {
@@ -254,9 +275,6 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    if (self.selectViewController.imagePickerController.doOpenKeyboardInDetailView) {
-        [self.assetCommentTextField becomeFirstResponder];
-    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -558,7 +576,13 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
 }
 
 - (IBAction)onBackButton:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.assetCommentTextField resignFirstResponder];
+    
+    if (self.selectViewController.imagePickerController.navigationBarHidden) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    } else {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 - (IBAction)tappedOnSubHeaderView:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];

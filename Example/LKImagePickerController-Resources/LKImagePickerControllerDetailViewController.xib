@@ -79,13 +79,14 @@
                                         <constraint firstAttribute="width" constant="240" id="WId-G5-VkO"/>
                                         <constraint firstAttribute="height" constant="21" id="j1j-nt-VBW"/>
                                     </constraints>
-                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-ThinItalic" family="Helvetica Neue" pointSize="15"/>
                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ThX-qM-UsX">
                                     <rect key="frame" x="55" y="25" width="304" height="30"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="30" id="KEG-ex-fx2"/>
                                     </constraints>
@@ -130,7 +131,7 @@
                             </connections>
                         </collectionView>
                     </subviews>
-                    <color key="backgroundColor" white="0.0" alpha="0.44879936733128833" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.24823859279141108" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="dLc-gu-JSm" secondAttribute="trailing" constant="3" id="92O-LW-p6T"/>
                         <constraint firstAttribute="height" constant="120" id="OZC-Jw-H02"/>

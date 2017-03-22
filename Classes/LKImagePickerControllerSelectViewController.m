@@ -424,7 +424,13 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     viewController.assetsManager = self.assetsManager;
     viewController.selectViewController = self;
     viewController.navigatioBarHidden = self.imagePickerController.navigationBarHidden;
-    [self.navigationController pushViewController:viewController animated:YES];
+    
+    if (self.imagePickerController.navigationBarHidden) {
+        viewController.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+        [self presentViewController:viewController animated:YES completion:nil];
+    } else {
+        [self.navigationController pushViewController:viewController animated:YES];
+    }
 }
 
 
