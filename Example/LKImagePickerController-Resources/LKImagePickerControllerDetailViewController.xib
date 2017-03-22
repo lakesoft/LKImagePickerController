@@ -113,7 +113,7 @@
                             </constraints>
                         </view>
                         <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="dLc-gu-JSm">
-                            <rect key="frame" x="3" y="68" width="408" height="50"/>
+                            <rect key="frame" x="0.0" y="71" width="414" height="50"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="50" id="GJ2-ZC-2By"/>
@@ -133,13 +133,13 @@
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.24823859279141108" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="trailing" secondItem="dLc-gu-JSm" secondAttribute="trailing" constant="3" id="92O-LW-p6T"/>
+                        <constraint firstAttribute="trailing" secondItem="dLc-gu-JSm" secondAttribute="trailing" id="92O-LW-p6T"/>
                         <constraint firstAttribute="height" constant="120" id="OZC-Jw-H02"/>
                         <constraint firstItem="yoE-ho-XYJ" firstAttribute="top" secondItem="Qaa-AM-tMN" secondAttribute="top" constant="5" id="b3e-xj-PdH"/>
                         <constraint firstAttribute="trailing" secondItem="yoE-ho-XYJ" secondAttribute="trailing" id="gHa-oQ-47T"/>
                         <constraint firstItem="yoE-ho-XYJ" firstAttribute="leading" secondItem="Qaa-AM-tMN" secondAttribute="leading" id="heb-Wx-dJr"/>
-                        <constraint firstItem="dLc-gu-JSm" firstAttribute="leading" secondItem="Qaa-AM-tMN" secondAttribute="leading" constant="3" id="qUg-TD-heS"/>
-                        <constraint firstAttribute="bottom" secondItem="dLc-gu-JSm" secondAttribute="bottom" constant="2" id="qWG-bs-AX0"/>
+                        <constraint firstItem="dLc-gu-JSm" firstAttribute="leading" secondItem="Qaa-AM-tMN" secondAttribute="leading" id="qUg-TD-heS"/>
+                        <constraint firstAttribute="bottom" secondItem="dLc-gu-JSm" secondAttribute="bottom" constant="-1" id="qWG-bs-AX0"/>
                     </constraints>
                 </view>
                 <view alpha="0.01" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="08h-zw-Sqz" userLabel="Swipe back view">

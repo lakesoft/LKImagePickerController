@@ -34,6 +34,7 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
 @property (strong, nonatomic) NSIndexPath* currentIndexPath;
 @property (assign, nonatomic) BOOL hideBars;
 //@property (weak, nonatomic) IBOutlet UIButton *toggleFullScreenButton;
+@property (assign, nonatomic) BOOL isWhileClosing;
 
 // navi view
 @property (weak, nonatomic) IBOutlet UIView *naviView;
@@ -576,6 +577,7 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
 }
 
 - (IBAction)onBackButton:(id)sender {
+    self.isWhileClosing = YES;
     [self.assetCommentTextField resignFirstResponder];
     
     if (self.selectViewController.imagePickerController.navigationBarHidden) {
@@ -603,8 +605,9 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    self.checkmarkButton.checked = !self.checkmarkButton.checked;
-    [self toggleCheckmark];
+    [self onBackButton:nil];
+//    self.checkmarkButton.checked = !self.checkmarkButton.checked;
+//    [self toggleCheckmark];
 }
 
 #pragma mark - Keyboard management
@@ -635,6 +638,9 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
 
 -(void)keyboardWillHide:(NSNotification*)notification
 {
+    if (self.isWhileClosing) {
+        return;
+    }
     NSNumber* duration = notification.userInfo[UIKeyboardAnimationDurationUserInfoKey];
     self.naviViewBottomConstraint.constant = 0;
     self.collectionViewButtomConstraint.constant = 0;
