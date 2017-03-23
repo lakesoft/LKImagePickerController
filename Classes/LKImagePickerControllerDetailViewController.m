@@ -126,6 +126,10 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
 {
     [self onBackButton:nil];
 }
+-(void)_handleSwipeUp:(UISwipeGestureRecognizer *)gestureRecognizer
+{
+    [self.assetCommentTextField becomeFirstResponder];
+}
 
 #pragma mark - Basics
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -210,12 +214,16 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
     lpgr.minimumPressDuration = 0.3;
     [self.thumbnailCollectionView addGestureRecognizer:lpgr];
 
-    UISwipeGestureRecognizer *swgr = [[UISwipeGestureRecognizer alloc]
+    UISwipeGestureRecognizer *swgr1 = [[UISwipeGestureRecognizer alloc]
                                           initWithTarget:self action:@selector(_handleSwipeDown:)];
-    swgr.direction = UISwipeGestureRecognizerDirectionDown;
-    [self.naviView addGestureRecognizer:swgr];
+    swgr1.direction = UISwipeGestureRecognizerDirectionDown;
+    [self.naviView addGestureRecognizer:swgr1];
 
-    
+    UISwipeGestureRecognizer *swgr2 = [[UISwipeGestureRecognizer alloc]
+                                       initWithTarget:self action:@selector(_handleSwipeUp:)];
+    swgr2.direction = UISwipeGestureRecognizerDirectionUp;
+    [self.naviView addGestureRecognizer:swgr2];
+
 //    self.collectionView.alpha = 0.0;
 //    [self performSelector:@selector(_scrollToStartpoint) withObject:nil afterDelay:0.1];
     
