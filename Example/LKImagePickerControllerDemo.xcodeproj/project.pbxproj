@@ -41,6 +41,11 @@
 		BCC13FD71E7D633000A417D7 /* LKImagePickerController_ButtonFullOpen@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCC13FD61E7D633000A417D7 /* LKImagePickerController_ButtonFullOpen@3x.png */; };
 		BCDBB1391D86108D00CC9EB2 /* LKImagePickerController_ButtonBack.png in Resources */ = {isa = PBXBuildFile; fileRef = BCDBB1381D86108D00CC9EB2 /* LKImagePickerController_ButtonBack.png */; };
 		BCDBB1711D88167800CC9EB2 /* LKImagePickerController_IconPosted.png in Resources */ = {isa = PBXBuildFile; fileRef = BCDBB1701D88167800CC9EB2 /* LKImagePickerController_IconPosted.png */; };
+		BCE123311E866BD9002E3EA7 /* LKImagePickerController_WaitIndicator11@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCE1232C1E866BD9002E3EA7 /* LKImagePickerController_WaitIndicator11@3x.png */; };
+		BCE123321E866BD9002E3EA7 /* LKImagePickerController_WaitIndicator12@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCE1232D1E866BD9002E3EA7 /* LKImagePickerController_WaitIndicator12@3x.png */; };
+		BCE123331E866BD9002E3EA7 /* LKImagePickerController_WaitIndicator00@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCE1232E1E866BD9002E3EA7 /* LKImagePickerController_WaitIndicator00@3x.png */; };
+		BCE123341E866BD9002E3EA7 /* LKImagePickerController_WaitIndicator21@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCE1232F1E866BD9002E3EA7 /* LKImagePickerController_WaitIndicator21@3x.png */; };
+		BCE123351E866BD9002E3EA7 /* LKImagePickerController_WaitIndicator22@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCE123301E866BD9002E3EA7 /* LKImagePickerController_WaitIndicator22@3x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -152,11 +157,17 @@
 		BCC13FD11E7D630100A417D7 /* LKImagePickerController_ButtonFullClose@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LKImagePickerController_ButtonFullClose@3x.png"; sourceTree = "<group>"; };
 		BCC13FD21E7D630100A417D7 /* LKImagePickerController_Icon_Comment@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LKImagePickerController_Icon_Comment@3x.png"; sourceTree = "<group>"; };
 		BCC13FD61E7D633000A417D7 /* LKImagePickerController_ButtonFullOpen@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LKImagePickerController_ButtonFullOpen@3x.png"; sourceTree = "<group>"; };
+		BCD623DA1E84C80D00999548 /* LKImagePickerController_WaitIndicator.pxm */ = {isa = PBXFileReference; lastKnownFileType = file; path = LKImagePickerController_WaitIndicator.pxm; sourceTree = "<group>"; };
 		BCDBB1381D86108D00CC9EB2 /* LKImagePickerController_ButtonBack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LKImagePickerController_ButtonBack.png; sourceTree = "<group>"; };
 		BCDBB13D1D86AF2300CC9EB2 /* LKImagePickerControllerMarkedAssetsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LKImagePickerControllerMarkedAssetsManager.h; path = ../Classes/LKImagePickerControllerMarkedAssetsManager.h; sourceTree = "<group>"; };
 		BCDBB13E1D86AF2300CC9EB2 /* LKImagePickerControllerMarkedAssetsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LKImagePickerControllerMarkedAssetsManager.m; path = ../Classes/LKImagePickerControllerMarkedAssetsManager.m; sourceTree = "<group>"; };
 		BCDBB1471D86B55300CC9EB2 /* LKImagePickerController_IconPosted.pxm */ = {isa = PBXFileReference; lastKnownFileType = file; path = LKImagePickerController_IconPosted.pxm; sourceTree = "<group>"; };
 		BCDBB1701D88167800CC9EB2 /* LKImagePickerController_IconPosted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LKImagePickerController_IconPosted.png; sourceTree = "<group>"; };
+		BCE1232C1E866BD9002E3EA7 /* LKImagePickerController_WaitIndicator11@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LKImagePickerController_WaitIndicator11@3x.png"; sourceTree = "<group>"; };
+		BCE1232D1E866BD9002E3EA7 /* LKImagePickerController_WaitIndicator12@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LKImagePickerController_WaitIndicator12@3x.png"; sourceTree = "<group>"; };
+		BCE1232E1E866BD9002E3EA7 /* LKImagePickerController_WaitIndicator00@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LKImagePickerController_WaitIndicator00@3x.png"; sourceTree = "<group>"; };
+		BCE1232F1E866BD9002E3EA7 /* LKImagePickerController_WaitIndicator21@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LKImagePickerController_WaitIndicator21@3x.png"; sourceTree = "<group>"; };
+		BCE123301E866BD9002E3EA7 /* LKImagePickerController_WaitIndicator22@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LKImagePickerController_WaitIndicator22@3x.png"; sourceTree = "<group>"; };
 		E0414075D13FA7C2332FC912 /* Pods-LKImagePickerControllerDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LKImagePickerControllerDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-LKImagePickerControllerDemo/Pods-LKImagePickerControllerDemo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -230,6 +241,11 @@
 				BCC13FD11E7D630100A417D7 /* LKImagePickerController_ButtonFullClose@3x.png */,
 				BCC13FD21E7D630100A417D7 /* LKImagePickerController_Icon_Comment@3x.png */,
 				BCA4A40E1E827E9B00B60340 /* LKImagePickerController_ButtonDown@3x.png */,
+				BCE1232C1E866BD9002E3EA7 /* LKImagePickerController_WaitIndicator11@3x.png */,
+				BCE1232D1E866BD9002E3EA7 /* LKImagePickerController_WaitIndicator12@3x.png */,
+				BCE1232E1E866BD9002E3EA7 /* LKImagePickerController_WaitIndicator00@3x.png */,
+				BCE1232F1E866BD9002E3EA7 /* LKImagePickerController_WaitIndicator21@3x.png */,
+				BCE123301E866BD9002E3EA7 /* LKImagePickerController_WaitIndicator22@3x.png */,
 				BC074A3B19610DAB00144C47 /* Localizable.strings */,
 				BC074A191960D3A900144C47 /* Supporting Files */,
 			);
@@ -305,6 +321,7 @@
 				BCDBB1471D86B55300CC9EB2 /* LKImagePickerController_IconPosted.pxm */,
 				BCC13FCE1E7CDCAE00A417D7 /* LKImagePickerController_Icon_Comment.pxm */,
 				BCC13FCF1E7D208800A417D7 /* LKImagePickerController_ButtonFull.pxm */,
+				BCD623DA1E84C80D00999548 /* LKImagePickerController_WaitIndicator.pxm */,
 				BC2A377319397F9600C672B7 /* LKImagePickerControllerDemo-Info.plist */,
 				BC2A377419397F9600C672B7 /* InfoPlist.strings */,
 				BC2A377719397F9600C672B7 /* main.m */,
@@ -491,14 +508,19 @@
 				BCDBB1711D88167800CC9EB2 /* LKImagePickerController_IconPosted.png in Resources */,
 				BCC13FD71E7D633000A417D7 /* LKImagePickerController_ButtonFullOpen@3x.png in Resources */,
 				BC074A3919610DAB00144C47 /* Localizable.strings in Resources */,
+				BCE123331E866BD9002E3EA7 /* LKImagePickerController_WaitIndicator00@3x.png in Resources */,
 				BC074A2D1960D3F400144C47 /* LKImagePickerControllerSelectCell.xib in Resources */,
+				BCE123351E866BD9002E3EA7 /* LKImagePickerController_WaitIndicator22@3x.png in Resources */,
 				BCA4A40F1E827E9B00B60340 /* LKImagePickerController_ButtonDown@3x.png in Resources */,
+				BCE123341E866BD9002E3EA7 /* LKImagePickerController_WaitIndicator21@3x.png in Resources */,
 				BC074A361960DBBE00144C47 /* LKImagePickerController_Icon_Video.png in Resources */,
 				BCC13FD41E7D630100A417D7 /* LKImagePickerController_ButtonFullClose@3x.png in Resources */,
+				BCE123311E866BD9002E3EA7 /* LKImagePickerController_WaitIndicator11@3x.png in Resources */,
 				BC074A2A1960D3F400144C47 /* LKImagePickerControllerDetailViewController.xib in Resources */,
 				BC074A2E1960D3F400144C47 /* LKImagePickerControllerSelectHeaderView.xib in Resources */,
 				BC074A451961161800144C47 /* LKImagePickerControllerGroupTableViewCell.xib in Resources */,
 				BCC13FD51E7D630100A417D7 /* LKImagePickerController_Icon_Comment@3x.png in Resources */,
+				BCE123321E866BD9002E3EA7 /* LKImagePickerController_WaitIndicator12@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

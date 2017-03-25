@@ -52,6 +52,7 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
 @property (nonatomic, weak) LKImagePickerControllerEmptyView* emptyView;
 @property (nonatomic, weak) UIButton* titleButton;
 //@property (nonatomic, weak) UIView* titleView;
+@property (nonatomic, weak) UIImageView* waitIndicatorView;
 
 #pragma mark - Models
 @property (nonatomic, assign) BOOL displayingSelectedOnly;
@@ -105,6 +106,8 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
             self.emptyView.alpha = 1.0;
         }];
     }
+    
+    [self.waitIndicatorView stopAnimating];
 }
 
 - (LKAssetsCollection*)_assetsCollectionWithAssetsGroup:(LKAssetsGroup*)assetsGroup orAssets:(NSArray*)orAssets
@@ -392,6 +395,7 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     
 }
 
+
 #pragma mark - Privates (Navigations)
 - (void)_openGroupView
 {
@@ -465,6 +469,7 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
                                            selector:@selector(_changedSelectable:)
                                                name:LKImagePickerControllerAssetsManagerDidChangeSelectable
                                              object:nil];
+    
 
     // Setup tint color
     self.navigationController.toolbar.tintColor = LKImagePickerControllerAppearance.sharedAppearance.toolbarFontColor;
@@ -585,12 +590,65 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     {
         [self.doneItem setTitle:[self.imagePickerController.imagePickerControllerDelegate completionButtonTitle]];
     }
+    
+    // Wait Indicator
+    UIImageView* waitIndicatorView = [[UIImageView alloc] initWithFrame:CGRectMake(100, 100, 44, 44)];
+
+    //waitIndicatorView.image = [UIImage imageNamed:@"WaitIndicator1.png" inBundle:LKImagePickerControllerBundleManager.bundle compatibleWithTraitCollection:nil];
+    UIImage* image00 = [UIImage imageNamed:@"LKImagePickerController_WaitIndicator00.png" inBundle:LKImagePickerControllerBundleManager.bundle compatibleWithTraitCollection:nil];
+    UIImage* image11 = [UIImage imageNamed:@"LKImagePickerController_WaitIndicator11.png" inBundle:LKImagePickerControllerBundleManager.bundle compatibleWithTraitCollection:nil];
+    UIImage* image12 = [UIImage imageNamed:@"LKImagePickerController_WaitIndicator12.png" inBundle:LKImagePickerControllerBundleManager.bundle compatibleWithTraitCollection:nil];
+    UIImage* image21 = [UIImage imageNamed:@"LKImagePickerController_WaitIndicator21.png" inBundle:LKImagePickerControllerBundleManager.bundle compatibleWithTraitCollection:nil];
+    UIImage* image22 = [UIImage imageNamed:@"LKImagePickerController_WaitIndicator22.png" inBundle:LKImagePickerControllerBundleManager.bundle compatibleWithTraitCollection:nil];
+
+    waitIndicatorView.animationImages = @[
+                                          image11,
+                                          image12,
+                                          image00,
+                                          image21,
+                                          image22,
+                                          image21,
+                                          image00,
+                                          image12
+                                               ];
+    waitIndicatorView.animationDuration = 1.0;
+    waitIndicatorView.animationRepeatCount = 10000;
+    
+    [waitIndicatorView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    
+    NSLayoutConstraint *xc = [NSLayoutConstraint constraintWithItem:waitIndicatorView
+                                                          attribute:NSLayoutAttributeCenterX
+                                                          relatedBy:NSLayoutRelationEqual
+                                                             toItem:self.view
+                                                          attribute:NSLayoutAttributeCenterX
+                                                         multiplier:1
+                                                           constant:0];
+    
+    NSLayoutConstraint *yc = [NSLayoutConstraint constraintWithItem:waitIndicatorView
+                                                          attribute:NSLayoutAttributeCenterY
+                                                          relatedBy:NSLayoutRelationEqual
+                                                             toItem:self.view
+                                                          attribute:NSLayoutAttributeCenterY
+                                                         multiplier:1
+                                                                    constant:0];
+    
+    [self.view addSubview:waitIndicatorView];
+    [self.view addConstraint:xc];
+    [self.view addConstraint:yc];
+    self.waitIndicatorView = waitIndicatorView;
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    if (!self.firstReloadingFinished) {
+        [self.waitIndicatorView startAnimating];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
