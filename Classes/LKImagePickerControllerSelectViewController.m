@@ -614,27 +614,13 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     waitIndicatorView.animationDuration = 1.0;
     waitIndicatorView.animationRepeatCount = 10000;
     
-    [waitIndicatorView setTranslatesAutoresizingMaskIntoConstraints:NO];
-    
-    NSLayoutConstraint *xc = [NSLayoutConstraint constraintWithItem:waitIndicatorView
-                                                          attribute:NSLayoutAttributeCenterX
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:self.view
-                                                          attribute:NSLayoutAttributeCenterX
-                                                         multiplier:1
-                                                           constant:0];
-    
-    NSLayoutConstraint *yc = [NSLayoutConstraint constraintWithItem:waitIndicatorView
-                                                          attribute:NSLayoutAttributeCenterY
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:self.view
-                                                          attribute:NSLayoutAttributeCenterY
-                                                         multiplier:1
-                                                                    constant:0];
+    CGSize screenSize = UIScreen.mainScreen.bounds.size;
+    CGRect frame = waitIndicatorView.frame;
+    frame.origin.x = (screenSize.width - frame.size.width) / 2.0;
+    frame.origin.y = (screenSize.height - frame.size.height) / 2.0;
+    waitIndicatorView.frame = frame;
     
     [self.view addSubview:waitIndicatorView];
-    [self.view addConstraint:xc];
-    [self.view addConstraint:yc];
     [self.view layoutIfNeeded];
     self.waitIndicatorView = waitIndicatorView;
 }
