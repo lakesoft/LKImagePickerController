@@ -635,6 +635,7 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     [self.view addSubview:waitIndicatorView];
     [self.view addConstraint:xc];
     [self.view addConstraint:yc];
+    [self.view layoutIfNeeded];
     self.waitIndicatorView = waitIndicatorView;
 }
 
