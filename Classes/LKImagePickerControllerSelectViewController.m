@@ -197,12 +197,18 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
 #pragma mark - Privates (Actions)
 - (void)_tappedClear:(id)sender
 {
-    UIActionSheet* sheet = [[UIActionSheet alloc] initWithTitle:[LKImagePickerControllerBundleManager localizedStringForKey:@"Selection.DeselectAll"]
-                                                       delegate:self
-                                              cancelButtonTitle:[LKImagePickerControllerBundleManager localizedStringForKey:@"Common.Cancel"]
-                                         destructiveButtonTitle:[LKImagePickerControllerBundleManager localizedStringForKey:@"Common.OK"]                                              otherButtonTitles:nil];
-    sheet.tag = LKImagePickerControllerSelectViewSheetResetSelections;
-    [sheet showFromToolbar:self.navigationController.toolbar];
+    if ([self.imagePickerController.imagePickerControllerDelegate respondsToSelector:@selector(handleClearSelections:)]) {
+        [self.imagePickerController.imagePickerControllerDelegate handleClearSelections:^{
+            [self deselectAll];
+        }];
+    } else {
+        UIActionSheet* sheet = [[UIActionSheet alloc] initWithTitle:[LKImagePickerControllerBundleManager localizedStringForKey:@"Selection.DeselectAll"]
+                                                           delegate:self
+                                                  cancelButtonTitle:[LKImagePickerControllerBundleManager localizedStringForKey:@"Common.Cancel"]
+                                             destructiveButtonTitle:[LKImagePickerControllerBundleManager localizedStringForKey:@"Common.OK"]                                              otherButtonTitles:nil];
+        sheet.tag = LKImagePickerControllerSelectViewSheetResetSelections;
+        [sheet showFromToolbar:self.navigationController.toolbar];
+    }
 }
 
 - (void)_selectAllItems
@@ -614,27 +620,14 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     waitIndicatorView.animationDuration = 1.0;
     waitIndicatorView.animationRepeatCount = 10000;
     
-    [waitIndicatorView setTranslatesAutoresizingMaskIntoConstraints:NO];
-    
-    NSLayoutConstraint *xc = [NSLayoutConstraint constraintWithItem:waitIndicatorView
-                                                          attribute:NSLayoutAttributeCenterX
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:self.collectionView
-                                                          attribute:NSLayoutAttributeCenterX
-                                                         multiplier:1
-                                                           constant:0];
-    
-    NSLayoutConstraint *yc = [NSLayoutConstraint constraintWithItem:waitIndicatorView
-                                                          attribute:NSLayoutAttributeCenterY
-                                                          relatedBy:NSLayoutRelationEqual
-                                                             toItem:self.collectionView
-                                                          attribute:NSLayoutAttributeCenterY
-                                                         multiplier:1
-                                                           constant:0];
-    
-    [self.collectionView addSubview:waitIndicatorView];
-    [self.collectionView addConstraint:xc];
-    [self.collectionView addConstraint:yc];
+    CGSize screenSize = UIScreen.mainScreen.bounds.size;
+    CGRect frame = waitIndicatorView.frame;
+    frame.origin.x = (screenSize.width - frame.size.width) / 2.0;
+    frame.origin.y = (screenSize.height - frame.size.height) / 2.0;
+    waitIndicatorView.frame = frame;
+
+    UIView* view = UIApplication.sharedApplication.keyWindow;
+    [view addSubview:waitIndicatorView];
     self.waitIndicatorView = waitIndicatorView;
 }
 

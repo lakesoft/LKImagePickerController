@@ -43,6 +43,10 @@
 // [1]selected -> [2]deselected
 - (void)imagePickerController:(LKImagePickerController*)imagePickerController selectedAssets:(NSArray*)selectedAssets;
 - (void)imagePickerController:(LKImagePickerController*)imagePickerController deselectedAssets:(NSArray*)deselectedAssets;
+
+// Clear action
+- (void)handleClearSelections:(void (^)())doClear;
+
 @end
 
 

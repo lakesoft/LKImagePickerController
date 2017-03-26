@@ -109,4 +109,10 @@
 //    NSLog(@"selected: %zd", numberOfSelections);
 //}
 
+/*- (void)handleClearSelections:(void (^)())doClear
+{
+    NSLog(@"X");
+    doClear();
+}*/
+
 @end
