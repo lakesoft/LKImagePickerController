@@ -124,7 +124,7 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
 }
 -(void)_handleSwipeDown:(UISwipeGestureRecognizer *)gestureRecognizer
 {
-    [self onBackButton:nil];
+    [self.assetCommentTextField resignFirstResponder];
 }
 -(void)_handleSwipeUp:(UISwipeGestureRecognizer *)gestureRecognizer
 {
