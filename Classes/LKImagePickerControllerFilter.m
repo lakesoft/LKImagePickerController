@@ -121,7 +121,7 @@
 {
     int index = 0;
     for (NSNumber* filterType in self.filterTypes) {
-        if (filterType == self.currentType) {
+        if (filterType.unsignedIntegerValue == self.currentType) {
             return index;
         }
         index++;
