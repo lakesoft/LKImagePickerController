@@ -115,4 +115,10 @@
     doClear();
 }*/
 
+- (void)openFilterMenuWithDescriptios:(NSArray *)descriptions completion:(void (^)(int))completion
+{
+    NSLog(@"%@", descriptions);
+    completion(2);
+}
+
 @end

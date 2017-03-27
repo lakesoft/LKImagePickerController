@@ -417,11 +417,28 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
 {
     [self _clearAlert];
 
-    LKImagePickerControllerFilterSelectionViewController* viewController = LKImagePickerControllerFilterSelectionViewController.new;
-    viewController.assetsManager = self.assetsManager;
-    viewController.selectViewController = self;
-    LKImagePickerControllerNavigationController* navigationController = [[LKImagePickerControllerNavigationController alloc] initWithRootViewController:viewController];
-    [self presentViewController:navigationController animated:YES completion:nil];
+    if ([self.imagePickerController.imagePickerControllerDelegate respondsToSelector:@selector(openFilterMenuWithDescriptios:completion:)]) {
+        NSMutableArray* descriptions = @[].mutableCopy;
+        for (int index=0; index < self.assetsManager.filter.filterTypes.count; index++) {
+            LKImagePickerControllerFilterType type = [self.assetsManager.filter typeAtIndex:index];
+            [descriptions addObject:[self.assetsManager.filter descriptionForType:type]];
+        }
+        [self.imagePickerController.imagePickerControllerDelegate openFilterMenuWithDescriptios:descriptions completion:^(int index) {
+            if (index >= 0) {
+                LKImagePickerControllerFilterType filterType = [self.assetsManager.filter typeAtIndex:index];
+                if (filterType != self.assetsManager.filter.currentType) {
+                    self.assetsManager.filter.currentType = filterType;
+                    [self didChangeFilterType];
+                }
+            }
+        }];
+    } else {
+        LKImagePickerControllerFilterSelectionViewController* viewController = LKImagePickerControllerFilterSelectionViewController.new;
+        viewController.assetsManager = self.assetsManager;
+        viewController.selectViewController = self;
+        LKImagePickerControllerNavigationController* navigationController = [[LKImagePickerControllerNavigationController alloc] initWithRootViewController:viewController];
+        [self presentViewController:navigationController animated:YES completion:nil];
+    }
 }
 
 - (void)_openDetailViewAtIndexPath:(NSIndexPath*)indexPath

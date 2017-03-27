@@ -44,8 +44,9 @@
 - (void)imagePickerController:(LKImagePickerController*)imagePickerController selectedAssets:(NSArray*)selectedAssets;
 - (void)imagePickerController:(LKImagePickerController*)imagePickerController deselectedAssets:(NSArray*)deselectedAssets;
 
-// Clear action
+// Handlers
 - (void)handleClearSelections:(void (^)())doClear;
+- (void)openFilterMenuWithDescriptios:(NSArray*)descriptions completion:(void (^)(int))completion;
 
 @end
 
