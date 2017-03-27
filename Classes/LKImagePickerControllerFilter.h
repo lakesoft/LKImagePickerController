@@ -22,6 +22,7 @@ typedef NS_ENUM(NSUInteger, LKImagePickerControllerFilterType) {
 
 // combination of LKImagePickerControllerFilterType
 @property (nonatomic, assign) LKImagePickerControllerFilterType currentType;
+@property (nonatomic, assign) int currentIndex;
 @property (nonatomic, assign, readonly) NSUInteger availableTypes;
 
 // for list

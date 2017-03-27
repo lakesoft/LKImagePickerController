@@ -117,5 +117,16 @@
     return [LKAssetsCollectionGenericFilter filterWithType:genericFilterType];
 }
 
+- (int)currentIndex
+{
+    int index = 0;
+    for (NSNumber* filterType in self.filterTypes) {
+        if (filterType == self.currentType) {
+            return index;
+        }
+        index++;
+    }
+    return 0;
+}
 
 @end

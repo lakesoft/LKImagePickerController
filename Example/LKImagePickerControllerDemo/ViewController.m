@@ -115,7 +115,7 @@
     doClear();
 }*/
 
-- (void)openFilterMenuWithDescriptios:(NSArray *)descriptions completion:(void (^)(int))completion
+- (void)openFilterMenuWithDescriptions:(NSArray *)descriptions currentIndex:(int)currentIndex completion:(void (^)(int))completion
 {
     NSLog(@"%@", descriptions);
     completion(2);
