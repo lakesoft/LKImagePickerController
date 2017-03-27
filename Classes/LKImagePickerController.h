@@ -46,7 +46,7 @@
 
 // Handlers
 - (void)handleClearSelections:(void (^)())doClear;
-- (void)openFilterMenuWithDescriptios:(NSArray*)descriptions completion:(void (^)(int))completion;
+- (void)openFilterMenuWithDescriptions:(NSArray*)descriptions completion:(void (^)(int))completion;
 
 @end
 

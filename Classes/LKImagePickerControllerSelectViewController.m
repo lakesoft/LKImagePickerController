@@ -417,13 +417,13 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
 {
     [self _clearAlert];
 
-    if ([self.imagePickerController.imagePickerControllerDelegate respondsToSelector:@selector(openFilterMenuWithDescriptios:completion:)]) {
+    if ([self.imagePickerController.imagePickerControllerDelegate respondsToSelector:@selector(openFilterMenuWithDescriptions:completion:)]) {
         NSMutableArray* descriptions = @[].mutableCopy;
         for (int index=0; index < self.assetsManager.filter.filterTypes.count; index++) {
             LKImagePickerControllerFilterType type = [self.assetsManager.filter typeAtIndex:index];
             [descriptions addObject:[self.assetsManager.filter descriptionForType:type]];
         }
-        [self.imagePickerController.imagePickerControllerDelegate openFilterMenuWithDescriptios:descriptions completion:^(int index) {
+        [self.imagePickerController.imagePickerControllerDelegate openFilterMenuWithDescriptions:descriptions completion:^(int index) {
             if (index >= 0) {
                 LKImagePickerControllerFilterType filterType = [self.assetsManager.filter typeAtIndex:index];
                 if (filterType != self.assetsManager.filter.currentType) {
