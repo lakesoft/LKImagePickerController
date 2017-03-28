@@ -74,7 +74,11 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
 
 - (void)_longPressedDetailCell:(NSNotification*)notification
 {
-    NSLog(@"long pressed");
+    LKImagePickerControllerDetailCell* cell = notification.object;
+    
+    if ([self.selectViewController.imagePickerController.imagePickerControllerDelegate respondsToSelector:@selector(didDetailViewCellLongPressBeganViewController:asset:)]) {
+        [self.selectViewController.imagePickerController.imagePickerControllerDelegate didDetailViewCellLongPressBeganViewController:self asset:cell.asset];
+    }
 }
 
 - (void)_assetsGroupDidReload:(NSNotification*)notification
@@ -109,19 +113,22 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
 
 #pragma mark - Privtates (Gestures)
 
--(void)_handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer
+-(void)_handleThumbnailLongPress:(UILongPressGestureRecognizer *)gestureRecognizer
 {
-//    if (gestureRecognizer.state != UIGestureRecognizerStateBegan) {
-//        return;
-//    }
-//    CGPoint p = [gestureRecognizer locationInView:self.thumbnailCollectionView];
-//    
-//    NSIndexPath *indexPath = [self.thumbnailCollectionView indexPathForItemAtPoint:p];
-//    if (indexPath){
-//        LKImagePickerControllerDetailCell* cell = (LKImagePickerControllerDetailCell*)[self.thumbnailCollectionView cellForItemAtIndexPath:indexPath];
-//        cell.checked = !cell.checked;
-//    }
+    if (gestureRecognizer.state != UIGestureRecognizerStateBegan) {
+        return;
+    }
+    CGPoint p = [gestureRecognizer locationInView:self.thumbnailCollectionView];
+    
+    NSIndexPath *indexPath = [self.thumbnailCollectionView indexPathForItemAtPoint:p];
+    if (indexPath){
+        LKAsset* asset = [self.assetsCollection assetForIndexPath:indexPath];
+        if ([self.selectViewController.imagePickerController.imagePickerControllerDelegate respondsToSelector:@selector(didDetailViewThubmailCellLongPressBeganViewController:asset:)]) {
+            [self.selectViewController.imagePickerController.imagePickerControllerDelegate didDetailViewThubmailCellLongPressBeganViewController:self asset:asset];
+        }
+    }
 }
+
 -(void)_handleSwipeDown:(UISwipeGestureRecognizer *)gestureRecognizer
 {
     [self.assetCommentTextField resignFirstResponder];
@@ -210,7 +217,7 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
                    forCellWithReuseIdentifier:cellIdentifier2];
 
     UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc]
-                                          initWithTarget:self action:@selector(_handleLongPress:)];
+                                          initWithTarget:self action:@selector(_handleThumbnailLongPress:)];
     lpgr.minimumPressDuration = 0.3;
     [self.thumbnailCollectionView addGestureRecognizer:lpgr];
 

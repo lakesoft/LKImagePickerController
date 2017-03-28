@@ -121,4 +121,18 @@
     completion(2);
 }
 
+- (void)didSelectViewCellLongPressBeganViewController:(UIViewController *)viewController asset:(LKAsset *)asset
+{
+    NSLog(@"didSelectViewCellLongPressBeganViewController: %@, %@:", viewController, asset);
+}
+
+- (void)didDetailViewCellLongPressBeganViewController:(UIViewController *)viewController asset:(LKAsset *)asset
+{
+    NSLog(@"didDetailViewCellLongPressBeganViewController: %@, %@:", viewController, asset);
+}
+- (void)didDetailViewThubmailCellLongPressBeganViewController:(UIViewController *)viewController asset:(LKAsset *)asset
+{
+    NSLog(@"didDetailViewThubmailCellLongPressBeganViewController: %@, %@:", viewController, asset);
+}
+
 @end

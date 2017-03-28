@@ -54,7 +54,7 @@ NSString * const LKImagePickerControllerDetailCellLongPressNotification = @"LKIm
 }
 - (void)_handleLongPress:(UILongPressGestureRecognizer*)lpgr
 {
-    if (lpgr.state == UIGestureRecognizerStateEnded) {
+    if (lpgr.state == UIGestureRecognizerStateBegan) {
         [NSNotificationCenter.defaultCenter postNotificationName:LKImagePickerControllerDetailCellLongPressNotification object:self];
     }
 }

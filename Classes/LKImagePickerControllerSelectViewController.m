@@ -462,6 +462,23 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
 
 
 #pragma mark - Privtates (Gestures)
+-(void)_handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer
+{
+    if (gestureRecognizer.state != UIGestureRecognizerStateBegan) {
+        return;
+    }
+    CGPoint p = [gestureRecognizer locationInView:self.collectionView];
+    
+    NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:p];
+    if (indexPath){
+        LKAsset* asset = [self.displayingAssetsCollection assetForIndexPath:indexPath];
+        
+        if ([self.imagePickerController.imagePickerControllerDelegate respondsToSelector:@selector(didSelectViewCellLongPressBeganViewController:asset:)]) {
+            [self.imagePickerController.imagePickerControllerDelegate didSelectViewCellLongPressBeganViewController:self asset:asset];
+        }
+//        UICollectionViewCell* cell = [self.collectionView cellForItemAtIndexPath:indexPath];
+    }
+}
 
 #pragma mark - Basics
 
@@ -646,6 +663,13 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     UIView* view = UIApplication.sharedApplication.keyWindow;
     [view addSubview:waitIndicatorView];
     self.waitIndicatorView = waitIndicatorView;
+    
+    
+    // Gestures
+    UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(_handleLongPress:)];
+    lpgr.delegate = self;
+    //lpgr.delaysTouchesBegan = YES;
+    [self.collectionView addGestureRecognizer:lpgr];
 }
 
 - (void)didReceiveMemoryWarning
