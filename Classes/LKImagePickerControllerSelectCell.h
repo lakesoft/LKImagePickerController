@@ -19,5 +19,5 @@
 
 - (void)alert;
 - (void)setHilighted:(BOOL)higlighted;
-
+- (void)flash;
 @end

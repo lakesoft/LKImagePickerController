@@ -17,8 +17,10 @@
                 <outlet property="checkmarkButton" destination="5ct-9E-Jsa" id="ggK-iJ-T8z"/>
                 <outlet property="collectionView" destination="EKc-bL-G2J" id="tK2-L3-Bcd"/>
                 <outlet property="collectionViewButtomConstraint" destination="fuw-Ek-zIO" id="yxI-wg-p7o"/>
+                <outlet property="leftSideView" destination="hus-b7-RTP" id="U7i-aK-fEc"/>
                 <outlet property="naviView" destination="Qaa-AM-tMN" id="UgD-ZQ-e5j"/>
                 <outlet property="naviViewBottomConstraint" destination="run-Bo-Br4" id="piC-ZC-Uvh"/>
+                <outlet property="rightSideView" destination="Zfx-67-i9m" id="b8D-Pq-Enh"/>
                 <outlet property="thumbnailCollectionView" destination="dLc-gu-JSm" id="HBc-0G-HYP"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="QUe-g3-7qN"/>
             </connections>
@@ -142,43 +144,40 @@
                         <constraint firstAttribute="bottom" secondItem="dLc-gu-JSm" secondAttribute="bottom" constant="-1" id="qWG-bs-AX0"/>
                     </constraints>
                 </view>
-                <view alpha="0.01" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="08h-zw-Sqz" userLabel="Swipe back view">
-                    <rect key="frame" x="0.0" y="0.0" width="44" height="616"/>
-                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <gestureRecognizers/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zfx-67-i9m">
+                    <rect key="frame" x="370" y="0.0" width="44" height="616"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="44" id="8J2-tb-7Pj"/>
+                        <constraint firstAttribute="width" constant="44" id="FbV-5N-nTN"/>
                     </constraints>
-                    <connections>
-                        <outletCollection property="gestureRecognizers" destination="hvw-Vy-dHp" appends="YES" id="hOV-eW-pvE"/>
-                    </connections>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hus-b7-RTP">
+                    <rect key="frame" x="0.0" y="0.0" width="44" height="616"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="44" id="D37-fy-b0X"/>
+                    </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="Qaa-AM-tMN" secondAttribute="trailing" id="1q1-qc-ILi"/>
-                <constraint firstItem="08h-zw-Sqz" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="2R7-52-Wf1"/>
+                <constraint firstItem="Qaa-AM-tMN" firstAttribute="top" secondItem="hus-b7-RTP" secondAttribute="bottom" id="44H-rf-V2d"/>
                 <constraint firstAttribute="trailing" secondItem="EKc-bL-G2J" secondAttribute="trailing" id="5Mg-an-vfA"/>
+                <constraint firstItem="hus-b7-RTP" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="NQb-lz-fvv"/>
                 <constraint firstItem="Qaa-AM-tMN" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="RkZ-kF-ogN"/>
+                <constraint firstItem="Zfx-67-i9m" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="TeC-Ql-SWc"/>
                 <constraint firstItem="EKc-bL-G2J" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="YzA-a5-MAj"/>
-                <constraint firstItem="Qaa-AM-tMN" firstAttribute="top" secondItem="08h-zw-Sqz" secondAttribute="bottom" id="eND-q9-kic"/>
+                <constraint firstItem="hus-b7-RTP" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="eMx-zH-dok"/>
                 <constraint firstAttribute="bottom" secondItem="EKc-bL-G2J" secondAttribute="bottom" id="fuw-Ek-zIO"/>
-                <constraint firstItem="08h-zw-Sqz" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="i31-gA-R7p"/>
                 <constraint firstAttribute="bottom" secondItem="Qaa-AM-tMN" secondAttribute="bottom" id="run-Bo-Br4"/>
+                <constraint firstAttribute="trailing" secondItem="Zfx-67-i9m" secondAttribute="trailing" id="t30-UU-Ks9"/>
                 <constraint firstItem="EKc-bL-G2J" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="uol-Ur-Kig"/>
+                <constraint firstItem="Qaa-AM-tMN" firstAttribute="top" secondItem="Zfx-67-i9m" secondAttribute="bottom" id="yKh-d2-VNK"/>
             </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
             <point key="canvasLocation" x="231" y="39"/>
         </view>
-        <tapGestureRecognizer id="HYV-IN-w82">
-            <connections>
-                <action selector="tappedOnSubHeaderView:" destination="-1" id="KQt-Wc-hc2"/>
-            </connections>
-        </tapGestureRecognizer>
-        <swipeGestureRecognizer direction="right" id="hvw-Vy-dHp">
-            <connections>
-                <action selector="onSwipeBackView:" destination="-1" id="hiG-HK-bU7"/>
-            </connections>
-        </swipeGestureRecognizer>
     </objects>
     <resources>
         <image name="LKImagePickerController_ButtonBack.png" width="120" height="120"/>

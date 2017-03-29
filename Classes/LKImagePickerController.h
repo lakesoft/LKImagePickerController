@@ -53,6 +53,12 @@
 - (void)handleClearSelections:(void (^)())doClear;
 - (void)openFilterMenuWithDescriptions:(NSArray*)descriptions currentIndex:(int)currentIndex completion:(void (^)(int))completion;
 
+// Detail customize view
+- (void)setupDetailLeftSideView:(UIView*)leftSideView;
+- (void)setupDetailRightSideView:(UIView*)rightSideView;
+- (void)updateDetailLeftSideView:(UIView*)leftSideView;
+- (void)updateDetailRightSideView:(UIView*)rightSideView;
+
 @end
 
 

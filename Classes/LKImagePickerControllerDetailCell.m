@@ -110,6 +110,26 @@ NSString * const LKImagePickerControllerDetailCellLongPressNotification = @"LKIm
 //    [self.checkmarkButton alert];
 //}
 
+- (void)flash
+{
+    [UIView animateWithDuration:0.1 animations:^{
+        self.imageView.alpha = 0.5;
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.1 animations:^{
+            self.imageView.alpha = 1.0;
+        } completion:^(BOOL finished) {
+            [UIView animateWithDuration:0.07 animations:^{
+                self.imageView.alpha = 0.5;
+            } completion:^(BOOL finished) {
+                [UIView animateWithDuration:0.07 animations:^{
+                    self.imageView.alpha = 1.0;
+                } completion:^(BOOL finished) {
+                }];
+            }];
+        }];
+    }];
+}
+
 
 #define CheckmarkMarginX    40.0
 #define CheckmarkMarginY    (CheckmarkMarginX+60.0)

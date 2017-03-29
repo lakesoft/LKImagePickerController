@@ -86,5 +86,24 @@
     self.photoImageView.alpha = higlighted ? 0.6 : 1.0;
 }
 
+- (void)flash
+{
+    [UIView animateWithDuration:0.1 animations:^{
+        self.photoImageView.alpha = 0.5;
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.1 animations:^{
+            self.photoImageView.alpha = 1.0;
+        } completion:^(BOOL finished) {
+            [UIView animateWithDuration:0.07 animations:^{
+                self.photoImageView.alpha = 0.5;
+            } completion:^(BOOL finished) {
+                [UIView animateWithDuration:0.07 animations:^{
+                    self.photoImageView.alpha = 1.0;
+                } completion:^(BOOL finished) {
+                }];
+            }];
+        }];
+    }];
+}
 
 @end

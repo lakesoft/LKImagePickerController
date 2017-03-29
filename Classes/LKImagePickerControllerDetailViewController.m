@@ -23,7 +23,7 @@ NSString * const LKImagePickerControllerDetailViewControllerWillAppearNotificati
 NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotification = @"LKImagePickerControllerDetailViewControllerWillDisappearNotification";
 
 
-@interface LKImagePickerControllerDetailViewController () <UITextFieldDelegate>
+@interface LKImagePickerControllerDetailViewController () <UITextFieldDelegate, UIGestureRecognizerDelegate>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *collectionViewButtomConstraint;
 
@@ -46,6 +46,10 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
 @property (weak, nonatomic) IBOutlet UITextField *assetCommentTextField;
 @property (weak, nonatomic) IBOutlet LKImagePickerControllerCheckmarkButton *checkmarkButton;
 
+// right view
+@property (weak, nonatomic) IBOutlet UIView *leftSideView;
+@property (weak, nonatomic) IBOutlet UIView *rightSideView;
+
 @end
 
 @implementation LKImagePickerControllerDetailViewController
@@ -53,11 +57,21 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
 #pragma mark - Privates
 - (void)_updateControls
 {
-    if ([self.selectViewController.imagePickerController.imagePickerControllerDelegate respondsToSelector:@selector(disableRightBarButtonItem3WhenNoSelected)]) {
-        if ([self.selectViewController.imagePickerController.imagePickerControllerDelegate respondsToSelector:@selector(rightBarButtonItem3)]) {
+    id <LKImagePickerControllerDelegate> delegate = self.selectViewController.imagePickerController.imagePickerControllerDelegate;
+    
+    if ([delegate respondsToSelector:@selector(disableRightBarButtonItem3WhenNoSelected)]) {
+        if ([delegate respondsToSelector:@selector(rightBarButtonItem3)]) {
             self.navigationItem.rightBarButtonItem.enabled = self.assetsManager.numberOfSelected > 0;
         }
     }
+    
+    if ([delegate respondsToSelector:@selector(updateDetailLeftSideView:)]) {
+        [delegate updateDetailLeftSideView:self.leftSideView];
+    }
+    if ([delegate respondsToSelector:@selector(updateDetailRightSideView:)]) {
+        [delegate updateDetailRightSideView:self.rightSideView];
+    }
+
 }
 - (void)_tappedClear:(id)sender
 {
@@ -77,6 +91,7 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
     LKImagePickerControllerDetailCell* cell = notification.object;
     
     if ([self.selectViewController.imagePickerController.imagePickerControllerDelegate respondsToSelector:@selector(didDetailViewCellLongPressBeganViewController:asset:)]) {
+        [cell flash];
         [self.selectViewController.imagePickerController.imagePickerControllerDelegate didDetailViewCellLongPressBeganViewController:self asset:cell.asset];
     }
 }
@@ -122,8 +137,11 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
     
     NSIndexPath *indexPath = [self.thumbnailCollectionView indexPathForItemAtPoint:p];
     if (indexPath){
-        LKAsset* asset = [self.assetsCollection assetForIndexPath:indexPath];
         if ([self.selectViewController.imagePickerController.imagePickerControllerDelegate respondsToSelector:@selector(didDetailViewThubmailCellLongPressBeganViewController:asset:)]) {
+            LKImagePickerControllerSelectCell* cell = [self.thumbnailCollectionView cellForItemAtIndexPath:indexPath];
+            [cell flash];
+
+            LKAsset* asset = [self.assetsCollection assetForIndexPath:indexPath];
             [self.selectViewController.imagePickerController.imagePickerControllerDelegate didDetailViewThubmailCellLongPressBeganViewController:self asset:asset];
         }
     }
@@ -180,6 +198,15 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
         self.title = self.assetsCollection.assetsGroup.name;
     } else {
         self.title = [LKImagePickerControllerBundleManager localizedStringForKey:@"SelectionScreen.Title"];
+    }
+    
+    // Side views
+    id <LKImagePickerControllerDelegate> delegate = self.selectViewController.imagePickerController.imagePickerControllerDelegate;
+    if ([delegate respondsToSelector:@selector(setupDetailLeftSideView:)]) {
+        [delegate setupDetailLeftSideView:self.leftSideView];
+    }
+    if ([delegate respondsToSelector:@selector(setupDetailRightSideView:)]) {
+        [delegate setupDetailRightSideView:self.rightSideView];
     }
     
     // Notifications
@@ -331,6 +358,9 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
 }
 - (UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
+}
+- (BOOL)prefersStatusBarHidden {
+    return YES;
 }
 
 #pragma mark - UIScrollViewDelegate
@@ -604,13 +634,6 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
         [self.navigationController popViewControllerAnimated:YES];
     }
 }
-- (IBAction)tappedOnSubHeaderView:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
-}
-- (IBAction)onSwipeBackView:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
 
 #pragma mark - UITextFieldDelegate
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
@@ -678,4 +701,10 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
 
 }
 
+// MARK: -
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    
+    return NO;
+}
 @end

@@ -22,5 +22,6 @@ extern NSString * const LKImagePickerControllerDetailCellLongPressNotification;
 
 - (void)didEndDisplay;
 - (void)alert;
+- (void)flash;
 
 @end

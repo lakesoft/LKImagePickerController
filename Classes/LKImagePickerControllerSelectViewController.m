@@ -471,12 +471,13 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     
     NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:p];
     if (indexPath){
-        LKAsset* asset = [self.displayingAssetsCollection assetForIndexPath:indexPath];
-        
         if ([self.imagePickerController.imagePickerControllerDelegate respondsToSelector:@selector(didSelectViewCellLongPressBeganViewController:asset:)]) {
+            LKImagePickerControllerSelectCell* cell = [self.collectionView cellForItemAtIndexPath:indexPath];
+            [cell flash];
+
+            LKAsset* asset = [self.displayingAssetsCollection assetForIndexPath:indexPath];
             [self.imagePickerController.imagePickerControllerDelegate didSelectViewCellLongPressBeganViewController:self asset:asset];
         }
-//        UICollectionViewCell* cell = [self.collectionView cellForItemAtIndexPath:indexPath];
     }
 }
 
@@ -668,6 +669,7 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     // Gestures
     UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(_handleLongPress:)];
     lpgr.delegate = self;
+    lpgr.minimumPressDuration = 0.25;
     //lpgr.delaysTouchesBegan = YES;
     [self.collectionView addGestureRecognizer:lpgr];
 }
