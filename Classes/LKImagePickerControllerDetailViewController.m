@@ -323,15 +323,15 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
     self.topToolbarView.alpha = 0.0;
     self.leftSideView.alpha = 0.0;
     self.rightSideView.alpha = 0.0;
-    [UIView animateWithDuration:0.2 animations:^{
-        self.topToolbarView.alpha = 1.0;
-        self.leftSideView.alpha = 1.0;
-        self.rightSideView.alpha = 1.0;
-    }];
 }
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
+    [UIView animateWithDuration:0.25 animations:^{
+        self.topToolbarView.alpha = 1.0;
+        self.leftSideView.alpha = 1.0;
+        self.rightSideView.alpha = 1.0;
+    }];
 }
 - (void)viewWillDisappear:(BOOL)animated
 {
@@ -384,9 +384,9 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
 - (UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
 }
-//- (BOOL)prefersStatusBarHidden {
-//    return YES;
-//}
+- (BOOL)prefersStatusBarHidden {
+    return YES;
+}
 
 #pragma mark - UIScrollViewDelegate
 //- (NSInteger)_indexForIndexPath:(NSIndexPath*)indexPath
