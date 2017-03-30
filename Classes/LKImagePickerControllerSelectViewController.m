@@ -473,10 +473,10 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     if (indexPath){
         if ([self.imagePickerController.imagePickerControllerDelegate respondsToSelector:@selector(didSelectViewCellLongPressBeganViewController:asset:)]) {
             LKImagePickerControllerSelectCell* cell = [self.collectionView cellForItemAtIndexPath:indexPath];
-            [cell flash];
-
-            LKAsset* asset = [self.displayingAssetsCollection assetForIndexPath:indexPath];
-            [self.imagePickerController.imagePickerControllerDelegate didSelectViewCellLongPressBeganViewController:self asset:asset];
+            [cell flashCompletion:^{
+                LKAsset* asset = [self.displayingAssetsCollection assetForIndexPath:indexPath];
+                [self.imagePickerController.imagePickerControllerDelegate didSelectViewCellLongPressBeganViewController:self asset:asset];
+            }];
         }
     }
 }

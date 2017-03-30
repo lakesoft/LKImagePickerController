@@ -54,8 +54,10 @@
 - (void)openFilterMenuWithDescriptions:(NSArray*)descriptions currentIndex:(int)currentIndex completion:(void (^)(int))completion;
 
 // Detail customize view
+- (void)setupDetailTopToolbarView:(UIView*)topToolbarView;
 - (void)setupDetailLeftSideView:(UIView*)leftSideView;
 - (void)setupDetailRightSideView:(UIView*)rightSideView;
+- (void)updateDetailTopToolbarView:(UIView*)topToolbarView;
 - (void)updateDetailLeftSideView:(UIView*)leftSideView;
 - (void)updateDetailRightSideView:(UIView*)rightSideView;
 

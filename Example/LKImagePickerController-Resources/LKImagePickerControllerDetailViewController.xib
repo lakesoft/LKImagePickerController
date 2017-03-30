@@ -22,6 +22,7 @@
                 <outlet property="naviViewBottomConstraint" destination="run-Bo-Br4" id="piC-ZC-Uvh"/>
                 <outlet property="rightSideView" destination="Zfx-67-i9m" id="b8D-Pq-Enh"/>
                 <outlet property="thumbnailCollectionView" destination="dLc-gu-JSm" id="HBc-0G-HYP"/>
+                <outlet property="topToolbarView" destination="CPT-22-3kp" id="Hmx-5x-hzL"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="QUe-g3-7qN"/>
             </connections>
         </placeholder>
@@ -32,7 +33,7 @@
             <subviews>
                 <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" pagingEnabled="YES" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="EKc-bL-G2J">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
-                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="52z-6N-7bD">
                         <size key="itemSize" width="320" height="568"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -158,18 +159,28 @@
                         <constraint firstAttribute="width" constant="44" id="D37-fy-b0X"/>
                     </constraints>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CPT-22-3kp">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="uU3-75-18H"/>
+                    </constraints>
+                </view>
             </subviews>
-            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="Qaa-AM-tMN" secondAttribute="trailing" id="1q1-qc-ILi"/>
                 <constraint firstItem="Qaa-AM-tMN" firstAttribute="top" secondItem="hus-b7-RTP" secondAttribute="bottom" id="44H-rf-V2d"/>
                 <constraint firstAttribute="trailing" secondItem="EKc-bL-G2J" secondAttribute="trailing" id="5Mg-an-vfA"/>
+                <constraint firstItem="CPT-22-3kp" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="K7z-L8-zio"/>
+                <constraint firstItem="CPT-22-3kp" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="L1l-8K-RoV"/>
                 <constraint firstItem="hus-b7-RTP" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="NQb-lz-fvv"/>
                 <constraint firstItem="Qaa-AM-tMN" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="RkZ-kF-ogN"/>
                 <constraint firstItem="Zfx-67-i9m" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="TeC-Ql-SWc"/>
                 <constraint firstItem="EKc-bL-G2J" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="YzA-a5-MAj"/>
                 <constraint firstItem="hus-b7-RTP" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="eMx-zH-dok"/>
                 <constraint firstAttribute="bottom" secondItem="EKc-bL-G2J" secondAttribute="bottom" id="fuw-Ek-zIO"/>
+                <constraint firstAttribute="trailing" secondItem="CPT-22-3kp" secondAttribute="trailing" id="hhk-Zl-lff"/>
                 <constraint firstAttribute="bottom" secondItem="Qaa-AM-tMN" secondAttribute="bottom" id="run-Bo-Br4"/>
                 <constraint firstAttribute="trailing" secondItem="Zfx-67-i9m" secondAttribute="trailing" id="t30-UU-Ks9"/>
                 <constraint firstItem="EKc-bL-G2J" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="uol-Ur-Kig"/>

@@ -46,7 +46,8 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
 @property (weak, nonatomic) IBOutlet UITextField *assetCommentTextField;
 @property (weak, nonatomic) IBOutlet LKImagePickerControllerCheckmarkButton *checkmarkButton;
 
-// right view
+// utility views
+@property (weak, nonatomic) IBOutlet UIView *topToolbarView;
 @property (weak, nonatomic) IBOutlet UIView *leftSideView;
 @property (weak, nonatomic) IBOutlet UIView *rightSideView;
 
@@ -65,6 +66,9 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
         }
     }
     
+    if ([delegate respondsToSelector:@selector(updateDetailTopToolbarView:)]) {
+        [delegate updateDetailTopToolbarView:self.topToolbarView];
+    }
     if ([delegate respondsToSelector:@selector(updateDetailLeftSideView:)]) {
         [delegate updateDetailLeftSideView:self.leftSideView];
     }
@@ -91,8 +95,9 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
     LKImagePickerControllerDetailCell* cell = notification.object;
     
     if ([self.selectViewController.imagePickerController.imagePickerControllerDelegate respondsToSelector:@selector(didDetailViewCellLongPressBeganViewController:asset:)]) {
-        [cell flash];
-        [self.selectViewController.imagePickerController.imagePickerControllerDelegate didDetailViewCellLongPressBeganViewController:self asset:cell.asset];
+        [cell flashCompletion:^{
+            [self.selectViewController.imagePickerController.imagePickerControllerDelegate didDetailViewCellLongPressBeganViewController:self asset:cell.asset];
+        }];
     }
 }
 
@@ -139,10 +144,10 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
     if (indexPath){
         if ([self.selectViewController.imagePickerController.imagePickerControllerDelegate respondsToSelector:@selector(didDetailViewThubmailCellLongPressBeganViewController:asset:)]) {
             LKImagePickerControllerSelectCell* cell = [self.thumbnailCollectionView cellForItemAtIndexPath:indexPath];
-            [cell flash];
-
-            LKAsset* asset = [self.assetsCollection assetForIndexPath:indexPath];
-            [self.selectViewController.imagePickerController.imagePickerControllerDelegate didDetailViewThubmailCellLongPressBeganViewController:self asset:asset];
+            [cell flashCompletion:^{
+                LKAsset* asset = [self.assetsCollection assetForIndexPath:indexPath];
+                [self.selectViewController.imagePickerController.imagePickerControllerDelegate didDetailViewThubmailCellLongPressBeganViewController:self asset:asset];
+            }];
         }
     }
 }
@@ -202,6 +207,9 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
     
     // Side views
     id <LKImagePickerControllerDelegate> delegate = self.selectViewController.imagePickerController.imagePickerControllerDelegate;
+    if ([delegate respondsToSelector:@selector(setupDetailTopToolbarView:)]) {
+        [delegate setupDetailTopToolbarView:self.topToolbarView];
+    }
     if ([delegate respondsToSelector:@selector(setupDetailLeftSideView:)]) {
         [delegate setupDetailLeftSideView:self.leftSideView];
     }
@@ -308,16 +316,23 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
     [NSNotificationCenter.defaultCenter postNotificationName:LKImagePickerControllerDetailViewControllerWillAppearNotification object:self userInfo:nil];
     self.collectionView.alpha = 0.0;
     [self performSelector:@selector(_scrollToStartpoint) withObject:nil afterDelay:0.1];
-
+    [UIApplication.sharedApplication setStatusBarHidden:YES
+                                          withAnimation:UIStatusBarAnimationFade];
+}
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
 }
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
     [NSNotificationCenter.defaultCenter postNotificationName:LKImagePickerControllerDetailViewControllerWillDisappearNotification object:self userInfo:nil];
+    [UIApplication.sharedApplication setStatusBarHidden:NO
+                                          withAnimation:UIStatusBarAnimationFade];
 }
-- (void)viewDidAppear:(BOOL)animated
+- (void)viewDidDisappear:(BOOL)animated
 {
-    [super viewDidAppear:animated];
+    [super viewDidDisappear:animated];
 }
 
 - (void)didReceiveMemoryWarning
@@ -359,9 +374,9 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
 - (UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
 }
-- (BOOL)prefersStatusBarHidden {
-    return YES;
-}
+//- (BOOL)prefersStatusBarHidden {
+//    return YES;
+//}
 
 #pragma mark - UIScrollViewDelegate
 //- (NSInteger)_indexForIndexPath:(NSIndexPath*)indexPath
@@ -629,6 +644,7 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
     [self.assetCommentTextField resignFirstResponder];
     
     if (self.selectViewController.imagePickerController.navigationBarHidden) {
+        self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
         [self dismissViewControllerAnimated:YES completion:nil];
     } else {
         [self.navigationController popViewControllerAnimated:YES];

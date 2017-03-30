@@ -96,7 +96,7 @@ NSString * const LKImagePickerControllerDetailCellLongPressNotification = @"LKIm
 
     UILongPressGestureRecognizer* lprgr;
     lprgr = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(_handleLongPress:)];
-    lprgr.minimumPressDuration = 0.15;
+    lprgr.minimumPressDuration = 0.3;
     [self.imageView addGestureRecognizer:lprgr];
 }
 
@@ -110,7 +110,7 @@ NSString * const LKImagePickerControllerDetailCellLongPressNotification = @"LKIm
 //    [self.checkmarkButton alert];
 //}
 
-- (void)flash
+- (void)flashCompletion:(void (^)())completion
 {
     [UIView animateWithDuration:0.1 animations:^{
         self.imageView.alpha = 0.5;
@@ -124,6 +124,7 @@ NSString * const LKImagePickerControllerDetailCellLongPressNotification = @"LKIm
                 [UIView animateWithDuration:0.07 animations:^{
                     self.imageView.alpha = 1.0;
                 } completion:^(BOOL finished) {
+                    completion();
                 }];
             }];
         }];
