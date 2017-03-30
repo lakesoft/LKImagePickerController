@@ -167,7 +167,7 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="Qaa-AM-tMN" secondAttribute="trailing" id="1q1-qc-ILi"/>
                 <constraint firstItem="Qaa-AM-tMN" firstAttribute="top" secondItem="hus-b7-RTP" secondAttribute="bottom" id="44H-rf-V2d"/>

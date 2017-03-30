@@ -186,9 +186,10 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
     [self.thumbnailCollectionView scrollToItemAtIndexPath:self.indexPath
                                          atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally
                                                  animated:NO];
-    [UIView animateWithDuration:0.2
+    [UIView animateWithDuration:0.5
                      animations:^{
                          self.collectionView.alpha = 1.0;
+                         self.view.backgroundColor = [UIColor blackColor]; // for keyboard transparent
                      } completion:^(BOOL finished) {
                          self.indexPath = self.indexPath;    // for .current property
                          [self updateNaviView];
@@ -308,6 +309,7 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
         [self.assetCommentTextField becomeFirstResponder];
     }
 
+    self.view.backgroundColor = UIColor.clearColor;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -318,6 +320,14 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
     [self performSelector:@selector(_scrollToStartpoint) withObject:nil afterDelay:0.1];
     [UIApplication.sharedApplication setStatusBarHidden:YES
                                           withAnimation:UIStatusBarAnimationFade];
+    self.topToolbarView.alpha = 0.0;
+    self.leftSideView.alpha = 0.0;
+    self.rightSideView.alpha = 0.0;
+    [UIView animateWithDuration:0.2 animations:^{
+        self.topToolbarView.alpha = 1.0;
+        self.leftSideView.alpha = 1.0;
+        self.rightSideView.alpha = 1.0;
+    }];
 }
 - (void)viewDidAppear:(BOOL)animated
 {
