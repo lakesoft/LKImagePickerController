@@ -13,8 +13,8 @@
             <connections>
                 <outlet property="assetCommentTextField" destination="ThX-qM-UsX" id="yMZ-OT-a2Y"/>
                 <outlet property="assetDateLabel" destination="CvX-4k-rnH" id="oS9-Nr-dpL"/>
-                <outlet property="backButton" destination="i9q-22-OLa" id="2Kx-ph-RWP"/>
                 <outlet property="checkmarkButton" destination="5ct-9E-Jsa" id="ggK-iJ-T8z"/>
+                <outlet property="closeButton" destination="QK5-fO-npb" id="J7U-cV-2Et"/>
                 <outlet property="collectionView" destination="EKc-bL-G2J" id="tK2-L3-Bcd"/>
                 <outlet property="collectionViewButtomConstraint" destination="fuw-Ek-zIO" id="yxI-wg-p7o"/>
                 <outlet property="leftSideView" destination="hus-b7-RTP" id="U7i-aK-fEc"/>
@@ -23,6 +23,7 @@
                 <outlet property="rightSideView" destination="Zfx-67-i9m" id="b8D-Pq-Enh"/>
                 <outlet property="thumbnailCollectionView" destination="dLc-gu-JSm" id="HBc-0G-HYP"/>
                 <outlet property="topToolbarView" destination="CPT-22-3kp" id="Hmx-5x-hzL"/>
+                <outlet property="utilityButton" destination="i9q-22-OLa" id="rrA-oN-o7N"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="QUe-g3-7qN"/>
             </connections>
         </placeholder>
@@ -71,9 +72,8 @@
                                         <constraint firstAttribute="width" constant="36" id="Flt-fO-3Mj"/>
                                         <constraint firstAttribute="height" constant="36" id="Lrk-1K-cGl"/>
                                     </constraints>
-                                    <state key="normal" image="LKImagePickerController_ButtonBack.png"/>
                                     <connections>
-                                        <action selector="onBackButton:" destination="-1" eventType="touchUpInside" id="xqj-tt-cM5"/>
+                                        <action selector="onUtilityButton:" destination="-1" eventType="touchUpInside" id="fHx-aI-32x"/>
                                     </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2016/07/01 08:01" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CvX-4k-rnH">
@@ -166,12 +166,25 @@
                         <constraint firstAttribute="height" constant="44" id="uU3-75-18H"/>
                     </constraints>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QK5-fO-npb">
+                    <rect key="frame" x="10" y="10" width="36" height="36"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="36" id="5EY-AZ-rZA"/>
+                        <constraint firstAttribute="height" constant="36" id="mlC-AL-gGo"/>
+                    </constraints>
+                    <state key="normal" image="LKImagePickerController_ButtonClose.png"/>
+                    <connections>
+                        <action selector="onCloseButton:" destination="-1" eventType="touchUpInside" id="jLI-s5-uaP"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="Qaa-AM-tMN" secondAttribute="trailing" id="1q1-qc-ILi"/>
                 <constraint firstItem="Qaa-AM-tMN" firstAttribute="top" secondItem="hus-b7-RTP" secondAttribute="bottom" id="44H-rf-V2d"/>
                 <constraint firstAttribute="trailing" secondItem="EKc-bL-G2J" secondAttribute="trailing" id="5Mg-an-vfA"/>
+                <constraint firstItem="QK5-fO-npb" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="Aln-tf-GU0"/>
+                <constraint firstItem="QK5-fO-npb" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="10" id="D2G-sO-w5L"/>
                 <constraint firstItem="CPT-22-3kp" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="K7z-L8-zio"/>
                 <constraint firstItem="CPT-22-3kp" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="L1l-8K-RoV"/>
                 <constraint firstItem="hus-b7-RTP" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="NQb-lz-fvv"/>
@@ -191,7 +204,7 @@
         </view>
     </objects>
     <resources>
-        <image name="LKImagePickerController_ButtonBack.png" width="120" height="120"/>
+        <image name="LKImagePickerController_ButtonClose.png" width="40" height="40"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

@@ -35,13 +35,14 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
 @property (assign, nonatomic) BOOL hideBars;
 //@property (weak, nonatomic) IBOutlet UIButton *toggleFullScreenButton;
 @property (assign, nonatomic) BOOL isWhileClosing;
+@property (weak, nonatomic) IBOutlet UIView *closeButton;
 
 // navi view
 @property (weak, nonatomic) IBOutlet UIView *naviView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *naviViewBottomConstraint;
 
 // info view (in navi View)
-@property (weak, nonatomic) IBOutlet UIButton *backButton;
+@property (weak, nonatomic) IBOutlet UIButton *utilityButton;
 @property (weak, nonatomic) IBOutlet UILabel *assetDateLabel;
 @property (weak, nonatomic) IBOutlet UITextField *assetCommentTextField;
 @property (weak, nonatomic) IBOutlet LKImagePickerControllerCheckmarkButton *checkmarkButton;
@@ -270,8 +271,8 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
 //    self.collectionView.alpha = 0.0;
 //    [self performSelector:@selector(_scrollToStartpoint) withObject:nil afterDelay:0.1];
     
-    if ([self.selectViewController.imagePickerController.imagePickerControllerDelegate respondsToSelector:@selector(rightBarButtonItem3)]) {
-        self.navigationItem.rightBarButtonItem = self.selectViewController.imagePickerController.imagePickerControllerDelegate.rightBarButtonItem3;
+    if ([delegate respondsToSelector:@selector(rightBarButtonItem3)]) {
+        self.navigationItem.rightBarButtonItem = delegate.rightBarButtonItem3;
     }
 
     [self _updateControls];
@@ -279,10 +280,6 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
     self.assetCommentTextField.attributedPlaceholder =
     [[NSAttributedString alloc] initWithString:[LKImagePickerControllerBundleManager localizedStringForKey:@"Comment.Placeholder"]
                                     attributes:@{ NSForegroundColorAttributeName:[UIColor colorWithWhite:0.8 alpha:0.8] }];
-    
-    NSString* imageName = self.selectViewController.imagePickerController.navigationBarHidden ? @"LKImagePickerController_ButtonDown.png" : @"LKImagePickerController_ButtonBack.png";
-    UIImage* buttonImage = [UIImage imageNamed:imageName inBundle:LKImagePickerControllerBundleManager.bundle compatibleWithTraitCollection:nil];
-    [self.backButton setImage:buttonImage forState:UIControlStateNormal];
     
     // navi view animation
 //    self.naviView.alpha = 0.0;
@@ -310,6 +307,11 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
     }
 
     self.view.backgroundColor = UIColor.clearColor;
+    
+    if ([delegate respondsToSelector:@selector(utilityButtonImageState:)]) {
+        UIImage* image = [delegate utilityButtonImageState:UIControlStateNormal];
+        [self.utilityButton setImage:image forState:UIControlStateNormal];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -323,6 +325,7 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
     self.topToolbarView.alpha = 0.0;
     self.leftSideView.alpha = 0.0;
     self.rightSideView.alpha = 0.0;
+    self.closeButton.alpha = 0.0;
 }
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -331,6 +334,7 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
         self.topToolbarView.alpha = 1.0;
         self.leftSideView.alpha = 1.0;
         self.rightSideView.alpha = 1.0;
+        self.closeButton.alpha = 1.0;
     }];
 }
 - (void)viewWillDisappear:(BOOL)animated
@@ -649,7 +653,7 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
     cell.current = YES;
 }
 
-- (IBAction)onBackButton:(id)sender {
+- (IBAction)onCloseButton:(id)sender {
     self.isWhileClosing = YES;
     [self.assetCommentTextField resignFirstResponder];
     
@@ -659,6 +663,14 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
     } else {
         [self.navigationController popViewControllerAnimated:YES];
     }
+}
+- (IBAction)onUtilityButton:(id)sender {
+    id <LKImagePickerControllerDelegate> delegate = self.selectViewController.imagePickerController.imagePickerControllerDelegate;
+    
+    if ([delegate respondsToSelector:@selector(onUtilityButton:)]) {
+        [delegate onUtilityButton:sender];
+    }
+
 }
 
 #pragma mark - UITextFieldDelegate
@@ -672,7 +684,7 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    [self onBackButton:nil];
+    [self onCloseButton:nil];
 //    self.checkmarkButton.checked = !self.checkmarkButton.checked;
 //    [self toggleCheckmark];
 }

@@ -43,7 +43,8 @@
 // Detail Screen
 - (UIBarButtonItem*)rightBarButtonItem3;
 - (BOOL)disableRightBarButtonItem3WhenNoSelected;
-
+- (UIImage*)utilityButtonImageState:(UIControlState)state;
+- (void)onUtilityButton:(UIButton*)button;
 
 // [1]selected -> [2]deselected
 - (void)imagePickerController:(LKImagePickerController*)imagePickerController selectedAssets:(NSArray*)selectedAssets;

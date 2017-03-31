@@ -11,6 +11,7 @@
 #import "LKImagePickerController.h"
 #import "LKImagePickerControllerAppearance.h"
 #import "LKAsset.h"
+#import "LKImagePickerControllerBundleManager.h"
 
 @interface ViewController () <LKImagePickerControllerDelegate>
 @property (nonatomic, strong) LKImagePickerController* controller;
@@ -135,17 +136,24 @@
 {
     NSLog(@"didDetailViewThubmailCellLongPressBeganViewController: %@, %@:", viewController, asset);
 }
+/*
 - (void)setupDetailTopToolbarView:(UIView *)topToolbarView
 {
     UINib* nib = [UINib nibWithNibName:@"DetailToolbarView" bundle:nil];
     UIView* view = [nib instantiateWithOwner:self options:nil][0];
     [topToolbarView addSubview:view];
 }
-
+*/
 
 // Actions
 - (IBAction)onPush:(id)sender {
     NSLog(@"currentAssetOfDetail: %@", self.controller.currentAssetOfDetail);
 }
 
+- (UIImage*)utilityButtonImageState:(UIControlState)state {
+    return [UIImage imageNamed:@"LKImagePickerController_ButtonUtility" inBundle:LKImagePickerControllerBundleManager.bundle compatibleWithTraitCollection:nil];
+    }
+- (void)onUtilityButton:(UIButton *)button {
+    NSLog(@"onUtilityButton");
+}
 @end
