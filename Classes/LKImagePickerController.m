@@ -155,6 +155,12 @@
     return self.selectViewController.detailViewController.indexPath;
 }
 
+- (UIViewController*)currentViewController
+{
+    if (self.selectViewController.detailViewController) {
+        return self.selectViewController.detailViewController;
+    }
+}
 
 @end
 

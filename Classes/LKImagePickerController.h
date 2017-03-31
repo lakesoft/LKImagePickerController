@@ -91,6 +91,7 @@
 
 - (LKAsset*)currentAssetOfDetail;
 - (NSIndexPath*)currentIndexPathOfDetail;
+- (UIViewController*)currentViewController;
 
 @end
 
