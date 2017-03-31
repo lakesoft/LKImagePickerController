@@ -67,7 +67,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i9q-22-OLa">
-                                    <rect key="frame" x="5" y="12" width="36" height="36"/>
+                                    <rect key="frame" x="10" y="12" width="36" height="36"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="36" id="Flt-fO-3Mj"/>
                                         <constraint firstAttribute="height" constant="36" id="Lrk-1K-cGl"/>
@@ -87,7 +87,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ThX-qM-UsX">
-                                    <rect key="frame" x="55" y="25" width="304" height="30"/>
+                                    <rect key="frame" x="60" y="25" width="299" height="30"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
@@ -108,7 +108,7 @@
                                 <constraint firstItem="5ct-9E-Jsa" firstAttribute="leading" secondItem="ThX-qM-UsX" secondAttribute="trailing" id="Vfp-VL-L60"/>
                                 <constraint firstAttribute="height" constant="60" id="XaV-pr-UEd"/>
                                 <constraint firstAttribute="bottom" secondItem="ThX-qM-UsX" secondAttribute="bottom" constant="5" id="Xvc-Yj-Z4d"/>
-                                <constraint firstItem="i9q-22-OLa" firstAttribute="leading" secondItem="yoE-ho-XYJ" secondAttribute="leading" constant="5" id="fIX-tv-TfU"/>
+                                <constraint firstItem="i9q-22-OLa" firstAttribute="leading" secondItem="yoE-ho-XYJ" secondAttribute="leading" constant="10" id="fIX-tv-TfU"/>
                                 <constraint firstItem="CvX-4k-rnH" firstAttribute="centerX" secondItem="yoE-ho-XYJ" secondAttribute="centerX" id="fj2-LB-BQB"/>
                                 <constraint firstItem="5ct-9E-Jsa" firstAttribute="centerY" secondItem="yoE-ho-XYJ" secondAttribute="centerY" id="fk7-Hd-Zev"/>
                                 <constraint firstAttribute="trailing" secondItem="5ct-9E-Jsa" secondAttribute="trailing" constant="10" id="hPp-0l-2pX"/>
@@ -160,10 +160,10 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CPT-22-3kp">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="64"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="44" id="uU3-75-18H"/>
+                        <constraint firstAttribute="height" constant="64" id="uU3-75-18H"/>
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QK5-fO-npb">
