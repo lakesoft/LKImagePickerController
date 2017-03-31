@@ -25,7 +25,7 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
 
 @interface LKImagePickerControllerDetailViewController () <UITextFieldDelegate, UIGestureRecognizerDelegate>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *collectionViewButtomConstraint;
+//@property (weak, nonatomic) IBOutlet NSLayoutConstraint *collectionViewButtomConstraint;
 
 @property (weak, nonatomic) IBOutlet UICollectionView *thumbnailCollectionView;
 @property (assign, nonatomic) CGPoint contentOffset;
@@ -707,7 +707,7 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
 //    CGFloat constant = screenHeight - keyBoardFrame.origin.y;
     CGFloat constant = viewHeight - keyBoardFrame.origin.y;
     self.naviViewBottomConstraint.constant = constant;
-    self.collectionViewButtomConstraint.constant = constant;
+    //self.collectionViewButtomConstraint.constant = constant;
     [self.collectionView.collectionViewLayout invalidateLayout];
     
     [UIView animateWithDuration:duration.doubleValue animations:^{
@@ -726,7 +726,7 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
     }
     NSNumber* duration = notification.userInfo[UIKeyboardAnimationDurationUserInfoKey];
     self.naviViewBottomConstraint.constant = 0;
-    self.collectionViewButtomConstraint.constant = 0;
+    //self.collectionViewButtomConstraint.constant = 0;
     [self.collectionView.collectionViewLayout invalidateLayout];
     [UIView animateWithDuration:duration.doubleValue animations:^{
         [self.view layoutIfNeeded];
