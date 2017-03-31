@@ -19,9 +19,11 @@ extern NSString * const LKImagePickerControllerDetailViewControllerWillDisappear
 @property (nonatomic, weak) LKAssetsCollection* assetsCollection;
 @property (nonatomic, weak) LKImagePickerControllerAssetsManager* assetsManager;
 @property (nonatomic, weak) NSIndexPath* indexPath;
+@property (nonatomic, weak, readonly) LKAsset* currentAsset;
 @property (nonatomic, weak) LKImagePickerControllerSelectViewController* selectViewController;
 @property (nonatomic, assign) BOOL navigatioBarHidden;
 @property (nonatomic, assign) BOOL aspectFill;
+
 
 - (IBAction)checkmarkTouchded:(id)sender event:(UIEvent*)event;
 

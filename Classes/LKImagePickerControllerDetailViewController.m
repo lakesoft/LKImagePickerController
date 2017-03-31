@@ -727,10 +727,16 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
 
 }
 
-// MARK: -
+// MARK: - UIGestureRecognizerDelegate
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
 {
     
     return NO;
 }
+
+// MARK: - Computed properties
+- (LKAsset*)currentAsset {
+    return [self.assetsCollection assetForIndexPath:self.indexPath];
+}
+
 @end

@@ -35,6 +35,7 @@
 		BC2A379019397F9600C672B7 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC2A376F19397F9600C672B7 /* UIKit.framework */; };
 		BC2A379819397F9600C672B7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BC2A379619397F9600C672B7 /* InfoPlist.strings */; };
 		BC2A379A19397F9600C672B7 /* LKImagePickerControllerDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BC2A379919397F9600C672B7 /* LKImagePickerControllerDemoTests.m */; };
+		BC60004A1E8E09AA0099B5B2 /* DetailToolbarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC6000491E8E09AA0099B5B2 /* DetailToolbarView.xib */; };
 		BCA4A40F1E827E9B00B60340 /* LKImagePickerController_ButtonDown@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCA4A40E1E827E9B00B60340 /* LKImagePickerController_ButtonDown@3x.png */; };
 		BCC13FD41E7D630100A417D7 /* LKImagePickerController_ButtonFullClose@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCC13FD11E7D630100A417D7 /* LKImagePickerController_ButtonFullClose@3x.png */; };
 		BCC13FD51E7D630100A417D7 /* LKImagePickerController_Icon_Comment@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCC13FD21E7D630100A417D7 /* LKImagePickerController_Icon_Comment@3x.png */; };
@@ -111,6 +112,7 @@
 		BC2A379519397F9600C672B7 /* LKImagePickerControllerDemoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LKImagePickerControllerDemoTests-Info.plist"; sourceTree = "<group>"; };
 		BC2A379719397F9600C672B7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		BC2A379919397F9600C672B7 /* LKImagePickerControllerDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LKImagePickerControllerDemoTests.m; sourceTree = "<group>"; };
+		BC6000491E8E09AA0099B5B2 /* DetailToolbarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailToolbarView.xib; sourceTree = "<group>"; };
 		BC94FFAC196B540800EF8FC2 /* LKImagePickerControllerUsedMarkView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LKImagePickerControllerUsedMarkView.h; path = ../Classes/LKImagePickerControllerUsedMarkView.h; sourceTree = "<group>"; };
 		BC94FFAD196B540800EF8FC2 /* LKImagePickerControllerUsedMarkView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = LKImagePickerControllerUsedMarkView.m; path = ../Classes/LKImagePickerControllerUsedMarkView.m; sourceTree = "<group>"; };
 		BC94FFAE196B540800EF8FC2 /* LKImagePickerControllerGroupTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = LKImagePickerControllerGroupTableViewController.m; path = ../Classes/LKImagePickerControllerGroupTableViewController.m; sourceTree = "<group>"; };
@@ -307,6 +309,7 @@
 				BC2A377B19397F9600C672B7 /* AppDelegate.m */,
 				BC2A377D19397F9600C672B7 /* Main_iPhone.storyboard */,
 				BC2A378019397F9600C672B7 /* Main_iPad.storyboard */,
+				BC6000491E8E09AA0099B5B2 /* DetailToolbarView.xib */,
 				BC2A378319397F9600C672B7 /* ViewController.h */,
 				BC2A378419397F9600C672B7 /* ViewController.m */,
 				BC2A378619397F9600C672B7 /* Images.xcassets */,
@@ -528,6 +531,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC60004A1E8E09AA0099B5B2 /* DetailToolbarView.xib in Resources */,
 				BC2A378219397F9600C672B7 /* Main_iPad.storyboard in Resources */,
 				BC2A378719397F9600C672B7 /* Images.xcassets in Resources */,
 				BC2A377F19397F9600C672B7 /* Main_iPhone.storyboard in Resources */,

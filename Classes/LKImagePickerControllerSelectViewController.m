@@ -458,6 +458,7 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     } else {
         [self.navigationController pushViewController:viewController animated:YES];
     }
+    self.detailViewController = viewController;
 }
 
 

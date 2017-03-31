@@ -89,6 +89,9 @@
 - (void)unmarkAllAssets;
 - (void)removeAllComments;
 
+- (LKAsset*)currentAssetOfDetail;
+- (NSIndexPath*)currentIndexPathOfDetail;
+
 @end
 
 

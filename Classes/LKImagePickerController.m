@@ -13,6 +13,7 @@
 #import "LKImagePickerControllerSelectViewController.h"
 #import "LKImagePickerControllerMarkedAssetsManager.h"
 #import "LKImagePickerControllerCommentManager.h"
+#import "LKImagePickerControllerDetailViewController.h"
 
 @interface LKImagePickerController ()
 @property (strong, nonatomic) LKImagePickerControllerAssetsManager* assetsManager;
@@ -144,6 +145,16 @@
 {
     [LKImagePickerControllerCommentManager removeAllComments];
 }
+
+- (LKAsset*)currentAssetOfDetail
+{
+    return self.selectViewController.detailViewController.currentAsset;
+}
+- (NSIndexPath*)currentIndexPathOfDetail
+{
+    return self.selectViewController.detailViewController.indexPath;
+}
+
 
 @end
 

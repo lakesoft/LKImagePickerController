@@ -1,3 +1,4 @@
+
 //
 //  ViewController.m
 //  LKImagePickerControllerDemo
@@ -133,6 +134,18 @@
 - (void)didDetailViewThubmailCellLongPressBeganViewController:(UIViewController *)viewController asset:(LKAsset *)asset
 {
     NSLog(@"didDetailViewThubmailCellLongPressBeganViewController: %@, %@:", viewController, asset);
+}
+- (void)setupDetailTopToolbarView:(UIView *)topToolbarView
+{
+    UINib* nib = [UINib nibWithNibName:@"DetailToolbarView" bundle:nil];
+    UIView* view = [nib instantiateWithOwner:self options:nil][0];
+    [topToolbarView addSubview:view];
+}
+
+
+// Actions
+- (IBAction)onPush:(id)sender {
+    NSLog(@"currentAssetOfDetail: %@", self.controller.currentAssetOfDetail);
 }
 
 @end
