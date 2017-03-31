@@ -167,10 +167,10 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QK5-fO-npb">
-                    <rect key="frame" x="10" y="10" width="36" height="36"/>
+                    <rect key="frame" x="10" y="10" width="44" height="44"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="36" id="5EY-AZ-rZA"/>
-                        <constraint firstAttribute="height" constant="36" id="mlC-AL-gGo"/>
+                        <constraint firstAttribute="width" constant="44" id="5EY-AZ-rZA"/>
+                        <constraint firstAttribute="height" constant="44" id="mlC-AL-gGo"/>
                     </constraints>
                     <state key="normal" image="LKImagePickerController_ButtonClose.png"/>
                     <connections>
@@ -204,7 +204,7 @@
         </view>
     </objects>
     <resources>
-        <image name="LKImagePickerController_ButtonClose.png" width="40" height="40"/>
+        <image name="LKImagePickerController_ButtonClose.png" width="44" height="44"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
