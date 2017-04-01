@@ -102,7 +102,7 @@
 - (UIImage*)_setAlternativeScreenImage:(UIImage*)image
 {
     CGSize size = UIScreen.mainScreen.bounds.size;
-    CGFloat width = fmin(size.width, size.height);
+    CGFloat width = fmax(size.width, size.height) * UIScreen.mainScreen.scale;
     UIImage* processedImage = [LKImageUtility adjustOrientationImage:image toWidth:width];
     if ([UIImageJPEGRepresentation(processedImage, 0.7) writeToFile:self._filePathForScreen atomically:YES]) {
         NSLog(@"[DEBUG] Saved alternative screen image: %@", NSStringFromCGSize(processedImage.size));
@@ -126,7 +126,8 @@
 
 - (UIImage*)_setAlternativeThumbnailImage:(UIImage*)image
 {
-    UIImage* processedImage = [LKImageUtility adjustOrientationImage:image toWidth:256];
+    CGFloat width = 256 * UIScreen.mainScreen.scale;
+    UIImage* processedImage = [LKImageUtility adjustOrientationImage:image toWidth:width];
     if ([UIImageJPEGRepresentation(processedImage, 0.7) writeToFile:self._filePathForThumbnail atomically:YES]) {
         NSLog(@"[DEBUG] Saved alternative thumbnail image: %@", NSStringFromCGSize(processedImage.size));
         

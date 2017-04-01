@@ -508,8 +508,8 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
     // delegte
     id <LKImagePickerControllerDelegate> delegate = self.selectViewController.imagePickerController.imagePickerControllerDelegate;
     
-    if ([delegate respondsToSelector:@selector(didChangeDetailAsset:viewController:)]) {
-        [delegate didChangeDetailAsset:asset viewController:self];
+    if ([delegate respondsToSelector:@selector(didChangeDetailAsset:viewController:utilityButton:)]) {
+        [delegate didChangeDetailAsset:asset viewController:self utilityButton:self.utilityButton];
     }
 }
 
@@ -658,8 +658,9 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
 
 - (void)reloadCurrentAsset
 {
-    [self.collectionView reloadItemsAtIndexPaths:@[self.currentIndexPath]];
-    [self.thumbnailCollectionView reloadItemsAtIndexPaths:@[self.currentIndexPath]];
+    [self.collectionView reloadItemsAtIndexPaths:@[self.indexPath]];
+    [self.thumbnailCollectionView reloadItemsAtIndexPaths:@[self.indexPath]];
+    [self didChangeDisplayedAsset];
 }
 
 //- (IBAction)onToggleFullScreen:(id)sender {

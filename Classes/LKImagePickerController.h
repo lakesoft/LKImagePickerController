@@ -35,7 +35,7 @@
 - (void)didSelectViewCellLongPressBeganViewController:(UIViewController*)viewController asset:(LKAsset*)asset;
 - (void)didDetailViewCellLongPressBeganViewController:(UIViewController*)viewController asset:(LKAsset*)asset;
 - (void)didDetailViewThubmailCellLongPressBeganViewController:(UIViewController*)viewController asset:(LKAsset*)asset;
-- (void)didChangeDetailAsset:(LKAsset*)asset viewController:(UIViewController*)viewController;
+- (void)didChangeDetailAsset:(LKAsset*)asset viewController:(UIViewController*)viewController utilityButton:(UIButton*)utilityButton;
 
 // Selected Pictures Screen
 - (UIBarButtonItem*)rightBarButtonItem2;
