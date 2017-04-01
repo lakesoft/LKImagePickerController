@@ -17,7 +17,7 @@
 
 // MARK: - content
 
-- (UIImage*)alternativeFullResolutionImage
+- (UIImage*)alternativeFullResolustionImage
 {
     if (self.hasAlternativeImage) {
         return self.alternativeImage;

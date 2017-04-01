@@ -6,7 +6,7 @@
 //
 //
 
-#import "LKAssetsLibrary.h"
+#import <LKAssetsLibrary/LKAssetsLibrary.h>
 
 @interface LKAsset (AlternativeImage)
 

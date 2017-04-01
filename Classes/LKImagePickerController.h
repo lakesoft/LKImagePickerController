@@ -31,10 +31,11 @@
 - (BOOL)disableRightBarButtonItemWhenNoSelected;
 - (void)didUpdateSelections:(NSInteger)numberOfSelections;
 
-// Actions
+// Events
 - (void)didSelectViewCellLongPressBeganViewController:(UIViewController*)viewController asset:(LKAsset*)asset;
 - (void)didDetailViewCellLongPressBeganViewController:(UIViewController*)viewController asset:(LKAsset*)asset;
 - (void)didDetailViewThubmailCellLongPressBeganViewController:(UIViewController*)viewController asset:(LKAsset*)asset;
+- (void)didChangeDetailAsset:(LKAsset*)asset viewController:(UIViewController*)viewController;
 
 // Selected Pictures Screen
 - (UIBarButtonItem*)rightBarButtonItem2;
@@ -61,6 +62,7 @@
 - (void)updateDetailTopToolbarView:(UIView*)topToolbarView;
 - (void)updateDetailLeftSideView:(UIView*)leftSideView;
 - (void)updateDetailRightSideView:(UIView*)rightSideView;
+
 
 @end
 

@@ -6,7 +6,7 @@
 //
 //
 
-#import "LKAssetsLibrary.h"
+#import <LKAssetsLibrary/LKAssetsLibrary.h>
 
 @interface LKAsset (Comment)
 @property (nonatomic, weak) NSString* commentString;

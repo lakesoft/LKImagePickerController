@@ -156,4 +156,8 @@
 - (void)onUtilityButton:(UIButton *)button {
     NSLog(@"onUtilityButton");
 }
+- (void)didChangeDetailAsset:(LKAsset *)asset viewController:(UIViewController *)viewController
+{
+    NSLog(@"didChangeDetailAsset: %@", asset);
+}
 @end

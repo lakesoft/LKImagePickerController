@@ -55,7 +55,6 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
 
 // header view
 @property (weak, nonatomic) IBOutlet UIButton *closeButton;
-@property (weak, nonatomic) IBOutlet UIButton *alternativeButton;
 
 
 @end
@@ -199,7 +198,7 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
                          self.view.backgroundColor = [UIColor blackColor]; // for keyboard transparent
                      } completion:^(BOOL finished) {
                          self.indexPath = self.indexPath;    // for .current property
-                         [self didChangeDisplayedAsset];
+                         //[self didChangeDisplayedAsset];
                      }];
 }
 
@@ -332,7 +331,6 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
     self.leftSideView.alpha = 0.0;
     self.rightSideView.alpha = 0.0;
     self.closeButton.alpha = 0.0;
-    self.alternativeButton.alpha = 0.0;
 }
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -342,7 +340,6 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
         self.leftSideView.alpha = 1.0;
         self.rightSideView.alpha = 1.0;
         self.closeButton.alpha = 1.0;
-        self.alternativeButton.alpha = 1.0;
     }];
 }
 - (void)viewWillDisappear:(BOOL)animated
@@ -498,11 +495,12 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
     self.assetCommentTextField.text = asset.commentString;
     LKImagePickerControllerDetailCell* cell = (LKImagePickerControllerDetailCell*)[self.collectionView cellForItemAtIndexPath:self.indexPath];
     self.checkmarkButton.checked = cell.checked;
+
+    // delegte
+    id <LKImagePickerControllerDelegate> delegate = self.selectViewController.imagePickerController.imagePickerControllerDelegate;
     
-    // header view
-    self.alternativeButton.hidden = !asset.hasAlternativeImage;
-    if (self.alternativeButton.hidden) {
-        self.alternativeButton.selected = asset.alternativeEnabled;
+    if ([delegate respondsToSelector:@selector(didChangeDetailAsset:viewController:)]) {
+        [delegate didChangeDetailAsset:asset viewController:self];
     }
 }
 
@@ -685,14 +683,6 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
         [delegate onUtilityButton:sender];
     }
 
-}
-- (IBAction)onAlternativeButton:(id)sender {
-    LKAsset* asset = [self.assetsCollection assetForIndexPath:self.indexPath];
-    asset.alternativeEnabled = self.alternativeButton.selected;
-    
-    [self.collectionView reloadItemsAtIndexPaths:@[self.indexPath]];
-    
-    // TODO: ?? reload thumbnail
 }
 
 #pragma mark - UITextFieldDelegate
