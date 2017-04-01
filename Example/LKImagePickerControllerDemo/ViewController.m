@@ -153,7 +153,8 @@
 - (UIImage*)utilityButtonImageState:(UIControlState)state {
     return [UIImage imageNamed:@"LKImagePickerController_ButtonUtility" inBundle:LKImagePickerControllerBundleManager.bundle compatibleWithTraitCollection:nil];
     }
-- (void)onUtilityButton:(UIButton *)button {
+- (void)onUtilityButton:(UIButton*)button viewController:(UIViewController*)viewController
+{
     NSLog(@"onUtilityButton");
 }
 - (void)didChangeDetailAsset:(LKAsset *)asset viewController:(UIViewController *)viewController utilityButton:(UIButton *)utilityButton

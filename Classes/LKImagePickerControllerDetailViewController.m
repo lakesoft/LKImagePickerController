@@ -695,8 +695,9 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
 - (IBAction)onUtilityButton:(id)sender {
     id <LKImagePickerControllerDelegate> delegate = self.selectViewController.imagePickerController.imagePickerControllerDelegate;
     
-    if ([delegate respondsToSelector:@selector(onUtilityButton:)]) {
-        [delegate onUtilityButton:sender];
+    if ([delegate respondsToSelector:@selector(onUtilityButton:viewController:)]) {
+        [self.assetCommentTextField resignFirstResponder];
+        [delegate onUtilityButton:sender viewController:self];
     }
 
 }

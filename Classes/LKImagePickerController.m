@@ -153,7 +153,7 @@
 
 - (void)reloadCurrentAssetOfDetail
 {
-    self.selectViewController.detailViewController.reloadCurrentAsset;
+    [self.selectViewController.detailViewController reloadCurrentAsset];
 }
 
 - (NSIndexPath*)currentIndexPathOfDetail

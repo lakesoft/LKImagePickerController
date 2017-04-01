@@ -53,7 +53,8 @@
 - (UIBarButtonItem*)rightBarButtonItem3;
 - (BOOL)disableRightBarButtonItem3WhenNoSelected;
 - (UIImage*)utilityButtonImageState:(UIControlState)state;
-- (void)onUtilityButton:(UIButton*)button;
+- (void)onUtilityButton:(UIButton*)button viewController:(UIViewController*)viewController;
+
 
 // Detail customize view
 - (void)setupDetailTopToolbarView:(UIView*)topToolbarView;
