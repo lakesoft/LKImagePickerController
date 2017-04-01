@@ -24,7 +24,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nxm-zR-Pdp">
                         <rect key="frame" x="0.0" y="60" width="80" height="20"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="LKImagePickerController_Icon_Video" translatesAutoresizingMaskIntoConstraints="NO" id="77g-4i-W4S">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="LKImagePickerController_Icon_Video.png" translatesAutoresizingMaskIntoConstraints="NO" id="77g-4i-W4S">
                                 <rect key="frame" x="3" y="2" width="16" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -49,11 +49,18 @@
                             <constraint firstAttribute="width" constant="10" id="oa7-x5-zQ5"/>
                         </constraints>
                     </view>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LKImagePickerController_Icon_Comment" translatesAutoresizingMaskIntoConstraints="NO" id="9A2-jz-7dt">
-                        <rect key="frame" x="48" y="0.0" width="32" height="32"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LKImagePickerController_Icon_Comment.png" translatesAutoresizingMaskIntoConstraints="NO" id="9A2-jz-7dt">
+                        <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="32" id="Fzl-QB-nDI"/>
                             <constraint firstAttribute="height" constant="32" id="f3Q-fE-VKV"/>
+                        </constraints>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LKImagePickerController_Icon_AlternativeSelected.png" translatesAutoresizingMaskIntoConstraints="NO" id="wcu-6Z-bIZ">
+                        <rect key="frame" x="54" y="0.0" width="26" height="26"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="26" id="9GJ-Mo-B1n"/>
+                            <constraint firstAttribute="width" constant="26" id="g6f-pO-A0X"/>
                         </constraints>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aaN-th-7CW">
@@ -81,7 +88,6 @@
                 <constraint firstAttribute="trailing" secondItem="4DA-cl-enY" secondAttribute="trailing" constant="5" id="1CT-ck-n4d"/>
                 <constraint firstAttribute="trailing" secondItem="aaN-th-7CW" secondAttribute="trailing" id="2EG-fb-G4t"/>
                 <constraint firstAttribute="trailing" secondItem="cJx-Bd-xv5" secondAttribute="trailing" constant="5" id="4FE-wU-6cr"/>
-                <constraint firstAttribute="trailing" secondItem="9A2-jz-7dt" secondAttribute="trailing" id="6Y4-8B-ZFX"/>
                 <constraint firstAttribute="bottom" secondItem="cJx-Bd-xv5" secondAttribute="bottom" constant="5" id="CGb-ms-yAu"/>
                 <constraint firstItem="9A2-jz-7dt" firstAttribute="top" secondItem="F8R-td-26z" secondAttribute="top" id="CGk-PS-XKJ"/>
                 <constraint firstItem="qMo-gO-f9W" firstAttribute="leading" secondItem="F8R-td-26z" secondAttribute="leading" id="ED1-0C-6hl"/>
@@ -90,12 +96,16 @@
                 <constraint firstItem="qMo-gO-f9W" firstAttribute="top" secondItem="F8R-td-26z" secondAttribute="top" id="MTA-4K-FU4"/>
                 <constraint firstItem="aaN-th-7CW" firstAttribute="top" secondItem="F8R-td-26z" secondAttribute="top" id="Rxm-5R-0IG"/>
                 <constraint firstAttribute="bottom" secondItem="qMo-gO-f9W" secondAttribute="bottom" id="W6V-RL-TRv"/>
+                <constraint firstAttribute="trailing" secondItem="wcu-6Z-bIZ" secondAttribute="trailing" id="Xx6-c4-sdr"/>
                 <constraint firstAttribute="trailing" secondItem="qMo-gO-f9W" secondAttribute="trailing" id="eNN-UM-riq"/>
+                <constraint firstItem="9A2-jz-7dt" firstAttribute="leading" secondItem="F8R-td-26z" secondAttribute="leading" id="imM-K2-J51"/>
                 <constraint firstAttribute="trailing" secondItem="Nxm-zR-Pdp" secondAttribute="trailing" id="lu4-cF-WwJ"/>
                 <constraint firstItem="aaN-th-7CW" firstAttribute="leading" secondItem="F8R-td-26z" secondAttribute="leading" id="nkj-jz-87c"/>
+                <constraint firstItem="wcu-6Z-bIZ" firstAttribute="top" secondItem="F8R-td-26z" secondAttribute="top" id="p1u-mZ-pq2"/>
                 <constraint firstItem="4DA-cl-enY" firstAttribute="top" secondItem="F8R-td-26z" secondAttribute="top" constant="5" id="qFJ-4S-mnK"/>
             </constraints>
             <connections>
+                <outlet property="alternativeIconImageView" destination="wcu-6Z-bIZ" id="pLb-pd-Xff"/>
                 <outlet property="checkmarkButton" destination="cJx-Bd-xv5" id="irl-jR-rlX"/>
                 <outlet property="commentIconImageView" destination="9A2-jz-7dt" id="yt1-0t-MFw"/>
                 <outlet property="markedMaskView" destination="aaN-th-7CW" id="8Tj-6H-IHD"/>
@@ -107,8 +117,9 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="LKImagePickerController_Icon_Comment" width="16" height="16"/>
-        <image name="LKImagePickerController_Icon_Video" width="16" height="16"/>
+        <image name="LKImagePickerController_Icon_AlternativeSelected.png" width="44" height="44"/>
+        <image name="LKImagePickerController_Icon_Comment.png" width="32" height="32"/>
+        <image name="LKImagePickerController_Icon_Video.png" width="32" height="32"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

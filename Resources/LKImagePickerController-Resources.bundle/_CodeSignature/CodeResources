@@ -10,35 +10,39 @@
 		</data>
 		<key>LKImagePickerControllerDetailCell.nib</key>
 		<data>
-		e8MncK856GQFbi8oUfLKQKH5IOc=
+		oYkW3ltuo3hiiISDPQTJ1+gf5zA=
 		</data>
 		<key>LKImagePickerControllerDetailViewController.nib</key>
 		<data>
-		pfjavBWfsPkRj93OR/PpR+l68wo=
+		UlswZ5CaiOnfHDLZqKdTTwjAgNA=
 		</data>
 		<key>LKImagePickerControllerEmptyView.nib</key>
 		<data>
-		D4g4xuKroMn7WKD8nfC03HwKjjE=
+		npfZhnKifu1689h11PNwb+maem0=
 		</data>
 		<key>LKImagePickerControllerGroupTableViewCell.nib</key>
 		<data>
-		XJTad6nH0fqgOD8wjZCB1HZ+xjs=
+		5uXVVvoMDOww/XP5162fS31Z7tY=
 		</data>
 		<key>LKImagePickerControllerSelectCell.nib</key>
 		<data>
-		h3U/82XDB14cIJegtJnFSWZt2I4=
+		d05iZfxJbxMCyXlfWC3x8cFr1s8=
 		</data>
 		<key>LKImagePickerControllerSelectHeaderView.nib</key>
 		<data>
-		2hF+SW7SLCRyHItnlt5hy5YowE4=
+		WspfqVuUwh2msOWBrlYTZQTB3HQ=
 		</data>
 		<key>LKImagePickerControllerSelectViewController.nib</key>
 		<data>
-		K4WbU+dUMX+GxjpjIK8/whP6l60=
+		KT0p4kY/AK5IyuN8ox8a5zo+Egs=
 		</data>
 		<key>LKImagePickerController_ButtonBack.png</key>
 		<data>
 		QfpwD8Ahp25I3m5uztuglG4g/y4=
+		</data>
+		<key>LKImagePickerController_ButtonClose@3x.png</key>
+		<data>
+		BnG6cy1VyOIwEw39EQRqRiSZoTc=
 		</data>
 		<key>LKImagePickerController_ButtonDown@3x.png</key>
 		<data>
@@ -52,13 +56,25 @@
 		<data>
 		Tk3peiE5S+BZfoyRAKy7+DQ9gIM=
 		</data>
+		<key>LKImagePickerController_ButtonUtility@3x.png</key>
+		<data>
+		2rv6vPKxD5yxwxXtjIcEdbc4D0w=
+		</data>
 		<key>LKImagePickerController_IconPosted.png</key>
 		<data>
 		jdJZq/HhOs89OwUlAr3weRVac9c=
 		</data>
+		<key>LKImagePickerController_Icon_Alternative@3x.png</key>
+		<data>
+		wfSjpI/Dk+faopDqhh83dwgj6fs=
+		</data>
+		<key>LKImagePickerController_Icon_AlternativeSelected@3x.png</key>
+		<data>
+		2pn0xO0r+E3DJ7X2C5brvre5mz8=
+		</data>
 		<key>LKImagePickerController_Icon_Comment@3x.png</key>
 		<data>
-		sX5nD0G0ib3xuoMV6jAAPsM9vDI=
+		zI0knKC2jctAun2utos4u+IVbjE=
 		</data>
 		<key>LKImagePickerController_Icon_NoPics.png</key>
 		<data>
@@ -80,10 +96,6 @@
 		<data>
 		O18pzbp3m76UvI+p7Tc1/uZZijw=
 		</data>
-		<key>LKImagePickerController_WaitIndicator1@3x.png</key>
-		<data>
-		kN8TF59My8b2sTmooewqqEo1XpY=
-		</data>
 		<key>LKImagePickerController_WaitIndicator21@3x.png</key>
 		<data>
 		L12sDiBpwyqZWyPZUoD2qoAVcQc=
@@ -91,14 +103,6 @@
 		<key>LKImagePickerController_WaitIndicator22@3x.png</key>
 		<data>
 		xkPaybMWYiW/NeWGw86mZZrF5qE=
-		</data>
-		<key>LKImagePickerController_WaitIndicator2@3x.png</key>
-		<data>
-		03OTLbtJJP4wxqi3S8RUuzVpaZs=
-		</data>
-		<key>LKImagePickerController_WaitIndicator3@3x.png</key>
-		<data>
-		Ah9uffT5twNuq+nfh6WcfsiCtws=
 		</data>
 		<key>en.lproj/InfoPlist.strings</key>
 		<dict>
@@ -145,77 +149,77 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			e8MncK856GQFbi8oUfLKQKH5IOc=
+			oYkW3ltuo3hiiISDPQTJ1+gf5zA=
 			</data>
 			<key>hash2</key>
 			<data>
-			YFtGriVdIn0IFMJ7+uL8WH/dNlrsRBVQ1pm8BseSEwc=
+			NlFpWcUGRqidR8mmJ1y12mxxujy0aXujcCVhlmU9a9g=
 			</data>
 		</dict>
 		<key>LKImagePickerControllerDetailViewController.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			pfjavBWfsPkRj93OR/PpR+l68wo=
+			UlswZ5CaiOnfHDLZqKdTTwjAgNA=
 			</data>
 			<key>hash2</key>
 			<data>
-			SVR7m6iOkESUkDCPJ+M6aLwbi8ILadodfrrBL4HTgws=
+			skmixMn7c81VwUFpsNwVAihoXogEU5fgz+czcw/JZZE=
 			</data>
 		</dict>
 		<key>LKImagePickerControllerEmptyView.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			D4g4xuKroMn7WKD8nfC03HwKjjE=
+			npfZhnKifu1689h11PNwb+maem0=
 			</data>
 			<key>hash2</key>
 			<data>
-			eIfEkT/yikQ3178rG314fc4IY89Jdid8TXHPAdcFV3Q=
+			I+G05L5GM40pTJ8WXshB5uxQEidgdSkLhDVdvY19Y/I=
 			</data>
 		</dict>
 		<key>LKImagePickerControllerGroupTableViewCell.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			XJTad6nH0fqgOD8wjZCB1HZ+xjs=
+			5uXVVvoMDOww/XP5162fS31Z7tY=
 			</data>
 			<key>hash2</key>
 			<data>
-			CsBIoydEKqrsFdhubAIYaNtmG1xwJl4uS35xFd8orFg=
+			kH9xAWuXBi4JJow9on6ltZEodRAtcNJpbcbXFdsWPFc=
 			</data>
 		</dict>
 		<key>LKImagePickerControllerSelectCell.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			h3U/82XDB14cIJegtJnFSWZt2I4=
+			d05iZfxJbxMCyXlfWC3x8cFr1s8=
 			</data>
 			<key>hash2</key>
 			<data>
-			cvkt0PJVNHtBfULoe+baHWIdZ9DgC0WLGnC/dDFeQfM=
+			Bm1Y8ubq6nWzDR4Hl0/+h3UzHLHgziYQ5n6jDWkVnBQ=
 			</data>
 		</dict>
 		<key>LKImagePickerControllerSelectHeaderView.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			2hF+SW7SLCRyHItnlt5hy5YowE4=
+			WspfqVuUwh2msOWBrlYTZQTB3HQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			UBNqlIEkfMdlJXbLc8y9VuwCRV3Uhg/LHDuiPbc87OA=
+			nfa4MdG+I3FWoi5VcziRDthJkGZl0bhWuHRMJ3VNvSA=
 			</data>
 		</dict>
 		<key>LKImagePickerControllerSelectViewController.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			K4WbU+dUMX+GxjpjIK8/whP6l60=
+			KT0p4kY/AK5IyuN8ox8a5zo+Egs=
 			</data>
 			<key>hash2</key>
 			<data>
-			y0Wi+IDw3D2/xkVFBShCqHcKykjnf0ONmITXVzAlKno=
+			WlwUjGH6LCXxVu96NzFiu5E5O8cZEVk362cR0/RAy9Y=
 			</data>
 		</dict>
 		<key>LKImagePickerController_ButtonBack.png</key>
@@ -227,6 +231,17 @@
 			<key>hash2</key>
 			<data>
 			PF+H47SqJzkrlDUQSZZ2br5NwHpERM3/oXAZyZNH9O8=
+			</data>
+		</dict>
+		<key>LKImagePickerController_ButtonClose@3x.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			BnG6cy1VyOIwEw39EQRqRiSZoTc=
+			</data>
+			<key>hash2</key>
+			<data>
+			98+sBSNHOMYVo3SXFnCQIQ8rP+/hxoxuJMqUDR7FkWw=
 			</data>
 		</dict>
 		<key>LKImagePickerController_ButtonDown@3x.png</key>
@@ -262,6 +277,17 @@
 			Yqu+0HNWN3It3TfDl4/egTNMRYI8SncYe2IgKlrKfk8=
 			</data>
 		</dict>
+		<key>LKImagePickerController_ButtonUtility@3x.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			2rv6vPKxD5yxwxXtjIcEdbc4D0w=
+			</data>
+			<key>hash2</key>
+			<data>
+			+OhHrhq5QzQcE+EOWKevkEuj30N0q1VEHSEpvBN2RZw=
+			</data>
+		</dict>
 		<key>LKImagePickerController_IconPosted.png</key>
 		<dict>
 			<key>hash</key>
@@ -273,15 +299,37 @@
 			WMaaUAiscP08ukVQ2uTkVwbzXmJClb2uJxAZD0Pm84Q=
 			</data>
 		</dict>
+		<key>LKImagePickerController_Icon_Alternative@3x.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			wfSjpI/Dk+faopDqhh83dwgj6fs=
+			</data>
+			<key>hash2</key>
+			<data>
+			ldeYUkHqb9ckmhGfLkkEpgyqk5Yu1Kwr3BQ+e99f+mQ=
+			</data>
+		</dict>
+		<key>LKImagePickerController_Icon_AlternativeSelected@3x.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			2pn0xO0r+E3DJ7X2C5brvre5mz8=
+			</data>
+			<key>hash2</key>
+			<data>
+			ljizS4mbdqmISl0shVGASTNfOOrj2Wnd/+foruQS0es=
+			</data>
+		</dict>
 		<key>LKImagePickerController_Icon_Comment@3x.png</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			sX5nD0G0ib3xuoMV6jAAPsM9vDI=
+			zI0knKC2jctAun2utos4u+IVbjE=
 			</data>
 			<key>hash2</key>
 			<data>
-			RVYNayIxl9RmgaOZ9klXAOH2eCQ3WGtNOyIZkzHB2U8=
+			sNG0i0deIBr955QOM8H02Aj2SvMrC1oMu1syuVtRVuo=
 			</data>
 		</dict>
 		<key>LKImagePickerController_Icon_NoPics.png</key>
@@ -339,17 +387,6 @@
 			W4vShZFozeYx89t2lpRPxGv0rIN7svVFmuwviNeITJs=
 			</data>
 		</dict>
-		<key>LKImagePickerController_WaitIndicator1@3x.png</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			kN8TF59My8b2sTmooewqqEo1XpY=
-			</data>
-			<key>hash2</key>
-			<data>
-			X9ZSIGgr1jp2ovRyxIEAHSHRc9UmgsU+cjQUewZMFNU=
-			</data>
-		</dict>
 		<key>LKImagePickerController_WaitIndicator21@3x.png</key>
 		<dict>
 			<key>hash</key>
@@ -370,28 +407,6 @@
 			<key>hash2</key>
 			<data>
 			iWmYzsu9RMFf3FmbZnUJzQIj0xumKbOnjM4AbrRBdvk=
-			</data>
-		</dict>
-		<key>LKImagePickerController_WaitIndicator2@3x.png</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			03OTLbtJJP4wxqi3S8RUuzVpaZs=
-			</data>
-			<key>hash2</key>
-			<data>
-			DixL0jwyfHKiTUOd1+zwkNWcWieFtMIzL1ReOz7zAy8=
-			</data>
-		</dict>
-		<key>LKImagePickerController_WaitIndicator3@3x.png</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			Ah9uffT5twNuq+nfh6WcfsiCtws=
-			</data>
-			<key>hash2</key>
-			<data>
-			4DNZt8r1t77lTBjbdUby1VToFjiOADYG0bMWq5mSyH0=
 			</data>
 		</dict>
 		<key>en.lproj/InfoPlist.strings</key>

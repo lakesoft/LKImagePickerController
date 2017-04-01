@@ -97,7 +97,3 @@
 @end
 
 
-@interface LKAsset (LKImagePickerController)
-@property (nonatomic, weak) NSString* commentString;
-@property (nonatomic, assign, readonly) BOOL hasComment;
-@end

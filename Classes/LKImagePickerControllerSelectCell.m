@@ -11,6 +11,8 @@
 #import "LKImagePickerControllerUsedMarkView.h"
 #import "LKImagePickerControllerSelectViewController.h"
 #import "LKImagePickerControllerMarkedAssetsManager.h"
+#import "LKAsset+Comment.h"
+#import "LKAsset+AlternativeImage.h"
 
 #define LKImagePickerControllerStandardSelectCellOffset 10
 
@@ -22,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet LKImagePickerControllerUsedMarkView *usedView;
 @property (weak, nonatomic) IBOutlet UIView *markedMaskView;
 @property (weak, nonatomic) IBOutlet UIImageView *commentIconImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *alternativeIconImageView;
 
 
 @end
@@ -40,13 +43,15 @@
 - (void)setAsset:(LKAsset *)asset
 {
     _asset = asset;
-    self.photoImageView.image = self.asset.aspectRatioThumbnail;
+//    self.photoImageView.image = self.asset.aspectRatioThumbnail;
+    self.photoImageView.image = self.asset.alternativeAspectRatioThumbnail;
 //    self.usedView.on = [LKImagePickerControllerMarkedAssetsManager isMarkedAsset:asset];
     self.markedMaskView.hidden = ![LKImagePickerControllerMarkedAssetsManager isMarkedAsset:asset];
     self.videoView.hidden = asset.type != LKAssetTypeVideo;
     self.videoLabel.text = self._durationString;
     self.videoLabel.hidden = self.bounds.size.width < 80.0;
     self.commentIconImageView.hidden = !asset.hasComment;
+    self.alternativeIconImageView.hidden = !asset.hasAlternativeImage;
 }
 
 - (void)alert

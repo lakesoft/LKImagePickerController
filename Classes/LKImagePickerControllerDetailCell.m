@@ -9,6 +9,7 @@
 
 #import "LKImagePickerControllerDetailCell.h"
 #import "LKImagePickerControllerPlayIconView.h"
+#import "LKAsset+AlternativeImage.h"
 
 NSString * const LKImagePickerControllerDetailCellSingleTapNotification = @"LKImagePickerControllerDetailCellSingleTapNotification";
 NSString * const LKImagePickerControllerDetailCellLongPressNotification = @"LKImagePickerControllerDetailCellLongPressNotification";
@@ -25,7 +26,8 @@ NSString * const LKImagePickerControllerDetailCellLongPressNotification = @"LKIm
 - (void)setAsset:(LKAsset *)asset
 {
     _asset = asset;
-    self.imageView.image = asset.fullScreenImageWithoutOrientation;
+//    self.imageView.image = asset.fullScreenImageWithoutOrientation;
+    self.imageView.image = asset.alternativeFullScreenImageWithoutOrientation;
     self.scrollView.zoomScale = 1.0;
     self.playMovieButton.hidden = self.asset.type != LKAssetTypeVideo;
 }

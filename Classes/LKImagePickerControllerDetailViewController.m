@@ -16,6 +16,8 @@
 #import "LKImagePickerCOntrollerMarkedAssetsManager.h"
 #import "LKImagePickerControllerCommentManager.h"
 #import "LKImagePickerControllerCheckmarkButton.h"
+#import "LKAsset+Comment.h"
+#import "LKAsset+AlternativeImage.h"
 
 #define LKImagePickerControlDetailThumbnailSize (CGSizeMake(50.0,50.0))
 
@@ -35,7 +37,6 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
 @property (assign, nonatomic) BOOL hideBars;
 //@property (weak, nonatomic) IBOutlet UIButton *toggleFullScreenButton;
 @property (assign, nonatomic) BOOL isWhileClosing;
-@property (weak, nonatomic) IBOutlet UIView *closeButton;
 
 // navi view
 @property (weak, nonatomic) IBOutlet UIView *naviView;
@@ -51,6 +52,11 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
 @property (weak, nonatomic) IBOutlet UIView *topToolbarView;
 @property (weak, nonatomic) IBOutlet UIView *leftSideView;
 @property (weak, nonatomic) IBOutlet UIView *rightSideView;
+
+// header view
+@property (weak, nonatomic) IBOutlet UIButton *closeButton;
+@property (weak, nonatomic) IBOutlet UIButton *alternativeButton;
+
 
 @end
 
@@ -193,7 +199,7 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
                          self.view.backgroundColor = [UIColor blackColor]; // for keyboard transparent
                      } completion:^(BOOL finished) {
                          self.indexPath = self.indexPath;    // for .current property
-                         [self updateNaviView];
+                         [self didChangeDisplayedAsset];
                      }];
 }
 
@@ -326,6 +332,7 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
     self.leftSideView.alpha = 0.0;
     self.rightSideView.alpha = 0.0;
     self.closeButton.alpha = 0.0;
+    self.alternativeButton.alpha = 0.0;
 }
 - (void)viewDidAppear:(BOOL)animated
 {
@@ -335,6 +342,7 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
         self.leftSideView.alpha = 1.0;
         self.rightSideView.alpha = 1.0;
         self.closeButton.alpha = 1.0;
+        self.alternativeButton.alpha = 1.0;
     }];
 }
 - (void)viewWillDisappear:(BOOL)animated
@@ -474,7 +482,7 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
             [self.thumbnailCollectionView scrollToItemAtIndexPath:self.indexPath
                                                  atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally
                                                          animated:YES];
-            [self updateNaviView];
+            [self didChangeDisplayedAsset];
         }
         self.scrollingByThumbnailView = NO;
     }
@@ -482,7 +490,7 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
 }
 
 #pragma mark - Sub header
-- (void)updateNaviView
+- (void)didChangeDisplayedAsset
 {
     // update navi view
     LKAsset* asset = [self.assetsCollection assetForIndexPath:self.indexPath];
@@ -490,6 +498,12 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
     self.assetCommentTextField.text = asset.commentString;
     LKImagePickerControllerDetailCell* cell = (LKImagePickerControllerDetailCell*)[self.collectionView cellForItemAtIndexPath:self.indexPath];
     self.checkmarkButton.checked = cell.checked;
+    
+    // header view
+    self.alternativeButton.hidden = !asset.hasAlternativeImage;
+    if (self.alternativeButton.hidden) {
+        self.alternativeButton.selected = asset.alternativeEnabled;
+    }
 }
 
 
@@ -671,6 +685,14 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
         [delegate onUtilityButton:sender];
     }
 
+}
+- (IBAction)onAlternativeButton:(id)sender {
+    LKAsset* asset = [self.assetsCollection assetForIndexPath:self.indexPath];
+    asset.alternativeEnabled = self.alternativeButton.selected;
+    
+    [self.collectionView reloadItemsAtIndexPaths:@[self.indexPath]];
+    
+    // TODO: ?? reload thumbnail
 }
 
 #pragma mark - UITextFieldDelegate

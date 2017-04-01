@@ -143,7 +143,7 @@
 
 - (void)removeAllComments
 {
-    [LKImagePickerControllerCommentManager removeAllComments];
+    [LKImagePickerControllerCommentManager removeAll];
 }
 
 - (LKAsset*)currentAssetOfDetail
@@ -165,30 +165,5 @@
 @end
 
 
-#pragma mark - LKAsset catetory
-@implementation LKAsset (LKImagePickerController)
-- (NSString*)commentString
-{
-    NSString* filePath = [LKImagePickerControllerCommentManager filePathForAsset:self];
-    NSString* str = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
-    return str;
-}
-- (void)setCommentString:(NSString*)commentString
-{
-    NSString* filePath = [LKImagePickerControllerCommentManager filePathForAsset:self];
-    if (commentString == nil || commentString.length == 0) {
-        [NSFileManager.defaultManager removeItemAtPath:filePath error:nil];
-    } else {
-        [commentString writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding
-                             error:nil];
-    }
-}
-
-- (BOOL)hasComment
-{
-    NSString* filePath = [LKImagePickerControllerCommentManager filePathForAsset:self];
-    return [NSFileManager.defaultManager fileExistsAtPath:filePath];
-}
-@end
 
 

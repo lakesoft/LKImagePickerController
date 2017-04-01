@@ -6,12 +6,9 @@
 //
 //
 
-#import <Foundation/Foundation.h>
-
+#import "LKImagePickerControllerFileManager.h"
 @class LKAsset;
 
-@interface LKImagePickerControllerCommentManager : NSObject
-+ (NSString*)filePathForAsset:(LKAsset*)asset;
-+ (void)removeAllComments;
+@interface LKImagePickerControllerCommentManager : LKImagePickerControllerFileManager
 @end
 
