@@ -64,6 +64,16 @@
     return [[LKImagePickerControllerAlternateImageManager filePathForAsset:self] stringByAppendingPathExtension:@".enabled"];
 }
 
+- (void)_removeImageAtFilePath:(NSString*)filePath
+{
+    if ([NSFileManager.defaultManager fileExistsAtPath:filePath]) {
+        NSError* error = nil;
+        [NSFileManager.defaultManager removeItemAtPath:filePath error:&error];
+        if (error) {
+            NSLog(@"Failed to remove image (%@): %@", self, error);
+        }
+    }
+}
 
 // MARK: - management (properties)
 
@@ -172,14 +182,10 @@
 
 - (void)removeAlternativeImage
 {
-    NSString* filePath = [LKImagePickerControllerAlternateImageManager filePathForAsset:self];
-    if ([NSFileManager.defaultManager fileExistsAtPath:filePath]) {
-        NSError* error = nil;
-        [NSFileManager.defaultManager removeItemAtPath:filePath error:&error];
-        if (error) {
-            NSLog(@"Failed to remove alternative image (%@): %@", self, error);
-        }
-    }
+    [self setAlternativeEnabled:NO];
+    [self _removeImageAtFilePath:self._filePath];
+    [self _removeImageAtFilePath:self._filePathForScreen];
+    [self _removeImageAtFilePath:self._filePathForThumbnail];
 }
 
 
