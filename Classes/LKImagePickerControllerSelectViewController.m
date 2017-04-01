@@ -823,8 +823,8 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     LKImagePickerControllerSelectCell* cell = (LKImagePickerControllerSelectCell*)[collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass(LKImagePickerControllerSelectCell.class)
                                                                             forIndexPath:indexPath];
     LKAsset* asset = [self.displayingAssetsCollection assetForIndexPath:indexPath];
+    cell.alternativeIconImage = self.imagePickerController.alternativeIconImage; // must be first before setting asset
     cell.asset = asset;
-    cell.alternativeIconImage = self.imagePickerController.alternativeIconImage;
     cell.checked = [self.assetsManager containsSelectedAsset:asset];
     
     return cell;

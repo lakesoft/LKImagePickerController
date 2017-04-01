@@ -82,7 +82,7 @@
 @property (nonatomic, assign) CGFloat detailNaviViewOffset;
 @property (nonatomic, assign) UIEdgeInsets selectionViewContentInset;
 
-@property (nonatomic, weak) UIImage* alternativeIconImage;
+@property (nonatomic, strong) UIImage* alternativeIconImage;
 
 - (void)deselectAll;
 - (void)displayMainScreenAnimated:(BOOL)animated;

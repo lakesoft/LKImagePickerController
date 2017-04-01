@@ -548,8 +548,8 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
     } else {
         LKImagePickerControllerSelectCell* cell = (LKImagePickerControllerSelectCell*)[collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass(LKImagePickerControllerSelectCell.class)
                                                                                                                                 forIndexPath:indexPath];
+        cell.alternativeIconImage = self.selectViewController.imagePickerController.alternativeIconImage;   // must be first before setting asset
         cell.asset = asset;
-        cell.alternativeIconImage = self.selectViewController.imagePickerController.alternativeIconImage;
         cell.checkmarkUserInteractionEnabled = NO;
         cell.checkmarkHiddenMode = YES; // call me at first !
         cell.current = [self.indexPath isEqual:indexPath];
