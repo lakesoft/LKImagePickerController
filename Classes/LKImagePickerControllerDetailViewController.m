@@ -314,8 +314,17 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
     self.view.backgroundColor = UIColor.clearColor;
     
     if ([delegate respondsToSelector:@selector(utilityButtonImageState:)]) {
-        UIImage* image = [delegate utilityButtonImageState:UIControlStateNormal];
-        [self.utilityButton setImage:image forState:UIControlStateNormal];
+        
+        for (NSNumber* n in @[@(UIControlStateNormal),
+                       @(UIControlStateDisabled),
+                       @(UIControlStateFocused),
+                       @(UIControlStateHighlighted),
+                       @(UIControlStateSelected)
+                       ]) {
+            UIControlState state = n.integerValue;
+            UIImage* image = [delegate utilityButtonImageState:state];
+            [self.utilityButton setImage:image forState:state];
+        }
     }
 }
 
