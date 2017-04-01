@@ -52,6 +52,9 @@
     self.videoLabel.hidden = self.bounds.size.width < 80.0;
     self.commentIconImageView.hidden = !asset.hasComment;
     self.alternativeIconImageView.hidden = !asset.hasAlternativeImage;
+    if (!self.alternativeIconImageView.hidden && self.alternativeIconImage) {
+        self.alternativeIconImageView.image = self.alternativeIconImage;
+    }
     self.checkButtonWidthConstraint.constant = self.bounds.size.width / 2.0;
 }
 

@@ -16,6 +16,7 @@
 @property (nonatomic, assign) BOOL checkmarkUserInteractionEnabled;
 @property (nonatomic, assign) BOOL checkmarkHiddenMode;
 @property (nonatomic, assign) BOOL current;
+@property (nonatomic, weak) UIImage* alternativeIconImage;
 
 - (void)alert;
 - (void)setHilighted:(BOOL)higlighted;

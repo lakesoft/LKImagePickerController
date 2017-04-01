@@ -55,7 +55,6 @@
 - (UIImage*)utilityButtonImageState:(UIControlState)state;
 - (void)onUtilityButton:(UIButton*)button viewController:(UIViewController*)viewController;
 
-
 // Detail customize view
 - (void)setupDetailTopToolbarView:(UIView*)topToolbarView;
 - (void)setupDetailLeftSideView:(UIView*)leftSideView;
@@ -63,7 +62,6 @@
 - (void)updateDetailTopToolbarView:(UIView*)topToolbarView;
 - (void)updateDetailLeftSideView:(UIView*)leftSideView;
 - (void)updateDetailRightSideView:(UIView*)rightSideView;
-
 
 @end
 
@@ -83,6 +81,8 @@
 @property (nonatomic, assign) BOOL doOpenKeyboardInDetailView;
 @property (nonatomic, assign) CGFloat detailNaviViewOffset;
 @property (nonatomic, assign) UIEdgeInsets selectionViewContentInset;
+
+@property (nonatomic, weak) UIImage* alternativeIconImage;
 
 - (void)deselectAll;
 - (void)displayMainScreenAnimated:(BOOL)animated;

@@ -216,12 +216,18 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
     id <LKImagePickerControllerDelegate> delegate = self.selectViewController.imagePickerController.imagePickerControllerDelegate;
     if ([delegate respondsToSelector:@selector(setupDetailTopToolbarView:)]) {
         [delegate setupDetailTopToolbarView:self.topToolbarView];
+    } else {
+        self.topToolbarView.hidden = YES;
     }
     if ([delegate respondsToSelector:@selector(setupDetailLeftSideView:)]) {
         [delegate setupDetailLeftSideView:self.leftSideView];
+    } else {
+        self.leftSideView.hidden = YES;
     }
     if ([delegate respondsToSelector:@selector(setupDetailRightSideView:)]) {
         [delegate setupDetailRightSideView:self.rightSideView];
+    } else {
+        self.rightSideView.hidden = YES;
     }
     
     // Notifications
@@ -543,6 +549,7 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
         LKImagePickerControllerSelectCell* cell = (LKImagePickerControllerSelectCell*)[collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass(LKImagePickerControllerSelectCell.class)
                                                                                                                                 forIndexPath:indexPath];
         cell.asset = asset;
+        cell.alternativeIconImage = self.selectViewController.imagePickerController.alternativeIconImage;
         cell.checkmarkUserInteractionEnabled = NO;
         cell.checkmarkHiddenMode = YES; // call me at first !
         cell.current = [self.indexPath isEqual:indexPath];
