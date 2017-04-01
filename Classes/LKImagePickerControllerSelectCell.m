@@ -25,7 +25,7 @@
 @property (weak, nonatomic) IBOutlet UIView *markedMaskView;
 @property (weak, nonatomic) IBOutlet UIImageView *commentIconImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *alternativeIconImageView;
-
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *checkButtonWidthConstraint;
 
 @end
 
@@ -52,6 +52,7 @@
     self.videoLabel.hidden = self.bounds.size.width < 80.0;
     self.commentIconImageView.hidden = !asset.hasComment;
     self.alternativeIconImageView.hidden = !asset.hasAlternativeImage;
+    self.checkButtonWidthConstraint.constant = self.bounds.size.width / 2.0;
 }
 
 - (void)alert

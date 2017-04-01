@@ -41,12 +41,6 @@
 - (UIBarButtonItem*)rightBarButtonItem2;
 - (BOOL)disableRightBarButtonItem2WhenNoSelected;
 
-// Detail Screen
-- (UIBarButtonItem*)rightBarButtonItem3;
-- (BOOL)disableRightBarButtonItem3WhenNoSelected;
-- (UIImage*)utilityButtonImageState:(UIControlState)state;
-- (void)onUtilityButton:(UIButton*)button;
-
 // [1]selected -> [2]deselected
 - (void)imagePickerController:(LKImagePickerController*)imagePickerController selectedAssets:(NSArray*)selectedAssets;
 - (void)imagePickerController:(LKImagePickerController*)imagePickerController deselectedAssets:(NSArray*)deselectedAssets;
@@ -54,6 +48,12 @@
 // Handlers
 - (void)handleClearSelections:(void (^)())doClear;
 - (void)openFilterMenuWithDescriptions:(NSArray*)descriptions currentIndex:(int)currentIndex completion:(void (^)(int))completion;
+
+// Detail Screen
+- (UIBarButtonItem*)rightBarButtonItem3;
+- (BOOL)disableRightBarButtonItem3WhenNoSelected;
+- (UIImage*)utilityButtonImageState:(UIControlState)state;
+- (void)onUtilityButton:(UIButton*)button;
 
 // Detail customize view
 - (void)setupDetailTopToolbarView:(UIView*)topToolbarView;
@@ -93,8 +93,10 @@
 - (void)removeAllComments;
 
 - (LKAsset*)currentAssetOfDetail;
+- (void)reloadCurrentAssetOfDetail;
 - (NSIndexPath*)currentIndexPathOfDetail;
 - (UIViewController*)currentViewController;
+
 
 @end
 

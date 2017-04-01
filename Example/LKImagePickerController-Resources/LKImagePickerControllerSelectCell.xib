@@ -68,10 +68,10 @@
                         <color key="backgroundColor" red="0.80572916666666661" green="0.80572916666666661" blue="0.80572916666666661" alpha="0.40332932692307694" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cJx-Bd-xv5" customClass="LKImagePickerControllerCheckmarkButton">
-                        <rect key="frame" x="40" y="40" width="40" height="40"/>
+                        <rect key="frame" x="45" y="45" width="35" height="35"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="40" id="8m5-Br-7Cw"/>
-                            <constraint firstAttribute="width" constant="40" id="omI-iu-XHA"/>
+                            <constraint firstAttribute="width" constant="35" id="NKe-Ig-AVV"/>
+                            <constraint firstAttribute="height" constant="35" id="xBV-7O-hKi"/>
                         </constraints>
                         <state key="normal">
                             <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -87,8 +87,6 @@
                 <constraint firstItem="Nxm-zR-Pdp" firstAttribute="leading" secondItem="F8R-td-26z" secondAttribute="leading" id="0s3-ED-PJL"/>
                 <constraint firstAttribute="trailing" secondItem="4DA-cl-enY" secondAttribute="trailing" constant="5" id="1CT-ck-n4d"/>
                 <constraint firstAttribute="trailing" secondItem="aaN-th-7CW" secondAttribute="trailing" id="2EG-fb-G4t"/>
-                <constraint firstAttribute="trailing" secondItem="cJx-Bd-xv5" secondAttribute="trailing" id="4FE-wU-6cr"/>
-                <constraint firstAttribute="bottom" secondItem="cJx-Bd-xv5" secondAttribute="bottom" id="CGb-ms-yAu"/>
                 <constraint firstItem="9A2-jz-7dt" firstAttribute="top" secondItem="F8R-td-26z" secondAttribute="top" id="CGk-PS-XKJ"/>
                 <constraint firstItem="qMo-gO-f9W" firstAttribute="leading" secondItem="F8R-td-26z" secondAttribute="leading" id="ED1-0C-6hl"/>
                 <constraint firstAttribute="bottom" secondItem="aaN-th-7CW" secondAttribute="bottom" id="Jmn-gW-MD1"/>
@@ -98,10 +96,12 @@
                 <constraint firstAttribute="bottom" secondItem="qMo-gO-f9W" secondAttribute="bottom" id="W6V-RL-TRv"/>
                 <constraint firstAttribute="trailing" secondItem="wcu-6Z-bIZ" secondAttribute="trailing" id="Xx6-c4-sdr"/>
                 <constraint firstAttribute="trailing" secondItem="qMo-gO-f9W" secondAttribute="trailing" id="eNN-UM-riq"/>
+                <constraint firstAttribute="trailing" secondItem="cJx-Bd-xv5" secondAttribute="trailing" id="eWN-Gl-2IS"/>
                 <constraint firstItem="9A2-jz-7dt" firstAttribute="leading" secondItem="F8R-td-26z" secondAttribute="leading" id="imM-K2-J51"/>
                 <constraint firstAttribute="trailing" secondItem="Nxm-zR-Pdp" secondAttribute="trailing" id="lu4-cF-WwJ"/>
                 <constraint firstItem="aaN-th-7CW" firstAttribute="leading" secondItem="F8R-td-26z" secondAttribute="leading" id="nkj-jz-87c"/>
                 <constraint firstItem="wcu-6Z-bIZ" firstAttribute="top" secondItem="F8R-td-26z" secondAttribute="top" id="p1u-mZ-pq2"/>
+                <constraint firstAttribute="bottom" secondItem="cJx-Bd-xv5" secondAttribute="bottom" id="pbD-PS-wI7"/>
                 <constraint firstItem="4DA-cl-enY" firstAttribute="top" secondItem="F8R-td-26z" secondAttribute="top" constant="5" id="qFJ-4S-mnK"/>
             </constraints>
             <connections>

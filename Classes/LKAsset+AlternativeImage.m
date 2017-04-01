@@ -29,7 +29,7 @@
 - (UIImage*)alternativeFullScreenImageWithoutOrientation
 {
     if (self.hasAlternativeImage) {
-        return self.alternativeImage;
+        return self.alternativeScreenImage;
     } else {
         return self.fullScreenImageWithoutOrientation;
     }
@@ -38,7 +38,7 @@
 - (UIImage*)alternativeAspectRatioThumbnail
 {
     if (self.hasAlternativeImage) {
-        return nil; // TODO
+        return self.alternativeThumbnailImage;
     } else {
         return self.aspectRatioThumbnail;
     }

@@ -656,6 +656,12 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
     [self toggleCheckmark];
 }
 
+- (void)reloadCurrentAsset
+{
+    [self.collectionView reloadItemsAtIndexPaths:@[self.currentIndexPath]];
+    [self.thumbnailCollectionView reloadItemsAtIndexPaths:@[self.currentIndexPath]];
+}
+
 //- (IBAction)onToggleFullScreen:(id)sender {
 //    [self _toggleFullscreen];
 //}

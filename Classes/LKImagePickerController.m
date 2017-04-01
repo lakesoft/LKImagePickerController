@@ -150,6 +150,12 @@
 {
     return self.selectViewController.detailViewController.currentAsset;
 }
+
+- (void)reloadCurrentAssetOfDetail
+{
+    self.selectViewController.detailViewController.reloadCurrentAsset;
+}
+
 - (NSIndexPath*)currentIndexPathOfDetail
 {
     return self.selectViewController.detailViewController.indexPath;

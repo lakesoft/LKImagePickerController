@@ -26,5 +26,6 @@ extern NSString * const LKImagePickerControllerDetailViewControllerWillDisappear
 
 
 - (IBAction)checkmarkTouchded:(id)sender event:(UIEvent*)event;
+- (void)reloadCurrentAsset;
 
 @end
