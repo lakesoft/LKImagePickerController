@@ -48,6 +48,7 @@
 }
 
 - (void)layoutSubviews {
+    [super layoutSubviews];
     self.gradientLayer.frame = self.bounds;
 }
 

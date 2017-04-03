@@ -880,7 +880,6 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
             break;
         }
     }
-    
     return CGSizeMake(cellWidth, cellWidth);
 }
 
