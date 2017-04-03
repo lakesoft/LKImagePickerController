@@ -148,11 +148,16 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
     
     NSIndexPath *indexPath = [self.thumbnailCollectionView indexPathForItemAtPoint:p];
     if (indexPath){
+        LKImagePickerControllerSelectCell* cell = [self.thumbnailCollectionView cellForItemAtIndexPath:indexPath];
+        
         if ([self.selectViewController.imagePickerController.imagePickerControllerDelegate respondsToSelector:@selector(didDetailViewThubmailCellLongPressBeganViewController:asset:)]) {
-            LKImagePickerControllerSelectCell* cell = [self.thumbnailCollectionView cellForItemAtIndexPath:indexPath];
             [cell flashCompletion:^{
                 LKAsset* asset = [self.assetsCollection assetForIndexPath:indexPath];
                 [self.selectViewController.imagePickerController.imagePickerControllerDelegate didDetailViewThubmailCellLongPressBeganViewController:self asset:asset];
+            }];
+        } else {
+            [cell flashCompletion:^{
+                [self _toggleCheckmarkWithIndexPath:indexPath];
             }];
         }
     }
@@ -356,6 +361,9 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
         self.rightSideView.alpha = 1.0;
         self.closeButton.alpha = 1.0;
     }];
+    
+    LKImagePickerControllerDetailCell* cell = [self.collectionView cellForItemAtIndexPath:self.indexPath];
+    self.checkmarkButton.checked = cell.checked;
 }
 - (void)viewWillDisappear:(BOOL)animated
 {
@@ -508,8 +516,10 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
     LKAsset* asset = [self.assetsCollection assetForIndexPath:self.indexPath];
     self.assetDateLabel.text = asset.date != nil ? [LKImagePickerControllerUtility formattedDateTimeStringForDate:asset.date] : @"";
     self.assetCommentTextField.text = asset.commentString;
-    LKImagePickerControllerDetailCell* cell = (LKImagePickerControllerDetailCell*)[self.collectionView cellForItemAtIndexPath:self.indexPath];
-    self.checkmarkButton.checked = cell.checked;
+    
+    // NOTE: select cell must be nil, because detail cell is not displayed.
+    LKImagePickerControllerDetailCell* thumbCell = (LKImagePickerControllerSelectCell*)[self.thumbnailCollectionView cellForItemAtIndexPath:self.indexPath];
+    self.checkmarkButton.checked = thumbCell.checked;
 
     // delegte
     id <LKImagePickerControllerDelegate> delegate = self.selectViewController.imagePickerController.imagePickerControllerDelegate;
@@ -630,34 +640,42 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
 
 
 #pragma mark - Actions
-- (void)toggleCheckmark
+- (void)_toggleCheckmarkWithIndexPath:(NSIndexPath*)indexPath
 {
-    LKImagePickerControllerDetailCell* cell = (LKImagePickerControllerDetailCell*)[self.collectionView cellForItemAtIndexPath:self.indexPath];
+    LKImagePickerControllerSelectCell* thumbCell = (LKImagePickerControllerSelectCell*)[self.thumbnailCollectionView cellForItemAtIndexPath:indexPath];
+    LKImagePickerControllerDetailCell* detailCell = (LKImagePickerControllerDetailCell*)[self.collectionView cellForItemAtIndexPath:indexPath];
     
-    cell.checked = !cell.checked;
+    thumbCell.checked = !thumbCell.checked;
     
-    if (cell.checked) {
+    if (thumbCell.checked) {
         if (self.assetsManager.reachedMaximumOfSelections) {
             [self.checkmarkButton alert];
-            cell.checked = NO;
+            thumbCell.checked = NO;
         } else {
-            [self.assetsManager selectAsset:[self.assetsCollection assetForIndexPath:self.indexPath]];
+            [self.assetsManager selectAsset:[self.assetsCollection assetForIndexPath:indexPath]];
             [self _updateControls];
         }
     } else {
-        [self.assetsManager deselectAsset:[self.assetsCollection assetForIndexPath:self.indexPath]];
+        [self.assetsManager deselectAsset:[self.assetsCollection assetForIndexPath:indexPath]];
         [self _updateControls];
     }
+    if ([indexPath isEqual:self.indexPath]) {
+        [self.checkmarkButton setChecked:thumbCell.checked];
+    }
     
-    LKImagePickerControllerDetailCell* detailCell = (LKImagePickerControllerDetailCell*)[self.thumbnailCollectionView cellForItemAtIndexPath:self.indexPath];
-    detailCell.checked = cell.checked;
+    detailCell.checked = thumbCell.checked;
     
-    NSDictionary* userInfo = @{LKImagePickerControllerAssetsManagerKeyIndexPaths:@[self.indexPath],
+    NSDictionary* userInfo = @{LKImagePickerControllerAssetsManagerKeyIndexPaths:@[indexPath],
                                LKImagePickerControllerAssetsManagerKeyNumberOfSelections:@(self.assetsManager.numberOfSelected)};
     [NSNotificationCenter.defaultCenter postNotificationName:LKImagePickerControllerAssetsManagerDidSelectNotification
                                                       object:self
                                                     userInfo:userInfo];
 }
+- (void)toggleCheckmark
+{
+    [self _toggleCheckmarkWithIndexPath:self.indexPath];
+}
+
 - (IBAction)checkmarkTouchded:(id)sender event:(UIEvent*)event
 {
     [self toggleCheckmark];

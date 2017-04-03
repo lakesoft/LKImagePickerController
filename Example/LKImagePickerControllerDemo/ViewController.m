@@ -132,10 +132,12 @@
 {
     NSLog(@"didDetailViewCellLongPressBeganViewController: %@, %@:", viewController, asset);
 }
+/*
 - (void)didDetailViewThubmailCellLongPressBeganViewController:(UIViewController *)viewController asset:(LKAsset *)asset
 {
     NSLog(@"didDetailViewThubmailCellLongPressBeganViewController: %@, %@:", viewController, asset);
 }
+*/
 /*
 - (void)setupDetailTopToolbarView:(UIView *)topToolbarView
 {

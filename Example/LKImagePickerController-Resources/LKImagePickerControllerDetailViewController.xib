@@ -145,17 +145,17 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zfx-67-i9m">
-                    <rect key="frame" x="370" y="0.0" width="44" height="624"/>
+                    <rect key="frame" x="350" y="0.0" width="64" height="624"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="44" id="FbV-5N-nTN"/>
+                        <constraint firstAttribute="width" constant="64" id="FbV-5N-nTN"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hus-b7-RTP">
-                    <rect key="frame" x="0.0" y="0.0" width="44" height="624"/>
+                    <rect key="frame" x="0.0" y="0.0" width="64" height="624"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="44" id="D37-fy-b0X"/>
+                        <constraint firstAttribute="width" constant="64" id="D37-fy-b0X"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CPT-22-3kp">
