@@ -63,10 +63,14 @@
                             <constraint firstAttribute="width" constant="26" id="g6f-pO-A0X"/>
                         </constraints>
                     </imageView>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aaN-th-7CW">
-                        <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
-                        <color key="backgroundColor" red="0.80572916666666661" green="0.80572916666666661" blue="0.80572916666666661" alpha="0.40332932692307694" colorSpace="custom" customColorSpace="sRGB"/>
-                    </view>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LKImagePickerController_IconMarked.png" translatesAutoresizingMaskIntoConstraints="NO" id="mHT-X2-xNs">
+                        <rect key="frame" x="27" y="0.0" width="26" height="26"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="26" id="06k-oP-jXz"/>
+                            <constraint firstAttribute="width" constant="26" id="anH-ex-f3K"/>
+                        </constraints>
+                    </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cJx-Bd-xv5" customClass="LKImagePickerControllerCheckmarkButton">
                         <rect key="frame" x="45" y="45" width="35" height="35"/>
                         <constraints>
@@ -86,29 +90,27 @@
             <constraints>
                 <constraint firstItem="Nxm-zR-Pdp" firstAttribute="leading" secondItem="F8R-td-26z" secondAttribute="leading" id="0s3-ED-PJL"/>
                 <constraint firstAttribute="trailing" secondItem="4DA-cl-enY" secondAttribute="trailing" constant="5" id="1CT-ck-n4d"/>
-                <constraint firstAttribute="trailing" secondItem="aaN-th-7CW" secondAttribute="trailing" id="2EG-fb-G4t"/>
                 <constraint firstItem="9A2-jz-7dt" firstAttribute="top" secondItem="F8R-td-26z" secondAttribute="top" id="CGk-PS-XKJ"/>
                 <constraint firstItem="qMo-gO-f9W" firstAttribute="leading" secondItem="F8R-td-26z" secondAttribute="leading" id="ED1-0C-6hl"/>
-                <constraint firstAttribute="bottom" secondItem="aaN-th-7CW" secondAttribute="bottom" id="Jmn-gW-MD1"/>
                 <constraint firstAttribute="bottom" secondItem="Nxm-zR-Pdp" secondAttribute="bottom" id="JwI-tB-b8f"/>
                 <constraint firstItem="qMo-gO-f9W" firstAttribute="top" secondItem="F8R-td-26z" secondAttribute="top" id="MTA-4K-FU4"/>
-                <constraint firstItem="aaN-th-7CW" firstAttribute="top" secondItem="F8R-td-26z" secondAttribute="top" id="Rxm-5R-0IG"/>
+                <constraint firstItem="mHT-X2-xNs" firstAttribute="top" secondItem="F8R-td-26z" secondAttribute="top" id="QVq-xF-MFA"/>
                 <constraint firstAttribute="bottom" secondItem="qMo-gO-f9W" secondAttribute="bottom" id="W6V-RL-TRv"/>
                 <constraint firstAttribute="trailing" secondItem="wcu-6Z-bIZ" secondAttribute="trailing" id="Xx6-c4-sdr"/>
                 <constraint firstAttribute="trailing" secondItem="qMo-gO-f9W" secondAttribute="trailing" id="eNN-UM-riq"/>
                 <constraint firstAttribute="trailing" secondItem="cJx-Bd-xv5" secondAttribute="trailing" id="eWN-Gl-2IS"/>
                 <constraint firstItem="9A2-jz-7dt" firstAttribute="leading" secondItem="F8R-td-26z" secondAttribute="leading" id="imM-K2-J51"/>
                 <constraint firstAttribute="trailing" secondItem="Nxm-zR-Pdp" secondAttribute="trailing" id="lu4-cF-WwJ"/>
-                <constraint firstItem="aaN-th-7CW" firstAttribute="leading" secondItem="F8R-td-26z" secondAttribute="leading" id="nkj-jz-87c"/>
                 <constraint firstItem="wcu-6Z-bIZ" firstAttribute="top" secondItem="F8R-td-26z" secondAttribute="top" id="p1u-mZ-pq2"/>
                 <constraint firstAttribute="bottom" secondItem="cJx-Bd-xv5" secondAttribute="bottom" id="pbD-PS-wI7"/>
                 <constraint firstItem="4DA-cl-enY" firstAttribute="top" secondItem="F8R-td-26z" secondAttribute="top" constant="5" id="qFJ-4S-mnK"/>
+                <constraint firstItem="mHT-X2-xNs" firstAttribute="centerX" secondItem="F8R-td-26z" secondAttribute="centerX" id="rCe-8u-RvJ"/>
             </constraints>
             <connections>
                 <outlet property="alternativeIconImageView" destination="wcu-6Z-bIZ" id="pLb-pd-Xff"/>
                 <outlet property="checkmarkButton" destination="cJx-Bd-xv5" id="irl-jR-rlX"/>
                 <outlet property="commentIconImageView" destination="9A2-jz-7dt" id="yt1-0t-MFw"/>
-                <outlet property="markedMaskView" destination="aaN-th-7CW" id="8Tj-6H-IHD"/>
+                <outlet property="markedIconImageView" destination="mHT-X2-xNs" id="Yzg-WA-31l"/>
                 <outlet property="photoImageView" destination="qMo-gO-f9W" id="6G3-8B-HfM"/>
                 <outlet property="usedView" destination="4DA-cl-enY" id="Q9P-9B-437"/>
                 <outlet property="videoLabel" destination="TNN-oD-ITt" id="b5P-ik-l4V"/>
@@ -117,6 +119,7 @@
         </collectionViewCell>
     </objects>
     <resources>
+        <image name="LKImagePickerController_IconMarked.png" width="32" height="32"/>
         <image name="LKImagePickerController_Icon_AlternativeSelected.png" width="44" height="44"/>
         <image name="LKImagePickerController_Icon_Comment.png" width="32" height="32"/>
         <image name="LKImagePickerController_Icon_Video.png" width="32" height="32"/>

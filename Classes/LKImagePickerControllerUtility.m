@@ -49,5 +49,50 @@
     return NULL;
 }
 
++ (CAGradientLayer*)setupPlateView:(UIView*)view directionDown:(BOOL)down magnitude:(CGFloat)magnitude
+{
+    CAGradientLayer* gradientLayer = [CAGradientLayer layer];
+    gradientLayer.frame = view.bounds;
+    NSArray* locations;
+    
+    if (down) {
+        locations = [NSArray arrayWithObjects:
+                     [NSNumber numberWithFloat:0.0],
+                     [NSNumber numberWithFloat:0.25],
+                     [NSNumber numberWithFloat:1.0],
+                     nil];
+    } else {
+        locations = [NSArray arrayWithObjects:
+                     [NSNumber numberWithFloat:0.0],
+                     [NSNumber numberWithFloat:0.25],
+                     [NSNumber numberWithFloat:1.0],
+                     nil];
+    }
+    
+    NSArray* colors;
+    CGFloat s = magnitude;
+    if (down) {
+        colors = [NSArray arrayWithObjects:
+                  (id)[UIColor colorWithWhite:0.0 alpha:0.3*s].CGColor,
+                  (id)[UIColor colorWithWhite:0.0 alpha:0.1*s].CGColor,
+                  (id)[UIColor clearColor].CGColor,
+                  nil];
+    } else {
+        colors = [NSArray arrayWithObjects:
+                  (id)[UIColor clearColor].CGColor,
+                  (id)[UIColor colorWithWhite:0.0 alpha:0.1*s].CGColor,
+                  (id)[UIColor colorWithWhite:0.0 alpha:0.3*s].CGColor,
+                  nil];
+    }
+    gradientLayer.locations = locations;
+    gradientLayer.colors = colors;
+    [view.layer addSublayer:gradientLayer];
+    return gradientLayer;
+    
+}
++ (CAGradientLayer*)setupPlateView:(UIView*)view directionDown:(BOOL)down
+{
+    return [self setupPlateView:view directionDown:down magnitude:1.0];
+}
 
 @end

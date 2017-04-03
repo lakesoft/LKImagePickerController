@@ -13,6 +13,7 @@
 #import "LKImagePickerControllerMarkedAssetsManager.h"
 #import "LKAsset+Comment.h"
 #import "LKAsset+AlternativeImage.h"
+#import "LKImagePickerControllerUtility.h"
 
 #define LKImagePickerControllerStandardSelectCellOffset 10
 
@@ -22,10 +23,11 @@
 @property (unsafe_unretained, nonatomic) IBOutlet UIView *videoView;
 @property (unsafe_unretained, nonatomic) IBOutlet UILabel *videoLabel;
 @property (weak, nonatomic) IBOutlet LKImagePickerControllerUsedMarkView *usedView;
-@property (weak, nonatomic) IBOutlet UIView *markedMaskView;
 @property (weak, nonatomic) IBOutlet UIImageView *commentIconImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *alternativeIconImageView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *checkButtonWidthConstraint;
+@property (weak, nonatomic) CAGradientLayer* gradientLayer;
+@property (weak, nonatomic) IBOutlet UIImageView *markedIconImageView;
 
 @end
 
@@ -40,13 +42,22 @@
     return [NSString stringWithFormat:@"%zd:%02zd", min, sec];
 }
 
+- (void)awakeFromNib
+{
+    self.gradientLayer = [LKImagePickerControllerUtility setupPlateView:self.photoImageView directionDown:YES];
+}
+
+- (void)layoutSubviews {
+    self.gradientLayer.frame = self.bounds;
+}
+
 - (void)setAsset:(LKAsset *)asset
 {
     _asset = asset;
 //    self.photoImageView.image = self.asset.aspectRatioThumbnail;
     self.photoImageView.image = self.asset.alternativeAspectRatioThumbnail;
 //    self.usedView.on = [LKImagePickerControllerMarkedAssetsManager isMarkedAsset:asset];
-    self.markedMaskView.hidden = ![LKImagePickerControllerMarkedAssetsManager isMarkedAsset:asset];
+    //self.markedIconImageView.hidden = ![LKImagePickerControllerMarkedAssetsManager isMarkedAsset:asset];
     self.videoView.hidden = asset.type != LKAssetTypeVideo;
     self.videoLabel.text = self._durationString;
     self.videoLabel.hidden = self.bounds.size.width < 80.0;

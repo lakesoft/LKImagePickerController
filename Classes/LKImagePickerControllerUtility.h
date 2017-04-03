@@ -15,4 +15,7 @@
 + (NSString*)formattedDateTimeStringForDate:(NSDate*)date;
 + (NSString*)getIdForAsset:(LKAsset*)asset;
 
++ (CAGradientLayer*)setupPlateView:(UIView*)view directionDown:(BOOL)down magnitude:(CGFloat)magnitude;
++ (CAGradientLayer*)setupPlateView:(UIView*)view directionDown:(BOOL)down;
+
 @end
