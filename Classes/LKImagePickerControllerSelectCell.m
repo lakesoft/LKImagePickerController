@@ -58,7 +58,7 @@
 //    self.photoImageView.image = self.asset.aspectRatioThumbnail;
     self.photoImageView.image = self.asset.alternativeAspectRatioThumbnail;
 //    self.usedView.on = [LKImagePickerControllerMarkedAssetsManager isMarkedAsset:asset];
-    //self.markedIconImageView.hidden = ![LKImagePickerControllerMarkedAssetsManager isMarkedAsset:asset];
+    self.markedIconImageView.hidden = ![LKImagePickerControllerMarkedAssetsManager isMarkedAsset:asset];
     self.videoView.hidden = asset.type != LKAssetTypeVideo;
     self.videoLabel.text = self._durationString;
     self.videoLabel.hidden = self.bounds.size.width < 80.0;
