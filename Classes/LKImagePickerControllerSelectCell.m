@@ -67,6 +67,9 @@
     if (!self.alternativeIconImageView.hidden && self.alternativeIconImage) {
         self.alternativeIconImageView.image = self.alternativeIconImage;
     }
+    BOOL topIconsHidden = (self.markedIconImageView.hidden || self.commentIconImageView.hidden || self.alternativeIconImageView.hidden);
+    self.gradientLayer.hidden = topIconsHidden;
+
     self.checkButtonWidthConstraint.constant = self.bounds.size.width / 2.0;
 }
 

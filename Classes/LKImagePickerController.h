@@ -92,6 +92,7 @@
 - (void)markSelectedAssets;
 - (void)unmarkAllAssets;
 - (void)removeAllComments;
+- (void)removeAllAlternativeImages;
 
 - (LKAsset*)currentAssetOfDetail;
 - (void)reloadCurrentAssetOfDetail;

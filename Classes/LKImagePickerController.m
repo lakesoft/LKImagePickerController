@@ -14,6 +14,7 @@
 #import "LKImagePickerControllerMarkedAssetsManager.h"
 #import "LKImagePickerControllerCommentManager.h"
 #import "LKImagePickerControllerDetailViewController.h"
+#import "LKImagePickerControllerAlternateImageManager.h"
 
 @interface LKImagePickerController ()
 @property (strong, nonatomic) LKImagePickerControllerAssetsManager* assetsManager;
@@ -144,6 +145,11 @@
 - (void)removeAllComments
 {
     [LKImagePickerControllerCommentManager removeAll];
+}
+
+- (void)removeAllAlternativeImages
+{
+    [LKImagePickerControllerAlternateImageManager removeAll];
 }
 
 - (LKAsset*)currentAssetOfDetail
