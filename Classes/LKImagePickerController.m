@@ -152,6 +152,12 @@
     [LKImagePickerControllerAlternateImageManager removeAll];
 }
 
+- (void)setDetailInputModeEnabled:(BOOL)enabled
+{
+    [self.selectViewController.detailViewController setInputModeEnabled:enabled];
+}
+
+
 - (LKAsset*)currentAssetOfDetail
 {
     return self.selectViewController.detailViewController.currentAsset;

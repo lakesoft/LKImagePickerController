@@ -31,6 +31,8 @@
 
 @end
 
+#define LKImagePickerControllerSelectCellMinSize    80.0
+
 @implementation LKImagePickerControllerSelectCell
 
 - (NSString*)_durationString
@@ -55,20 +57,26 @@
 - (void)setAsset:(LKAsset *)asset
 {
     _asset = asset;
-//    self.photoImageView.image = self.asset.aspectRatioThumbnail;
     self.photoImageView.image = self.asset.alternativeAspectRatioThumbnail;
-//    self.usedView.on = [LKImagePickerControllerMarkedAssetsManager isMarkedAsset:asset];
-    self.markedIconImageView.hidden = ![LKImagePickerControllerMarkedAssetsManager isMarkedAsset:asset];
+
+    BOOL topIconsHidden = (self.bounds.size.width < LKImagePickerControllerSelectCellMinSize);
+
+    self.markedIconImageView.hidden = ![LKImagePickerControllerMarkedAssetsManager isMarkedAsset:asset] || topIconsHidden;
+    
     self.videoView.hidden = asset.type != LKAssetTypeVideo;
     self.videoLabel.text = self._durationString;
-    self.videoLabel.hidden = self.bounds.size.width < 80.0;
-    self.commentIconImageView.hidden = !asset.hasComment;
-    self.alternativeIconImageView.hidden = !asset.hasAlternativeImage;
+    self.videoLabel.hidden = topIconsHidden;
+
+    self.commentIconImageView.hidden = !asset.hasComment || topIconsHidden;
+    self.alternativeIconImageView.hidden = !asset.hasAlternativeImage || topIconsHidden;
+
     if (!self.alternativeIconImageView.hidden && self.alternativeIconImage) {
         self.alternativeIconImageView.image = self.alternativeIconImage;
     }
-    BOOL topIconsHidden = (self.markedIconImageView.hidden || self.commentIconImageView.hidden || self.alternativeIconImageView.hidden);
-    self.gradientLayer.hidden = topIconsHidden;
+
+    BOOL gradientHidden = (self.markedIconImageView.hidden && self.commentIconImageView.hidden && self.alternativeIconImageView.hidden) || topIconsHidden;
+     
+    self.gradientLayer.hidden = gradientHidden;
 
     self.checkButtonWidthConstraint.constant = self.bounds.size.width / 2.0;
 }

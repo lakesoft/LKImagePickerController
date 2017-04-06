@@ -93,6 +93,8 @@
 - (void)unmarkAllAssets;
 - (void)removeAllComments;
 - (void)removeAllAlternativeImages;
+- (void)setDetailInputModeEnabled:(BOOL)enabled;
+
 
 - (LKAsset*)currentAssetOfDetail;
 - (void)reloadCurrentAssetOfDetail;

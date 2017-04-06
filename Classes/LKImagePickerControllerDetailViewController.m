@@ -165,7 +165,11 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
 
 -(void)_handleSwipeDown:(UISwipeGestureRecognizer *)gestureRecognizer
 {
-    [self.assetCommentTextField resignFirstResponder];
+    if (self.assetCommentTextField.isFirstResponder) {
+        [self.assetCommentTextField resignFirstResponder];
+    } else {
+        [self onCloseButton:nil];
+    }
 }
 -(void)_handleSwipeUp:(UISwipeGestureRecognizer *)gestureRecognizer
 {
@@ -686,6 +690,15 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
     [self.collectionView reloadItemsAtIndexPaths:@[self.indexPath]];
     [self.thumbnailCollectionView reloadItemsAtIndexPaths:@[self.indexPath]];
     [self didChangeDisplayedAsset];
+}
+
+- (void)setInputModeEnabled:(BOOL)enabled
+{
+    if (enabled) {
+        [self.assetCommentTextField becomeFirstResponder];
+    } else {
+        [self.assetCommentTextField resignFirstResponder];
+    }
 }
 
 //- (IBAction)onToggleFullScreen:(id)sender {
