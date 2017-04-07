@@ -24,21 +24,26 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nxm-zR-Pdp">
                         <rect key="frame" x="0.0" y="60" width="80" height="20"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="LKImagePickerController_Icon_Video.png" translatesAutoresizingMaskIntoConstraints="NO" id="77g-4i-W4S">
-                                <rect key="frame" x="3" y="2" width="16" height="16"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="99:99" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TNN-oD-ITt">
-                                <rect key="frame" x="23" y="2" width="42" height="16"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99:99" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TNN-oD-ITt">
+                                <rect key="frame" x="5" y="2" width="70" height="16"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="16" id="b3I-F2-fgz"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="LKImagePickerController_Icon_Video.png" translatesAutoresizingMaskIntoConstraints="NO" id="77g-4i-W4S">
+                                <rect key="frame" x="5" y="2" width="16" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="5n8-Uu-M2g"/>
+                            <constraint firstAttribute="bottom" secondItem="TNN-oD-ITt" secondAttribute="bottom" constant="2" id="eIA-Nm-PLk"/>
+                            <constraint firstAttribute="trailing" secondItem="TNN-oD-ITt" secondAttribute="trailing" constant="5" id="l6L-y5-znA"/>
+                            <constraint firstItem="TNN-oD-ITt" firstAttribute="leading" secondItem="Nxm-zR-Pdp" secondAttribute="leading" constant="5" id="zPU-bq-c7W"/>
                         </constraints>
                     </view>
                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4DA-cl-enY" customClass="LKImagePickerControllerUsedMarkView">
@@ -72,7 +77,7 @@
                         </constraints>
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cJx-Bd-xv5" customClass="LKImagePickerControllerCheckmarkButton">
-                        <rect key="frame" x="45" y="45" width="35" height="35"/>
+                        <rect key="frame" x="23" y="40" width="35" height="35"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="35" id="NKe-Ig-AVV"/>
                             <constraint firstAttribute="height" constant="35" id="xBV-7O-hKi"/>
@@ -98,13 +103,13 @@
                 <constraint firstAttribute="bottom" secondItem="qMo-gO-f9W" secondAttribute="bottom" id="W6V-RL-TRv"/>
                 <constraint firstAttribute="trailing" secondItem="wcu-6Z-bIZ" secondAttribute="trailing" id="Xx6-c4-sdr"/>
                 <constraint firstAttribute="trailing" secondItem="qMo-gO-f9W" secondAttribute="trailing" id="eNN-UM-riq"/>
-                <constraint firstAttribute="trailing" secondItem="cJx-Bd-xv5" secondAttribute="trailing" id="eWN-Gl-2IS"/>
                 <constraint firstItem="9A2-jz-7dt" firstAttribute="leading" secondItem="F8R-td-26z" secondAttribute="leading" id="imM-K2-J51"/>
                 <constraint firstAttribute="trailing" secondItem="Nxm-zR-Pdp" secondAttribute="trailing" id="lu4-cF-WwJ"/>
                 <constraint firstItem="wcu-6Z-bIZ" firstAttribute="top" secondItem="F8R-td-26z" secondAttribute="top" id="p1u-mZ-pq2"/>
-                <constraint firstAttribute="bottom" secondItem="cJx-Bd-xv5" secondAttribute="bottom" id="pbD-PS-wI7"/>
+                <constraint firstAttribute="bottom" secondItem="cJx-Bd-xv5" secondAttribute="bottom" constant="5" id="pbD-PS-wI7"/>
                 <constraint firstItem="4DA-cl-enY" firstAttribute="top" secondItem="F8R-td-26z" secondAttribute="top" constant="5" id="qFJ-4S-mnK"/>
                 <constraint firstItem="mHT-X2-xNs" firstAttribute="centerX" secondItem="F8R-td-26z" secondAttribute="centerX" id="rCe-8u-RvJ"/>
+                <constraint firstItem="cJx-Bd-xv5" firstAttribute="centerX" secondItem="F8R-td-26z" secondAttribute="centerX" id="t2h-Sl-SCL"/>
             </constraints>
             <connections>
                 <outlet property="alternativeIconImageView" destination="wcu-6Z-bIZ" id="pLb-pd-Xff"/>
