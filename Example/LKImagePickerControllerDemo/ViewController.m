@@ -152,14 +152,22 @@
     NSLog(@"currentAssetOfDetail: %@", self.controller.currentAssetOfDetail);
 }
 
-- (UIImage*)utilityButtonImageState:(UIControlState)state {
+- (UIImage*)leftUtilityButtonImageState:(UIControlState)state {
     return [UIImage imageNamed:@"LKImagePickerController_ButtonUtility" inBundle:LKImagePickerControllerBundleManager.bundle compatibleWithTraitCollection:nil];
     }
-- (void)onUtilityButton:(UIButton*)button viewController:(UIViewController*)viewController
+- (void)onLeftUtilityButton:(UIButton*)button viewController:(UIViewController*)viewController
 {
-    NSLog(@"onUtilityButton");
+    NSLog(@"onLeftUtilityButton");
 }
-- (void)didChangeDetailAsset:(LKAsset *)asset viewController:(UIViewController *)viewController utilityButton:(UIButton *)utilityButton
+- (UIImage*)rightUtilityButtonImageState:(UIControlState)state {
+    return [UIImage imageNamed:@"LKImagePickerController_ButtonUtility" inBundle:LKImagePickerControllerBundleManager.bundle compatibleWithTraitCollection:nil];
+}
+- (void)onRightUtilityButton:(UIButton*)button viewController:(UIViewController*)viewController
+{
+    NSLog(@"onRightUtilityButton");
+}
+
+- (void)didChangeDetailAsset:(LKAsset *)asset viewController:(UIViewController *)viewController leftUtilityButton:(UIButton *)leftUtilityButton rightUtilityButton:(UIButton *)rightUtilityButton
 {
     NSLog(@"didChangeDetailAsset: %@", asset);
 }

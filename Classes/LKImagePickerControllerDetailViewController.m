@@ -43,13 +43,15 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *naviViewBottomConstraint;
 
 // info view (in navi View)
-@property (weak, nonatomic) IBOutlet UIButton *utilityButton;
+@property (weak, nonatomic) IBOutlet UIButton *leftUtilityButton;
+@property (weak, nonatomic) IBOutlet UIButton *rightUtilityButton;
 @property (weak, nonatomic) IBOutlet UILabel *assetDateLabel;
 @property (weak, nonatomic) IBOutlet UITextField *assetCommentTextField;
 @property (weak, nonatomic) IBOutlet LKImagePickerControllerCheckmarkButton *checkmarkButton;
 
 // utility views
 @property (weak, nonatomic) IBOutlet UIView *topToolbarView;
+@property (weak, nonatomic) IBOutlet CAGradientLayer *topToolbarViewGradientLayer;
 @property (weak, nonatomic) IBOutlet UIView *leftSideView;
 @property (weak, nonatomic) IBOutlet UIView *rightSideView;
 
@@ -222,11 +224,14 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
     }
     
     // Side views
+    self.topToolbarViewGradientLayer = [LKImagePickerControllerUtility setupPlateView:self.topToolbarView directionDown:YES magnitude:0.25];
+
     id <LKImagePickerControllerDelegate> delegate = self.selectViewController.imagePickerController.imagePickerControllerDelegate;
     if ([delegate respondsToSelector:@selector(setupDetailTopToolbarView:)]) {
         [delegate setupDetailTopToolbarView:self.topToolbarView];
-    } else {
-        self.topToolbarView.hidden = YES;
+        
+//    } else {
+//        self.topToolbarView.hidden = YES;
     }
     if ([delegate respondsToSelector:@selector(setupDetailLeftSideView:)]) {
         [delegate setupDetailLeftSideView:self.leftSideView];
@@ -328,7 +333,7 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
 
     self.view.backgroundColor = UIColor.clearColor;
     
-    if ([delegate respondsToSelector:@selector(utilityButtonImageState:)]) {
+    if ([delegate respondsToSelector:@selector(leftUtilityButtonImageState:)]) {
         
         for (NSNumber* n in @[@(UIControlStateNormal),
                        @(UIControlStateDisabled),
@@ -337,8 +342,21 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
                        @(UIControlStateSelected)
                        ]) {
             UIControlState state = n.integerValue;
-            UIImage* image = [delegate utilityButtonImageState:state];
-            [self.utilityButton setImage:image forState:state];
+            UIImage* image = [delegate leftUtilityButtonImageState:state];
+            [self.leftUtilityButton setImage:image forState:state];
+        }
+    }
+    if ([delegate respondsToSelector:@selector(rightUtilityButtonImageState:)]) {
+        
+        for (NSNumber* n in @[@(UIControlStateNormal),
+                              @(UIControlStateDisabled),
+                              @(UIControlStateFocused),
+                              @(UIControlStateHighlighted),
+                              @(UIControlStateSelected)
+                              ]) {
+            UIControlState state = n.integerValue;
+            UIImage* image = [delegate rightUtilityButtonImageState:state];
+            [self.rightUtilityButton setImage:image forState:state];
         }
     }
 }
@@ -415,7 +433,8 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
                      animations:^{
                          self.collectionView.alpha = 1.0;
                      }];
-
+    
+    self.topToolbarViewGradientLayer.frame = self.topToolbarView.bounds;
 }
 - (UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
@@ -528,8 +547,8 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
     // delegte
     id <LKImagePickerControllerDelegate> delegate = self.selectViewController.imagePickerController.imagePickerControllerDelegate;
     
-    if ([delegate respondsToSelector:@selector(didChangeDetailAsset:viewController:utilityButton:)]) {
-        [delegate didChangeDetailAsset:asset viewController:self utilityButton:self.utilityButton];
+    if ([delegate respondsToSelector:@selector(didChangeDetailAsset:viewController:leftUtilityButton:rightUtilityButton:)]) {
+        [delegate didChangeDetailAsset:asset viewController:self leftUtilityButton:self.leftUtilityButton rightUtilityButton:_rightUtilityButton];
     }
 }
 
@@ -730,14 +749,21 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
         [self.navigationController popViewControllerAnimated:YES];
     }
 }
-- (IBAction)onUtilityButton:(id)sender {
+- (IBAction)onLeftUtilityButton:(id)sender {
     id <LKImagePickerControllerDelegate> delegate = self.selectViewController.imagePickerController.imagePickerControllerDelegate;
     
-    if ([delegate respondsToSelector:@selector(onUtilityButton:viewController:)]) {
+    if ([delegate respondsToSelector:@selector(onLeftUtilityButton:viewController:)]) {
         [self.assetCommentTextField resignFirstResponder];
-        [delegate onUtilityButton:sender viewController:self];
+        [delegate onLeftUtilityButton:sender viewController:self];
     }
-
+}
+- (IBAction)onRightUtilityButton:(id)sender {
+    id <LKImagePickerControllerDelegate> delegate = self.selectViewController.imagePickerController.imagePickerControllerDelegate;
+    
+    if ([delegate respondsToSelector:@selector(onRightUtilityButton:viewController:)]) {
+        [self.assetCommentTextField resignFirstResponder];
+        [delegate onRightUtilityButton:sender viewController:self];
+    }
 }
 
 #pragma mark - UITextFieldDelegate

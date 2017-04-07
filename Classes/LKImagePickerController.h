@@ -35,7 +35,7 @@
 - (void)didSelectViewCellLongPressBeganViewController:(UIViewController*)viewController asset:(LKAsset*)asset;
 - (void)didDetailViewCellLongPressBeganViewController:(UIViewController*)viewController asset:(LKAsset*)asset;
 - (void)didDetailViewThubmailCellLongPressBeganViewController:(UIViewController*)viewController asset:(LKAsset*)asset;
-- (void)didChangeDetailAsset:(LKAsset*)asset viewController:(UIViewController*)viewController utilityButton:(UIButton*)utilityButton;
+- (void)didChangeDetailAsset:(LKAsset*)asset viewController:(UIViewController*)viewController leftUtilityButton:(UIButton*)leftUtilityButton rightUtilityButton:(UIButton*)rightUtilityButton;
 
 // Selected Pictures Screen
 - (UIBarButtonItem*)rightBarButtonItem2;
@@ -52,8 +52,10 @@
 // Detail Screen
 - (UIBarButtonItem*)rightBarButtonItem3;
 - (BOOL)disableRightBarButtonItem3WhenNoSelected;
-- (UIImage*)utilityButtonImageState:(UIControlState)state;
-- (void)onUtilityButton:(UIButton*)button viewController:(UIViewController*)viewController;
+- (UIImage*)leftUtilityButtonImageState:(UIControlState)state;
+- (void)onLeftUtilityButton:(UIButton*)button viewController:(UIViewController*)viewController;
+- (UIImage*)rightUtilityButtonImageState:(UIControlState)state;
+- (void)onRightUtilityButton:(UIButton*)button viewController:(UIViewController*)viewController;
 
 // Detail customize view
 - (void)setupDetailTopToolbarView:(UIView*)topToolbarView;
