@@ -139,4 +139,15 @@
     }];
 }
 
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [super touchesBegan:touches withEvent:event];
+}
+- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [super touchesEnded:touches withEvent:event];
+    self.photoImageView.alpha = 0.5;
+    [UIView animateWithDuration:0.5 animations:^{
+        self.photoImageView.alpha = 1.0;
+    }];
+}
+
 @end
