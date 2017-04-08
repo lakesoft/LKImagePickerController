@@ -19,6 +19,7 @@ NSString * const LKImagePickerControllerDetailCellLongPressNotification = @"LKIm
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (unsafe_unretained, nonatomic) IBOutlet UIButton *playMovieButton;
 @property (strong, nonatomic) MPMoviePlayerController* moviePlayerController;
+@property (nonatomic, assign) BOOL displayingOriginal;
 @end
 
 @implementation LKImagePickerControllerDetailCell
@@ -28,6 +29,7 @@ NSString * const LKImagePickerControllerDetailCellLongPressNotification = @"LKIm
     _asset = asset;
 //    self.imageView.image = asset.fullScreenImageWithoutOrientation;
     self.imageView.image = asset.alternativeFullScreenImageWithoutOrientation;
+    self.displayingOriginal = NO;
     self.scrollView.zoomScale = 1.0;
     self.playMovieButton.hidden = self.asset.type != LKAssetTypeVideo;
 }
@@ -136,6 +138,11 @@ NSString * const LKImagePickerControllerDetailCellLongPressNotification = @"LKIm
 - (void)displayOriginalImage:(BOOL)on
 {
     UIImage* image;
+    if (on == self.displayingOriginal) {
+        return;
+    }
+
+    self.displayingOriginal = on;
     if (on) {
         image = self.asset.fullScreenImageWithoutOrientation;
     } else {
