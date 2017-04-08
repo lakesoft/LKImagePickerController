@@ -554,6 +554,9 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
     self.assetDateLabel.text = asset.date != nil ? [LKImagePickerControllerUtility formattedDateTimeStringForDate:asset.date] : @"";
     self.assetCommentTextField.text = asset.commentString;
     
+    // update cell
+    [self displayOriginalImageInDetailCell:NO];
+
     // NOTE: select cell must be nil, because detail cell is not displayed.
     LKImagePickerControllerDetailCell* thumbCell = (LKImagePickerControllerSelectCell*)[self.thumbnailCollectionView cellForItemAtIndexPath:self.indexPath];
     self.checkmarkButton.checked = thumbCell.checked;
@@ -863,6 +866,11 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
 {
     LKImagePickerControllerDetailCell* cell = [self.collectionView cellForItemAtIndexPath:self.indexPath];
     [cell displayOriginalImage:on];
+}
+- (BOOL)displayingOriginalImageInDetailCell
+{
+    LKImagePickerControllerDetailCell* cell = [self.collectionView cellForItemAtIndexPath:self.indexPath];
+    return cell.displayingOriginal;
 }
 
 @end

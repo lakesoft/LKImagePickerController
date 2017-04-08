@@ -184,6 +184,10 @@
 {
     [self.selectViewController.detailViewController displayOriginalImageInDetailCell:on];
 }
+- (BOOL)displayingOriginalImageInDetailCell
+{
+    [self.selectViewController.detailViewController displayingOriginalImageInDetailCell];
+}
 
 @end
 

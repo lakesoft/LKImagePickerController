@@ -104,6 +104,7 @@
 - (UIViewController*)currentViewController;
 
 - (void)displayOriginalImageInDetailCell:(BOOL)on;
+- (BOOL)displayingOriginalImageInDetailCell;
 
 @end
 

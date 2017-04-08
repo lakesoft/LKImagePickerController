@@ -19,7 +19,6 @@ NSString * const LKImagePickerControllerDetailCellLongPressNotification = @"LKIm
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (unsafe_unretained, nonatomic) IBOutlet UIButton *playMovieButton;
 @property (strong, nonatomic) MPMoviePlayerController* moviePlayerController;
-@property (nonatomic, assign) BOOL displayingOriginal;
 @end
 
 @implementation LKImagePickerControllerDetailCell
@@ -139,6 +138,9 @@ NSString * const LKImagePickerControllerDetailCellLongPressNotification = @"LKIm
 {
     UIImage* image;
     if (on == self.displayingOriginal) {
+        return;
+    }
+    if (!self.asset.hasAlternativeImage) {
         return;
     }
 

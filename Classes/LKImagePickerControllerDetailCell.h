@@ -19,6 +19,7 @@ extern NSString * const LKImagePickerControllerDetailCellLongPressNotification;
 @property (nonatomic, assign) BOOL checked;
 @property (nonatomic, assign) BOOL aspectFill;
 @property (nonatomic, weak) LKImagePickerControllerDetailViewController* viewController;
+@property (nonatomic, assign) BOOL displayingOriginal;
 
 - (void)didEndDisplay;
 - (void)alert;
