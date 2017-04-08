@@ -186,7 +186,7 @@
 }
 - (BOOL)displayingOriginalImageInDetailCell
 {
-    [self.selectViewController.detailViewController displayingOriginalImageInDetailCell];
+    return [self.selectViewController.detailViewController displayingOriginalImageInDetailCell];
 }
 
 @end
