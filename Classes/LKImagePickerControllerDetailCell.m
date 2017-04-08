@@ -133,6 +133,21 @@ NSString * const LKImagePickerControllerDetailCellLongPressNotification = @"LKIm
     }];
 }
 
+- (void)displayOriginalImage:(BOOL)on
+{
+    UIImage* image;
+    if (on) {
+        image = self.asset.fullScreenImageWithoutOrientation;
+    } else {
+        image = self.asset.alternativeFullScreenImageWithoutOrientation;
+    }
+    [UIView transitionWithView:self.imageView
+                      duration:0.2
+                       options:UIViewAnimationOptionTransitionCrossDissolve
+                    animations:^{
+                        self.imageView.image = image;
+                    } completion:nil];
+}
 
 #define CheckmarkMarginX    40.0
 #define CheckmarkMarginY    (CheckmarkMarginX+60.0)

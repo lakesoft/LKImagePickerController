@@ -103,6 +103,7 @@
 - (NSIndexPath*)currentIndexPathOfDetail;
 - (UIViewController*)currentViewController;
 
+- (void)displayOriginalImageInDetailCell:(BOOL)on;
 
 @end
 

@@ -180,6 +180,11 @@
     }
 }
 
+- (void)displayOriginalImageInDetailCell:(BOOL)on
+{
+    [self.selectViewController.detailViewController displayOriginalImageInDetailCell:on];
+}
+
 @end
 
 

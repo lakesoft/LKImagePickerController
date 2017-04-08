@@ -29,4 +29,5 @@ extern NSString * const LKImagePickerControllerDetailViewControllerWillDisappear
 - (void)reloadCurrentAsset;
 - (void)setInputModeEnabled:(BOOL)enabled;
 
+- (void)displayOriginalImageInDetailCell:(BOOL)on;
 @end

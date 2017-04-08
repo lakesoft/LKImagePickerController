@@ -226,7 +226,7 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
     }
     
     // Side views
-    self.topToolbarViewGradientLayer = [LKImagePickerControllerUtility setupPlateView:self.topToolbarView directionDown:YES magnitude:0.25];
+    self.topToolbarViewGradientLayer = [LKImagePickerControllerUtility setupPlateView:self.topToolbarView directionDown:YES magnitude:0.15];
 
     id <LKImagePickerControllerDelegate> delegate = self.selectViewController.imagePickerController.imagePickerControllerDelegate;
     if ([delegate respondsToSelector:@selector(setupDetailTopToolbarView:)]) {
@@ -856,6 +856,13 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
 // MARK: - Computed properties
 - (LKAsset*)currentAsset {
     return [self.assetsCollection assetForIndexPath:self.indexPath];
+}
+
+// MARK: -
+- (void)displayOriginalImageInDetailCell:(BOOL)on
+{
+    LKImagePickerControllerDetailCell* cell = [self.collectionView cellForItemAtIndexPath:self.indexPath];
+    [cell displayOriginalImage:on];
 }
 
 @end
