@@ -43,6 +43,8 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *naviViewBottomConstraint;
 
 // info view (in navi View)
+@property (weak, nonatomic) IBOutlet UIView *naviBackView;
+@property (weak, nonatomic) CAGradientLayer* naviBackViewGradientLayer;
 @property (weak, nonatomic) IBOutlet UIButton *leftUtilityButton;
 @property (weak, nonatomic) IBOutlet UIButton *rightUtilityButton;
 @property (weak, nonatomic) IBOutlet UILabel *assetDateLabel;
@@ -283,6 +285,8 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
     lpgr.minimumPressDuration = 0.3;
     [self.thumbnailCollectionView addGestureRecognizer:lpgr];
 
+    
+    // navi view
     UISwipeGestureRecognizer *swgr1 = [[UISwipeGestureRecognizer alloc]
                                           initWithTarget:self action:@selector(_handleSwipeDown:)];
     swgr1.direction = UISwipeGestureRecognizerDirectionDown;
@@ -292,6 +296,10 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
                                        initWithTarget:self action:@selector(_handleSwipeUp:)];
     swgr2.direction = UISwipeGestureRecognizerDirectionUp;
     [self.naviView addGestureRecognizer:swgr2];
+    
+    self.naviBackViewGradientLayer = [LKImagePickerControllerUtility setupPlateView:self.naviBackView directionDown:NO magnitude:2.0];
+    self.naviBackView.alpha = 0.0;
+
 
 //    self.collectionView.alpha = 0.0;
 //    [self performSelector:@selector(_scrollToStartpoint) withObject:nil afterDelay:0.1];
@@ -384,6 +392,11 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
         self.closeButton.alpha = 1.0;
     }];
     
+    [UIView animateWithDuration:0.2 animations:^{
+        self.naviBackView.alpha = 1.0;
+    }];
+
+    
     LKImagePickerControllerDetailCell* cell = [self.collectionView cellForItemAtIndexPath:self.indexPath];
     self.checkmarkButton.checked = cell.checked;
 }
@@ -435,6 +448,7 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
                      }];
     
     self.topToolbarViewGradientLayer.frame = self.topToolbarView.bounds;
+    self.naviBackViewGradientLayer.frame = self.naviBackView.bounds;
 }
 - (UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
