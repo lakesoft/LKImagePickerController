@@ -27,5 +27,6 @@
 // API (manupilations)
 - (void)deselectAll;
 - (void)displayMainScreenAnimated:(BOOL)animated;
+- (void)scrollToIndexPath:(NSIndexPath*)indexPath;
 
 @end

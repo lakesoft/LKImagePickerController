@@ -904,6 +904,7 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
     } else {
         [self.navigationController popViewControllerAnimated:YES];
     }
+    [self.selectViewController scrollToIndexPath:self.indexPath];
 }
 
 @end

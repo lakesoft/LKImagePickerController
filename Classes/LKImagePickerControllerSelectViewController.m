@@ -750,6 +750,19 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     [self _setDisplayingSelectedOnly:NO animated:animated];
 }
 
+- (void)scrollToIndexPath:(NSIndexPath*)indexPath
+{
+    int maxSections = [self.collectionView numberOfSections];
+    if (maxSections <= indexPath.section) {
+        return;
+    }
+    int maxItems = [self.collectionView numberOfItemsInSection:indexPath.section];
+    if (maxItems <= indexPath.item) {
+        return;
+    }
+    [self.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredVertically animated:NO];
+}
+
 
 #pragma mark - Properties
 - (void)_setDisplayingSelectedOnly:(BOOL)displayingSelectedOnly animated:(BOOL)animated
