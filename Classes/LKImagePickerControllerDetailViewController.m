@@ -364,31 +364,11 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
 
     self.view.backgroundColor = UIColor.clearColor;
     
-    if ([delegate respondsToSelector:@selector(leftUtilityButtonImageState:)]) {
-        
-        for (NSNumber* n in @[@(UIControlStateNormal),
-                       @(UIControlStateDisabled),
-                       @(UIControlStateFocused),
-                       @(UIControlStateHighlighted),
-                       @(UIControlStateSelected)
-                       ]) {
-            UIControlState state = n.integerValue;
-            UIImage* image = [delegate leftUtilityButtonImageState:state];
-            [self.leftUtilityButton setImage:image forState:state];
-        }
+    if ([delegate respondsToSelector:@selector(setupLeftUtilityButton:)]) {
+        [delegate setupLeftUtilityButton:self.leftUtilityButton];
     }
-    if ([delegate respondsToSelector:@selector(rightUtilityButtonImageState:)]) {
-        
-        for (NSNumber* n in @[@(UIControlStateNormal),
-                              @(UIControlStateDisabled),
-                              @(UIControlStateFocused),
-                              @(UIControlStateHighlighted),
-                              @(UIControlStateSelected)
-                              ]) {
-            UIControlState state = n.integerValue;
-            UIImage* image = [delegate rightUtilityButtonImageState:state];
-            [self.rightUtilityButton setImage:image forState:state];
-        }
+    if ([delegate respondsToSelector:@selector(setupRightUtilityButton:)]) {
+        [delegate setupRightUtilityButton:self.rightUtilityButton];
     }
 }
 
@@ -892,11 +872,11 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
 }
 
 // MARK: - UIGestureRecognizerDelegate
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
-{
-    
-    return NO;
-}
+//- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+//{
+//    
+//    return NO;
+//}
 
 // MARK: - Computed properties
 - (LKAsset*)currentAsset {

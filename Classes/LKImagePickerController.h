@@ -52,9 +52,9 @@
 // Detail Screen
 - (UIBarButtonItem*)rightBarButtonItem3;
 - (BOOL)disableRightBarButtonItem3WhenNoSelected;
-- (UIImage*)leftUtilityButtonImageState:(UIControlState)state;
+- (void)setupLeftUtilityButton:(UIButton*)button;
 - (void)onLeftUtilityButton:(UIButton*)button viewController:(UIViewController*)viewController;
-- (UIImage*)rightUtilityButtonImageState:(UIControlState)state;
+- (void)setupRightUtilityButton:(UIButton*)button;
 - (void)onRightUtilityButton:(UIButton*)button viewController:(UIViewController*)viewController;
 
 // Detail customize view

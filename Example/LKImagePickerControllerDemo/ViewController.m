@@ -152,15 +152,19 @@
     NSLog(@"currentAssetOfDetail: %@", self.controller.currentAssetOfDetail);
 }
 
-- (UIImage*)leftUtilityButtonImageState:(UIControlState)state {
-    return [UIImage imageNamed:@"LKImagePickerController_ButtonUtility" inBundle:LKImagePickerControllerBundleManager.bundle compatibleWithTraitCollection:nil];
-    }
+- (void)setupLeftUtilityButton:(UIButton *)button
+{
+    UIImage* image = [UIImage imageNamed:@"LKImagePickerController_ButtonUtility" inBundle:LKImagePickerControllerBundleManager.bundle compatibleWithTraitCollection:nil];
+    [button setImage:image forState:UIControlStateNormal];
+}
 - (void)onLeftUtilityButton:(UIButton*)button viewController:(UIViewController*)viewController
 {
     NSLog(@"onLeftUtilityButton");
 }
-- (UIImage*)rightUtilityButtonImageState:(UIControlState)state {
-    return [UIImage imageNamed:@"LKImagePickerController_ButtonUtility" inBundle:LKImagePickerControllerBundleManager.bundle compatibleWithTraitCollection:nil];
+- (void)setupRightUtilityButton:(UIButton *)button
+{
+    UIImage* image = [UIImage imageNamed:@"LKImagePickerController_ButtonUtility" inBundle:LKImagePickerControllerBundleManager.bundle compatibleWithTraitCollection:nil];
+    [button setImage:image forState:UIControlStateNormal];
 }
 - (void)onRightUtilityButton:(UIButton*)button viewController:(UIViewController*)viewController
 {
