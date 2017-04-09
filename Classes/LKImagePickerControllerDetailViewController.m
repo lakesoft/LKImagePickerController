@@ -39,6 +39,9 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
 @property (assign, nonatomic) BOOL isWhileClosing;
 
 // navi view
+@property (weak, nonatomic) IBOutlet UIView *headerNaviView;
+@property (weak, nonatomic) IBOutlet UIView *headerNaviBackView;
+@property (weak, nonatomic) CAGradientLayer* headerNaviBackViewGradientLayer;
 @property (weak, nonatomic) IBOutlet UIView *naviView;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *naviViewBottomConstraint;
 
@@ -226,7 +229,7 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
     }
     
     // Side views
-    self.topToolbarViewGradientLayer = [LKImagePickerControllerUtility setupPlateView:self.topToolbarView directionDown:YES magnitude:0.15];
+//    self.topToolbarViewGradientLayer = [LKImagePickerControllerUtility setupPlateView:self.topToolbarView directionDown:YES magnitude:0.15];
 
     id <LKImagePickerControllerDelegate> delegate = self.selectViewController.imagePickerController.imagePickerControllerDelegate;
     if ([delegate respondsToSelector:@selector(setupDetailTopToolbarView:)]) {
@@ -297,8 +300,10 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
     swgr2.direction = UISwipeGestureRecognizerDirectionUp;
     [self.naviView addGestureRecognizer:swgr2];
     
-    self.naviBackViewGradientLayer = [LKImagePickerControllerUtility setupPlateView:self.naviBackView directionDown:NO magnitude:2.0];
+    self.naviBackViewGradientLayer = [LKImagePickerControllerUtility setupPlateView:self.naviBackView directionDown:NO magnitude:1.75];
     self.naviBackView.alpha = 0.0;
+    self.headerNaviBackViewGradientLayer = [LKImagePickerControllerUtility setupPlateView:self.headerNaviBackView directionDown:YES magnitude:1.5];
+    self.headerNaviView.alpha = 0.0;
 
 
 //    self.collectionView.alpha = 0.0;
@@ -394,6 +399,7 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
     
     [UIView animateWithDuration:0.2 animations:^{
         self.naviBackView.alpha = 1.0;
+        self.headerNaviView.alpha = 1.0;
     }];
 
     
@@ -449,6 +455,7 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
     
     self.topToolbarViewGradientLayer.frame = self.topToolbarView.bounds;
     self.naviBackViewGradientLayer.frame = self.naviBackView.bounds;
+    self.headerNaviBackViewGradientLayer.frame = self.headerNaviBackView.bounds;
 }
 - (UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;

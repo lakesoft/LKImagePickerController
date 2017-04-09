@@ -59,12 +59,14 @@
         locations = [NSArray arrayWithObjects:
                      [NSNumber numberWithFloat:0.0],
                      [NSNumber numberWithFloat:0.25],
+                     [NSNumber numberWithFloat:0.5],
                      [NSNumber numberWithFloat:1.0],
                      nil];
     } else {
         locations = [NSArray arrayWithObjects:
                      [NSNumber numberWithFloat:0.0],
-                     [NSNumber numberWithFloat:0.25],
+                     [NSNumber numberWithFloat:0.5],
+                     [NSNumber numberWithFloat:0.75],
                      [NSNumber numberWithFloat:1.0],
                      nil];
     }
@@ -74,6 +76,7 @@
     if (down) {
         colors = [NSArray arrayWithObjects:
                   (id)[UIColor colorWithWhite:0.0 alpha:0.3*s].CGColor,
+                  (id)[UIColor colorWithWhite:0.0 alpha:0.2*s].CGColor,
                   (id)[UIColor colorWithWhite:0.0 alpha:0.1*s].CGColor,
                   (id)[UIColor clearColor].CGColor,
                   nil];
@@ -81,6 +84,7 @@
         colors = [NSArray arrayWithObjects:
                   (id)[UIColor clearColor].CGColor,
                   (id)[UIColor colorWithWhite:0.0 alpha:0.1*s].CGColor,
+                  (id)[UIColor colorWithWhite:0.0 alpha:0.2*s].CGColor,
                   (id)[UIColor colorWithWhite:0.0 alpha:0.3*s].CGColor,
                   nil];
     }
