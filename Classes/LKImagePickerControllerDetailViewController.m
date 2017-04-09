@@ -18,6 +18,8 @@
 #import "LKImagePickerControllerCheckmarkButton.h"
 #import "LKAsset+Comment.h"
 #import "LKAsset+AlternativeImage.h"
+#import "LKAsset+Location.h"
+#import "LKImagePickerControllerLocationManager.h"
 
 #define LKImagePickerControlDetailThumbnailSize (CGSizeMake(50.0,50.0))
 
@@ -51,6 +53,7 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
 @property (weak, nonatomic) IBOutlet UIButton *leftUtilityButton;
 @property (weak, nonatomic) IBOutlet UIButton *rightUtilityButton;
 @property (weak, nonatomic) IBOutlet UILabel *assetDateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *assetPlaceLabel;
 @property (weak, nonatomic) IBOutlet UITextField *assetCommentTextField;
 @property (weak, nonatomic) IBOutlet LKImagePickerControllerCheckmarkButton *checkmarkButton;
 
@@ -111,6 +114,15 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
         [cell flashCompletion:^{
             [self.selectViewController.imagePickerController.imagePickerControllerDelegate didDetailViewCellLongPressBeganViewController:self asset:cell.asset];
         }];
+    }
+}
+
+- (void)_didFinishReverseGeocoding:(NSNotification*)notification
+{
+    LKAsset* notifiedAsset = notification.object;
+    LKAsset* asset = [self.assetsCollection assetForIndexPath:self.indexPath];
+    if (notifiedAsset == asset) {
+        [self setString:asset.placeString forLabel:self.assetPlaceLabel];
     }
 }
 
@@ -265,6 +277,11 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
                                                name:LKImagePickerControllerDetailCellLongPressNotification
                                              object:nil];
 
+    [NSNotificationCenter.defaultCenter addObserver:self
+                                           selector:@selector(_didFinishReverseGeocoding:)
+                                               name:LKImagePickerControllerLocationManagerDidFinishReverseGeocoding
+                                             object:nil];
+    
     [NSNotificationCenter.defaultCenter addObserver:self
                                            selector:@selector(keyboardWillChangeFrame:)
                                                name:UIKeyboardWillChangeFrameNotification
@@ -554,11 +571,26 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
 }
 
 #pragma mark - Sub header
+- (void)setString:(NSString*)placeString forLabel:(UILabel*)label{
+    CATransition* fadeTransition = CATransition.new;
+    fadeTransition.duration = 0.2;
+    
+    [CATransaction begin];
+    [CATransaction setCompletionBlock:^{
+        label.text = placeString;
+        [label.layer addAnimation:fadeTransition forKey:kCATransition];
+    }];
+    
+    [CATransaction commit];
+}
 - (void)didChangeDisplayedAsset
 {
     // update navi view
     LKAsset* asset = [self.assetsCollection assetForIndexPath:self.indexPath];
-    self.assetDateLabel.text = asset.date != nil ? [LKImagePickerControllerUtility formattedDateTimeStringForDate:asset.date] : @"";
+    NSString* dateString = asset.date != nil ? [LKImagePickerControllerUtility formattedDateTimeStringForDate:asset.date] : @"";
+    [self setString:dateString forLabel:self.assetDateLabel];
+    [self setString:asset.placeString forLabel:self.assetPlaceLabel];
+
     self.assetCommentTextField.text = asset.commentString;
     
     // update cell
@@ -574,6 +606,7 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
     if ([delegate respondsToSelector:@selector(didChangeDetailAsset:viewController:leftUtilityButton:rightUtilityButton:)]) {
         [delegate didChangeDetailAsset:asset viewController:self leftUtilityButton:self.leftUtilityButton rightUtilityButton:_rightUtilityButton];
     }
+    
 }
 
 

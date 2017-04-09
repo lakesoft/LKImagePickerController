@@ -47,21 +47,21 @@
 
 // MARK: - management (privates)
 
-- (NSString*)_filePath
+- (NSString*)_alternativeImageFilePath
 {
-    return [[LKImagePickerControllerAlternateImageManager filePathForAsset:self] stringByAppendingPathExtension:@".jpg"];
+    return [[LKImagePickerControllerAlternateImageManager filePathForAsset:self] stringByAppendingPathExtension:@"jpg"];
 }
-- (NSString*)_filePathForScreen
+- (NSString*)_alternativeImageFilePathForScreen
 {
-    return [[[LKImagePickerControllerAlternateImageManager filePathForAsset:self] stringByAppendingString:@"_screen"] stringByAppendingPathExtension:@".jpg"];
+    return [[[LKImagePickerControllerAlternateImageManager filePathForAsset:self] stringByAppendingString:@"_screen"] stringByAppendingPathExtension:@"jpg"];
 }
-- (NSString*)_filePathForThumbnail
+- (NSString*)_alternativeImageFilePathForThumbnail
 {
-    return [[[LKImagePickerControllerAlternateImageManager filePathForAsset:self] stringByAppendingString:@"_thumbnail"] stringByAppendingPathExtension:@".jpg"];
+    return [[[LKImagePickerControllerAlternateImageManager filePathForAsset:self] stringByAppendingString:@"_thumbnail"] stringByAppendingPathExtension:@"jpg"];
 }
-- (NSString*)_filePathForEnabled
+- (NSString*)_alternativeImageFilePathForEnabled
 {
-    return [[LKImagePickerControllerAlternateImageManager filePathForAsset:self] stringByAppendingPathExtension:@".enabled"];
+    return [[LKImagePickerControllerAlternateImageManager filePathForAsset:self] stringByAppendingPathExtension:@"enabled"];
 }
 
 - (void)_removeImageAtFilePath:(NSString*)filePath
@@ -79,7 +79,7 @@
 
 - (UIImage*)alternativeImage
 {
-    UIImage* image = [UIImage imageWithContentsOfFile:self._filePath];
+    UIImage* image = [UIImage imageWithContentsOfFile:self._alternativeImageFilePath];
     if (image == nil) {
         NSLog(@"[WARN] Not found the alternative image (%@).", self);
     }
@@ -88,7 +88,7 @@
 
 - (void)setAlternativeImage:(UIImage*)image
 {
-    if ([UIImageJPEGRepresentation(image, 0.7) writeToFile:self._filePath atomically:YES]) {
+    if ([UIImageJPEGRepresentation(image, 0.7) writeToFile:self._alternativeImageFilePath atomically:YES]) {
         NSLog(@"[DEBUG] Saved alternative image: %@", NSStringFromCGSize(image.size));
         
         UIImage* screenImage = [self _setAlternativeScreenImage:image];
@@ -102,7 +102,7 @@
 
 - (UIImage*)alternativeScreenImage
 {
-    UIImage* image = [UIImage imageWithContentsOfFile:self._filePathForScreen];
+    UIImage* image = [UIImage imageWithContentsOfFile:self._alternativeImageFilePathForScreen];
     if (image == nil) {
         NSLog(@"[WARN] Not found the alternative screen image (%@).", self);
     }
@@ -114,7 +114,7 @@
     CGSize size = UIScreen.mainScreen.bounds.size;
     CGFloat width = fmax(size.width, size.height) * UIScreen.mainScreen.scale;
     UIImage* processedImage = [LKImageUtility adjustOrientationImage:image toWidth:width];
-    if ([UIImageJPEGRepresentation(processedImage, 0.7) writeToFile:self._filePathForScreen atomically:YES]) {
+    if ([UIImageJPEGRepresentation(processedImage, 0.7) writeToFile:self._alternativeImageFilePathForScreen atomically:YES]) {
         NSLog(@"[DEBUG] Saved alternative screen image: %@", NSStringFromCGSize(processedImage.size));
         
         return processedImage;
@@ -127,7 +127,7 @@
 
 - (UIImage*)alternativeThumbnailImage
 {
-    UIImage* image = [UIImage imageWithContentsOfFile:self._filePathForThumbnail];
+    UIImage* image = [UIImage imageWithContentsOfFile:self._alternativeImageFilePathForThumbnail];
     if (image == nil) {
         NSLog(@"[WARN] Not found the alternative thumbnail image (%@).", self);
     }
@@ -138,7 +138,7 @@
 {
     CGFloat width = 256 * UIScreen.mainScreen.scale;
     UIImage* processedImage = [LKImageUtility adjustOrientationImage:image toWidth:width];
-    if ([UIImageJPEGRepresentation(processedImage, 0.7) writeToFile:self._filePathForThumbnail atomically:YES]) {
+    if ([UIImageJPEGRepresentation(processedImage, 0.7) writeToFile:self._alternativeImageFilePathForThumbnail atomically:YES]) {
         NSLog(@"[DEBUG] Saved alternative thumbnail image: %@", NSStringFromCGSize(processedImage.size));
         
         return processedImage;
@@ -152,7 +152,7 @@
 
 - (BOOL)hasAlternativeImage
 {
-    return [NSFileManager.defaultManager fileExistsAtPath:self._filePath];
+    return [NSFileManager.defaultManager fileExistsAtPath:self._alternativeImageFilePath];
 }
 
 
@@ -160,17 +160,17 @@
 
 - (BOOL)alternativeEnabled
 {
-    return [NSFileManager.defaultManager fileExistsAtPath:self._filePathForEnabled];
+    return [NSFileManager.defaultManager fileExistsAtPath:self._alternativeImageFilePathForEnabled];
 }
 
 - (void)setAlternativeEnabled:(BOOL)enabled
 {
     if (enabled) {
-        [@"enabled" writeToFile:self._filePathForEnabled atomically:YES encoding:NSASCIIStringEncoding
+        [@"enabled" writeToFile:self._alternativeImageFilePathForEnabled atomically:YES encoding:NSASCIIStringEncoding
                              error:nil];
     } else {
         NSError* error = nil;
-        [NSFileManager.defaultManager removeItemAtPath:self._filePathForEnabled error:&error];
+        [NSFileManager.defaultManager removeItemAtPath:self._alternativeImageFilePathForEnabled error:&error];
         if (error) {
             NSLog(@"Failed to remove alternative enabled flag (%@): %@", self, error);
         }
@@ -183,9 +183,9 @@
 - (void)removeAlternativeImage
 {
     [self setAlternativeEnabled:NO];
-    [self _removeImageAtFilePath:self._filePath];
-    [self _removeImageAtFilePath:self._filePathForScreen];
-    [self _removeImageAtFilePath:self._filePathForThumbnail];
+    [self _removeImageAtFilePath:self._alternativeImageFilePath];
+    [self _removeImageAtFilePath:self._alternativeImageFilePathForScreen];
+    [self _removeImageAtFilePath:self._alternativeImageFilePathForThumbnail];
 }
 
 

@@ -6,7 +6,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = "LKImagePickerController"
-  s.version          = "0.6.8"
+  s.version          = "0.7.0"
   s.summary          = "A short description of LKImagePickerController."
   s.description      = <<-DESC
                        An optional longer description of LKImagePickerController
@@ -32,6 +32,7 @@ Pod::Spec.new do |s|
   s.ios.exclude_files = 'Classes/osx'
   s.osx.exclude_files = 'Classes/ios'
   # s.public_header_files = 'Classes/**/*.h'
-  s.frameworks = 'MediaPlayer'
+  s.frameworks = 'MediaPlayer', 'CoreLocation'
+  #s.frameworks = 'MediaPlayer', 'CoreLocation', 'AddressBookUI'
   s.dependency 'LKAssetsLibrary', '~> 1.0'
 end

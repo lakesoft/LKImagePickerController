@@ -13,6 +13,7 @@
             <connections>
                 <outlet property="assetCommentTextField" destination="ThX-qM-UsX" id="yMZ-OT-a2Y"/>
                 <outlet property="assetDateLabel" destination="CvX-4k-rnH" id="oS9-Nr-dpL"/>
+                <outlet property="assetPlaceLabel" destination="P1n-Aw-eXw" id="gng-EG-pd3"/>
                 <outlet property="checkmarkButton" destination="5ct-9E-Jsa" id="ggK-iJ-T8z"/>
                 <outlet property="closeButton" destination="QK5-fO-npb" id="J7U-cV-2Et"/>
                 <outlet property="collectionView" destination="EKc-bL-G2J" id="tK2-L3-Bcd"/>
@@ -58,10 +59,10 @@
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </view>
                         <view opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="yoE-ho-XYJ" userLabel="Tool view">
-                            <rect key="frame" x="0.0" y="81" width="414" height="50"/>
+                            <rect key="frame" x="0.0" y="71" width="414" height="60"/>
                             <subviews>
                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ThX-qM-UsX">
-                                    <rect key="frame" x="100" y="10" width="214" height="30"/>
+                                    <rect key="frame" x="60" y="15" width="294" height="30"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <constraints>
@@ -75,7 +76,7 @@
                                     </connections>
                                 </textField>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i9q-22-OLa">
-                                    <rect key="frame" x="10" y="3" width="44" height="44"/>
+                                    <rect key="frame" x="10" y="8" width="44" height="44"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="44" id="Flt-fO-3Mj"/>
                                         <constraint firstAttribute="height" constant="44" id="Lrk-1K-cGl"/>
@@ -85,7 +86,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eEg-Cf-uiv">
-                                    <rect key="frame" x="59" y="3" width="44" height="44"/>
+                                    <rect key="frame" x="59" y="8" width="44" height="44"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="44" id="loO-31-amC"/>
                                         <constraint firstAttribute="height" constant="44" id="vjg-3D-3dS"/>
@@ -95,10 +96,10 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5ct-9E-Jsa" customClass="LKImagePickerControllerCheckmarkButton">
-                                    <rect key="frame" x="359" y="2" width="45" height="45"/>
+                                    <rect key="frame" x="360" y="7.6666666666666288" width="44" height="44"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="45" id="N0T-kX-ZHj"/>
-                                        <constraint firstAttribute="height" constant="45" id="tLT-9q-UwY"/>
+                                        <constraint firstAttribute="width" constant="44" id="N0T-kX-ZHj"/>
+                                        <constraint firstAttribute="height" constant="44" id="tLT-9q-UwY"/>
                                     </constraints>
                                     <state key="normal">
                                         <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -112,18 +113,18 @@
                             <constraints>
                                 <constraint firstItem="5ct-9E-Jsa" firstAttribute="centerY" secondItem="yoE-ho-XYJ" secondAttribute="centerY" id="5hg-eR-Dv6"/>
                                 <constraint firstAttribute="trailing" secondItem="5ct-9E-Jsa" secondAttribute="trailing" constant="10" id="DXe-Kf-eJf"/>
-                                <constraint firstItem="ThX-qM-UsX" firstAttribute="leading" secondItem="yoE-ho-XYJ" secondAttribute="leading" constant="100" id="EvP-SU-Gl8"/>
+                                <constraint firstItem="ThX-qM-UsX" firstAttribute="leading" secondItem="yoE-ho-XYJ" secondAttribute="leading" constant="60" id="EvP-SU-Gl8"/>
                                 <constraint firstItem="i9q-22-OLa" firstAttribute="centerY" secondItem="yoE-ho-XYJ" secondAttribute="centerY" id="PKS-uq-UmS"/>
-                                <constraint firstAttribute="height" constant="50" id="XaV-pr-UEd"/>
+                                <constraint firstAttribute="height" constant="60" id="XaV-pr-UEd"/>
                                 <constraint firstItem="eEg-Cf-uiv" firstAttribute="leading" secondItem="i9q-22-OLa" secondAttribute="trailing" constant="5" id="ZbV-iK-Ol7"/>
                                 <constraint firstItem="eEg-Cf-uiv" firstAttribute="centerY" secondItem="yoE-ho-XYJ" secondAttribute="centerY" id="bEP-1h-r3v"/>
                                 <constraint firstItem="i9q-22-OLa" firstAttribute="leading" secondItem="yoE-ho-XYJ" secondAttribute="leading" constant="10" id="fIX-tv-TfU"/>
-                                <constraint firstAttribute="trailing" secondItem="ThX-qM-UsX" secondAttribute="trailing" constant="100" id="i3l-qD-ejg"/>
+                                <constraint firstAttribute="trailing" secondItem="ThX-qM-UsX" secondAttribute="trailing" constant="60" id="i3l-qD-ejg"/>
                                 <constraint firstItem="ThX-qM-UsX" firstAttribute="centerY" secondItem="yoE-ho-XYJ" secondAttribute="centerY" id="qbu-1t-88B"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ep9-N4-KZO">
-                            <rect key="frame" x="0.0" y="31" width="414" height="50"/>
+                            <rect key="frame" x="0.0" y="21" width="414" height="50"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="50" id="fTg-Qj-bbb"/>
@@ -183,7 +184,7 @@
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="千代田区" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P1n-Aw-eXw">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="place" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P1n-Aw-eXw">
                             <rect key="frame" x="87" y="29.666666666666664" width="240" height="20.999999999999993"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="240" id="dtV-xL-iHa"/>

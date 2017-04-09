@@ -24,7 +24,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nxm-zR-Pdp">
                         <rect key="frame" x="0.0" y="60" width="80" height="20"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99:99" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TNN-oD-ITt">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99:99" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TNN-oD-ITt">
                                 <rect key="frame" x="5" y="2" width="70" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="16" id="b3I-F2-fgz"/>
@@ -77,7 +77,7 @@
                         </constraints>
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cJx-Bd-xv5" customClass="LKImagePickerControllerCheckmarkButton">
-                        <rect key="frame" x="23" y="40" width="35" height="35"/>
+                        <rect key="frame" x="40" y="40" width="35" height="35"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="35" id="NKe-Ig-AVV"/>
                             <constraint firstAttribute="height" constant="35" id="xBV-7O-hKi"/>
@@ -96,6 +96,7 @@
                 <constraint firstItem="Nxm-zR-Pdp" firstAttribute="leading" secondItem="F8R-td-26z" secondAttribute="leading" id="0s3-ED-PJL"/>
                 <constraint firstAttribute="trailing" secondItem="4DA-cl-enY" secondAttribute="trailing" constant="5" id="1CT-ck-n4d"/>
                 <constraint firstItem="9A2-jz-7dt" firstAttribute="top" secondItem="F8R-td-26z" secondAttribute="top" id="CGk-PS-XKJ"/>
+                <constraint firstAttribute="trailing" secondItem="cJx-Bd-xv5" secondAttribute="trailing" constant="5" id="ClV-ah-zcx"/>
                 <constraint firstItem="qMo-gO-f9W" firstAttribute="leading" secondItem="F8R-td-26z" secondAttribute="leading" id="ED1-0C-6hl"/>
                 <constraint firstAttribute="bottom" secondItem="Nxm-zR-Pdp" secondAttribute="bottom" id="JwI-tB-b8f"/>
                 <constraint firstItem="qMo-gO-f9W" firstAttribute="top" secondItem="F8R-td-26z" secondAttribute="top" id="MTA-4K-FU4"/>
@@ -109,7 +110,6 @@
                 <constraint firstAttribute="bottom" secondItem="cJx-Bd-xv5" secondAttribute="bottom" constant="5" id="pbD-PS-wI7"/>
                 <constraint firstItem="4DA-cl-enY" firstAttribute="top" secondItem="F8R-td-26z" secondAttribute="top" constant="5" id="qFJ-4S-mnK"/>
                 <constraint firstItem="mHT-X2-xNs" firstAttribute="centerX" secondItem="F8R-td-26z" secondAttribute="centerX" id="rCe-8u-RvJ"/>
-                <constraint firstItem="cJx-Bd-xv5" firstAttribute="centerX" secondItem="F8R-td-26z" secondAttribute="centerX" id="t2h-Sl-SCL"/>
             </constraints>
             <connections>
                 <outlet property="alternativeIconImageView" destination="wcu-6Z-bIZ" id="pLb-pd-Xff"/>
