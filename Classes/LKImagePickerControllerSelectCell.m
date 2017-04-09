@@ -71,6 +71,7 @@
     self.commentIconImageView.hidden = !asset.hasComment || topIconsHidden;
     self.alternativeIconImageView.hidden = !asset.hasAlternativeImage || topIconsHidden;
     self.locationIconImageView.hidden = (asset.location == nil) || !self.videoView.hidden;
+    self.locationIconImageView.hidden = topIconsHidden;
 
     if (!self.alternativeIconImageView.hidden && self.alternativeIconImage) {
         self.alternativeIconImageView.image = self.alternativeIconImage;
