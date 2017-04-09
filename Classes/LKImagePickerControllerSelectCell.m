@@ -28,6 +28,7 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *checkButtonWidthConstraint;
 @property (weak, nonatomic) CAGradientLayer* gradientLayer;
 @property (weak, nonatomic) IBOutlet UIImageView *markedIconImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *locationIconImageView;
 
 @end
 
@@ -69,6 +70,7 @@
 
     self.commentIconImageView.hidden = !asset.hasComment || topIconsHidden;
     self.alternativeIconImageView.hidden = !asset.hasAlternativeImage || topIconsHidden;
+    self.locationIconImageView.hidden = (asset.location == nil) || !self.videoView.hidden;
 
     if (!self.alternativeIconImageView.hidden && self.alternativeIconImage) {
         self.alternativeIconImageView.image = self.alternativeIconImage;

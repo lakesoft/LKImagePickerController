@@ -15,6 +15,7 @@
 #import "LKImagePickerControllerCommentManager.h"
 #import "LKImagePickerControllerDetailViewController.h"
 #import "LKImagePickerControllerAlternateImageManager.h"
+#import "LKImagePickerControllerLocationManager.h"
 
 @interface LKImagePickerController ()
 @property (strong, nonatomic) LKImagePickerControllerAssetsManager* assetsManager;
@@ -150,6 +151,11 @@
 - (void)removeAllAlternativeImages
 {
     [LKImagePickerControllerAlternateImageManager removeAll];
+}
+
+- (void)removeAllLocations
+{
+    [LKImagePickerControllerLocationManager removeAll];
 }
 
 - (void)setDetailInputModeEnabled:(BOOL)enabled

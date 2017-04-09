@@ -95,6 +95,7 @@
 - (void)unmarkAllAssets;
 - (void)removeAllComments;
 - (void)removeAllAlternativeImages;
+- (void)removeAllLocations;
 - (void)setDetailInputModeEnabled:(BOOL)enabled;
 
 

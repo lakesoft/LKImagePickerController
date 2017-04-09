@@ -25,7 +25,7 @@
     }
     if (self.location) {
         [LKImagePickerControllerLocationManager addRequestReverseGeocodingWithAsset:self];
-        return @"...";
+        return @"";
     }
     return @"";
 }

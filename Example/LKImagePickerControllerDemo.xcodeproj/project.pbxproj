@@ -47,6 +47,7 @@
 		BCC13FD71E7D633000A417D7 /* LKImagePickerController_ButtonFullOpen@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCC13FD61E7D633000A417D7 /* LKImagePickerController_ButtonFullOpen@3x.png */; };
 		BCDBB1391D86108D00CC9EB2 /* LKImagePickerController_ButtonBack.png in Resources */ = {isa = PBXBuildFile; fileRef = BCDBB1381D86108D00CC9EB2 /* LKImagePickerController_ButtonBack.png */; };
 		BCDBB1711D88167800CC9EB2 /* LKImagePickerController_IconPosted.png in Resources */ = {isa = PBXBuildFile; fileRef = BCDBB1701D88167800CC9EB2 /* LKImagePickerController_IconPosted.png */; };
+		BCDD19551E9A26D10025EC19 /* LKImagePickerController_IconLocation@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCDD19541E9A26D10025EC19 /* LKImagePickerController_IconLocation@3x.png */; };
 		BCDFE8EF1E93093B00C02295 /* LKImagePickerController_IconMarked@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCDFE8EE1E93093B00C02295 /* LKImagePickerController_IconMarked@3x.png */; };
 		BCE123311E866BD9002E3EA7 /* LKImagePickerController_WaitIndicator11@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCE1232C1E866BD9002E3EA7 /* LKImagePickerController_WaitIndicator11@3x.png */; };
 		BCE123321E866BD9002E3EA7 /* LKImagePickerController_WaitIndicator12@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCE1232D1E866BD9002E3EA7 /* LKImagePickerController_WaitIndicator12@3x.png */; };
@@ -181,6 +182,8 @@
 		BCDBB13E1D86AF2300CC9EB2 /* LKImagePickerControllerMarkedAssetsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LKImagePickerControllerMarkedAssetsManager.m; path = ../Classes/LKImagePickerControllerMarkedAssetsManager.m; sourceTree = "<group>"; };
 		BCDBB1471D86B55300CC9EB2 /* LKImagePickerController_IconPosted.pxm */ = {isa = PBXFileReference; lastKnownFileType = file; path = LKImagePickerController_IconPosted.pxm; sourceTree = "<group>"; };
 		BCDBB1701D88167800CC9EB2 /* LKImagePickerController_IconPosted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LKImagePickerController_IconPosted.png; sourceTree = "<group>"; };
+		BCDD19531E9A26C20025EC19 /* LKImagePickerController_IconLocation@3x.pxm */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LKImagePickerController_IconLocation@3x.pxm"; sourceTree = "<group>"; };
+		BCDD19541E9A26D10025EC19 /* LKImagePickerController_IconLocation@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LKImagePickerController_IconLocation@3x.png"; sourceTree = "<group>"; };
 		BCDFE8EE1E93093B00C02295 /* LKImagePickerController_IconMarked@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LKImagePickerController_IconMarked@3x.png"; sourceTree = "<group>"; };
 		BCDFE8F01E93094300C02295 /* LKImagePickerController_IconMarked@3x.pxm */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LKImagePickerController_IconMarked@3x.pxm"; sourceTree = "<group>"; };
 		BCE1232C1E866BD9002E3EA7 /* LKImagePickerController_WaitIndicator11@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LKImagePickerController_WaitIndicator11@3x.png"; sourceTree = "<group>"; };
@@ -271,6 +274,7 @@
 				BC2092551E8F3D24004FBA90 /* LKImagePickerController_Icon_Alternative@3x.png */,
 				BC2092581E8F4142004FBA90 /* LKImagePickerController_Icon_AlternativeSelected@3x.png */,
 				BCDFE8EE1E93093B00C02295 /* LKImagePickerController_IconMarked@3x.png */,
+				BCDD19541E9A26D10025EC19 /* LKImagePickerController_IconLocation@3x.png */,
 				BC074A3B19610DAB00144C47 /* Localizable.strings */,
 				BC074A191960D3A900144C47 /* Supporting Files */,
 			);
@@ -351,6 +355,7 @@
 				BC60004F1E8E55100099B5B2 /* LKImagePickerController_ButtonUtility.pxm */,
 				BC2092571E8F3D43004FBA90 /* LKImagePickerController_Icon_Alternative@3x.pxm */,
 				BCDFE8F01E93094300C02295 /* LKImagePickerController_IconMarked@3x.pxm */,
+				BCDD19531E9A26C20025EC19 /* LKImagePickerController_IconLocation@3x.pxm */,
 				BC2A377319397F9600C672B7 /* LKImagePickerControllerDemo-Info.plist */,
 				BC2A377419397F9600C672B7 /* InfoPlist.strings */,
 				BC2A377719397F9600C672B7 /* main.m */,
@@ -558,6 +563,7 @@
 				BC074A451961161800144C47 /* LKImagePickerControllerGroupTableViewCell.xib in Resources */,
 				BCC13FD51E7D630100A417D7 /* LKImagePickerController_Icon_Comment@3x.png in Resources */,
 				BCE123321E866BD9002E3EA7 /* LKImagePickerController_WaitIndicator12@3x.png in Resources */,
+				BCDD19551E9A26D10025EC19 /* LKImagePickerController_IconLocation@3x.png in Resources */,
 				BC2092561E8F3D24004FBA90 /* LKImagePickerController_Icon_Alternative@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
