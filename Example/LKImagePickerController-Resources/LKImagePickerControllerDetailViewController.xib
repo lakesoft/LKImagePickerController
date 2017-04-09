@@ -13,6 +13,7 @@
             <connections>
                 <outlet property="assetCommentTextField" destination="ThX-qM-UsX" id="yMZ-OT-a2Y"/>
                 <outlet property="assetDateLabel" destination="CvX-4k-rnH" id="oS9-Nr-dpL"/>
+                <outlet property="assetNoPlaceImageView" destination="5Tp-af-Lm6" id="S6b-Tu-T3P"/>
                 <outlet property="assetPlaceLabel" destination="P1n-Aw-eXw" id="gng-EG-pd3"/>
                 <outlet property="checkmarkButton" destination="5ct-9E-Jsa" id="ggK-iJ-T8z"/>
                 <outlet property="closeButton" destination="QK5-fO-npb" id="J7U-cV-2Et"/>
@@ -96,7 +97,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5ct-9E-Jsa" customClass="LKImagePickerControllerCheckmarkButton">
-                                    <rect key="frame" x="360" y="7.6666666666666288" width="44" height="44"/>
+                                    <rect key="frame" x="360" y="8" width="44" height="44"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="44" id="N0T-kX-ZHj"/>
                                         <constraint firstAttribute="height" constant="44" id="tLT-9q-UwY"/>
@@ -175,7 +176,7 @@
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2016/07/01 08:01" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CvX-4k-rnH">
-                            <rect key="frame" x="87" y="7.6666666666666679" width="240" height="21"/>
+                            <rect key="frame" x="87" y="8" width="240" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="240" id="WId-G5-VkO"/>
                                 <constraint firstAttribute="height" constant="21" id="j1j-nt-VBW"/>
@@ -185,7 +186,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="place" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P1n-Aw-eXw">
-                            <rect key="frame" x="87" y="29.666666666666664" width="240" height="20.999999999999993"/>
+                            <rect key="frame" x="87" y="30" width="240" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="240" id="dtV-xL-iHa"/>
                                 <constraint firstAttribute="height" constant="21" id="krq-69-tZs"/>
@@ -194,14 +195,23 @@
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LKImagePickerController_IconLocationNo.png" translatesAutoresizingMaskIntoConstraints="NO" id="5Tp-af-Lm6">
+                            <rect key="frame" x="191" y="26" width="32" height="32"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="32" id="f1R-8A-zi8"/>
+                                <constraint firstAttribute="width" constant="32" id="fyq-w3-4Zx"/>
+                            </constraints>
+                        </imageView>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
+                        <constraint firstItem="5Tp-af-Lm6" firstAttribute="centerX" secondItem="G3q-fH-GYq" secondAttribute="centerX" id="1lW-jg-Zws"/>
                         <constraint firstItem="H79-bI-JaD" firstAttribute="top" secondItem="G3q-fH-GYq" secondAttribute="top" id="KZt-DI-MhK"/>
                         <constraint firstAttribute="trailing" secondItem="H79-bI-JaD" secondAttribute="trailing" id="Q7f-pn-qCY"/>
                         <constraint firstItem="CvX-4k-rnH" firstAttribute="centerX" secondItem="G3q-fH-GYq" secondAttribute="centerX" id="RJ8-ew-B1g"/>
                         <constraint firstAttribute="height" constant="64" id="dWN-9E-zqz"/>
                         <constraint firstItem="H79-bI-JaD" firstAttribute="leading" secondItem="G3q-fH-GYq" secondAttribute="leading" id="glo-6F-Pu8"/>
+                        <constraint firstItem="5Tp-af-Lm6" firstAttribute="centerY" secondItem="G3q-fH-GYq" secondAttribute="centerY" constant="10" id="j7M-EO-ptA"/>
                         <constraint firstAttribute="bottom" secondItem="H79-bI-JaD" secondAttribute="bottom" id="m0l-y1-rOi"/>
                         <constraint firstItem="P1n-Aw-eXw" firstAttribute="centerX" secondItem="G3q-fH-GYq" secondAttribute="centerX" id="oSd-a5-FpJ"/>
                         <constraint firstItem="CvX-4k-rnH" firstAttribute="centerY" secondItem="G3q-fH-GYq" secondAttribute="centerY" constant="-14" id="pt3-w9-aZ4"/>
@@ -271,6 +281,7 @@
     </objects>
     <resources>
         <image name="LKImagePickerController_ButtonClose.png" width="44" height="44"/>
+        <image name="LKImagePickerController_IconLocationNo.png" width="32" height="32"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

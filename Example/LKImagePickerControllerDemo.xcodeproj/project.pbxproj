@@ -42,6 +42,7 @@
 		BC60004E1E8E4F800099B5B2 /* LKImagePickerController_ButtonClose@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC60004D1E8E4F800099B5B2 /* LKImagePickerController_ButtonClose@3x.png */; };
 		BC6000511E8E55150099B5B2 /* LKImagePickerController_ButtonUtility@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = BC6000501E8E55150099B5B2 /* LKImagePickerController_ButtonUtility@3x.png */; };
 		BCA4A40F1E827E9B00B60340 /* LKImagePickerController_ButtonDown@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCA4A40E1E827E9B00B60340 /* LKImagePickerController_ButtonDown@3x.png */; };
+		BCBBD95E1E9A3707005C20CC /* LKImagePickerController_IconLocationNo@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCBBD95D1E9A3707005C20CC /* LKImagePickerController_IconLocationNo@3x.png */; };
 		BCC13FD41E7D630100A417D7 /* LKImagePickerController_ButtonFullClose@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCC13FD11E7D630100A417D7 /* LKImagePickerController_ButtonFullClose@3x.png */; };
 		BCC13FD51E7D630100A417D7 /* LKImagePickerController_Icon_Comment@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCC13FD21E7D630100A417D7 /* LKImagePickerController_Icon_Comment@3x.png */; };
 		BCC13FD71E7D633000A417D7 /* LKImagePickerController_ButtonFullOpen@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = BCC13FD61E7D633000A417D7 /* LKImagePickerController_ButtonFullOpen@3x.png */; };
@@ -171,6 +172,7 @@
 		BC94FFD2196B540900EF8FC2 /* LKImagePickerControllerGroupTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LKImagePickerControllerGroupTableViewController.h; path = ../Classes/LKImagePickerControllerGroupTableViewController.h; sourceTree = "<group>"; };
 		BC94FFD3196B540900EF8FC2 /* LKImagePickerControllerSelectHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LKImagePickerControllerSelectHeaderView.h; path = ../Classes/LKImagePickerControllerSelectHeaderView.h; sourceTree = "<group>"; };
 		BCA4A40E1E827E9B00B60340 /* LKImagePickerController_ButtonDown@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LKImagePickerController_ButtonDown@3x.png"; sourceTree = "<group>"; };
+		BCBBD95D1E9A3707005C20CC /* LKImagePickerController_IconLocationNo@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LKImagePickerController_IconLocationNo@3x.png"; sourceTree = "<group>"; };
 		BCC13FCE1E7CDCAE00A417D7 /* LKImagePickerController_Icon_Comment.pxm */ = {isa = PBXFileReference; lastKnownFileType = file; path = LKImagePickerController_Icon_Comment.pxm; sourceTree = "<group>"; };
 		BCC13FCF1E7D208800A417D7 /* LKImagePickerController_ButtonFull.pxm */ = {isa = PBXFileReference; lastKnownFileType = file; path = LKImagePickerController_ButtonFull.pxm; sourceTree = "<group>"; };
 		BCC13FD11E7D630100A417D7 /* LKImagePickerController_ButtonFullClose@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LKImagePickerController_ButtonFullClose@3x.png"; sourceTree = "<group>"; };
@@ -275,6 +277,7 @@
 				BC2092581E8F4142004FBA90 /* LKImagePickerController_Icon_AlternativeSelected@3x.png */,
 				BCDFE8EE1E93093B00C02295 /* LKImagePickerController_IconMarked@3x.png */,
 				BCDD19541E9A26D10025EC19 /* LKImagePickerController_IconLocation@3x.png */,
+				BCBBD95D1E9A3707005C20CC /* LKImagePickerController_IconLocationNo@3x.png */,
 				BC074A3B19610DAB00144C47 /* Localizable.strings */,
 				BC074A191960D3A900144C47 /* Supporting Files */,
 			);
@@ -556,6 +559,7 @@
 				BCA4A40F1E827E9B00B60340 /* LKImagePickerController_ButtonDown@3x.png in Resources */,
 				BCE123341E866BD9002E3EA7 /* LKImagePickerController_WaitIndicator21@3x.png in Resources */,
 				BC074A361960DBBE00144C47 /* LKImagePickerController_Icon_Video.png in Resources */,
+				BCBBD95E1E9A3707005C20CC /* LKImagePickerController_IconLocationNo@3x.png in Resources */,
 				BCC13FD41E7D630100A417D7 /* LKImagePickerController_ButtonFullClose@3x.png in Resources */,
 				BCE123311E866BD9002E3EA7 /* LKImagePickerController_WaitIndicator11@3x.png in Resources */,
 				BC074A2A1960D3F400144C47 /* LKImagePickerControllerDetailViewController.xib in Resources */,

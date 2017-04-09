@@ -54,6 +54,7 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
 @property (weak, nonatomic) IBOutlet UIButton *rightUtilityButton;
 @property (weak, nonatomic) IBOutlet UILabel *assetDateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *assetPlaceLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *assetNoPlaceImageView;
 @property (weak, nonatomic) IBOutlet UITextField *assetCommentTextField;
 @property (weak, nonatomic) IBOutlet LKImagePickerControllerCheckmarkButton *checkmarkButton;
 
@@ -590,6 +591,7 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
     NSString* dateString = asset.date != nil ? [LKImagePickerControllerUtility formattedDateTimeStringForDate:asset.date] : @"";
     [self setString:dateString forLabel:self.assetDateLabel];
     [self setString:asset.placeString forLabel:self.assetPlaceLabel];
+    self.assetNoPlaceImageView.hidden = (asset.location != nil);
 
     self.assetCommentTextField.text = asset.commentString;
     
