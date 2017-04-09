@@ -56,6 +56,7 @@
 - (void)onLeftUtilityButton:(UIButton*)button viewController:(UIViewController*)viewController;
 - (void)setupRightUtilityButton:(UIButton*)button;
 - (void)onRightUtilityButton:(UIButton*)button viewController:(UIViewController*)viewController;
+- (void)didGetAssetChangesInDetail;
 
 // Detail customize view
 - (void)setupDetailTopToolbarView:(UIView*)topToolbarView;
@@ -97,6 +98,7 @@
 - (void)removeAllAlternativeImages;
 - (void)removeAllLocations;
 - (void)setDetailInputModeEnabled:(BOOL)enabled;
+- (void)dismissDetail;
 
 
 - (LKAsset*)currentAssetOfDetail;

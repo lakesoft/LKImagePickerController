@@ -163,6 +163,11 @@
     [self.selectViewController.detailViewController setInputModeEnabled:enabled];
 }
 
+- (void)dismissDetail
+{
+    [self.selectViewController.detailViewController dismiss];
+}
+
 
 - (LKAsset*)currentAssetOfDetail
 {

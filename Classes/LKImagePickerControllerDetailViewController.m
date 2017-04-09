@@ -129,7 +129,12 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
 
 - (void)_assetsGroupDidReload:(NSNotification*)notification
 {
-//    NSLog(@"%s", __PRETTY_FUNCTION__);
+    id <LKImagePickerControllerDelegate> delegate = self.selectViewController.imagePickerController.imagePickerControllerDelegate;
+
+    if ([delegate respondsToSelector:@selector(didGetAssetChangesInDetail)]) {
+        [delegate didGetAssetChangesInDetail];
+        
+    }
 }
 
 //- (void)_toggleFullscreen
@@ -188,7 +193,7 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
     if (self.assetCommentTextField.isFirstResponder) {
         [self.assetCommentTextField resignFirstResponder];
     } else {
-        [self onCloseButton:nil];
+        [self dismiss];
     }
 }
 -(void)_handleSwipeUp:(UISwipeGestureRecognizer *)gestureRecognizer
@@ -778,16 +783,9 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
 }
 
 - (IBAction)onCloseButton:(id)sender {
-    self.isWhileClosing = YES;
-    [self.assetCommentTextField resignFirstResponder];
-    
-    if (self.selectViewController.imagePickerController.navigationBarHidden) {
-        self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-        [self dismissViewControllerAnimated:YES completion:nil];
-    } else {
-        [self.navigationController popViewControllerAnimated:YES];
-    }
+    [self dismiss];
 }
+
 - (IBAction)onLeftUtilityButton:(id)sender {
     id <LKImagePickerControllerDelegate> delegate = self.selectViewController.imagePickerController.imagePickerControllerDelegate;
     
@@ -816,7 +814,7 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    [self onCloseButton:nil];
+    [self dismiss];
 //    self.checkmarkButton.checked = !self.checkmarkButton.checked;
 //    [self toggleCheckmark];
 }
@@ -893,6 +891,19 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
 {
     LKImagePickerControllerDetailCell* cell = [self.collectionView cellForItemAtIndexPath:self.indexPath];
     return cell.displayingOriginal;
+}
+
+- (void)dismiss
+{
+    self.isWhileClosing = YES;
+    [self.assetCommentTextField resignFirstResponder];
+    
+    if (self.selectViewController.imagePickerController.navigationBarHidden) {
+        self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        [self dismissViewControllerAnimated:YES completion:nil];
+    } else {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 @end

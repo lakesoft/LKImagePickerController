@@ -175,4 +175,10 @@
 {
     NSLog(@"didChangeDetailAsset: %@", asset);
 }
+
+- (void)didGetAssetChangesInDetail
+{
+    NSLog(@"didGetAssetChangesInDetail");
+    [self.controller dismissDetail];
+}
 @end
