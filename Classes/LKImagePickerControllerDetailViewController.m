@@ -790,7 +790,6 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
     id <LKImagePickerControllerDelegate> delegate = self.selectViewController.imagePickerController.imagePickerControllerDelegate;
     
     if ([delegate respondsToSelector:@selector(onLeftUtilityButton:viewController:)]) {
-        [self.assetCommentTextField resignFirstResponder];
         [delegate onLeftUtilityButton:sender viewController:self];
     }
 }
@@ -798,7 +797,6 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
     id <LKImagePickerControllerDelegate> delegate = self.selectViewController.imagePickerController.imagePickerControllerDelegate;
     
     if ([delegate respondsToSelector:@selector(onRightUtilityButton:viewController:)]) {
-        [self.assetCommentTextField resignFirstResponder];
         [delegate onRightUtilityButton:sender viewController:self];
     }
 }
