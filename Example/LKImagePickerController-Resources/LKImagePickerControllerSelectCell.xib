@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="LKImagePickerControllerSelectCell" id="F8R-td-26z" customClass="LKImagePickerControllerSelectCell">
+        <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="LKImagePickerControllerSelectCell" id="F8R-td-26z" customClass="LKImagePickerControllerSelectCell">
             <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -111,7 +111,7 @@
                 <constraint firstAttribute="bottom" secondItem="qMo-gO-f9W" secondAttribute="bottom" id="W6V-RL-TRv"/>
                 <constraint firstAttribute="trailing" secondItem="wcu-6Z-bIZ" secondAttribute="trailing" id="Xx6-c4-sdr"/>
                 <constraint firstItem="pXI-uk-fOr" firstAttribute="leading" secondItem="F8R-td-26z" secondAttribute="leading" id="ZuX-6D-pj6"/>
-                <constraint firstAttribute="trailing" secondItem="qMo-gO-f9W" secondAttribute="trailing" id="eNN-UM-riq"/>
+                <constraint firstAttribute="trailing" secondItem="qMo-gO-f9W" secondAttribute="trailing" constant="-0.5" id="eNN-UM-riq"/>
                 <constraint firstItem="9A2-jz-7dt" firstAttribute="leading" secondItem="F8R-td-26z" secondAttribute="leading" id="imM-K2-J51"/>
                 <constraint firstAttribute="trailing" secondItem="Nxm-zR-Pdp" secondAttribute="trailing" id="lu4-cF-WwJ"/>
                 <constraint firstItem="wcu-6Z-bIZ" firstAttribute="top" secondItem="F8R-td-26z" secondAttribute="top" id="p1u-mZ-pq2"/>
