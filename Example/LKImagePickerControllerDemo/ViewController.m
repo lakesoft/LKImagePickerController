@@ -152,26 +152,44 @@
     NSLog(@"currentAssetOfDetail: %@", self.controller.currentAssetOfDetail);
 }
 
-- (void)setupLeftUtilityButton:(UIButton *)button
+- (void)setupUtilityButton1:(UIButton *)button
 {
     UIImage* image = [UIImage imageNamed:@"LKImagePickerController_ButtonUtility" inBundle:LKImagePickerControllerBundleManager.bundle compatibleWithTraitCollection:nil];
     [button setImage:image forState:UIControlStateNormal];
 }
-- (void)onLeftUtilityButton:(UIButton*)button viewController:(UIViewController*)viewController
+- (void)onUtilityButton1:(UIButton*)button viewController:(UIViewController*)viewController
 {
-    NSLog(@"onLeftUtilityButton");
+    NSLog(@"onLeftUtilityButton1");
 }
-- (void)setupRightUtilityButton:(UIButton *)button
+- (void)setupUtilityButton2:(UIButton *)button
 {
     UIImage* image = [UIImage imageNamed:@"LKImagePickerController_ButtonUtility" inBundle:LKImagePickerControllerBundleManager.bundle compatibleWithTraitCollection:nil];
     [button setImage:image forState:UIControlStateNormal];
 }
-- (void)onRightUtilityButton:(UIButton*)button viewController:(UIViewController*)viewController
+- (void)onUtilityButton2:(UIButton*)button viewController:(UIViewController*)viewController
 {
-    NSLog(@"onRightUtilityButton");
+    NSLog(@"onLeftUtilityButton2");
+}
+- (void)setupUtilityButton3:(UIButton *)button
+{
+    UIImage* image = [UIImage imageNamed:@"LKImagePickerController_ButtonUtility" inBundle:LKImagePickerControllerBundleManager.bundle compatibleWithTraitCollection:nil];
+    [button setImage:image forState:UIControlStateNormal];
+}
+- (void)onUtilityButton3:(UIButton*)button viewController:(UIViewController*)viewController
+{
+    NSLog(@"onLeftUtilityButton3");
+}
+- (void)setupUtilityButton4:(UIButton *)button
+{
+    UIImage* image = [UIImage imageNamed:@"LKImagePickerController_ButtonUtility" inBundle:LKImagePickerControllerBundleManager.bundle compatibleWithTraitCollection:nil];
+    [button setImage:image forState:UIControlStateNormal];
+}
+- (void)onUtilityButton4:(UIButton*)button viewController:(UIViewController*)viewController
+{
+    NSLog(@"onLeftUtilityButton4");
 }
 
-- (void)didChangeDetailAsset:(LKAsset *)asset viewController:(UIViewController *)viewController leftUtilityButton:(UIButton *)leftUtilityButton rightUtilityButton:(UIButton *)rightUtilityButton
+- (void)didChangeDetailAsset:(LKAsset *)asset viewController:(UIViewController *)viewController
 {
     NSLog(@"didChangeDetailAsset: %@", asset);
 }

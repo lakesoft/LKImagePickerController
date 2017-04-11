@@ -50,8 +50,10 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
 // info view (in navi View)
 @property (weak, nonatomic) IBOutlet UIView *naviBackView;
 @property (weak, nonatomic) CAGradientLayer* naviBackViewGradientLayer;
-@property (weak, nonatomic) IBOutlet UIButton *leftUtilityButton;
-@property (weak, nonatomic) IBOutlet UIButton *rightUtilityButton;
+@property (weak, nonatomic) IBOutlet UIButton *utilityButton1;
+@property (weak, nonatomic) IBOutlet UIButton *utilityButton2;
+@property (weak, nonatomic) IBOutlet UIButton *utilityButton3;
+@property (weak, nonatomic) IBOutlet UIButton *utilityButton4;
 @property (weak, nonatomic) IBOutlet UILabel *assetDateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *assetPlaceLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *assetNoPlaceImageView;
@@ -369,11 +371,18 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
 
     self.view.backgroundColor = UIColor.clearColor;
     
-    if ([delegate respondsToSelector:@selector(setupLeftUtilityButton:)]) {
-        [delegate setupLeftUtilityButton:self.leftUtilityButton];
+    if ([delegate respondsToSelector:@selector(setupUtilityButton1:)]) {
+        [delegate setupUtilityButton1:self.utilityButton1];
     }
-    if ([delegate respondsToSelector:@selector(setupRightUtilityButton:)]) {
-        [delegate setupRightUtilityButton:self.rightUtilityButton];
+    if ([delegate respondsToSelector:@selector(setupUtilityButton2:)]) {
+        [delegate setupUtilityButton2:self.utilityButton2];
+    }
+    if ([delegate respondsToSelector:@selector(setupUtilityButton3:)]) {
+        [delegate setupUtilityButton3:self.utilityButton3];
+    }
+    if ([delegate respondsToSelector:@selector(setupUtilityButton4:)]) {
+        self.checkmarkButton.hidden = YES;
+        [delegate setupUtilityButton4:self.utilityButton4];
     }
 }
 
@@ -590,8 +599,8 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
     // delegte
     id <LKImagePickerControllerDelegate> delegate = self.selectViewController.imagePickerController.imagePickerControllerDelegate;
     
-    if ([delegate respondsToSelector:@selector(didChangeDetailAsset:viewController:leftUtilityButton:rightUtilityButton:)]) {
-        [delegate didChangeDetailAsset:asset viewController:self leftUtilityButton:self.leftUtilityButton rightUtilityButton:_rightUtilityButton];
+    if ([delegate respondsToSelector:@selector(didChangeDetailAsset:viewController:)]) {
+        [delegate didChangeDetailAsset:asset viewController:self];
     }
     
 }
@@ -786,18 +795,32 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
     [self dismiss];
 }
 
-- (IBAction)onLeftUtilityButton:(id)sender {
+- (IBAction)onUtilityButton1:(id)sender {
     id <LKImagePickerControllerDelegate> delegate = self.selectViewController.imagePickerController.imagePickerControllerDelegate;
     
-    if ([delegate respondsToSelector:@selector(onLeftUtilityButton:viewController:)]) {
-        [delegate onLeftUtilityButton:sender viewController:self];
+    if ([delegate respondsToSelector:@selector(onUtilityButton1:viewController:)]) {
+        [delegate onUtilityButton1:sender viewController:self];
     }
 }
-- (IBAction)onRightUtilityButton:(id)sender {
+- (IBAction)onUtilityButton2:(id)sender {
     id <LKImagePickerControllerDelegate> delegate = self.selectViewController.imagePickerController.imagePickerControllerDelegate;
     
-    if ([delegate respondsToSelector:@selector(onRightUtilityButton:viewController:)]) {
-        [delegate onRightUtilityButton:sender viewController:self];
+    if ([delegate respondsToSelector:@selector(onUtilityButton2:viewController:)]) {
+        [delegate onUtilityButton2:sender viewController:self];
+    }
+}
+- (IBAction)onUtilityButton3:(id)sender {
+    id <LKImagePickerControllerDelegate> delegate = self.selectViewController.imagePickerController.imagePickerControllerDelegate;
+    
+    if ([delegate respondsToSelector:@selector(onUtilityButton3:viewController:)]) {
+        [delegate onUtilityButton3:sender viewController:self];
+    }
+}
+- (IBAction)onUtilityButton4:(id)sender {
+    id <LKImagePickerControllerDelegate> delegate = self.selectViewController.imagePickerController.imagePickerControllerDelegate;
+    
+    if ([delegate respondsToSelector:@selector(onUtilityButton4:viewController:)]) {
+        [delegate onUtilityButton4:sender viewController:self];
     }
 }
 

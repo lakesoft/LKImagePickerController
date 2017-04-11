@@ -60,24 +60,43 @@ NSString * const LKImagePickerControllerAssetsManagerKeyNumberOfSelections = @"L
     }
 }
 
-- (void)_assetsGroupDidReload:(NSNotification*)notification
+- (void)_notify
 {
     [NSNotificationCenter.defaultCenter postNotificationName:LKImagePickerControllerSelectViewControllerDidAssetsUpdateNotification object:self];
+}
+
+- (void)_notifyWithDelay
+{
+    [LKImagePickerControllerAssetsManager cancelPreviousPerformRequestsWithTarget:self selector:@selector(_notify) object:nil];
+    [self performSelector:@selector(_notify) withObject:nil afterDelay:5.0];
+}
+
+- (void)_assetsGroupDidReload:(NSNotification*)notification
+{
+    static BOOL firstFlag = YES;
+    
+    if (firstFlag) {
+        firstFlag = NO;
+        [self _notify];
+    } else {
+        [self _notifyWithDelay];
+    }
 }
 
 - (void)_assetsLibraryDidInsertGroup:(NSNotification*)notification
 {
-    [NSNotificationCenter.defaultCenter postNotificationName:LKImagePickerControllerSelectViewControllerDidAssetsUpdateNotification object:self];
+    [self _notifyWithDelay];
 }
 
 - (void)_assetsLibraryDidUpdateGroup:(NSNotification*)notification
 {
-    [NSNotificationCenter.defaultCenter postNotificationName:LKImagePickerControllerSelectViewControllerDidAssetsUpdateNotification object:self];
+    // not used to avoid duplicate notify
+//    [self _notifyWithDelay];
 }
 
 - (void)_assetsLibraryDidDeleteGroup:(NSNotification*)notification
 {
-    [NSNotificationCenter.defaultCenter postNotificationName:LKImagePickerControllerSelectViewControllerDidAssetsUpdateNotification object:self];
+    [self _notifyWithDelay];
 }
 
 #pragma mark - Privates (Selection/Deselection)
@@ -136,11 +155,6 @@ NSString * const LKImagePickerControllerAssetsManagerKeyNumberOfSelections = @"L
                    name:LKAssetsLibraryDidDeleteGroupsNotification
                  object:nil];
         
-        [nc addObserver:self
-               selector:@selector(_assetsLibraryDidDeleteGroup:)
-                   name:LKAssetsLibraryDidDeleteGroupsNotification
-                 object:nil];
-
         // Notifications (Select/Deselect)
         [nc addObserver:self
                selector:@selector(_didChangeSelection:)
