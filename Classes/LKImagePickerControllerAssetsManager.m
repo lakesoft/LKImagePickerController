@@ -68,7 +68,7 @@ NSString * const LKImagePickerControllerAssetsManagerKeyNumberOfSelections = @"L
 - (void)_notifyWithDelay
 {
     [LKImagePickerControllerAssetsManager cancelPreviousPerformRequestsWithTarget:self selector:@selector(_notify) object:nil];
-    [self performSelector:@selector(_notify) withObject:nil afterDelay:5.0];
+    [self performSelector:@selector(_notify) withObject:nil afterDelay:15.0];
 }
 
 - (void)_assetsGroupDidReload:(NSNotification*)notification

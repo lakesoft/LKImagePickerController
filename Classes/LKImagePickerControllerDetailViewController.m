@@ -566,18 +566,31 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
 }
 
 #pragma mark - Sub header
-- (void)setString:(NSString*)placeString forLabel:(UILabel*)label{
+- (void)setString:(NSString*)string forLabel:(UILabel*)label{
     CATransition* fadeTransition = CATransition.new;
     fadeTransition.duration = 0.2;
     
     [CATransaction begin];
     [CATransaction setCompletionBlock:^{
-        label.text = placeString;
+        label.text = string;
         [label.layer addAnimation:fadeTransition forKey:kCATransition];
     }];
     
     [CATransaction commit];
 }
+- (void)setString:(NSString*)string forTextField:(UITextField*)textField{
+    CATransition* fadeTransition = CATransition.new;
+    fadeTransition.duration = 0.2;
+    
+    [CATransaction begin];
+    [CATransaction setCompletionBlock:^{
+        textField.text = string;
+        [textField.layer addAnimation:fadeTransition forKey:kCATransition];
+    }];
+    
+    [CATransaction commit];
+}
+
 - (void)didChangeDisplayedAsset
 {
     // update navi view
@@ -587,7 +600,7 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
     [self setString:asset.placeString forLabel:self.assetPlaceLabel];
     self.assetNoPlaceImageView.hidden = (asset.location != nil);
 
-    self.assetCommentTextField.text = asset.commentString;
+    [self setString:asset.commentString forTextField:self.assetCommentTextField];
     
     // update cell
     [self displayOriginalImageInDetailCell:NO];
