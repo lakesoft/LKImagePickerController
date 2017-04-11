@@ -159,7 +159,7 @@
 }
 - (void)onUtilityButton1:(UIButton*)button viewController:(UIViewController*)viewController
 {
-    NSLog(@"onLeftUtilityButton1");
+    [self.controller showInstantMessageInDetail:@"onLeftUtilityButton1"];
 }
 - (void)setupUtilityButton2:(UIButton *)button
 {
@@ -199,4 +199,6 @@
     NSLog(@"didGetAssetChangesInDetail");
     [self.controller dismissDetail];
 }
+
+
 @end

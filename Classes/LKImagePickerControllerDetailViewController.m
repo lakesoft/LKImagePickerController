@@ -69,6 +69,10 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
 // header view
 @property (weak, nonatomic) IBOutlet UIButton *closeButton;
 
+// message view
+@property (weak, nonatomic) IBOutlet UIView *messageView;
+@property (weak, nonatomic) IBOutlet UILabel *messageLabel;
+
 
 @end
 
@@ -384,6 +388,10 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
         self.checkmarkButton.hidden = YES;
         [delegate setupUtilityButton4:self.utilityButton4];
     }
+    
+    // message view
+    self.messageView.layer.cornerRadius = self.messageView.bounds.size.height / 2.0;
+    self.messageView.layer.masksToBounds = YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -941,4 +949,18 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
     [self.selectViewController scrollToIndexPath:self.indexPath];
 }
 
+// MARK: - message view
+- (void)showInstantMessage:(NSString*)string {
+    self.messageLabel.text = string;
+    [UIView animateWithDuration:0.2 animations:^{
+        self.messageView.alpha = 1.0;
+    } completion:^(BOOL finished) {
+        [NSRunLoop.currentRunLoop runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.35]];
+        [UIView animateWithDuration:0.5 animations:^{
+            self.messageView.alpha = 0.0;
+        }];
+    }];
+}
+
 @end
+

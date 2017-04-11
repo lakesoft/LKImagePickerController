@@ -33,5 +33,6 @@ extern NSString * const LKImagePickerControllerDetailViewControllerWillDisappear
 - (BOOL)displayingOriginalImageInDetailCell;
 
 - (void)dismiss;
+- (void)showInstantMessage:(NSString*)string;
 
 @end

@@ -200,6 +200,12 @@
     return [self.selectViewController.detailViewController displayingOriginalImageInDetailCell];
 }
 
+
+- (void)showInstantMessageInDetail:(NSString*)string
+{
+    [self.selectViewController.detailViewController showInstantMessage:string];
+}
+
 @end
 
 

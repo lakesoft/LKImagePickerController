@@ -99,6 +99,7 @@
 
 - (instancetype)initWithAvaliableTypes:(NSUInteger)availableTypes currentType:(LKImagePickerControllerFilterType)currentType;
 
+
 - (void)markSelectedAssets;
 - (void)unmarkAllAssets;
 - (void)removeAllComments;
@@ -115,6 +116,8 @@
 
 - (void)displayOriginalImageInDetailCell:(BOOL)on;
 - (BOOL)displayingOriginalImageInDetailCell;
+
+- (void)showInstantMessageInDetail:(NSString*)string;
 
 @end
 
