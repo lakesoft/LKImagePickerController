@@ -8,7 +8,7 @@
 #import <UIKit/UIKit.h>
 #import <ImageIO/ImageIO.h>
 #import <MobileCoreServices/MobileCoreServices.h>
-#import "LKImageUtility.h"
+#import "LKImagePickerControllerImageUtility.h"
 //#import <CoreLocation/CoreLocation.h>
 
 @implementation LKImageUtility

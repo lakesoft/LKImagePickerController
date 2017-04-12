@@ -57,10 +57,10 @@
                     </connections>
                 </collectionView>
                 <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j2E-eA-rM9">
-                    <rect key="frame" x="0.0" y="586" width="414" height="100"/>
+                    <rect key="frame" x="0.0" y="556" width="414" height="130"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="100" id="9EM-6q-NVe"/>
+                        <constraint firstAttribute="height" constant="130" id="9EM-6q-NVe"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qaa-AM-tMN">
@@ -186,7 +186,7 @@
                     </constraints>
                 </view>
                 <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="792-dx-eck">
-                    <rect key="frame" x="139.66666666666669" y="546" width="135.00000000000006" height="40"/>
+                    <rect key="frame" x="139.66666666666669" y="323" width="135.00000000000006" height="40"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="5F1-ef-zyG">
                             <rect key="frame" x="10" y="0.0" width="115.00000000000003" height="40"/>
@@ -304,8 +304,8 @@
                 <constraint firstItem="hus-b7-RTP" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="eMx-zH-dok"/>
                 <constraint firstAttribute="trailing" secondItem="CPT-22-3kp" secondAttribute="trailing" id="hhk-Zl-lff"/>
                 <constraint firstItem="j2E-eA-rM9" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="kaF-jg-O6V"/>
-                <constraint firstItem="j2E-eA-rM9" firstAttribute="top" secondItem="792-dx-eck" secondAttribute="bottom" id="o6C-9m-g0B"/>
                 <constraint firstAttribute="trailing" secondItem="j2E-eA-rM9" secondAttribute="trailing" id="pD0-ZN-KJN"/>
+                <constraint firstItem="792-dx-eck" firstAttribute="centerY" secondItem="EKc-bL-G2J" secondAttribute="centerY" id="rWu-QW-BWa"/>
                 <constraint firstAttribute="bottom" secondItem="Qaa-AM-tMN" secondAttribute="bottom" id="run-Bo-Br4"/>
                 <constraint firstItem="G3q-fH-GYq" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="ryD-eX-OKz"/>
                 <constraint firstItem="dLc-gu-JSm" firstAttribute="top" secondItem="EKc-bL-G2J" secondAttribute="bottom" constant="1" id="sDE-Vd-bf9"/>

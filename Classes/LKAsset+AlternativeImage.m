@@ -8,7 +8,7 @@
 
 #import "LKAsset+AlternativeImage.h"
 #import "LKImagePickerControllerAlternateImageManager.h"
-#import "LKImageUtility.h"
+#import "LKImagePickerControllerImageUtility.h"
 
 @implementation LKAsset (AlternativeImage)
 
