@@ -950,7 +950,11 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
 }
 
 // MARK: - message view
-- (void)showInstantMessage:(NSString*)string {
+- (void)showInstantMessage:(NSString*)string color:(UIColor*)color
+{
+    if (color == nil) {
+        color = [UIColor colorWithWhite:0.0 alpha:0.4];
+    }
     self.messageLabel.text = string;
     [UIView animateWithDuration:0.2 animations:^{
         self.messageView.alpha = 1.0;

@@ -117,7 +117,7 @@
 - (void)displayOriginalImageInDetailCell:(BOOL)on;
 - (BOOL)displayingOriginalImageInDetailCell;
 
-- (void)showInstantMessageInDetail:(NSString*)string;
+- (void)showInstantMessageInDetail:(NSString*)string color:(UIColor*)color;
 
 @end
 

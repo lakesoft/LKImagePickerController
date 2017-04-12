@@ -159,7 +159,7 @@
 }
 - (void)onUtilityButton1:(UIButton*)button viewController:(UIViewController*)viewController
 {
-    [self.controller showInstantMessageInDetail:@"onLeftUtilityButton1"];
+    [self.controller showInstantMessageInDetail:@"on Left" color:nil];
 }
 - (void)setupUtilityButton2:(UIButton *)button
 {

@@ -201,9 +201,9 @@
 }
 
 
-- (void)showInstantMessageInDetail:(NSString*)string
+- (void)showInstantMessageInDetail:(NSString*)string color:(UIColor*)color
 {
-    [self.selectViewController.detailViewController showInstantMessage:string];
+    [self.selectViewController.detailViewController showInstantMessage:string color:color];
 }
 
 @end

@@ -186,22 +186,23 @@
                     </constraints>
                 </view>
                 <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="792-dx-eck">
-                    <rect key="frame" x="117" y="323" width="180" height="40"/>
+                    <rect key="frame" x="139.66666666666669" y="323" width="135.00000000000006" height="40"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="5F1-ef-zyG">
-                            <rect key="frame" x="5" y="10" width="170" height="21"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="5F1-ef-zyG">
+                            <rect key="frame" x="10" y="0.0" width="115.00000000000003" height="40"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
-                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.26101179064417179" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.37323859279141103" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="FOj-QX-BuO"/>
-                        <constraint firstAttribute="trailing" secondItem="5F1-ef-zyG" secondAttribute="trailing" constant="5" id="H7v-mU-4sU"/>
-                        <constraint firstAttribute="width" constant="180" id="Z2c-Vj-ZUL"/>
-                        <constraint firstItem="5F1-ef-zyG" firstAttribute="leading" secondItem="792-dx-eck" secondAttribute="leading" constant="5" id="e7f-8A-Ctv"/>
-                        <constraint firstItem="5F1-ef-zyG" firstAttribute="centerY" secondItem="792-dx-eck" secondAttribute="centerY" id="sEU-wu-hFW"/>
+                        <constraint firstAttribute="trailing" secondItem="5F1-ef-zyG" secondAttribute="trailing" constant="10" id="H7v-mU-4sU"/>
+                        <constraint firstAttribute="bottom" secondItem="5F1-ef-zyG" secondAttribute="bottom" id="WxS-Lb-lfD"/>
+                        <constraint firstAttribute="width" constant="135" id="Z2c-Vj-ZUL"/>
+                        <constraint firstItem="5F1-ef-zyG" firstAttribute="leading" secondItem="792-dx-eck" secondAttribute="leading" constant="10" id="e7f-8A-Ctv"/>
+                        <constraint firstItem="5F1-ef-zyG" firstAttribute="top" secondItem="792-dx-eck" secondAttribute="top" id="x2o-HU-DkM"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G3q-fH-GYq" userLabel="Header Navi">
@@ -287,7 +288,7 @@
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="Qaa-AM-tMN" secondAttribute="trailing" id="1q1-qc-ILi"/>
                 <constraint firstItem="Qaa-AM-tMN" firstAttribute="top" secondItem="hus-b7-RTP" secondAttribute="bottom" id="44H-rf-V2d"/>

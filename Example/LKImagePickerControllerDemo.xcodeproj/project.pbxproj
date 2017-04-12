@@ -173,7 +173,7 @@
 		BC94FFD3196B540900EF8FC2 /* LKImagePickerControllerSelectHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LKImagePickerControllerSelectHeaderView.h; path = ../Classes/LKImagePickerControllerSelectHeaderView.h; sourceTree = "<group>"; };
 		BCA4A40E1E827E9B00B60340 /* LKImagePickerController_ButtonDown@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LKImagePickerController_ButtonDown@3x.png"; sourceTree = "<group>"; };
 		BCBBD95D1E9A3707005C20CC /* LKImagePickerController_IconLocationNo@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LKImagePickerController_IconLocationNo@3x.png"; sourceTree = "<group>"; };
-		BCC13FCE1E7CDCAE00A417D7 /* LKImagePickerController_Icon_Comment.pxm */ = {isa = PBXFileReference; lastKnownFileType = file; path = LKImagePickerController_Icon_Comment.pxm; sourceTree = "<group>"; };
+		BCC13FCE1E7CDCAE00A417D7 /* LKImagePickerController_Icon_Comment@3x.pxm */ = {isa = PBXFileReference; lastKnownFileType = file; path = "LKImagePickerController_Icon_Comment@3x.pxm"; sourceTree = "<group>"; };
 		BCC13FCF1E7D208800A417D7 /* LKImagePickerController_ButtonFull.pxm */ = {isa = PBXFileReference; lastKnownFileType = file; path = LKImagePickerController_ButtonFull.pxm; sourceTree = "<group>"; };
 		BCC13FD11E7D630100A417D7 /* LKImagePickerController_ButtonFullClose@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LKImagePickerController_ButtonFullClose@3x.png"; sourceTree = "<group>"; };
 		BCC13FD21E7D630100A417D7 /* LKImagePickerController_Icon_Comment@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LKImagePickerController_Icon_Comment@3x.png"; sourceTree = "<group>"; };
@@ -352,7 +352,7 @@
 			isa = PBXGroup;
 			children = (
 				BCDBB1471D86B55300CC9EB2 /* LKImagePickerController_IconPosted.pxm */,
-				BCC13FCE1E7CDCAE00A417D7 /* LKImagePickerController_Icon_Comment.pxm */,
+				BCC13FCE1E7CDCAE00A417D7 /* LKImagePickerController_Icon_Comment@3x.pxm */,
 				BCC13FCF1E7D208800A417D7 /* LKImagePickerController_ButtonFull.pxm */,
 				BCD623DA1E84C80D00999548 /* LKImagePickerController_WaitIndicator.pxm */,
 				BC60004F1E8E55100099B5B2 /* LKImagePickerController_ButtonUtility.pxm */,

@@ -22,10 +22,8 @@
 @property (weak, nonatomic) IBOutlet LKImagePickerControllerCheckmarkButton* checkmarkButton;
 @property (unsafe_unretained, nonatomic) IBOutlet UIView *videoView;
 @property (unsafe_unretained, nonatomic) IBOutlet UILabel *videoLabel;
-@property (weak, nonatomic) IBOutlet LKImagePickerControllerUsedMarkView *usedView;
 @property (weak, nonatomic) IBOutlet UIImageView *commentIconImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *alternativeIconImageView;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *checkButtonWidthConstraint;
 @property (weak, nonatomic) CAGradientLayer* gradientLayer;
 @property (weak, nonatomic) IBOutlet UIImageView *markedIconImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *locationIconImageView;
@@ -80,8 +78,6 @@
     BOOL gradientHidden = (self.markedIconImageView.hidden && self.commentIconImageView.hidden && self.alternativeIconImageView.hidden) || topIconsHidden;
      
     self.gradientLayer.hidden = gradientHidden;
-
-    self.checkButtonWidthConstraint.constant = self.bounds.size.width / 2.0;
 }
 
 - (void)alert
