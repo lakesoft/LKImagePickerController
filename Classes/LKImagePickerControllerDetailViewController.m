@@ -383,6 +383,7 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
     }
     if ([delegate respondsToSelector:@selector(setupUtilityButton3:)]) {
         [delegate setupUtilityButton3:self.utilityButton3];
+        self.checkmarkButton.hidden = YES;
     }
     if ([delegate respondsToSelector:@selector(setupUtilityButton4:)]) {
         self.checkmarkButton.hidden = YES;

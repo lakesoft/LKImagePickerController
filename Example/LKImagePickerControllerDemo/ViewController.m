@@ -170,7 +170,7 @@
 {
     NSLog(@"onLeftUtilityButton2");
 }
-- (void)setupUtilityButton3:(UIButton *)button
+- (void)_setupUtilityButton3:(UIButton *)button
 {
     UIImage* image = [UIImage imageNamed:@"LKImagePickerController_ButtonUtility" inBundle:LKImagePickerControllerBundleManager.bundle compatibleWithTraitCollection:nil];
     [button setImage:image forState:UIControlStateNormal];
@@ -179,7 +179,7 @@
 {
     NSLog(@"onLeftUtilityButton3");
 }
-- (void)setupUtilityButton4:(UIButton *)button
+- (void)_setupUtilityButton4:(UIButton *)button
 {
     UIImage* image = [UIImage imageNamed:@"LKImagePickerController_ButtonUtility" inBundle:LKImagePickerControllerBundleManager.bundle compatibleWithTraitCollection:nil];
     [button setImage:image forState:UIControlStateNormal];
