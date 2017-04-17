@@ -89,12 +89,13 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
 - (void)_assetsGroupDidReload:(NSNotification*)notification
 
 {
+    BOOL first = !self.firstReloadingFinished;
     self.firstReloadingFinished = YES;
 
     self.assetsCollection = [self _assetsCollectionWithAssetsGroup:self.assetsManager.assetsGroup orAssets:nil];
     self.displayingAssetsCollection = self.assetsCollection;
     self.displayingSelectedOnly = NO;
-    [self _reloadAndSetupSelections];
+    [self _reloadAndSetupSelectionsFirst:first];
     [self.titleButton setTitle:self._titleString forState:UIControlStateNormal];
     self.title = self.assetsCollection.assetsGroup.name;
     [self _updateControls];
@@ -108,6 +109,12 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     }
     
     [self.waitIndicatorView stopAnimating];
+    
+    if (self.detailViewController) {
+        self.detailViewController.assetsCollection = self.displayingAssetsCollection;
+        [self.detailViewController reloadCollectionViews];
+        NSLog(@"reloaded'");
+    }
 }
 
 - (LKAssetsCollection*)_assetsCollectionWithAssetsGroup:(LKAssetsGroup*)assetsGroup orAssets:(NSArray*)orAssets
@@ -165,6 +172,11 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
 
 - (void)_reloadAndSetupSelections
 {
+    [self _reloadAndSetupSelectionsFirst:NO];
+}
+
+- (void)_reloadAndSetupSelectionsFirst:(BOOL)first
+{
     [self.collectionView reloadData];
     CATransition *animation = [CATransition animation];[animation setType:kCATransitionPush];
     [animation setSubtype:kCATransitionFade];
@@ -172,18 +184,20 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     [animation setFillMode:kCAFillModeBoth];[animation setDuration:0.75];
     [self.collectionView.layer addAnimation:animation forKey:@"CATransitionReloadAnimation"];
 
-    NSInteger lastSection = self.displayingAssetsCollection.entries.count-1;
-    if (lastSection >= 0) {
-        for (NSInteger section=lastSection; section >= 0; section--) {
-            LKAssetsCollectionEntry* entry = self.displayingAssetsCollection.entries[section];
-            NSInteger item = entry.assets.count - 1;
-            if (item >=0 ) {
-                NSIndexPath* lastIndexPath = [NSIndexPath indexPathForItem:item
-                                                                 inSection:section];
-                [self.collectionView scrollToItemAtIndexPath:lastIndexPath
-                                            atScrollPosition:UICollectionViewScrollPositionBottom
-                                                    animated:NO];
-                break;
+    if (first) {
+        NSInteger lastSection = self.displayingAssetsCollection.entries.count-1;
+        if (lastSection >= 0) {
+            for (NSInteger section=lastSection; section >= 0; section--) {
+                LKAssetsCollectionEntry* entry = self.displayingAssetsCollection.entries[section];
+                NSInteger item = entry.assets.count - 1;
+                if (item >=0 ) {
+                    NSIndexPath* lastIndexPath = [NSIndexPath indexPathForItem:item
+                                                                     inSection:section];
+                    [self.collectionView scrollToItemAtIndexPath:lastIndexPath
+                                                atScrollPosition:UICollectionViewScrollPositionBottom
+                                                        animated:NO];
+                    break;
+                }
             }
         }
     }

@@ -793,6 +793,13 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
     [self didChangeDisplayedAsset];
 }
 
+- (void)reloadCollectionViews
+{
+    [self.collectionView reloadData];
+    [self.thumbnailCollectionView reloadData];
+}
+
+
 - (void)setInputModeEnabled:(BOOL)enabled
 {
     if (enabled) {
