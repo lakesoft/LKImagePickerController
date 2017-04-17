@@ -426,6 +426,11 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
     
     LKImagePickerControllerDetailCell* cell = [self.collectionView cellForItemAtIndexPath:self.indexPath];
     self.checkmarkButton.checked = cell.checked;
+    
+    self.topToolbarViewGradientLayer.frame = self.topToolbarView.bounds;
+    self.naviBackViewGradientLayer.frame = self.naviBackView.bounds;
+    self.headerNaviBackViewGradientLayer.frame = self.headerNaviBackView.bounds;
+
 }
 - (void)viewWillDisappear:(BOOL)animated
 {
@@ -457,6 +462,7 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
                          self.collectionView.alpha = 0.0;
                      }];
     [self.collectionView.collectionViewLayout invalidateLayout];
+    
 }
 
 -(void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
@@ -484,6 +490,7 @@ NSString * const LKImagePickerControllerDetailViewControllerWillDisappearNotific
 - (BOOL)prefersStatusBarHidden {
     return YES;
 }
+
 
 #pragma mark - UIScrollViewDelegate
 //- (NSInteger)_indexForIndexPath:(NSIndexPath*)indexPath
