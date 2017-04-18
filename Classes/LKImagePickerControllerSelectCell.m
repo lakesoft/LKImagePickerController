@@ -24,7 +24,8 @@
 @property (unsafe_unretained, nonatomic) IBOutlet UILabel *videoLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *commentIconImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *alternativeIconImageView;
-@property (weak, nonatomic) CAGradientLayer* gradientLayer;
+@property (weak, nonatomic) CAGradientLayer* topGradientLayer;
+@property (weak, nonatomic) CAGradientLayer* bottomGradientLayer;
 @property (weak, nonatomic) IBOutlet UIImageView *markedIconImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *locationIconImageView;
 
@@ -45,12 +46,14 @@
 
 - (void)awakeFromNib
 {
-    self.gradientLayer = [LKImagePickerControllerUtility setupPlateView:self.photoImageView directionDown:YES];
+    self.topGradientLayer = [LKImagePickerControllerUtility setupPlateView:self.photoImageView directionDown:YES];
+    self.bottomGradientLayer = [LKImagePickerControllerUtility setupPlateView:self.photoImageView directionDown:NO];
 }
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    self.gradientLayer.frame = self.bounds;
+    self.topGradientLayer.frame = self.bounds;
+    self.bottomGradientLayer.frame = self.bounds;
 }
 
 - (void)setAsset:(LKAsset *)asset
@@ -58,26 +61,27 @@
     _asset = asset;
     self.photoImageView.image = self.asset.alternativeAspectRatioThumbnail;
 
-    BOOL topIconsHidden = (self.bounds.size.width < LKImagePickerControllerSelectCellMinSize);
+    BOOL iconsHidden = (self.bounds.size.width < LKImagePickerControllerSelectCellMinSize);
 
-    self.markedIconImageView.hidden = ![LKImagePickerControllerMarkedAssetsManager isMarkedAsset:asset] || topIconsHidden;
+    self.markedIconImageView.hidden = ![LKImagePickerControllerMarkedAssetsManager isMarkedAsset:asset] || iconsHidden;
     
     self.videoView.hidden = asset.type != LKAssetTypeVideo;
     self.videoLabel.text = self._durationString;
-    self.videoLabel.hidden = topIconsHidden;
+    self.videoLabel.hidden = iconsHidden;
 
-    self.commentIconImageView.hidden = !asset.hasComment || topIconsHidden;
-    self.alternativeIconImageView.hidden = !asset.hasAlternativeImage || topIconsHidden;
-    self.locationIconImageView.hidden = (asset.location == nil) || !self.videoView.hidden;
-    self.locationIconImageView.hidden = topIconsHidden;
+    self.commentIconImageView.hidden = !asset.hasComment || iconsHidden;
+    self.alternativeIconImageView.hidden = !asset.hasAlternativeImage || iconsHidden;
+    self.locationIconImageView.hidden = (asset.location == nil) || iconsHidden;
 
     if (!self.alternativeIconImageView.hidden && self.alternativeIconImage) {
         self.alternativeIconImageView.image = self.alternativeIconImage;
     }
 
-    BOOL gradientHidden = (self.markedIconImageView.hidden && self.commentIconImageView.hidden && self.alternativeIconImageView.hidden) || topIconsHidden;
-     
-    self.gradientLayer.hidden = gradientHidden;
+    BOOL topGradientHidden = (self.markedIconImageView.hidden && self.commentIconImageView.hidden && self.locationIconImageView.hidden) || iconsHidden;
+    self.topGradientLayer.hidden = topGradientHidden;
+
+    BOOL bottomGradientHidden = (self.alternativeIconImageView.hidden) || iconsHidden;
+    //self.bottomGradientLayer.hidden = bottomGradientHidden;
 }
 
 - (void)alert

@@ -113,7 +113,6 @@ NS_ENUM(NSInteger, LKImagePickerControllerSelectViewSheet) {
     if (self.detailViewController) {
         self.detailViewController.assetsCollection = self.displayingAssetsCollection;
         [self.detailViewController reloadCollectionViews];
-        NSLog(@"reloaded'");
     }
 }
 
