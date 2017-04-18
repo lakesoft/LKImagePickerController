@@ -81,7 +81,7 @@
     self.topGradientLayer.hidden = topGradientHidden;
 
     BOOL bottomGradientHidden = (self.alternativeIconImageView.hidden) || iconsHidden;
-    //self.bottomGradientLayer.hidden = bottomGradientHidden;
+    self.bottomGradientLayer.hidden = bottomGradientHidden;
 }
 
 - (void)alert
