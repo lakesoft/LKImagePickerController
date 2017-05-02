@@ -11,7 +11,7 @@
 #import "LKImagePickerControllerImageUtility.h"
 //#import <CoreLocation/CoreLocation.h>
 
-@implementation LKImageUtility
+@implementation LKImagePickerControllerImageUtility
 
 + (UIImage*)adjustOrientationImage:(UIImage*)image
 {

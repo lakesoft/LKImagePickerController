@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @class CLLocation;
-@interface LKImageUtility : NSObject
+@interface LKImagePickerControllerImageUtility : NSObject
 
 + (UIImage*)adjustOrientationImage:(UIImage*)image;
 + (UIImage*)adjustOrientationImage:(UIImage*)image toWidth:(CGFloat)toWidth;
